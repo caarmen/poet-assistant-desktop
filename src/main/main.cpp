@@ -1,23 +1,22 @@
-#include "mainwindow.h"
-
-#include <QApplication>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQuickStyle>
 #include <QLocale>
 #include <QTranslator>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QGuiApplication a(argc, argv);
 
     QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
-        const QString baseName = "PoetAssistant_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName)) {
-            a.installTranslator(&translator);
-            break;
-        }
+    if (translator.load(":/i18n/PoetAssistant_en_US")) {
+        a.installTranslator(&translator);
+    } else {
+        qDebug() << "Failed to load translation file";
     }
-    MainWindow w;
-    w.show();
+
+    QQmlApplicationEngine engine;
+    QQuickStyle::setStyle("Material");
+    engine.load(QUrl("qrc:/qml/main.qml"));
     return a.exec();
 }

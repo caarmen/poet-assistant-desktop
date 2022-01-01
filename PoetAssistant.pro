@@ -1,8 +1,8 @@
-QT       += core gui
+QT       += core gui quick quickcontrols2
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++11 app_bundl
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -10,11 +10,10 @@ CONFIG += c++11
 
 SOURCE_DIR=src
 SOURCES += \
-    $${SOURCE_DIR}/main/main.cpp \
-    $${SOURCE_DIR}/main/mainwindow.cpp
+    $${SOURCE_DIR}/main/main.cpp
 
-HEADERS += \
-    $${SOURCE_DIR}/main/mainwindow.h
+#HEADERS += \
+#    $${SOURCE_DIR}/main/mainwindow.h
 
 TRANSLATIONS += \
     resources/i18n/PoetAssistant_en_US.ts
