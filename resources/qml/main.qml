@@ -9,6 +9,7 @@ ApplicationWindow {
     visible: true
 
     menuBar: MenuBar {
+        background: Rectangle { color: Material.toolBarColor }
         Menu { MenuItem {} }
         Menu { MenuItem {} }
     }
@@ -16,7 +17,18 @@ ApplicationWindow {
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
-            ToolButton {}
+            TextField {
+                color: Material.toolTextColor
+                placeholderTextColor: Material.toolTextColor
+                Layout.leftMargin: 16
+                placeholderText: qsTr("hint_search")
+                Layout.fillWidth: true
+            }
+            ToolButton {
+                icon.name: "search"
+                icon.source: "qrc:/images/search.svg"
+                Layout.rightMargin: 16
+            }
         }
     }
 

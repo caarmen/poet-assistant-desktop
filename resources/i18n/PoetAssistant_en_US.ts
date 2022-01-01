@@ -15,5 +15,9 @@
         <source>tab_definitions</source>
         <translation>Dictionary</translation>
     </message>
+    <message>
+        <source>hint_search</source>
+        <translation>Search</translation>
+    </message>
 </context>
 </TS>
