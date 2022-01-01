@@ -9,12 +9,6 @@ ApplicationWindow {
     visible: true
     title: qsTr("app_title")
 
-    menuBar: MenuBar {
-        background: Rectangle { color: Material.toolBarColor }
-        Menu { MenuItem {} }
-        Menu { MenuItem {} }
-    }
-
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
