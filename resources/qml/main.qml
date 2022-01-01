@@ -33,31 +33,55 @@ ApplicationWindow {
         // ...
     }
 
-    TabBar {
-        id: bar
+    ColumnLayout {
         width: parent.width
-        TabButton {
-            text: qsTr("tab_rhymes")
+        height: parent.height
+        RowLayout {
+            width: parent.width
+            TabBar {
+                id: bar
+                Layout.fillWidth: true
+                TabButton {
+                    text: qsTr("tab_rhymes")
+                }
+                TabButton {
+                    text: qsTr("tab_thesaurus")
+                }
+                TabButton {
+                    text: qsTr("tab_definitions")
+                }
+            }
         }
-        TabButton {
-            text: qsTr("tab_thesaurus")
-        }
-        TabButton {
-            text: qsTr("tab_definitions")
-        }
-    }
-
-    StackLayout {
-        width: parent.width
-        currentIndex: bar.currentIndex
-        Item {
-            id: rhymesTab
-        }
-        Item {
-            id: thesaurusTab
-        }
-        Item {
-            id: definitionsTab
+        RowLayout {
+            StackLayout {
+                currentIndex: bar.currentIndex
+                Item {
+                    id: rhymesTab
+                }
+                Item {
+                    id: thesaurusTab
+                }
+                Item {
+                    id: definitionsTab
+                    ScrollView {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        anchors.fill: parent
+                        ListView {
+                            id: definitionsList
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            anchors.fill: parent
+                            anchors.top: parent.top
+                            anchors.bottom: parent.bottom
+                            model: definitionsListModel
+                            delegate: DefinitionListItemDelegate {}
+                        }
+                    }
+                }
+            }
         }
     }
 }

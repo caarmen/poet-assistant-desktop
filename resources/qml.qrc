@@ -3,5 +3,6 @@
         <file>qml/main.qml</file>
         <file>i18n/PoetAssistant_en_US.qm</file>
         <file>images/search.svg</file>
+        <file>qml/DefinitionListItemDelegate.qml</file>
     </qresource>
 </RCC>

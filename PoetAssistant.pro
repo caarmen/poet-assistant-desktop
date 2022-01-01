@@ -11,7 +11,9 @@ CONFIG += c++11 app_bundl
 SOURCE_DIR=src
 SOURCES += \
     $${SOURCE_DIR}/main/main.cpp \
-    src/main/mainviewmodel.cpp
+    src/main/definitiondisplaydata.cpp \
+    src/main/mainviewmodel.cpp \
+    src/main/definitionslistmodel.cpp
 
 #HEADERS += \
 #    $${SOURCE_DIR}/main/mainwindow.h
@@ -30,4 +32,6 @@ RESOURCES += \
     resources/qml.qrc
 
 HEADERS += \
-    src/main/mainviewmodel.h
+    src/main/definitiondisplaydata.h \
+    src/main/mainviewmodel.h \
+    src/main/definitionslistmodel.h
