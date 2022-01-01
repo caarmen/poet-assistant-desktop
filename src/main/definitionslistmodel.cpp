@@ -2,7 +2,7 @@
 #include "definitiondisplaydata.h"
 
 DefinitionsListModel::DefinitionsListModel(QObject *parent)
-    : QAbstractListModel(parent)
+    : QAbstractListModel(parent), isLoading(false)
 {
     removeMeShouldLoad = true;
 }
@@ -30,24 +30,24 @@ int DefinitionsListModel::rowCount(const QModelIndex &parent) const
     return 2;
 }
 
-bool DefinitionsListModel::hasChildren(const QModelIndex &parent) const
-{
-    // FIXME: Implement me!
-    return false;
-}
-
 bool DefinitionsListModel::canFetchMore(const QModelIndex &parent) const
 {
     // FIXME: Implement me!
-    return removeMeShouldLoad;
+    return !parent.isValid() && !isLoading && removeMeShouldLoad;
 }
 
 void DefinitionsListModel::fetchMore(const QModelIndex &parent)
 {
+    if (parent.isValid()) return;
+
     // FIXME: Implement me!
-    beginInsertRows(parent, 0, 2);
-    endInsertRows();
-    removeMeShouldLoad = false;
+    if (!isLoading) {
+        isLoading = true;
+        beginInsertRows(parent, 0, 2);
+        endInsertRows();
+        removeMeShouldLoad = false;
+        isLoading = false;
+    }
 }
 
 QVariant DefinitionsListModel::data(const QModelIndex &index, int role) const
@@ -59,7 +59,7 @@ QVariant DefinitionsListModel::data(const QModelIndex &index, int role) const
     if (role == DefinitionRole) {
         return QVariant::fromValue(new DefinitionDisplayData(
                                        "noun",
-                                       QString("some blah blah %1").arg(QString::number(index.row())),
+                                       QString("some blah blah %1 %2").arg(QString::number(index.row()), QString::number(index.column())),
                                        (QObject*) this
                                        ));
     } else {
