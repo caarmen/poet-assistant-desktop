@@ -4,6 +4,8 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.12
 
 ApplicationWindow {
+    width: 500
+    height: 500
     visible: true
 
     menuBar: MenuBar {
