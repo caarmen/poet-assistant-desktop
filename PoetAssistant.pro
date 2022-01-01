@@ -8,12 +8,13 @@ CONFIG += c++11
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+SOURCE_DIR=src
 SOURCES += \
-    main.cpp \
-    mainwindow.cpp
+    $${SOURCE_DIR}/main/main.cpp \
+    $${SOURCE_DIR}/main/mainwindow.cpp
 
 HEADERS += \
-    mainwindow.h
+    $${SOURCE_DIR}/main/mainwindow.h
 
 TRANSLATIONS += \
     PoetAssistant_en_US.ts
