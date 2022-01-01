@@ -10,7 +10,8 @@ CONFIG += c++11 app_bundl
 
 SOURCE_DIR=src
 SOURCES += \
-    $${SOURCE_DIR}/main/main.cpp
+    $${SOURCE_DIR}/main/main.cpp \
+    src/main/mainviewmodel.cpp
 
 #HEADERS += \
 #    $${SOURCE_DIR}/main/mainwindow.h
@@ -27,3 +28,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources/qml.qrc
+
+HEADERS += \
+    src/main/mainviewmodel.h

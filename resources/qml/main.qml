@@ -18,6 +18,7 @@ ApplicationWindow {
         RowLayout {
             anchors.fill: parent
             TextField {
+                id: tfSearch
                 color: Material.toolTextColor
                 placeholderTextColor: Material.toolTextColor
                 Layout.leftMargin: 16
@@ -28,6 +29,7 @@ ApplicationWindow {
                 icon.name: "search"
                 icon.source: "qrc:/images/search.svg"
                 Layout.rightMargin: 16
+                onClicked: mainViewModel.search(tfSearch.text)
             }
         }
     }

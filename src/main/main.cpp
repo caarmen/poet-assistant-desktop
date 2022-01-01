@@ -1,7 +1,10 @@
+#include "mainviewmodel.h"
+
 #include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QQuickStyle>
 #include <QLocale>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QQuickStyle>
 #include <QTranslator>
 
 int main(int argc, char *argv[])
@@ -11,11 +14,11 @@ int main(int argc, char *argv[])
     QTranslator translator;
     if (translator.load(":/i18n/PoetAssistant_en_US")) {
         a.installTranslator(&translator);
-    } else {
-        qDebug() << "Failed to load translation file";
     }
+    MainViewModel mainViewModel;
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("mainViewModel", QVariant::fromValue(&mainViewModel));
     QQuickStyle::setStyle("Material");
     engine.load(QUrl("qrc:/qml/main.qml"));
     return a.exec();
