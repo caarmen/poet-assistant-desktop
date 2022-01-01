@@ -17,7 +17,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/mainwindow.h
 
 TRANSLATIONS += \
-    PoetAssistant_en_US.ts
+    resources/i18n/PoetAssistant_en_US.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -25,3 +25,6 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources/qml.qrc
