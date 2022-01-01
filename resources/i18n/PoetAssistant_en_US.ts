@@ -4,6 +4,10 @@
 <context>
     <name>main</name>
     <message>
+        <source>app_title</source>
+        <translation>Poet Assistant</translation>
+    </message>
+    <message>
         <source>tab_rhymes</source>
         <translation>Rhymes</translation>
     </message>

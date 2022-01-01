@@ -7,6 +7,7 @@ ApplicationWindow {
     width: 500
     height: 500
     visible: true
+    title: qsTr("app_title")
 
     menuBar: MenuBar {
         background: Rectangle { color: Material.toolBarColor }
