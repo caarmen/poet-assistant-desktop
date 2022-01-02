@@ -1,3 +1,4 @@
+#include "db.h"
 #include "mainviewmodel.h"
 #include "definitionslistmodel.h"
 
@@ -18,27 +19,7 @@ int main(int argc, char *argv[])
     if (translator.load(":/i18n/PoetAssistant_en_US")) {
         a.installTranslator(&translator);
     }
-    // TODO move somewhere else
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    QTemporaryFile tmpFile(qApp);
-    tmpFile.setFileTemplate("XXXXXX.db");
-    if (tmpFile.open()) {
-        QString tmp_filename=tmpFile.fileName();
-        qDebug() << "temporary" << tmp_filename;
-
-        QFile file(":/poet_assistant.db");
-        if (file.open(QIODevice::ReadOnly)) {
-            qint64 wrote = tmpFile.write(file.readAll());
-            qDebug() << "Wrote " << wrote;
-        } else {
-            qDebug() << "Couldn't read db file " ;
-        }
-        tmpFile.close();
-    }
-    db.setDatabaseName(tmpFile.fileName());
-    if (!db.open()) {
-        qDebug() << "Couldn't open db";
-    }
+    QSqlDatabase db = Db::openDb(a);
     DefinitionsListModel definitionsListModel(&db);
     MainViewModel mainViewModel(&definitionsListModel);
 
