@@ -1,65 +1,47 @@
 #include "definitionslistmodel.h"
 #include "definitiondisplaydata.h"
 
-DefinitionsListModel::DefinitionsListModel(QObject *parent)
-    : QAbstractListModel(parent), isLoading(false)
+DefinitionsListModel::DefinitionsListModel(QSqlDatabase *db, QObject *parent)
+    : QAbstractListModel(parent), db(db), query(nullptr), size(0)
 {
-    removeMeShouldLoad = true;
 }
 
+void DefinitionsListModel::readDefinitions(QString searchText) {
+    beginResetModel();
+    if (query != nullptr) delete query;
+    query = new QSqlQuery();
+    query->prepare("SELECT part_of_speech, definition FROM dictionary WHERE word = :word");
+    query->bindValue(":word", searchText);
+    query->exec();
+    query->last();
+    size = query->at() + 1;
+    endResetModel();
+}
 
 QHash<int,QByteArray> DefinitionsListModel::roleNames() const {
-    return { { DefinitionRole, "definition" },
-    };
-}
-
-QVariant DefinitionsListModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
-    // FIXME: Implement me!
-    return QString("header");
+    return { { DefinitionRole, "definition" } };
 }
 
 int DefinitionsListModel::rowCount(const QModelIndex &parent) const
 {
     // For list models only the root node (an invalid parent) should return the list's size. For all
     // other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
-    if (parent.isValid())
-        return 0;
+    if (parent.isValid()) return 0;
 
-    // FIXME: Implement me!
-    return 2;
-}
-
-bool DefinitionsListModel::canFetchMore(const QModelIndex &parent) const
-{
-    // FIXME: Implement me!
-    return !parent.isValid() && !isLoading && removeMeShouldLoad;
-}
-
-void DefinitionsListModel::fetchMore(const QModelIndex &parent)
-{
-    if (parent.isValid()) return;
-
-    // FIXME: Implement me!
-    if (!isLoading) {
-        isLoading = true;
-        beginInsertRows(parent, 0, 2);
-        endInsertRows();
-        removeMeShouldLoad = false;
-        isLoading = false;
-    }
+    return size;
 }
 
 QVariant DefinitionsListModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid())
-        return QVariant();
+    if (!index.isValid()) return QVariant();
 
-    // FIXME: Implement me!
     if (role == DefinitionRole) {
+        query->seek(index.row(), false);
+        QString definition = query->value("definition").toString();
+        QString partOfSpeech = query->value("part_of_speech").toString();
         return QVariant::fromValue(new DefinitionDisplayData(
-                                       "noun",
-                                       QString("some blah blah %1 %2").arg(QString::number(index.row()), QString::number(index.column())),
+                                       partOfSpeech,
+                                       definition,
                                        (QObject*) this
                                        ));
     } else {

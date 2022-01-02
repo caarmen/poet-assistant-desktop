@@ -1,3 +1,4 @@
+#include "db.h"
 #include "mainviewmodel.h"
 #include "definitionslistmodel.h"
 
@@ -7,6 +8,8 @@
 #include <QQmlContext>
 #include <QQuickStyle>
 #include <QTranslator>
+#include <QtSql>
+
 
 int main(int argc, char *argv[])
 {
@@ -16,8 +19,9 @@ int main(int argc, char *argv[])
     if (translator.load(":/i18n/PoetAssistant_en_US")) {
         a.installTranslator(&translator);
     }
-    MainViewModel mainViewModel;
-    DefinitionsListModel definitionsListModel;
+    QSqlDatabase db = Db::openDb(a);
+    DefinitionsListModel definitionsListModel(&db);
+    MainViewModel mainViewModel(&definitionsListModel);
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("mainViewModel", QVariant::fromValue(&mainViewModel));
