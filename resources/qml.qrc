@@ -5,5 +5,6 @@
         <file>images/search.svg</file>
         <file>qml/DefinitionListItemDelegate.qml</file>
         <file>poet_assistant.db</file>
+        <file>qml/DictionaryTabView.qml</file>
     </qresource>
 </RCC>

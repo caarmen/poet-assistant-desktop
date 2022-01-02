@@ -63,23 +63,7 @@ ApplicationWindow {
                 }
                 Item {
                     id: definitionsTab
-                    ScrollView {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        anchors.top: parent.top
-                        anchors.bottom: parent.bottom
-                        anchors.fill: parent
-                        ListView {
-                            id: definitionsList
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
-                            anchors.fill: parent
-                            anchors.top: parent.top
-                            anchors.bottom: parent.bottom
-                            model: definitionsListModel
-                            delegate: DefinitionListItemDelegate {}
-                        }
-                    }
+                    DictionaryTabView {}
                 }
             }
         }
