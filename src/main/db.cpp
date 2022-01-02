@@ -6,10 +6,10 @@ Db::Db()
 
 QSqlDatabase Db::openDb(QCoreApplication &app) {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setConnectOptions("QSQLITE_OPEN_READONLY");
     QTemporaryFile tmpFile(&app);
     tmpFile.setFileTemplate("XXXXXX.db");
     if (tmpFile.open()) {
-        QString tmp_filename=tmpFile.fileName();
         QFile file(":/poet_assistant.db");
         if (file.open(QIODevice::ReadOnly)) {
             tmpFile.write(file.readAll());
