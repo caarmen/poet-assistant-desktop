@@ -1,12 +1,29 @@
 #include "definitionslistmodel.h"
 #include "definitiondisplaydata.h"
 
-DefinitionsListModel::DefinitionsListModel(QObject *parent)
-    : QAbstractListModel(parent), isLoading(false)
+DefinitionsListModel::DefinitionsListModel(QSqlDatabase *db, QObject *parent)
+    : QAbstractListModel(parent), db(db), isLoading(false), query(nullptr), size(0)
 {
     removeMeShouldLoad = true;
 }
 
+void DefinitionsListModel::readDefinitions(QString searchText) {
+    removeMeShouldLoad = true;
+    beginResetModel();
+    if (query != nullptr) delete query;
+    query = new QSqlQuery();
+    query->prepare("SELECT part_of_speech, definition FROM dictionary WHERE word = :word");
+    query->bindValue(":word", searchText);
+    if(!query->exec()) {
+        qDebug() << "Error executing query";
+    }
+    qDebug() << "query " << query->isSelect();
+    query->last();
+    size = query->at() + 1;
+    qDebug() << "query size " << size;
+    endResetModel();
+    //emit dataChanged(index(0,0), index(size, 0));
+}
 
 QHash<int,QByteArray> DefinitionsListModel::roleNames() const {
     return { { DefinitionRole, "definition" },
@@ -26,8 +43,7 @@ int DefinitionsListModel::rowCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    // FIXME: Implement me!
-    return 2;
+    return size;
 }
 
 bool DefinitionsListModel::canFetchMore(const QModelIndex &parent) const
@@ -40,10 +56,12 @@ void DefinitionsListModel::fetchMore(const QModelIndex &parent)
 {
     if (parent.isValid()) return;
 
+    if (query == nullptr) return;
+
     // FIXME: Implement me!
     if (!isLoading) {
         isLoading = true;
-        beginInsertRows(parent, 0, 2);
+        beginInsertRows(parent, 0, size);
         endInsertRows();
         removeMeShouldLoad = false;
         isLoading = false;
@@ -55,11 +73,16 @@ QVariant DefinitionsListModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    // FIXME: Implement me!
     if (role == DefinitionRole) {
+        query->seek(index.row(), false);
+        QSqlRecord record = query->record();
+        int columnDefinition = record.indexOf("definition");
+        int columnPartOfSpeech = record.indexOf("part_of_speech");
+        QString definition = query->value(columnDefinition).toString();
+        QString partOfSpeech = query->value(columnPartOfSpeech).toString();
         return QVariant::fromValue(new DefinitionDisplayData(
-                                       "noun",
-                                       QString("some blah blah %1 %2").arg(QString::number(index.row()), QString::number(index.column())),
+                                       partOfSpeech,
+                                       definition,
                                        (QObject*) this
                                        ));
     } else {
