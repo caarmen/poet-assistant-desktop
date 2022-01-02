@@ -2,7 +2,8 @@
 #define DEFINITIONSLISTMODEL_H
 
 #include <QAbstractListModel>
-#include <QtSql>
+#include "definitiondisplaydata.h"
+#include "definitionrepository.h"
 
 class DefinitionsListModel : public QAbstractListModel
 {
@@ -12,7 +13,7 @@ public:
     enum MyRoles {
         DefinitionRole = Qt::UserRole + 1,
     };
-    explicit DefinitionsListModel(QSqlDatabase *db, QObject *parent = nullptr);
+    explicit DefinitionsListModel(DefinitionRepository *respository, QObject *parent = nullptr);
 
     void readDefinitions(QString searchText);
 
@@ -21,9 +22,8 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
-    QSqlDatabase *db;
-    QSqlQuery *query;
-    int size;
+    DefinitionRepository *repository;
+    QList<DefinitionDisplayData*> *definitions;
 };
 
 #endif // DEFINITIONSLISTMODEL_H

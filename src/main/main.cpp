@@ -1,6 +1,7 @@
 #include "db.h"
 #include "mainviewmodel.h"
 #include "definitionslistmodel.h"
+#include "definitionrepository.h"
 
 #include <QGuiApplication>
 #include <QLocale>
@@ -20,7 +21,8 @@ int main(int argc, char *argv[])
         a.installTranslator(&translator);
     }
     QSqlDatabase db = Db::openDb(a);
-    DefinitionsListModel definitionsListModel(&db);
+    DefinitionRepository definitionRepository(&db);
+    DefinitionsListModel definitionsListModel(&definitionRepository);
     MainViewModel mainViewModel(&definitionsListModel);
 
     QQmlApplicationEngine engine;
