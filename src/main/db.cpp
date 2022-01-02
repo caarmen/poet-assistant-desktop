@@ -3,10 +3,16 @@
 
 Db::Db()
 {
+    threadPool = new QThreadPool();
+    threadPool->setMaxThreadCount(1);
 }
 
-QFuture<QSqlDatabase> Db::openDb(QThreadPool &threadPool, QCoreApplication &app) {
-    return QtConcurrent::run(&threadPool, [&app]() {
+QThreadPool* Db::getThreadPool() {
+    return threadPool;
+}
+
+QFuture<void> Db::openDb(QCoreApplication &app) {
+    return QtConcurrent::run(threadPool, [this, &app]() {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
         db.setConnectOptions("QSQLITE_OPEN_READONLY");
         QTemporaryFile tmpFile(&app);
@@ -22,6 +28,5 @@ QFuture<QSqlDatabase> Db::openDb(QThreadPool &threadPool, QCoreApplication &app)
         if (!db.open()) {
             qFatal("Couldn't open db");
         }
-        return db;
     });
 }

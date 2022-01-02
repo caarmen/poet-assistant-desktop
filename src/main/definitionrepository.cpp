@@ -1,14 +1,15 @@
 #include "definitionrepository.h"
+#include "db.h"
 #include <QtConcurrent>
 
-DefinitionRepository::DefinitionRepository(QThreadPool *threadPool, QSqlDatabase *db, QObject *parent)
-    : QObject{parent}, db(db), threadPool(threadPool)
+DefinitionRepository::DefinitionRepository(Db *db, QObject *parent)
+    : QObject{parent}, db(db)
 {
 
 }
 
 QFuture<QList<DefinitionDisplayData*>*> DefinitionRepository::readDefinitions(QString word) {
-    return QtConcurrent::run(threadPool, [=]() {
+    return QtConcurrent::run(db->getThreadPool(), [=]() {
         QSqlQuery query;
         query.prepare("SELECT part_of_speech, definition FROM dictionary WHERE word = :word");
         query.bindValue(":word", word);
