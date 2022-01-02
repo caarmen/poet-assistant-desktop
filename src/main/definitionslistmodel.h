@@ -15,22 +15,12 @@ public:
     explicit DefinitionsListModel(QSqlDatabase *db, QObject *parent = nullptr);
 
     void readDefinitions(QString searchText);
+
     QHash<int,QByteArray> roleNames() const override;
-
-    // Header:
-    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
-
-    // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-
-    bool canFetchMore(const QModelIndex &parent) const override;
-    void fetchMore(const QModelIndex &parent) override;
-
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
-    bool isLoading;
-    bool removeMeShouldLoad;
     QSqlDatabase *db;
     QSqlQuery *query;
     int size;
