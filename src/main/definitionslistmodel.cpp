@@ -1,5 +1,6 @@
 #include "definitionslistmodel.h"
 #include "definitiondisplaydata.h"
+#include <QFutureWatcher>
 
 DefinitionsListModel::DefinitionsListModel(DefinitionRepository *repository, QObject *parent)
     : QAbstractListModel(parent), repository(repository), definitions(nullptr)
@@ -13,8 +14,14 @@ void DefinitionsListModel::readDefinitions(QString searchText) {
         definitions->clear();
         delete definitions;
     }
-    definitions = repository->readDefinitions(searchText);
-    endResetModel();
+    QFuture<QList<DefinitionDisplayData*>*> future = repository->readDefinitions(searchText);
+    QFutureWatcher<QList<DefinitionDisplayData*>*> *watcher = new QFutureWatcher<QList<DefinitionDisplayData*>*>();
+    QObject::connect(watcher, &QFutureWatcher<QList<DefinitionDisplayData*>*>::finished, this, [=](){
+        definitions = future.result();
+        endResetModel();
+        watcher->deleteLater();
+    });
+    watcher->setFuture(future);
 }
 
 QHash<int,QByteArray> DefinitionsListModel::roleNames() const {
