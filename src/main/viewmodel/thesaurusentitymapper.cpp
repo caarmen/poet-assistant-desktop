@@ -46,7 +46,7 @@ QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::mapMatchingWords(const char
                 [=] (QString word) { return !word.isEmpty(); }
     );
     if (!nonEmptyMatchingWordsList.isEmpty()) {
-        result->append(new ThesaurusDisplayData(QCoreApplication::translate("main", label)));
+        result->append(new ThesaurusDisplayData(QCoreApplication::translate("main", label), true));
         result->append(QtConcurrent::blockingMapped(nonEmptyMatchingWordsList, [=](QString matchingWord){
             return new ThesaurusDisplayData(matchingWord);
         }
@@ -56,7 +56,7 @@ QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::mapMatchingWords(const char
 }
 QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::map(ThesaurusEntity* entity) {
     QList<ThesaurusDisplayData*> *result = new QList<ThesaurusDisplayData*>();
-    result->append(new ThesaurusDisplayData(QCoreApplication::translate("main", map(entity->wordType))));
+    result->append(new ThesaurusDisplayData(QCoreApplication::translate("main", map(entity->wordType)), false, true));
     QList<ThesaurusDisplayData*> *synonyms = mapMatchingWords("synonyms", entity->synonyms);
     result->append(*synonyms);
     delete synonyms;

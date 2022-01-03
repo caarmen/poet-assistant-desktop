@@ -16,6 +16,8 @@ ItemDelegate {
                 Layout.alignment: Qt.AlignVCenter
                 Text {
                     color: Material.primaryTextColor
+                    font.bold: model.thesaurus.bold
+                    font.italic: model.thesaurus.italic
                     text: model.thesaurus.text
                     verticalAlignment: Text.AlignVCenter
                 }
