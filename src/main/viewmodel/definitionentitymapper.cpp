@@ -1,10 +1,12 @@
 #include "definitionentitymapper.h"
 
+#include <QCoreApplication>
+
 DefinitionEntityMapper::DefinitionEntityMapper()
 {
 }
 
-QString DefinitionEntityMapper::map(const QString &partOfSpeech)
+const char * DefinitionEntityMapper::map(const QString &partOfSpeech)
 {
     if (partOfSpeech == "a") {
         return "adjective";
@@ -21,5 +23,5 @@ QString DefinitionEntityMapper::map(const QString &partOfSpeech)
 
 DefinitionDisplayData* DefinitionEntityMapper::map(DefinitionEntity* entity)
 {
-    return new DefinitionDisplayData(map(entity->partOfSpeech), entity->definition);
+    return new DefinitionDisplayData(QCoreApplication::translate("main", map(entity->partOfSpeech)), entity->definition);
 }

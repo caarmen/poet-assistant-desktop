@@ -16,7 +16,7 @@ ItemDelegate {
                 Layout.alignment: Qt.AlignVCenter
                 Text {
                     color: Material.primaryTextColor
-                    text: qsTranslate("main", model.definition.part_of_speech)
+                    text: model.definition.part_of_speech
                     verticalAlignment: Text.AlignVCenter
                 }
             }
