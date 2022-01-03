@@ -3,16 +3,18 @@
 
 #include <QObject>
 #include "definitionlistmodel.h"
+#include "thesauruslistmodel.h"
 
 class MainViewModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit MainViewModel(DefinitionListModel *definitionsListModel, QObject *parent = nullptr);
+    explicit MainViewModel(ThesaurusListModel *thesaurusListModel, DefinitionListModel *definitionsListModel, QObject *parent = nullptr);
     Q_INVOKABLE void search(QString query);
 signals:
 
 private:
+    ThesaurusListModel *thesaurusListModel;
     DefinitionListModel *definitionsListModel;
 };
 

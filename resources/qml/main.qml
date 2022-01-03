@@ -65,6 +65,7 @@ ApplicationWindow {
                 }
                 Item {
                     id: thesaurusTab
+                    ThesaurusTabView {}
                 }
                 Item {
                     id: definitionsTab

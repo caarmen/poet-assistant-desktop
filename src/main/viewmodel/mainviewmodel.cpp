@@ -1,7 +1,7 @@
 #include "mainviewmodel.h"
 #include <QDebug>
-MainViewModel::MainViewModel(DefinitionListModel *definitionsListModel, QObject *parent)
-    : QObject{parent}, definitionsListModel(definitionsListModel)
+MainViewModel::MainViewModel(ThesaurusListModel *thesaurusListModel, DefinitionListModel *definitionsListModel, QObject *parent)
+    : QObject{parent}, thesaurusListModel(thesaurusListModel), definitionsListModel(definitionsListModel)
 {
 
 }
@@ -9,4 +9,5 @@ MainViewModel::MainViewModel(DefinitionListModel *definitionsListModel, QObject 
 void MainViewModel::search(QString searchText) {
     qDebug() << "search " << searchText;
     definitionsListModel->readDefinitions(searchText);
+    thesaurusListModel->readThesaurus(searchText);
 }
