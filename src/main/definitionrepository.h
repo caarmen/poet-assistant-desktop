@@ -1,7 +1,7 @@
 #ifndef DEFINITIONREPOSITORY_H
 #define DEFINITIONREPOSITORY_H
 
-#include "definitiondisplaydata.h"
+#include "definitionentity.h"
 #include "db.h"
 
 #include <QObject>
@@ -12,7 +12,7 @@ class DefinitionRepository : public QObject
     Q_OBJECT
 public:
     explicit DefinitionRepository(Db *db, QObject *parent = nullptr);
-    QFuture<QList<DefinitionDisplayData*>*> readDefinitions(QString word);
+    QFuture<QList<DefinitionEntity*>*> readDefinitions(QString word);
 signals:
 
 private:

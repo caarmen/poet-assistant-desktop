@@ -12,7 +12,7 @@ QThreadPool* Db::getThreadPool() {
 }
 
 QFuture<void> Db::openDb(QCoreApplication &app) {
-    return QtConcurrent::run(threadPool, [this, &app]() {
+    return QtConcurrent::run(threadPool, [&app]() {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
         db.setConnectOptions("QSQLITE_OPEN_READONLY");
         QTemporaryFile tmpFile(&app);
