@@ -7,9 +7,11 @@
 class Db
 {
 public:
-    static QSqlDatabase openDb(QCoreApplication &app);
-private :
     Db();
+    QFuture<void> openDb(QCoreApplication &app);
+    QThreadPool * getThreadPool();
+private :
+    QThreadPool *threadPool;
 };
 
 #endif // DB_H

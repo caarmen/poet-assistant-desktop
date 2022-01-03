@@ -20,7 +20,9 @@ int main(int argc, char *argv[])
     if (translator.load(":/i18n/PoetAssistant_en_US")) {
         a.installTranslator(&translator);
     }
-    QSqlDatabase db = Db::openDb(a);
+    Db db;
+    QFuture<void> future = db.openDb(a);
+    future.waitForFinished(); // TODO
     DefinitionRepository definitionRepository(&db);
     DefinitionsListModel definitionsListModel(&definitionRepository);
     MainViewModel mainViewModel(&definitionsListModel);
