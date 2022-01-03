@@ -19,6 +19,11 @@ ApplicationWindow {
                 Layout.leftMargin: 16
                 placeholderText: qsTr("hint_search")
                 Layout.fillWidth: true
+                Keys.onReleased: {
+                    if (event.key === Qt.Key_Return) {
+                        mainViewModel.search(text)
+                    }
+                }
             }
             ToolButton {
                 icon.name: "search"
