@@ -1,6 +1,7 @@
 #include "definitionslistmodel.h"
 #include "definitiondisplaydata.h"
 #include <QFutureWatcher>
+#include <QtConcurrent>
 
 DefinitionsListModel::DefinitionsListModel(DefinitionRepository *repository, QObject *parent)
     : QAbstractListModel(parent), repository(repository), definitions(nullptr)
@@ -11,15 +12,19 @@ void DefinitionsListModel::readDefinitions(QString searchText) {
     beginResetModel();
     if (definitions != nullptr) {
         qDeleteAll(*definitions);
-        definitions->clear();
         delete definitions;
     }
-    QFuture<QList<DefinitionDisplayData*>*> future = repository->readDefinitions(searchText);
-    QFutureWatcher<QList<DefinitionDisplayData*>*> *watcher = new QFutureWatcher<QList<DefinitionDisplayData*>*>();
-    QObject::connect(watcher, &QFutureWatcher<QList<DefinitionDisplayData*>*>::finished, this, [=](){
-        definitions = future.result();
+    QFuture<QList<DefinitionEntity*>*> future = repository->readDefinitions(searchText);
+    QFutureWatcher<QList<DefinitionEntity*>*> *watcher = new QFutureWatcher<QList<DefinitionEntity*>*>();
+    QObject::connect(watcher, &QFutureWatcher<QList<DefinitionEntity*>*>::finished, this, [=](){
+        QList<DefinitionEntity*>* entities = future.result();
+        definitions = new QList<DefinitionDisplayData*>(QtConcurrent::blockingMapped(*entities, [=](DefinitionEntity* entity){
+            return new DefinitionDisplayData(entity->partOfSpeech, entity->definition);
+        }));
         endResetModel();
         watcher->deleteLater();
+        qDeleteAll(*entities);
+        delete entities;
     });
     watcher->setFuture(future);
 }
@@ -47,3 +52,4 @@ QVariant DefinitionsListModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
 }
+
