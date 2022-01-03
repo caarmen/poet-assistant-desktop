@@ -1,11 +1,11 @@
-#ifndef DEFINITIONSLISTMODEL_H
-#define DEFINITIONSLISTMODEL_H
+#ifndef DEFINITIONLISTMODEL_H
+#define DEFINITIONLISTMODEL_H
 
 #include <QAbstractListModel>
 #include "definitiondisplaydata.h"
 #include "definitionrepository.h"
 
-class DefinitionsListModel : public QAbstractListModel
+class DefinitionListModel : public QAbstractListModel
 {
     Q_OBJECT
 
@@ -13,7 +13,7 @@ public:
     enum MyRoles {
         DefinitionRole = Qt::UserRole + 1,
     };
-    explicit DefinitionsListModel(DefinitionRepository *respository, QObject *parent = nullptr);
+    explicit DefinitionListModel(DefinitionRepository *respository, QObject *parent = nullptr);
 
     void readDefinitions(QString searchText);
 
@@ -26,4 +26,4 @@ private:
     QList<DefinitionDisplayData*> *definitions;
 };
 
-#endif // DEFINITIONSLISTMODEL_H
+#endif // DEFINITIONLISTMODEL_H

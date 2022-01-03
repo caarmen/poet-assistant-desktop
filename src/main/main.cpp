@@ -1,6 +1,6 @@
 #include "db.h"
 #include "mainviewmodel.h"
-#include "definitionslistmodel.h"
+#include "definitionlistmodel.h"
 #include "definitionrepository.h"
 
 #include <QGuiApplication>
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     QFuture<void> future = db.openDb(a);
     future.waitForFinished(); // TODO
     DefinitionRepository definitionRepository(&db);
-    DefinitionsListModel definitionsListModel(&definitionRepository);
+    DefinitionListModel definitionsListModel(&definitionRepository);
     MainViewModel mainViewModel(&definitionsListModel);
 
     QQmlApplicationEngine engine;

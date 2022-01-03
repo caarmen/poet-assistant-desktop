@@ -2,18 +2,18 @@
 #define MAINVIEWMODEL_H
 
 #include <QObject>
-#include "definitionslistmodel.h"
+#include "definitionlistmodel.h"
 
 class MainViewModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit MainViewModel(DefinitionsListModel *definitionsListModel, QObject *parent = nullptr);
+    explicit MainViewModel(DefinitionListModel *definitionsListModel, QObject *parent = nullptr);
     Q_INVOKABLE void search(QString query);
 signals:
 
 private:
-    DefinitionsListModel *definitionsListModel;
+    DefinitionListModel *definitionsListModel;
 };
 
 #endif // MAINVIEWMODEL_H

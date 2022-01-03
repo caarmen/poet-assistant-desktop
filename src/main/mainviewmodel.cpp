@@ -1,6 +1,6 @@
 #include "mainviewmodel.h"
 #include <QDebug>
-MainViewModel::MainViewModel(DefinitionsListModel *definitionsListModel, QObject *parent)
+MainViewModel::MainViewModel(DefinitionListModel *definitionsListModel, QObject *parent)
     : QObject{parent}, definitionsListModel(definitionsListModel)
 {
 

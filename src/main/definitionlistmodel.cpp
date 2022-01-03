@@ -1,14 +1,14 @@
-#include "definitionslistmodel.h"
+#include "definitionlistmodel.h"
 #include "definitiondisplaydata.h"
 #include <QFutureWatcher>
 #include <QtConcurrent>
 
-DefinitionsListModel::DefinitionsListModel(DefinitionRepository *repository, QObject *parent)
+DefinitionListModel::DefinitionListModel(DefinitionRepository *repository, QObject *parent)
     : QAbstractListModel(parent), repository(repository), definitions(nullptr)
 {
 }
 
-void DefinitionsListModel::readDefinitions(QString searchText) {
+void DefinitionListModel::readDefinitions(QString searchText) {
     beginResetModel();
     if (definitions != nullptr) {
         qDeleteAll(*definitions);
@@ -29,11 +29,11 @@ void DefinitionsListModel::readDefinitions(QString searchText) {
     watcher->setFuture(future);
 }
 
-QHash<int,QByteArray> DefinitionsListModel::roleNames() const {
+QHash<int,QByteArray> DefinitionListModel::roleNames() const {
     return { { DefinitionRole, "definition" } };
 }
 
-int DefinitionsListModel::rowCount(const QModelIndex &parent) const
+int DefinitionListModel::rowCount(const QModelIndex &parent) const
 {
     // For list models only the root node (an invalid parent) should return the list's size. For all
     // other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
@@ -42,7 +42,7 @@ int DefinitionsListModel::rowCount(const QModelIndex &parent) const
     return definitions == nullptr ? 0 : definitions->size();
 }
 
-QVariant DefinitionsListModel::data(const QModelIndex &index, int role) const
+QVariant DefinitionListModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) return QVariant();
 
