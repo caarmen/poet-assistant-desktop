@@ -43,5 +43,13 @@
         <source>unknown</source>
         <translation>Unknown</translation>
     </message>
+    <message>
+        <source>synonyms</source>
+        <translation>Synonyms</translation>
+    </message>
+    <message>
+        <source>antonyms</source>
+        <translation>Antonyms</translation>
+    </message>
 </context>
 </TS>
