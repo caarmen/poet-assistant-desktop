@@ -10,14 +10,14 @@ CONFIG += c++11 app_bundl
 
 SOURCE_DIR=src
 SOURCES += \
-    $${SOURCE_DIR}/main/main.cpp \
-    $${SOURCE_DIR}/main/definitionrepository.cpp \
-    $${SOURCE_DIR}/main/db.cpp \
-    $${SOURCE_DIR}/main/definitiondisplaydata.cpp \
-    $${SOURCE_DIR}/main/mainviewmodel.cpp \
-    $${SOURCE_DIR}/main/definitionlistmodel.cpp \
-    $${SOURCE_DIR}/main/definitionentity.cpp \
-    $${SOURCE_DIR}/main/definitionentitymapper.cpp
+    $${SOURCE_DIR}/main/repository/db.cpp \
+    $${SOURCE_DIR}/main/repository/definitionentity.cpp \
+    $${SOURCE_DIR}/main/repository/definitionrepository.cpp \
+    $${SOURCE_DIR}/main/viewmodel/definitiondisplaydata.cpp \
+    $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.cpp \
+    $${SOURCE_DIR}/main/viewmodel/definitionlistmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/mainviewmodel.cpp \
+    $${SOURCE_DIR}/main/app/main.cpp
 
 #HEADERS += \
 #    $${SOURCE_DIR}/main/mainwindow.h
@@ -36,10 +36,10 @@ RESOURCES += \
     resources/qml.qrc
 
 HEADERS += \
-    $${SOURCE_DIR}/main/definitionrepository.h \
-    $${SOURCE_DIR}/main/db.h \
-    $${SOURCE_DIR}/main/definitiondisplaydata.h \
-    $${SOURCE_DIR}/main/mainviewmodel.h \
-    $${SOURCE_DIR}/main/definitionlistmodel.h \
-    $${SOURCE_DIR}/main/definitionentity.h \
-    $${SOURCE_DIR}/main/definitionentitymapper.h
+    $${SOURCE_DIR}/main/repository/db.h \
+    $${SOURCE_DIR}/main/repository/definitionentity.h \
+    $${SOURCE_DIR}/main/repository/definitionrepository.h \
+    $${SOURCE_DIR}/main/viewmodel/definitiondisplaydata.h \
+    $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.h \
+    $${SOURCE_DIR}/main/viewmodel/definitionlistmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/mainviewmodel.h
