@@ -19,9 +19,7 @@ void DefinitionListModel::readDefinitions(QString searchText) {
     QFutureWatcher<QList<DefinitionEntity*>*> *watcher = new QFutureWatcher<QList<DefinitionEntity*>*>();
     QObject::connect(watcher, &QFutureWatcher<QList<DefinitionEntity*>*>::finished, this, [=](){
         QList<DefinitionEntity*>* entities = future.result();
-        definitions = new QList<DefinitionDisplayData*>(QtConcurrent::blockingMapped(*entities, [=](DefinitionEntity* entity){
-            return DefinitionEntityMapper::map(entity);
-        }));
+        definitions = DefinitionEntityMapper::map(entities);
         endResetModel();
         watcher->deleteLater();
         qDeleteAll(*entities);

@@ -1,11 +1,17 @@
 #include "definitionentitymapper.h"
 
 #include <QCoreApplication>
+#include <QtConcurrent>
 
 DefinitionEntityMapper::DefinitionEntityMapper()
 {
 }
 
+QList<DefinitionDisplayData*>* DefinitionEntityMapper::map(QList<DefinitionEntity*> *entities) {
+    return new QList<DefinitionDisplayData*>(QtConcurrent::blockingMapped(*entities, [=] (DefinitionEntity *entity){
+        return map(entity);
+    }));
+}
 const char * DefinitionEntityMapper::map(const QString &partOfSpeech)
 {
     if (partOfSpeech == "a") {

@@ -9,8 +9,9 @@
 class DefinitionEntityMapper
 {
 public:
-    static DefinitionDisplayData* map(DefinitionEntity* entity);
+    static QList<DefinitionDisplayData*>* map(QList<DefinitionEntity*> *entities);
 private:
+    static DefinitionDisplayData* map(DefinitionEntity* entity);
     static const char * map(const QString &partOfSpeech);
     DefinitionEntityMapper();
 };
