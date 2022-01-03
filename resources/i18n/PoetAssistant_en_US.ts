@@ -25,23 +25,23 @@
     </message>
     <message>
         <source>noun</source>
-        <translation>noun</translation>
+        <translation>Noun</translation>
     </message>
     <message>
         <source>verb</source>
-        <translation>verb</translation>
+        <translation>Verb</translation>
     </message>
     <message>
         <source>adjective</source>
-        <translation>adjective</translation>
+        <translation>Adjective</translation>
     </message>
     <message>
         <source>adverb</source>
-        <translation>adverb</translation>
+        <translation>Adverb</translation>
     </message>
     <message>
         <source>unknown</source>
-        <translation>unknown</translation>
+        <translation>Unknown</translation>
     </message>
 </context>
 </TS>
