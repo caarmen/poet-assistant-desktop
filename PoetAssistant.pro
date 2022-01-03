@@ -43,3 +43,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/definitionlistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/mainviewmodel.h
+
+INCLUDEPATH +=  \
+    $${SOURCE_DIR}/main/repository \
+    $${SOURCE_DIR}/main/viewmodel
