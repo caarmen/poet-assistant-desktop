@@ -16,7 +16,8 @@ SOURCES += \
     $${SOURCE_DIR}/main/definitiondisplaydata.cpp \
     $${SOURCE_DIR}/main/mainviewmodel.cpp \
     $${SOURCE_DIR}/main/definitionlistmodel.cpp \
-    $${SOURCE_DIR}/main/definitionentity.cpp
+    $${SOURCE_DIR}/main/definitionentity.cpp \
+    $${SOURCE_DIR}/main/definitionentitymapper.cpp
 
 #HEADERS += \
 #    $${SOURCE_DIR}/main/mainwindow.h
@@ -40,4 +41,5 @@ HEADERS += \
     $${SOURCE_DIR}/main/definitiondisplaydata.h \
     $${SOURCE_DIR}/main/mainviewmodel.h \
     $${SOURCE_DIR}/main/definitionlistmodel.h \
-    $${SOURCE_DIR}/main/definitionentity.h
+    $${SOURCE_DIR}/main/definitionentity.h \
+    $${SOURCE_DIR}/main/definitionentitymapper.h

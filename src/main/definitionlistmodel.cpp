@@ -1,5 +1,6 @@
 #include "definitionlistmodel.h"
 #include "definitiondisplaydata.h"
+#include "definitionentitymapper.h"
 #include <QFutureWatcher>
 #include <QtConcurrent>
 
@@ -19,7 +20,7 @@ void DefinitionListModel::readDefinitions(QString searchText) {
     QObject::connect(watcher, &QFutureWatcher<QList<DefinitionEntity*>*>::finished, this, [=](){
         QList<DefinitionEntity*>* entities = future.result();
         definitions = new QList<DefinitionDisplayData*>(QtConcurrent::blockingMapped(*entities, [=](DefinitionEntity* entity){
-            return new DefinitionDisplayData(entity->partOfSpeech, entity->definition);
+            return DefinitionEntityMapper::map(entity);
         }));
         endResetModel();
         watcher->deleteLater();

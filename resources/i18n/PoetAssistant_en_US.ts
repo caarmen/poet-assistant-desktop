@@ -23,5 +23,25 @@
         <source>hint_search</source>
         <translation>Search</translation>
     </message>
+    <message>
+        <source>noun</source>
+        <translation>noun</translation>
+    </message>
+    <message>
+        <source>verb</source>
+        <translation>verb</translation>
+    </message>
+    <message>
+        <source>adjective</source>
+        <translation>adjective</translation>
+    </message>
+    <message>
+        <source>adverb</source>
+        <translation>adverb</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>unknown</translation>
+    </message>
 </context>
 </TS>
