@@ -39,18 +39,14 @@ const char *ThesaurusEntityMapper::map(const QString &wordType)
 
 QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::mapMatchingWords(const char *label, QString matchingWordsCsv) {
     QList<ThesaurusDisplayData*> *result = new QList<ThesaurusDisplayData*>();
+    if (matchingWordsCsv.isEmpty()) return result;
     QStringList matchingWordsList = matchingWordsCsv.split(",");
     matchingWordsList.sort(Qt::CaseInsensitive);
-    QStringList nonEmptyMatchingWordsList = QtConcurrent::blockingFiltered(
-                matchingWordsList,
-                [=] (QString word) { return !word.isEmpty(); }
-    );
-    if (!nonEmptyMatchingWordsList.isEmpty()) {
-        result->append(new ThesaurusDisplayData(QCoreApplication::translate("main", label), true));
-        result->append(QtConcurrent::blockingMapped(nonEmptyMatchingWordsList, [=](QString matchingWord){
-            return new ThesaurusDisplayData(matchingWord);
-        }
-        ));
+    result->append(new ThesaurusDisplayData(QCoreApplication::translate("main", label), true));
+    // QTBUG-72872: Would be nice to use QtConcurrent::blockingMapped() here, instead of manually doing the map
+    // from word to ThesaurusDisplayData, but there's a bug with nested QtConcurrent::blockingMapped calls
+    for (auto& matchingWord : matchingWordsList) {
+        result->append(new ThesaurusDisplayData(matchingWord));
     }
     return result;
 }
