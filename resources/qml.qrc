@@ -8,5 +8,7 @@
         <file>qml/DictionaryTabView.qml</file>
         <file>qml/ThesaurusListItemDelegate.qml</file>
         <file>qml/ThesaurusTabView.qml</file>
+        <file>qml/RhymeListItemDelegate.qml</file>
+        <file>qml/RhymeTabView.qml</file>
     </qresource>
 </RCC>

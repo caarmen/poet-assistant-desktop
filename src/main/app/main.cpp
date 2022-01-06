@@ -21,14 +21,17 @@ int main(int argc, char *argv[])
     Db db;
     QFuture<void> future = db.openDb(a);
     future.waitForFinished(); // TODO
+    RhymeRepository rhymeRepository(&db);
+    RhymeListModel rhymeListModel(&rhymeRepository);
     ThesaurusRepository thesaurusRepository(&db);
     ThesaurusListModel thesaurusListModel(&thesaurusRepository);
     DefinitionRepository definitionRepository(&db);
     DefinitionListModel definitionsListModel(&definitionRepository);
-    MainViewModel mainViewModel(&thesaurusListModel, &definitionsListModel);
+    MainViewModel mainViewModel(&rhymeListModel, &thesaurusListModel, &definitionsListModel);
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("mainViewModel", QVariant::fromValue(&mainViewModel));
+    engine.rootContext()->setContextProperty("rhymeListModel", QVariant::fromValue(&rhymeListModel));
     engine.rootContext()->setContextProperty("definitionsListModel", QVariant::fromValue(&definitionsListModel));
     engine.rootContext()->setContextProperty("thesaurusListModel", QVariant::fromValue(&thesaurusListModel));
     QQuickStyle::setStyle("Material");
