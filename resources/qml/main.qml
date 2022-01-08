@@ -62,6 +62,7 @@ ApplicationWindow {
                 currentIndex: bar.currentIndex
                 Item {
                     id: rhymesTab
+                    RhymeTabView {}
                 }
                 Item {
                     id: thesaurusTab
