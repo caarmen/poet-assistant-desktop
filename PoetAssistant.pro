@@ -11,6 +11,7 @@ CONFIG += c++11 app_bundl
 SOURCE_DIR=src
 SOURCES += \
     $${SOURCE_DIR}/main/app/main.cpp \
+    $${SOURCE_DIR}/main/debug/refcounter.cpp \
     $${SOURCE_DIR}/main/repository/db.cpp \
     $${SOURCE_DIR}/main/repository/definitionentity.cpp \
     $${SOURCE_DIR}/main/repository/definitionrepository.cpp \
@@ -41,6 +42,7 @@ RESOURCES += \
     resources/qml.qrc
 
 HEADERS += \
+    $${SOURCE_DIR}/main/debug/refcounter.h \
     $${SOURCE_DIR}/main/repository/db.h \
     $${SOURCE_DIR}/main/repository/definitionentity.h \
     $${SOURCE_DIR}/main/repository/definitionrepository.h \
@@ -55,5 +57,6 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.h
 
 INCLUDEPATH +=  \
+    $${SOURCE_DIR}/main/debug \
     $${SOURCE_DIR}/main/repository \
     $${SOURCE_DIR}/main/viewmodel
