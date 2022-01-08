@@ -14,6 +14,7 @@ ApplicationWindow {
             anchors.fill: parent
             TextField {
                 id: tfSearch
+                selectByMouse: true
                 color: Material.toolTextColor
                 placeholderTextColor: Material.toolTextColor
                 Layout.leftMargin: 16
