@@ -1,8 +1,8 @@
 #include "rhymelistmodel.h"
 #include "rhymeentitymapper.h"
 
-RhymeListModel::RhymeListModel(RhymeRepository *repository, QObject *parent)
-    : QAbstractListModel{parent}, repository(repository), rhymeEntries(nullptr)
+RhymeListModel::RhymeListModel(RhymeViewModel *viewModel, QObject *parent)
+    : QAbstractListModel{parent}, viewModel(viewModel), rhymeEntries(nullptr)
 {
 
 }
@@ -13,34 +13,13 @@ void RhymeListModel::readRhymes(QString searchText) {
         qDeleteAll(*rhymeEntries);
         delete rhymeEntries;
     }
-    rhymeEntries = new QList<RhymeDisplayData*>();
-    QFuture<QList<RhymeEntity*>*> futureWordVariants = repository->readWordVariants(searchText);
-    QFutureWatcher<QList<RhymeEntity*>*> *watcherWordVariants = new QFutureWatcher<QList<RhymeEntity*>*>();
-    QObject::connect(watcherWordVariants, &QFutureWatcher<QList<RhymeEntity*>*>::finished, this, [=](){
-        QList<RhymeEntity*>* wordVariantEntities = futureWordVariants.result();
-        for(int i = 0; i < wordVariantEntities->size(); i++) {
-            auto& wordVariantEntity  = wordVariantEntities->at(i);
-            QFuture<QStringList*> futureRhymes = repository->readByStressSyllablesExcludingWord(wordVariantEntity->stressSyllables, searchText);
-            QFutureWatcher<QStringList*> *watcherRhymes = new QFutureWatcher<QStringList*>();
-            QObject::connect(watcherRhymes, &QFutureWatcher<QList<RhymeEntity*>*>::finished, this, [=](){
-                QStringList *rhymes = futureRhymes.result();
-                QList<RhymeDisplayData*>* rhymeDisplayDatas =  RhymeEntityMapper::map(wordVariantEntity, rhymes);
-                rhymeEntries->append(*rhymeDisplayDatas);
-                delete rhymeDisplayDatas;
-                delete rhymes;
-                watcherRhymes->deleteLater();
-                if (i == wordVariantEntities->size() - 1) {
-                    endResetModel();
-                    qDeleteAll(*wordVariantEntities);
-                    delete wordVariantEntities;
-                }
-            });
-
-            watcherRhymes->setFuture(futureRhymes);
-        }
-        watcherWordVariants->deleteLater();
+    QObject *context = new QObject(this);
+    QObject::connect(viewModel, &RhymeViewModel::onRhymesFetched, context, [=](QList<RhymeDisplayData*>* rhymes) {
+        context->deleteLater();
+        rhymeEntries = rhymes;
+        endResetModel();
     });
-    watcherWordVariants->setFuture(futureWordVariants);
+    viewModel->readRhymes(searchText);
 }
 
 QHash<int,QByteArray> RhymeListModel::roleNames() const {

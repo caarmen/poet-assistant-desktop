@@ -1,8 +1,7 @@
 #include "thesauruslistmodel.h"
-#include "thesaurusentitymapper.h"
 
-ThesaurusListModel::ThesaurusListModel(ThesaurusRepository *repository, QObject *parent)
-    : QAbstractListModel{parent}, repository(repository), thesaurusEntries(nullptr)
+ThesaurusListModel::ThesaurusListModel(ThesaurusViewModel *viewModel, QObject *parent)
+    : QAbstractListModel{parent}, viewModel(viewModel), thesaurusEntries(nullptr)
 {
 
 }
@@ -13,15 +12,12 @@ void ThesaurusListModel::readThesaurus(QString searchText) {
         qDeleteAll(*thesaurusEntries);
         delete thesaurusEntries;
     }
-    QFuture<QList<ThesaurusEntity*>*> future = repository->readThesaurus(searchText);
-    QFutureWatcher<QList<ThesaurusEntity*>*> *watcher = new QFutureWatcher<QList<ThesaurusEntity*>*>();
-    QObject::connect(watcher, &QFutureWatcher<QList<ThesaurusEntity*>*>::finished, this, [=](){
-        QList<ThesaurusEntity*>* entities = future.result();
-        thesaurusEntries = ThesaurusEntityMapper::map(entities);
+    QFuture<QList<ThesaurusDisplayData*>*> future = viewModel->readThesaurus(searchText);
+    auto *watcher = new QFutureWatcher<QList<ThesaurusDisplayData*>*>();
+    QObject::connect(watcher, &QFutureWatcher<QList<ThesaurusDisplayData*>*>::finished, this, [=](){
+        thesaurusEntries = future.result();
         endResetModel();
         watcher->deleteLater();
-        qDeleteAll(*entities);
-        delete entities;
     });
     watcher->setFuture(future);
 }

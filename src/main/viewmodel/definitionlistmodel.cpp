@@ -1,11 +1,9 @@
 #include "definitionlistmodel.h"
-#include "definitiondisplaydata.h"
-#include "definitionentitymapper.h"
 #include <QFutureWatcher>
 #include <QtConcurrent>
 
-DefinitionListModel::DefinitionListModel(DefinitionRepository *repository, QObject *parent)
-    : QAbstractListModel(parent), repository(repository), definitions(nullptr)
+DefinitionListModel::DefinitionListModel(DefinitionViewModel *viewModel, QObject *parent)
+    : QAbstractListModel(parent), viewModel(viewModel), definitions(nullptr)
 {
 }
 
@@ -15,15 +13,12 @@ void DefinitionListModel::readDefinitions(QString searchText) {
         qDeleteAll(*definitions);
         delete definitions;
     }
-    QFuture<QList<DefinitionEntity*>*> future = repository->readDefinitions(searchText);
-    QFutureWatcher<QList<DefinitionEntity*>*> *watcher = new QFutureWatcher<QList<DefinitionEntity*>*>();
-    QObject::connect(watcher, &QFutureWatcher<QList<DefinitionEntity*>*>::finished, this, [=](){
-        QList<DefinitionEntity*>* entities = future.result();
-        definitions = DefinitionEntityMapper::map(entities);
+    QFuture<QList<DefinitionDisplayData*>*> future = viewModel->readDefinitions(searchText);
+    auto *watcher = new QFutureWatcher<QList<DefinitionDisplayData*>*>();
+    QObject::connect(watcher, &QFutureWatcher<QList<DefinitionDisplayData*>*>::finished, this, [=](){
+        definitions = future.result();
         endResetModel();
         watcher->deleteLater();
-        qDeleteAll(*entities);
-        delete entities;
     });
     watcher->setFuture(future);
 }
