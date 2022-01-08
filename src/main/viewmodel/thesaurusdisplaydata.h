@@ -1,6 +1,7 @@
 #ifndef THESAURUSDISPLAYDATA_H
 #define THESAURUSDISPLAYDATA_H
 
+#include "refcounter.h"
 #include <QObject>
 
 class ThesaurusDisplayData : public QObject
@@ -11,10 +12,13 @@ class ThesaurusDisplayData : public QObject
     Q_PROPERTY(bool bold MEMBER bold CONSTANT)
 public:
     explicit ThesaurusDisplayData(QString text, bool italic = false, bool bold = false, QObject *parent = nullptr);
+    ~ThesaurusDisplayData();
     const QString text;
     const bool italic;
     const bool bold;
-signals:
+
+private:
+    static inline RefCounter refCounter = RefCounter("ThesaurusDisplayData");
 
 };
 

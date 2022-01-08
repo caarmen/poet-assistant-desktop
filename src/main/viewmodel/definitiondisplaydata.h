@@ -1,6 +1,7 @@
 #ifndef DEFINITIONDISPLAYDATA_H
 #define DEFINITIONDISPLAYDATA_H
 
+#include "refcounter.h"
 #include <QObject>
 
 class DefinitionDisplayData : public QObject
@@ -10,11 +11,12 @@ class DefinitionDisplayData : public QObject
     Q_PROPERTY(QString definition MEMBER definition CONSTANT)
 public:
     explicit DefinitionDisplayData(QString partOfSpeech, QString definition, QObject *parent = nullptr);
+    ~DefinitionDisplayData();
     const QString partOfSpeech;
     const QString definition;
 
-signals:
-
+private:
+    static inline RefCounter refCounter = RefCounter("DefinitionDisplayData");
 };
 
 #endif // DEFINITIONDISPLAYDATA_H
