@@ -14,7 +14,7 @@ QList<RhymeDisplayData*>* RhymeEntityMapper::map(const QList<RhymeEntity*>* rhym
             result->append(new RhymeDisplayData(rhymeEntity->stressSyllables, false, true));
             currentSyllables = rhymeEntity->stressSyllables;
         }
-        result->append(new RhymeDisplayData(rhymeEntity->word));
+        result->append(new RhymeDisplayData(rhymeEntity->word, false, false, 1));
     }
     return result;
 }

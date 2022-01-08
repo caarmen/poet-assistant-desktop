@@ -10,12 +10,14 @@ class ThesaurusDisplayData : public QObject
     Q_PROPERTY(QString text MEMBER text CONSTANT)
     Q_PROPERTY(bool italic MEMBER italic CONSTANT)
     Q_PROPERTY(bool bold MEMBER bold CONSTANT)
+    Q_PROPERTY(int indentLevel MEMBER indentLevel CONSTANT)
 public:
-    explicit ThesaurusDisplayData(QString text, bool italic = false, bool bold = false, QObject *parent = nullptr);
+    explicit ThesaurusDisplayData(QString text, bool italic = false, bool bold = false, int indentLevel = 0, QObject *parent = nullptr);
     ~ThesaurusDisplayData();
     const QString text;
     const bool italic;
     const bool bold;
+    const int indentLevel;
 
 private:
     static inline RefCounter refCounter = RefCounter("ThesaurusDisplayData");

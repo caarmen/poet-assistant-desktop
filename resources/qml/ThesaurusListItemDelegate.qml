@@ -14,6 +14,7 @@ ItemDelegate {
                 color: Material.backgroundColor
                 width: 50
                 Layout.alignment: Qt.AlignVCenter
+                Layout.leftMargin: 16 + (model.thesaurus.indentLevel * 16)
                 Text {
                     color: Material.primaryTextColor
                     font.bold: model.thesaurus.bold
