@@ -18,7 +18,7 @@ public:
     const bool bold;
 
 private:
-    static inline RefCounter refCounter = RefCounter("RhymeDisplayData", true);
+    static inline RefCounter refCounter = RefCounter("RhymeDisplayData");
 
 };
 
