@@ -10,7 +10,7 @@ RhymeRepository::RhymeRepository(Db *db, QObject *parent)
 QFuture<QList<RhymeEntity*>*> RhymeRepository::readStressSyllableRhymes(QString word){
     return QtConcurrent::run(db->getThreadPool(), [=]() {
         QSqlQuery query;
-        query.prepare(R""""(
+        query.prepare(R"(
             SELECT
               rhymes_word_variants.word,
               source_word_variants.stress_syllables
@@ -23,7 +23,7 @@ QFuture<QList<RhymeEntity*>*> RhymeRepository::readStressSyllableRhymes(QString 
             ORDER BY
               source_word_variants.variant_number,
               rhymes_word_variants.word;
-)"""");
+)");
         query.bindValue(":word", word);
                 query.exec();
         auto *result = new QList<RhymeEntity*>();
