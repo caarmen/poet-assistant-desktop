@@ -11,8 +11,7 @@ class RhymeRepository : public QObject
     Q_OBJECT
 public:
     explicit RhymeRepository(Db *db, QObject *parent = nullptr);
-    QFuture<QList<RhymeEntity*>*> readWordVariants(QString word);
-    QFuture<QStringList*> readByStressSyllablesExcludingWord(QString stressSyllables, QString word);
+    QFuture<QList<RhymeEntity*>*> readStressSyllableRhymes(QString word);
 
 signals:
 

@@ -11,19 +11,11 @@ class RhymeEntity : public QObject
 public:
     explicit RhymeEntity(
             QString word,
-            int variantNumber,
             QString stressSyllables,
-            QString lastThreeSyllables,
-            QString lastTwoSyllables,
-            QString lastSyllable,
             QObject *parent = nullptr);
     ~RhymeEntity();
-    const int variantNumber;
     const QString word;
     const QString stressSyllables;
-    const QString lastThreeSyllables;
-    const QString lastTwoSyllables;
-    const QString lastSyllable;
 signals:
 
 private:

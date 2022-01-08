@@ -6,13 +6,15 @@ RhymeEntityMapper::RhymeEntityMapper()
 
 }
 
-QList<RhymeDisplayData*>* RhymeEntityMapper::map(const RhymeEntity* wordVariant, const QStringList* rhymes) {
-    auto result = new QList<RhymeDisplayData*>();
-    result->append(new RhymeDisplayData(wordVariant->stressSyllables, false, true));
-    auto sortedRhymes = QStringList(*rhymes);
-    sortedRhymes.sort(Qt::CaseInsensitive);
-    for (auto& rhyme : sortedRhymes) {
-        result->append(new RhymeDisplayData(rhyme));
+QList<RhymeDisplayData*>* RhymeEntityMapper::map(const QList<RhymeEntity*>* rhymeEntities) {
+    auto *result = new QList<RhymeDisplayData*>();
+    QString currentSyllables = "";
+    for(auto *rhymeEntity : *rhymeEntities) {
+        if (currentSyllables != rhymeEntity->stressSyllables) {
+            result->append(new RhymeDisplayData(rhymeEntity->stressSyllables, false, true));
+            currentSyllables = rhymeEntity->stressSyllables;
+        }
+        result->append(new RhymeDisplayData(rhymeEntity->word));
     }
     return result;
 }

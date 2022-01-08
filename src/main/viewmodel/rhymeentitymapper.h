@@ -8,7 +8,7 @@
 class RhymeEntityMapper
 {
 public:
-    static QList<RhymeDisplayData*>* map(const RhymeEntity* wordVariant, const QStringList* rhymes);
+    static QList<RhymeDisplayData*>* map(const QList<RhymeEntity*>* rhymeEntities);
 private:
     RhymeEntityMapper();
 };

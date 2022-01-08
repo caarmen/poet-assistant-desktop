@@ -7,15 +7,26 @@ RhymeRepository::RhymeRepository(Db *db, QObject *parent)
 
 }
 
-
-QFuture<QList<RhymeEntity*>*> RhymeRepository::readWordVariants(QString word)
-{
+QFuture<QList<RhymeEntity*>*> RhymeRepository::readStressSyllableRhymes(QString word){
     return QtConcurrent::run(db->getThreadPool(), [=]() {
         QSqlQuery query;
-        query.prepare("SELECT word, variant_number, stress_syllables, last_three_syllables, last_two_syllables, last_syllable FROM word_variants WHERE word = :word");
+        query.prepare(R""""(
+            SELECT
+              rhymes_word_variants.word,
+              source_word_variants.stress_syllables
+            FROM
+              word_variants AS source_word_variants
+              JOIN word_variants AS rhymes_word_variants ON source_word_variants.stress_syllables = rhymes_word_variants.stress_syllables
+              AND source_word_variants.word != rhymes_word_variants.word
+            WHERE
+              source_word_variants.word = :word
+            ORDER BY
+              source_word_variants.variant_number,
+              rhymes_word_variants.word;
+)"""");
         query.bindValue(":word", word);
-        query.exec();
-        QList<RhymeEntity*> *result = new QList<RhymeEntity*>();
+                query.exec();
+        auto *result = new QList<RhymeEntity*>();
         while(query.next()) {
             result->append(create(query));
         }
@@ -23,35 +34,8 @@ QFuture<QList<RhymeEntity*>*> RhymeRepository::readWordVariants(QString word)
     });
 }
 
-
-QFuture<QStringList*> RhymeRepository::readByStressSyllablesExcludingWord(QString stressSyllables, QString word) {
-    return QtConcurrent::run(db->getThreadPool(), [=]() {
-        QSqlQuery query;
-        query.prepare(R""""(
-            SELECT word
-            FROM word_variants
-            WHERE
-                stress_syllables = :stressSyllables
-                AND  word <> :word
-)"""");
-        query.bindValue(":word", word);
-        query.bindValue(":stressSyllables", stressSyllables);
-                query.exec();
-        QStringList *result = new QStringList();
-        while(query.next()) {
-            result->append(query.value("word").toString());
-        }
-        return result;
-    });
-}
-
 RhymeEntity* RhymeRepository::create(QSqlQuery &query) {
     QString word = query.value("word").toString();
-    int variantNumber = query.value("variant_number").toInt();
     QString stressSyllables = query.value("stress_syllables").toString();
-    QString lastThreeSyllables = query.value("last_three_syllables").toString();
-    QString lastTwoSyllables = query.value("last_two_syllables").toString();
-    QString lastSyllable = query.value("last_syllable").toString();
-    return new RhymeEntity(word, variantNumber, stressSyllables, lastThreeSyllables, lastTwoSyllables, lastSyllable);
-
+    return new RhymeEntity(word, stressSyllables);
 }

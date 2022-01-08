@@ -13,13 +13,15 @@ void RhymeListModel::readRhymes(QString searchText) {
         qDeleteAll(*rhymeEntries);
         delete rhymeEntries;
     }
-    QObject *context = new QObject(this);
-    QObject::connect(viewModel, &RhymeViewModel::onRhymesFetched, context, [=](QList<RhymeDisplayData*>* rhymes) {
-        context->deleteLater();
-        rhymeEntries = rhymes;
+
+    QFuture<QList<RhymeDisplayData*>*> future = viewModel->readRhymes(searchText);
+    auto *watcher = new QFutureWatcher<QList<RhymeDisplayData*>*>();
+    QObject::connect(watcher, &QFutureWatcher<QList<RhymeDisplayData*>*>::finished, this, [=](){
+        rhymeEntries = future.result();
         endResetModel();
+        watcher->deleteLater();
     });
-    viewModel->readRhymes(searchText);
+    watcher->setFuture(future);
 }
 
 QHash<int,QByteArray> RhymeListModel::roleNames() const {
