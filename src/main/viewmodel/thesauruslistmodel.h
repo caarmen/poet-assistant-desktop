@@ -1,7 +1,7 @@
 #ifndef THESAURUSLISTMODEL_H
 #define THESAURUSLISTMODEL_H
 
-#include "thesaurusrepository.h"
+#include "thesaurusviewmodel.h"
 #include "thesaurusdisplaydata.h"
 
 #include <QAbstractListModel>
@@ -14,7 +14,7 @@ public:
     enum MyRoles {
         ThesaurusRole = Qt::UserRole + 1,
     };
-    explicit ThesaurusListModel(ThesaurusRepository *repository, QObject *parent = nullptr);
+    explicit ThesaurusListModel(ThesaurusViewModel *viewModel, QObject *parent = nullptr);
 
     void readThesaurus(QString searchText);
 
@@ -23,7 +23,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
-    ThesaurusRepository *repository;
+    ThesaurusViewModel *viewModel;
     QList<ThesaurusDisplayData*> *thesaurusEntries;
 };
 

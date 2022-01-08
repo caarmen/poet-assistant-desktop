@@ -1,7 +1,7 @@
 #ifndef RHYMELISTMODEL_H
 #define RHYMELISTMODEL_H
 
-#include "rhymerepository.h"
+#include "rhymeviewmodel.h"
 #include "rhymedisplaydata.h"
 
 #include <QAbstractListModel>
@@ -14,7 +14,7 @@ public:
     enum MyRoles {
         RhymeRole = Qt::UserRole + 1,
     };
-    explicit RhymeListModel(RhymeRepository *repository, QObject *parent = nullptr);
+    explicit RhymeListModel(RhymeViewModel *viewModel, QObject *parent = nullptr);
 
     void readRhymes(QString searchText);
 
@@ -23,7 +23,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
-    RhymeRepository *repository;
+    RhymeViewModel *viewModel;
     QList<RhymeDisplayData*> *rhymeEntries;
 };
 

@@ -22,13 +22,16 @@ SOURCES += \
     $${SOURCE_DIR}/main/viewmodel/definitiondisplaydata.cpp \
     $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/definitionlistmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/definitionviewmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/mainviewmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/rhymedisplaydata.cpp \
     $${SOURCE_DIR}/main/viewmodel/rhymeentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/rhymelistmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/rhymeviewmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesaurusdisplaydata.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesaurusentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/thesaurusviewmodel.cpp \
 
 #HEADERS += \
 #    $${SOURCE_DIR}/main/mainwindow.h
@@ -58,13 +61,16 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/definitiondisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/definitionlistmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/definitionviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/mainviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/rhymedisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/rhymeentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/rhymelistmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/rhymeviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/thesaurusdisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/thesaurusentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/thesaurusviewmodel.h \
 
 INCLUDEPATH +=  \
     $${SOURCE_DIR}/main/debug \

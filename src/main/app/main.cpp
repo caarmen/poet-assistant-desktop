@@ -22,11 +22,14 @@ int main(int argc, char *argv[])
     QFuture<void> future = db.openDb(a);
     future.waitForFinished(); // TODO
     RhymeRepository rhymeRepository(&db);
-    RhymeListModel rhymeListModel(&rhymeRepository);
+    RhymeViewModel rhymeViewModel(&rhymeRepository);
+    RhymeListModel rhymeListModel(&rhymeViewModel);
     ThesaurusRepository thesaurusRepository(&db);
-    ThesaurusListModel thesaurusListModel(&thesaurusRepository);
+    ThesaurusViewModel thesaurusViewModel(&thesaurusRepository);
+    ThesaurusListModel thesaurusListModel(&thesaurusViewModel);
     DefinitionRepository definitionRepository(&db);
-    DefinitionListModel definitionsListModel(&definitionRepository);
+    DefinitionViewModel definitionViewModel(&definitionRepository);
+    DefinitionListModel definitionsListModel(&definitionViewModel);
     MainViewModel mainViewModel(&rhymeListModel, &thesaurusListModel, &definitionsListModel);
 
     QQmlApplicationEngine engine;

@@ -3,7 +3,7 @@
 
 #include <QAbstractListModel>
 #include "definitiondisplaydata.h"
-#include "definitionrepository.h"
+#include "definitionviewmodel.h"
 
 class DefinitionListModel : public QAbstractListModel
 {
@@ -13,7 +13,7 @@ public:
     enum MyRoles {
         DefinitionRole = Qt::UserRole + 1,
     };
-    explicit DefinitionListModel(DefinitionRepository *respository, QObject *parent = nullptr);
+    explicit DefinitionListModel(DefinitionViewModel *viewModel, QObject *parent = nullptr);
 
     void readDefinitions(QString searchText);
 
@@ -22,7 +22,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
-    DefinitionRepository *repository;
+    DefinitionViewModel *viewModel;
     QList<DefinitionDisplayData*> *definitions;
 };
 
