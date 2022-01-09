@@ -15,16 +15,8 @@ ScrollView {
         model: rhymeListModel
         delegate: RhymeListItemDelegate {}
     }
-    Rectangle {
-        color: Material.backgroundColor
+    EmptyResults {
         visible: rhymeListModel.isEmptyTextVisible
-        anchors.fill: parent
-        Text {
-            color: Material.primaryTextColor
-            font.bold: true
-            text: rhymeListModel.emptyText
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
+        emptyText: rhymeListModel.emptyText
     }
 }
