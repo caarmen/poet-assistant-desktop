@@ -20,7 +20,7 @@ ItemDelegate {
                     font.bold: model.rhyme.bold
                     font.italic: model.rhyme.italic
                     text: model.rhyme.text
-                    verticalAlignment: Text.AlignVCenter
+                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
         }

@@ -19,7 +19,7 @@ ItemDelegate {
                 color: Material.primaryTextColor
                 text: model.definition.part_of_speech
                 font.bold: true
-                verticalAlignment: Text.AlignVCenter
+                anchors.verticalCenter: parent.verticalCenter
             }
         }
         Rectangle {
@@ -33,7 +33,7 @@ ItemDelegate {
                 text: model.definition.definition
                 anchors.left: parent.left
                 anchors.right: parent.right
-                verticalAlignment: Text.AlignVCenter
+                anchors.verticalCenter: parent.verticalCenter
                 horizontalAlignment: Text.AlignLeft
                 wrapMode: Text.WordWrap
             }
