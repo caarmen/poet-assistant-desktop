@@ -51,6 +51,30 @@
         <source>antonyms</source>
         <translation>Antonyms</translation>
     </message>
+    <message>
+        <source>rhymer_no_matches %1</source>
+        <translation>No rhymes for %1</translation>
+    </message>
+    <message>
+        <source>thesaurus_no_matches %1</source>
+        <translation>No synonyms for %1</translation>
+    </message>
+    <message>
+        <source>definitions_no_matches %1</source>
+        <translation>No definitions for %1</translation>
+    </message>
+    <message>
+        <source>rhymer_no_query</source>
+        <translation>No rhymes yet. Use the search bar to get started</translation>
+    </message>
+    <message>
+        <source>thesaurus_no_query</source>
+        <translation>No synonyms yet. Use the search bar to get started</translation>
+    </message>
+    <message>
+        <source>definitions_no_query</source>
+        <translation>No definitions yet. Use the search bar to get started</translation>
+    </message>
 </context>
 <context>
     <name>WordContextMenu</name>

@@ -3,7 +3,11 @@
 #include <QtConcurrent>
 
 DefinitionListModel::DefinitionListModel(DefinitionViewModel *viewModel, QObject *parent)
-    : QAbstractListModel(parent), viewModel(viewModel), definitions(nullptr)
+    : QAbstractListModel(parent),
+      viewModel(viewModel),
+      definitions(nullptr),
+      isEmptyTextVisible(true),
+      emptyText(QCoreApplication::translate("main", "definitions_no_query"))
 {
 }
 
@@ -20,6 +24,10 @@ void DefinitionListModel::readDefinitions(QString searchText) {
     auto *watcher = new QFutureWatcher<QList<DefinitionDisplayData*>*>();
     QObject::connect(watcher, &QFutureWatcher<QList<DefinitionDisplayData*>*>::finished, this, [=](){
         definitions = future.result();
+        isEmptyTextVisible = definitions->size() == 0;
+        emit isEmptyTextVisibleChanged(isEmptyTextVisible);
+        emptyText = QCoreApplication::translate("main", "definitions_no_matches %1").arg(word);
+        emit emptyTextChanged(emptyText);
         endResetModel();
         watcher->deleteLater();
     });

@@ -11,6 +11,8 @@ class ThesaurusListModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(QString word MEMBER word NOTIFY wordChanged)
+    Q_PROPERTY(bool isEmptyTextVisible MEMBER isEmptyTextVisible NOTIFY isEmptyTextVisibleChanged)
+    Q_PROPERTY(QString emptyText MEMBER emptyText NOTIFY emptyTextChanged)
 public:
     enum MyRoles {
         ThesaurusRole = Qt::UserRole + 1,
@@ -25,10 +27,14 @@ public:
 
 signals:
     void wordChanged(const QString &);
+    void isEmptyTextVisibleChanged(bool);
+    void emptyTextChanged(const QString &);
 private:
     QString word;
     ThesaurusViewModel *viewModel;
     QList<ThesaurusDisplayData*> *thesaurusEntries;
+    bool isEmptyTextVisible;
+    QString emptyText;
 };
 
 #endif // THESAURUSLISTMODEL_H

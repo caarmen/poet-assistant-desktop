@@ -2,7 +2,11 @@
 #include "rhymeentitymapper.h"
 
 RhymeListModel::RhymeListModel(RhymeViewModel *viewModel, QObject *parent)
-    : QAbstractListModel{parent}, viewModel(viewModel), rhymeEntries(nullptr)
+    : QAbstractListModel{parent},
+      viewModel(viewModel),
+      rhymeEntries(nullptr),
+      isEmptyTextVisible(true),
+      emptyText(QCoreApplication::translate("main", "rhymer_no_query"))
 {
 
 }
@@ -21,6 +25,10 @@ void RhymeListModel::readRhymes(QString searchText) {
     auto *watcher = new QFutureWatcher<QList<RhymeDisplayData*>*>();
     QObject::connect(watcher, &QFutureWatcher<QList<RhymeDisplayData*>*>::finished, this, [=](){
         rhymeEntries = future.result();
+        isEmptyTextVisible = rhymeEntries->size() == 0;
+        emit isEmptyTextVisibleChanged(isEmptyTextVisible);
+        emptyText = QCoreApplication::translate("main", "rhymer_no_matches %1").arg(word);
+        emit emptyTextChanged(emptyText);
         endResetModel();
         watcher->deleteLater();
     });

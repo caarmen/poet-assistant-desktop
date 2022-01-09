@@ -15,4 +15,16 @@ ScrollView {
         model: definitionsListModel
         delegate: DefinitionListItemDelegate {}
     }
+    Rectangle {
+        color: Material.backgroundColor
+        visible: definitionsListModel.isEmptyTextVisible
+        anchors.fill: parent
+        Text {
+            color: Material.primaryTextColor
+            font.bold: true
+            text: definitionsListModel.emptyText
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+    }
 }

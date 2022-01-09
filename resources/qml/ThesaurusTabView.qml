@@ -15,4 +15,16 @@ ScrollView {
         model: thesaurusListModel
         delegate: ThesaurusListItemDelegate {}
     }
+    Rectangle {
+        color: Material.backgroundColor
+        visible: thesaurusListModel.isEmptyTextVisible
+        anchors.fill: parent
+        Text {
+            color: Material.primaryTextColor
+            font.bold: true
+            text: thesaurusListModel.emptyText
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+    }
 }
