@@ -52,4 +52,19 @@
         <translation>Antonyms</translation>
     </message>
 </context>
+<context>
+    <name>WordContextMenu</name>
+    <message>
+        <source>context_menu_rhymer</source>
+        <translation>Rhymer</translation>
+    </message>
+    <message>
+        <source>context_menu_thesaurus</source>
+        <translation>Thesaurus</translation>
+    </message>
+    <message>
+        <source>context_menu_dictionary</source>
+        <translation>Dictionary</translation>
+    </message>
+</context>
 </TS>

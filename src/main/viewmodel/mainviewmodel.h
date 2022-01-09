@@ -12,6 +12,9 @@ class MainViewModel : public QObject
 public:
     explicit MainViewModel(RhymeListModel *rhymeListModel, ThesaurusListModel *thesaurusListModel, DefinitionListModel *definitionsListModel, QObject *parent = nullptr);
     Q_INVOKABLE void search(QString query);
+    Q_INVOKABLE void searchRhymes(QString query);
+    Q_INVOKABLE void searchThesaurus(QString query);
+    Q_INVOKABLE void searchDefinitions(QString query);
 signals:
 
 private:
