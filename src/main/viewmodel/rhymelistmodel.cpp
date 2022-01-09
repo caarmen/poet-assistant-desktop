@@ -8,6 +8,9 @@ RhymeListModel::RhymeListModel(RhymeViewModel *viewModel, QObject *parent)
 }
 
 void RhymeListModel::readRhymes(QString searchText) {
+    word = searchText;
+    emit wordChanged(word);
+
     beginResetModel();
     if (rhymeEntries != nullptr) {
         qDeleteAll(*rhymeEntries);

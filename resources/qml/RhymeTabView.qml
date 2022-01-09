@@ -8,6 +8,10 @@ ScrollView {
     clip: true
     ListView {
         id: thesaurusList
+        header: WordHeader {
+            word: rhymeListModel.word
+        }
+        headerPositioning: ListView.PullBackHeader
         model: rhymeListModel
         delegate: RhymeListItemDelegate {}
     }

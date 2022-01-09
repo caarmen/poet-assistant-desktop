@@ -8,6 +8,7 @@
 class DefinitionListModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(QString word MEMBER word NOTIFY wordChanged)
 
 public:
     enum MyRoles {
@@ -21,7 +22,10 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+signals:
+    void wordChanged(const QString &);
 private:
+    QString word;
     DefinitionViewModel *viewModel;
     QList<DefinitionDisplayData*> *definitions;
 };

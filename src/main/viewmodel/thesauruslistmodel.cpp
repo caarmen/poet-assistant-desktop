@@ -7,6 +7,8 @@ ThesaurusListModel::ThesaurusListModel(ThesaurusViewModel *viewModel, QObject *p
 }
 
 void ThesaurusListModel::readThesaurus(QString searchText) {
+    word = searchText;
+    emit wordChanged(word);
     beginResetModel();
     if (thesaurusEntries != nullptr) {
         qDeleteAll(*thesaurusEntries);

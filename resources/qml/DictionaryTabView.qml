@@ -8,6 +8,10 @@ ScrollView {
     clip: true
     ListView {
         id: definitionsList
+        header: WordHeader {
+            word: definitionsListModel.word
+        }
+        headerPositioning: ListView.PullBackHeader
         model: definitionsListModel
         delegate: DefinitionListItemDelegate {}
     }

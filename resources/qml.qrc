@@ -11,5 +11,6 @@
         <file>qml/ThesaurusTabView.qml</file>
         <file>qml/RhymeListItemDelegate.qml</file>
         <file>qml/RhymeTabView.qml</file>
+        <file>qml/WordHeader.qml</file>
     </qresource>
 </RCC>

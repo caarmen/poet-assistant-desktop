@@ -8,6 +8,9 @@ DefinitionListModel::DefinitionListModel(DefinitionViewModel *viewModel, QObject
 }
 
 void DefinitionListModel::readDefinitions(QString searchText) {
+    word = searchText;
+    emit wordChanged(word);
+
     beginResetModel();
     if (definitions != nullptr) {
         qDeleteAll(*definitions);

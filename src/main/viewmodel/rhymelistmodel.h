@@ -10,6 +10,7 @@
 class RhymeListModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(QString word MEMBER word NOTIFY wordChanged)
 public:
     enum MyRoles {
         RhymeRole = Qt::UserRole + 1,
@@ -22,7 +23,10 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+signals:
+    void wordChanged(const QString &);
 private:
+    QString word;
     RhymeViewModel *viewModel;
     QList<RhymeDisplayData*> *rhymeEntries;
 };
