@@ -1,13 +1,17 @@
-import QtQuick.Controls 2.12
-import QtQuick 2.11
+import QtQuick.Controls 2.4
+import QtQuick 2.12
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.12
 
 ApplicationWindow {
+    color: Material.backgroundColor
     width: 500
     height: 500
     visible: true
     title: qsTr("app_title")
+    Material.theme: Material.System
+    Material.primary: "#607D8B"
+    Material.accent: "#607D8B"
 
     header: ToolBar {
         RowLayout {
@@ -15,6 +19,8 @@ ApplicationWindow {
             Rectangle {
                 Layout.preferredHeight: childrenRect.height
                 Layout.fillWidth: true
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
                 Layout.leftMargin: 56
                 Layout.rightMargin: 56
                 color: Material.backgroundColor
@@ -29,6 +35,7 @@ ApplicationWindow {
                     color: Material.primaryTextColor
                     anchors.verticalCenter: parent.verticalCenter
                     background: Rectangle {
+                        color: Material.backgroundColor
                         Layout.fillWidth: true
                     }
                     placeholderText: qsTr("hint_search")
@@ -90,6 +97,7 @@ ApplicationWindow {
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            color: Material.backgroundColor
             StackLayout {
                 anchors.fill: parent
                 currentIndex: bar.currentIndex
