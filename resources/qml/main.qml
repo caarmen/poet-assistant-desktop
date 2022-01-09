@@ -40,13 +40,13 @@ ApplicationWindow {
     }
 
     ColumnLayout {
-        width: parent.width
-        height: parent.height
-        RowLayout {
-            width: parent.width
+        anchors.fill: parent
+        Rectangle {
+            Layout.preferredHeight: childrenRect.height
+            Layout.fillWidth: true
             TabBar {
                 id: bar
-                Layout.fillWidth: true
+                width: parent.width
                 TabButton {
                     text: qsTr("tab_rhymes")
                 }
@@ -58,8 +58,11 @@ ApplicationWindow {
                 }
             }
         }
-        RowLayout {
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             StackLayout {
+                anchors.fill: parent
                 currentIndex: bar.currentIndex
                 Item {
                     id: rhymesTab
