@@ -12,25 +12,54 @@ ApplicationWindow {
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
-            TextField {
-                id: tfSearch
-                selectByMouse: true
-                color: Material.toolTextColor
-                placeholderTextColor: Material.toolTextColor
-                Layout.leftMargin: 16
-                placeholderText: qsTr("hint_search")
+            Rectangle {
+                Layout.preferredHeight: childrenRect.height
                 Layout.fillWidth: true
-                Keys.onReleased: {
-                    if (event.key === Qt.Key_Return) {
-                        mainViewModel.search(text)
+                Layout.leftMargin: 56
+                Layout.rightMargin: 56
+                color: Material.backgroundColor
+                TextField {
+                    id: tfSearch
+                    width: parent.width
+                    selectByMouse: true
+                    leftPadding: 48
+                    rightPadding: 48
+                    topPadding: 12
+                    bottomPadding: 12
+                    color: Material.primaryTextColor
+                    anchors.verticalCenter: parent.verticalCenter
+                    background: Rectangle {
+                        Layout.fillWidth: true
+                    }
+                    placeholderText: qsTr("hint_search")
+                    Keys.onReleased: {
+                        if (event.key === Qt.Key_Return) {
+                            mainViewModel.search(text)
+                        }
+                    }
+                    onTextChanged: {
+                        btnSearch.enabled = length > 0
+                        btnClose.visible = length > 0
                     }
                 }
-            }
-            ToolButton {
-                icon.name: "search"
-                icon.source: "qrc:/images/search.svg"
-                Layout.rightMargin: 16
-                onClicked: mainViewModel.search(tfSearch.text)
+                ToolButton {
+                    id: btnSearch
+                    enabled: false
+                    icon.color: Material.primaryTextColor
+                    icon.source: "qrc:/images/search.svg"
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    onClicked:  mainViewModel.search(tfSearch.text)
+                }
+                ToolButton {
+                    id: btnClose
+                    visible: false
+                    icon.color: Material.primaryTextColor
+                    icon.source: "qrc:/images/close.svg"
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.right: parent.right
+                    onClicked: tfSearch.clear()
+                }
             }
         }
     }
