@@ -13,6 +13,6 @@
         <file>qml/RhymeTabView.qml</file>
         <file>qml/WordHeader.qml</file>
         <file>qml/WordContextMenu.qml</file>
-        <file>qml/EmptyResults.qml</file>
+        <file>qml/EmptyResultsView.qml</file>
     </qresource>
 </RCC>

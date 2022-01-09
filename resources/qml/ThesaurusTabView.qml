@@ -15,7 +15,7 @@ ScrollView {
         model: thesaurusListModel
         delegate: ThesaurusListItemDelegate {}
     }
-    EmptyResults {
+    EmptyResultsView {
         visible: thesaurusListModel.isEmptyTextVisible
         emptyText: thesaurusListModel.emptyText
     }
