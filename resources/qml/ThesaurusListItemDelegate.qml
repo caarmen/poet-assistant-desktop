@@ -6,6 +6,9 @@ import QtQuick.Controls.Material 2.12
 ItemDelegate {
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right : undefined
+    WordContextMenu {
+        word: model.thesaurus.text
+    }
     contentItem: RowLayout {
         anchors.fill: parent
         spacing: 0

@@ -12,5 +12,6 @@
         <file>qml/RhymeListItemDelegate.qml</file>
         <file>qml/RhymeTabView.qml</file>
         <file>qml/WordHeader.qml</file>
+        <file>qml/WordContextMenu.qml</file>
     </qresource>
 </RCC>

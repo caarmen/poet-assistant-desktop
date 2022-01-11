@@ -7,9 +7,23 @@ MainViewModel::MainViewModel(RhymeListModel *rhymeListModel, ThesaurusListModel 
 }
 
 void MainViewModel::search(QString searchText) {
-    qDebug() << "search " << searchText;
     QString transformedSearchText = searchText.trimmed().toLower();
     rhymeListModel->readRhymes(transformedSearchText);
     definitionsListModel->readDefinitions(transformedSearchText);
     thesaurusListModel->readThesaurus(transformedSearchText);
+}
+
+void MainViewModel::searchRhymes(QString searchText) {
+    QString transformedSearchText = searchText.trimmed().toLower();
+    rhymeListModel->readRhymes(transformedSearchText);
+}
+
+void MainViewModel::searchThesaurus(QString searchText) {
+    QString transformedSearchText = searchText.trimmed().toLower();
+    thesaurusListModel->readThesaurus(transformedSearchText);
+}
+
+void MainViewModel::searchDefinitions(QString searchText) {
+    QString transformedSearchText = searchText.trimmed().toLower();
+    definitionsListModel->readDefinitions(transformedSearchText);
 }
