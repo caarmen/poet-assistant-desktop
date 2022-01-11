@@ -15,4 +15,8 @@ ScrollView {
         model: definitionsListModel
         delegate: DefinitionListItemDelegate {}
     }
+    EmptyResultsView {
+        visible: definitionsListModel.isEmptyTextVisible
+        emptyText: definitionsListModel.emptyText
+    }
 }

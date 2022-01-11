@@ -9,6 +9,8 @@ class DefinitionListModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(QString word MEMBER word NOTIFY wordChanged)
+    Q_PROPERTY(bool isEmptyTextVisible MEMBER isEmptyTextVisible NOTIFY isEmptyTextVisibleChanged)
+    Q_PROPERTY(QString emptyText MEMBER emptyText NOTIFY emptyTextChanged)
 
 public:
     enum MyRoles {
@@ -24,10 +26,14 @@ public:
 
 signals:
     void wordChanged(const QString &);
+    void isEmptyTextVisibleChanged(bool);
+    void emptyTextChanged(const QString &);
 private:
     QString word;
     DefinitionViewModel *viewModel;
     QList<DefinitionDisplayData*> *definitions;
+    bool isEmptyTextVisible;
+    QString emptyText;
 };
 
 #endif // DEFINITIONLISTMODEL_H

@@ -15,4 +15,8 @@ ScrollView {
         model: rhymeListModel
         delegate: RhymeListItemDelegate {}
     }
+    EmptyResultsView {
+        visible: rhymeListModel.isEmptyTextVisible
+        emptyText: rhymeListModel.emptyText
+    }
 }

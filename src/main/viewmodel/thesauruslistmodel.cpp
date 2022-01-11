@@ -1,7 +1,11 @@
 #include "thesauruslistmodel.h"
 
 ThesaurusListModel::ThesaurusListModel(ThesaurusViewModel *viewModel, QObject *parent)
-    : QAbstractListModel{parent}, viewModel(viewModel), thesaurusEntries(nullptr)
+    : QAbstractListModel{parent},
+      viewModel(viewModel),
+      thesaurusEntries(nullptr),
+      isEmptyTextVisible(true),
+      emptyText(QCoreApplication::translate("main", "thesaurus_no_query"))
 {
 
 }
@@ -18,6 +22,10 @@ void ThesaurusListModel::readThesaurus(QString searchText) {
     auto *watcher = new QFutureWatcher<QList<ThesaurusDisplayData*>*>();
     QObject::connect(watcher, &QFutureWatcher<QList<ThesaurusDisplayData*>*>::finished, this, [=](){
         thesaurusEntries = future.result();
+        isEmptyTextVisible = thesaurusEntries->size() == 0;
+        emit isEmptyTextVisibleChanged(isEmptyTextVisible);
+        emptyText = QCoreApplication::translate("main", "thesaurus_no_matches %1").arg(word);
+        emit emptyTextChanged(emptyText);
         endResetModel();
         watcher->deleteLater();
     });
