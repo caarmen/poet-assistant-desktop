@@ -2,7 +2,7 @@ QT       += core gui quick quickcontrols2
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets sql concurrent core
 
-CONFIG += c++11 app_bundl
+CONFIG += c++11 app_bundle
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -76,3 +76,17 @@ INCLUDEPATH +=  \
     $${SOURCE_DIR}/main/debug \
     $${SOURCE_DIR}/main/repository \
     $${SOURCE_DIR}/main/viewmodel
+
+BUILD_DIR=build
+TMP_DIR=$${BUILD_DIR}/tmp
+
+MOC_DIR=$${TMP_DIR}/moc
+RCC_DIR=$${TMP_DIR}/rcc
+UI_DIR=$${TMP_DIR}/ui
+OBJECTS_DIR=$${TMP_DIR}/obj
+
+DESTDIR=$${BUILD_DIR}/out
+DMGFILE=$${DESTDIR}/PoetAssistant.dmg
+dmgfile.target = $${DMGFILE}
+dmgfile.commands = macdeployqt $${DESTDIR}/PoetAssistant.app -qmldir=$${PWD} -qmlimport=$${PWD} -dmg
+QMAKE_EXTRA_TARGETS += dmgfile
