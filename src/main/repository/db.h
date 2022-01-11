@@ -2,13 +2,12 @@
 #define DB_H
 
 #include <QtSql>
-#include <QCoreApplication>
 
 class Db
 {
 public:
     Db();
-    QFuture<void> openDb(QCoreApplication &app);
+    QFuture<void> openDb();
     QThreadPool * getThreadPool();
 private :
     QThreadPool *threadPool;

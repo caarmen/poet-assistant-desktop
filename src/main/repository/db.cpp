@@ -11,20 +11,22 @@ QThreadPool* Db::getThreadPool() {
     return threadPool;
 }
 
-QFuture<void> Db::openDb(QCoreApplication &app) {
-    return QtConcurrent::run(threadPool, [&app]() {
+QFuture<void> Db::openDb() {
+    return QtConcurrent::run(threadPool, [=]() {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
         db.setConnectOptions("QSQLITE_OPEN_READONLY");
-        QTemporaryFile tmpFile(&app);
-        tmpFile.setFileTemplate("XXXXXX.db");
-        if (tmpFile.open()) {
-            QFile file(":/poet_assistant.db");
+        QFile file(":/poet_assistant.db");
+        QString appDataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+        QDir().mkdir(appDataDir);
+        QString dbCopyFileName(QString("%1/poet_assistant.db").arg(appDataDir));
+        QFile dbCopyFile(dbCopyFileName);
+        if (dbCopyFile.open(QIODevice::WriteOnly)) {
             if (file.open(QIODevice::ReadOnly)) {
-                tmpFile.write(file.readAll());
+                dbCopyFile.write(file.readAll());
             }
-            tmpFile.close();
+            dbCopyFile.close();
         }
-        db.setDatabaseName(tmpFile.fileName());
+        db.setDatabaseName(dbCopyFile.fileName());
         if (!db.open()) {
             qFatal("Couldn't open db");
         }
