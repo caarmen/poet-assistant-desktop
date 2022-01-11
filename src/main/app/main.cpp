@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
         a.installTranslator(&translator);
     }
     Db db;
-    QFuture<void> future = db.openDb(a);
+    QFuture<void> future = db.openDb();
     future.waitForFinished(); // TODO
     RhymeRepository rhymeRepository(&db);
     RhymeViewModel rhymeViewModel(&rhymeRepository);
