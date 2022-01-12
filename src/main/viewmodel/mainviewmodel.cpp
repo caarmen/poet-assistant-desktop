@@ -1,7 +1,15 @@
 #include "mainviewmodel.h"
 #include <QDebug>
-MainViewModel::MainViewModel(RhymeListModel *rhymeListModel, ThesaurusListModel *thesaurusListModel, DefinitionListModel *definitionsListModel, QObject *parent)
-    : QObject{parent}, rhymeListModel(rhymeListModel), thesaurusListModel(thesaurusListModel), definitionsListModel(definitionsListModel)
+MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
+                             ThesaurusListModel *thesaurusListModel,
+                             DefinitionListModel *definitionsListModel,
+                             FavoriteRepository *favoriteRepository,
+                             QObject *parent)
+    : QObject{parent},
+      rhymeListModel(rhymeListModel),
+      thesaurusListModel(thesaurusListModel),
+      definitionsListModel(definitionsListModel),
+      favoriteRepository(favoriteRepository)
 {
 
 }
@@ -26,4 +34,12 @@ void MainViewModel::searchThesaurus(QString searchText) {
 void MainViewModel::searchDefinitions(QString searchText) {
     QString transformedSearchText = searchText.trimmed().toLower();
     definitionsListModel->readDefinitions(transformedSearchText);
+}
+
+QString MainViewModel::getFavoriteIcon(QString word) {
+    return favoriteRepository->isFavorite(word) ?  "qrc:/images/star.svg" : "qrc:/images/star_border.svg";
+}
+void MainViewModel::toggleFavorite(QString query) {
+    favoriteRepository->toggleFavorite(query);
+    emit favoritesChanged();
 }

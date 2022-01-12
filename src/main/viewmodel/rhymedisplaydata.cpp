@@ -1,7 +1,12 @@
 #include "rhymedisplaydata.h"
 
-RhymeDisplayData::RhymeDisplayData(QString text, bool italic, bool bold, int indentLevel, QObject *parent)
-    : QObject{parent}, text(text), italic(italic), bold(bold), indentLevel(indentLevel)
+RhymeDisplayData::RhymeDisplayData(QString text,
+                                   bool italic,
+                                   bool bold,
+                                   int indentLevel,
+                                   bool interactive,
+                                   QObject *parent)
+    : QObject{parent}, text(text), italic(italic), bold(bold), indentLevel(indentLevel), interactive(interactive)
 {
     RhymeDisplayData::refCounter.inc();
 }

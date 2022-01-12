@@ -6,7 +6,6 @@ import QtQuick.Controls.Material 2.12
 Rectangle {
     property string emptyText
     color: Material.backgroundColor
-    anchors.fill: parent
     Text {
         color: Material.primaryTextColor
         font.bold: true

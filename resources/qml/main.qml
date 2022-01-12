@@ -39,7 +39,7 @@ ApplicationWindow {
                         Layout.fillWidth: true
                     }
                     placeholderText: qsTr("hint_search")
-                    Keys.onReleased: {
+                    Keys.onReleased: event => {
                         if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                             mainViewModel.search(text)
                         }
@@ -92,6 +92,9 @@ ApplicationWindow {
                 TabButton {
                     text: qsTr("tab_definitions")
                 }
+                TabButton {
+                    text: qsTr("tab_favorites")
+                }
             }
         }
         Rectangle {
@@ -112,6 +115,10 @@ ApplicationWindow {
                 Item {
                     id: definitionsTab
                     DictionaryTabView {}
+                }
+                Item {
+                    id: favoritesTab
+                    FavoriteTabView{}
                 }
             }
         }

@@ -14,5 +14,10 @@
         <file>qml/WordHeader.qml</file>
         <file>qml/WordContextMenu.qml</file>
         <file>qml/EmptyResultsView.qml</file>
+        <file>images/star.svg</file>
+        <file>images/star_border.svg</file>
+        <file>qml/FavoriteIcon.qml</file>
+        <file>qml/FavoriteTabView.qml</file>
+        <file>qml/FavoriteListItemDelegate.qml</file>
     </qresource>
 </RCC>

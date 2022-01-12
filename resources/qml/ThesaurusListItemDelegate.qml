@@ -6,7 +6,11 @@ import QtQuick.Controls.Material 2.12
 ItemDelegate {
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right : undefined
+    onClicked: {
+        if (model.thesaurus.interactive) contextMenu.popup()
+    }
     WordContextMenu {
+        id: contextMenu
         word: model.thesaurus.text
     }
     contentItem: RowLayout {
@@ -17,13 +21,24 @@ ItemDelegate {
                 color: Material.backgroundColor
                 width: 50
                 Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 16 + (model.thesaurus.indentLevel * 16)
+                Layout.leftMargin: model.thesaurus.indentLevel * 16
+                FavoriteIcon {
+                    id: favoriteIcon
+                    visible: model.thesaurus.interactive
+                    wordView: wordView
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 16
+                }
                 Text {
+                    id: wordView
                     color: Material.primaryTextColor
                     font.bold: model.thesaurus.bold
                     font.italic: model.thesaurus.italic
                     text: model.thesaurus.text
                     anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: favoriteIcon.right
+                    anchors.leftMargin: 8
                 }
             }
         }

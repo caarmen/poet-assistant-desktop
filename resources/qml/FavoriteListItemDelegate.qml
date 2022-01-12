@@ -7,22 +7,21 @@ ItemDelegate {
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right : undefined
     onClicked: {
-        if (model.rhyme.interactive) contextMenu.popup()
+        contextMenu.popup()
     }
     WordContextMenu {
         id: contextMenu
-        word: model.rhyme.text
+        word: model.favorite
     }
     contentItem: RowLayout {
         anchors.fill: parent
         spacing: 0
         ColumnLayout {
             Rectangle {
+                color: Material.backgroundColor
                 width: 50
                 Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: model.rhyme.indentLevel * 16
                 FavoriteIcon {
-                    visible: model.rhyme.interactive
                     id: favoriteIcon
                     wordView: wordView
                     anchors.verticalCenter: parent.verticalCenter
@@ -32,13 +31,10 @@ ItemDelegate {
                 Text {
                     id: wordView
                     color: Material.primaryTextColor
-                    font.bold: model.rhyme.bold
-                    font.italic: model.rhyme.italic
-                    text: model.rhyme.text
-                    anchors.right: parent.right
+                    text: model.favorite
+                    anchors.verticalCenter: parent.verticalCenter
                     anchors.left: favoriteIcon.right
                     anchors.leftMargin: 8
-                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
         }

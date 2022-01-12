@@ -15,6 +15,7 @@ SOURCES += \
     $${SOURCE_DIR}/main/repository/db.cpp \
     $${SOURCE_DIR}/main/repository/definitionentity.cpp \
     $${SOURCE_DIR}/main/repository/definitionrepository.cpp \
+    $${SOURCE_DIR}/main/repository/favoriterepository.cpp \
     $${SOURCE_DIR}/main/repository/rhymeentity.cpp \
     $${SOURCE_DIR}/main/repository/rhymerepository.cpp \
     $${SOURCE_DIR}/main/repository/thesaurusentity.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
     $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/definitionlistmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/definitionviewmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/favoritelistmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/mainviewmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/rhymedisplaydata.cpp \
     $${SOURCE_DIR}/main/viewmodel/rhymeentitymapper.cpp \
@@ -54,6 +56,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/repository/db.h \
     $${SOURCE_DIR}/main/repository/definitionentity.h \
     $${SOURCE_DIR}/main/repository/definitionrepository.h \
+    $${SOURCE_DIR}/main/repository/favoriterepository.h \
     $${SOURCE_DIR}/main/repository/rhymeentity.h \
     $${SOURCE_DIR}/main/repository/rhymerepository.h \
     $${SOURCE_DIR}/main/repository/thesaurusentity.h \
@@ -62,6 +65,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/definitionlistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/definitionviewmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/favoritelistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/mainviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/rhymedisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/rhymeentitymapper.h \
