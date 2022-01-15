@@ -9,9 +9,14 @@ ApplicationWindow {
     height: 500
     visible: true
     title: qsTr("app_title")
+
     Material.theme: Material.System
     Material.primary: Material.theme === Material.Light? "#607D8B" : "#879fab"
     Material.accent: Material.theme === Material.Light? "#607D8B" : "#879fab"
+    Material.background : Material.theme === Material.Light? "#fff" : "#000"
+    Component.onCompleted: {
+        Style.surface = Material.theme === Material.Light? "#f6f7f9" : "#181818"
+    }
 
     header: ToolBar {
         RowLayout {
@@ -35,7 +40,7 @@ ApplicationWindow {
                     color: Material.primaryTextColor
                     anchors.verticalCenter: parent.verticalCenter
                     background: Rectangle {
-                        color: Material.backgroundColor
+                        color: Style.surface
                         Layout.fillWidth: true
                     }
                     placeholderText: qsTr("hint_search")
@@ -81,6 +86,7 @@ ApplicationWindow {
             Layout.preferredHeight: childrenRect.height
             Layout.fillWidth: true
             TabBar {
+                Material.background: Style.surface
                 id: bar
                 width: parent.width
                 TabButton {

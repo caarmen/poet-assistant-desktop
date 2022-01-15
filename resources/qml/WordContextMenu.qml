@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.12
 
 Menu {
     property string word
+    Material.background: Style.surface
     id: contextMenu
     MenuItem {
         text: word

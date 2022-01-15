@@ -19,5 +19,7 @@
         <file>qml/FavoriteIcon.qml</file>
         <file>qml/FavoriteTabView.qml</file>
         <file>qml/FavoriteListItemDelegate.qml</file>
+        <file>qml/qmldir</file>
+        <file>qml/Style.qml</file>
     </qresource>
 </RCC>

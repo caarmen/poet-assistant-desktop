@@ -19,6 +19,7 @@ void FavoriteRepository::toggleFavorite(const QString &word)
 {
     if (favorites.contains(word)) favorites.removeAll(word);
     else favorites.append(word);
+    favorites.sort();
     settings.setValue(favoritesSetting, favorites);
     emit favoritesChanged();
 }

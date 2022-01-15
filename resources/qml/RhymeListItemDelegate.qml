@@ -13,23 +13,27 @@ ItemDelegate {
         id: contextMenu
         word: model.rhyme.text
     }
-    contentItem: RowLayout {
+    contentItem: Rectangle {
         anchors.fill: parent
-        spacing: 0
-        Layout.alignment: Qt.AlignVCenter
-        anchors.leftMargin: 16
-        FavoriteIcon {
-            visible: model.rhyme.interactive
-            wordView: wordView
+        color: model.rhyme.interactive ? Material.backgroundColor : Style.surface
+        RowLayout {
+            anchors.fill: parent
+            spacing: 0
             Layout.alignment: Qt.AlignVCenter
-        }
-        Text {
-            id: wordView
-            color: Material.primaryTextColor
-            font.bold: model.rhyme.bold
-            font.italic: model.rhyme.italic
-            text: model.rhyme.text
-            Layout.fillWidth: true
+            anchors.leftMargin: 16
+            FavoriteIcon {
+                visible: model.rhyme.interactive
+                wordView: wordView
+                Layout.alignment: Qt.AlignVCenter
+            }
+            Text {
+                id: wordView
+                color: Material.primaryTextColor
+                font.bold: model.rhyme.bold
+                font.italic: model.rhyme.italic
+                text: model.rhyme.text
+                Layout.fillWidth: true
+            }
         }
     }
 }
