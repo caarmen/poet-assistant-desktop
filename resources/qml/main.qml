@@ -15,6 +15,7 @@ ApplicationWindow {
     Material.accent: Material.theme === Material.Light? "#607D8B" : "#879fab"
     Material.background : Material.theme === Material.Light? "#fff" : "#000"
     Component.onCompleted: {
+        Style.background = Material.background
         Style.surface = Material.theme === Material.Light? "#f6f7f9" : "#181818"
     }
 

@@ -52,7 +52,13 @@ QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::mapMatchingWords(const char
 }
 QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::map(ThesaurusEntity* entity) {
     QList<ThesaurusDisplayData*> *result = new QList<ThesaurusDisplayData*>();
-    result->append(new ThesaurusDisplayData(QCoreApplication::translate("main", map(entity->wordType)), false, true));
+    result->append(new ThesaurusDisplayData(
+                       QCoreApplication::translate("main", map(entity->wordType)),
+                       false,
+                       true,
+                       0,
+                       false,
+                       ColorType::Surface));
     QList<ThesaurusDisplayData*> *synonyms = mapMatchingWords("synonyms", entity->synonyms);
     result->append(*synonyms);
     delete synonyms;

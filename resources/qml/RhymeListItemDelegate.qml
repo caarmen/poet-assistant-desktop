@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.12
+import ColorType 1.0
 
 ItemDelegate {
     anchors.left: parent ? parent.left : undefined
@@ -15,7 +16,7 @@ ItemDelegate {
     }
     contentItem: Rectangle {
         anchors.fill: parent
-        color: model.rhyme.interactive ? Material.backgroundColor : Style.surface
+        color: Style.toColor(model.rhyme.backgroundColor)
         RowLayout {
             anchors.fill: parent
             spacing: 0
