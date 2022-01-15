@@ -16,31 +16,20 @@ ItemDelegate {
     contentItem: RowLayout {
         anchors.fill: parent
         spacing: 0
-        ColumnLayout {
-            Rectangle {
-                color: Material.backgroundColor
-                width: 50
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: model.thesaurus.indentLevel * 16
-                FavoriteIcon {
-                    id: favoriteIcon
-                    visible: model.thesaurus.interactive
-                    wordView: wordView
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 16
-                }
-                Text {
-                    id: wordView
-                    color: Material.primaryTextColor
-                    font.bold: model.thesaurus.bold
-                    font.italic: model.thesaurus.italic
-                    text: model.thesaurus.text
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: favoriteIcon.right
-                    anchors.leftMargin: 8
-                }
-            }
+        Layout.alignment: Qt.AlignVCenter
+        anchors.leftMargin: 16
+        FavoriteIcon {
+            visible: model.thesaurus.interactive
+            wordView: wordView
+            Layout.alignment: Qt.AlignVCenter
+        }
+        Text {
+            id: wordView
+            color: Material.primaryTextColor
+            font.bold: model.thesaurus.bold
+            font.italic: model.thesaurus.italic
+            text: model.thesaurus.text
+            Layout.fillWidth: true
         }
     }
 }

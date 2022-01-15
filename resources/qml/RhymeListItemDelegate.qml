@@ -16,31 +16,20 @@ ItemDelegate {
     contentItem: RowLayout {
         anchors.fill: parent
         spacing: 0
-        ColumnLayout {
-            Rectangle {
-                width: 50
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: model.rhyme.indentLevel * 16
-                FavoriteIcon {
-                    visible: model.rhyme.interactive
-                    id: favoriteIcon
-                    wordView: wordView
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 16
-                }
-                Text {
-                    id: wordView
-                    color: Material.primaryTextColor
-                    font.bold: model.rhyme.bold
-                    font.italic: model.rhyme.italic
-                    text: model.rhyme.text
-                    anchors.right: parent.right
-                    anchors.left: favoriteIcon.right
-                    anchors.leftMargin: 8
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-            }
+        Layout.alignment: Qt.AlignVCenter
+        anchors.leftMargin: 16
+        FavoriteIcon {
+            visible: model.rhyme.interactive
+            wordView: wordView
+            Layout.alignment: Qt.AlignVCenter
+        }
+        Text {
+            id: wordView
+            color: Material.primaryTextColor
+            font.bold: model.rhyme.bold
+            font.italic: model.rhyme.italic
+            text: model.rhyme.text
+            Layout.fillWidth: true
         }
     }
 }

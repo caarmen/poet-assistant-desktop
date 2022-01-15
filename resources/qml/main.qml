@@ -10,8 +10,8 @@ ApplicationWindow {
     visible: true
     title: qsTr("app_title")
     Material.theme: Material.System
-    Material.primary: "#607D8B"
-    Material.accent: "#607D8B"
+    Material.primary: Material.theme === Material.Light? "#607D8B" : "#879fab"
+    Material.accent: Material.theme === Material.Light? "#607D8B" : "#879fab"
 
     header: ToolBar {
         RowLayout {

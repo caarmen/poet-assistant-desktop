@@ -15,7 +15,6 @@ Rectangle {
         wordView: wordView
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
-        anchors.leftMargin: 16
     }
     Text {
         id: wordView
@@ -24,7 +23,6 @@ Rectangle {
         font.bold: true
         text: word
         anchors.left: favoriteIcon.right
-        anchors.leftMargin: 16
         anchors.verticalCenter: parent.verticalCenter
     }
 }
