@@ -6,6 +6,7 @@ import ColorType 1.0
 ItemDelegate {
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right : undefined
+    height: 48
     onClicked: {
         if (model.thesaurus.interactive) contextMenu.popup()
     }
