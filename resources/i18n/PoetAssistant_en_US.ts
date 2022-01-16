@@ -24,10 +24,6 @@
         <translation>Favorites</translation>
     </message>
     <message>
-        <source>hint_search</source>
-        <translation>Search</translation>
-    </message>
-    <message>
         <source>noun</source>
         <translation>Noun</translation>
     </message>
@@ -104,6 +100,13 @@
     <message>
         <source>context_menu_dictionary</source>
         <translation>Dictionary</translation>
+    </message>
+</context>
+<context>
+    <name>ToolBarView</name>
+    <message>
+        <source>hint_search</source>
+        <translation>Search</translation>
     </message>
 </context>
 </TS>

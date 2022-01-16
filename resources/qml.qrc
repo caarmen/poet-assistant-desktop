@@ -24,5 +24,6 @@
         <file>images/ic_thesaurus.svg</file>
         <file>images/ic_rhymer.svg</file>
         <file>images/ic_definitions.svg</file>
+        <file>qml/ToolBarView.qml</file>
     </qresource>
 </RCC>
