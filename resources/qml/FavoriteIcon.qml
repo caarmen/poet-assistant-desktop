@@ -1,18 +1,18 @@
 import QtQuick.Controls 2.12
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
 import Qt5Compat.GraphicalEffects
 
 Rectangle {
     property Text wordView
     color: "transparent"
-    height: 24
-    width: 24
+    height:childrenRect.height
+    width: childrenRect.width
     visible: wordView.text.length > 0
-    Image {
+    ToolButton {
         id: favorite
-        source: mainViewModel.getFavoriteIcon(wordView.text)
+        icon.source: mainViewModel.getFavoriteIcon(wordView.text)
+        icon.color: Style.primary
         MouseArea {
             id: area
             anchors.fill: parent
@@ -22,19 +22,14 @@ Rectangle {
         Connections {
             target: mainViewModel
             function onFavoritesChanged() {
-                favorite.source = mainViewModel.getFavoriteIcon(wordView.text)
+                favorite.icon.source = mainViewModel.getFavoriteIcon(wordView.text)
             }
         }
         Connections {
             target: wordView
             function onTextChanged() {
-                favorite.source = mainViewModel.getFavoriteIcon(wordView.text)
+                favorite.icon.source = mainViewModel.getFavoriteIcon(wordView.text)
             }
         }
-    }
-    ColorOverlay {
-        anchors.fill: favorite
-        source: favorite
-        color: Material.primaryTextColor
     }
 }

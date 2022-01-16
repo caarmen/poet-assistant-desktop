@@ -61,6 +61,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/repository/rhymerepository.h \
     $${SOURCE_DIR}/main/repository/thesaurusentity.h \
     $${SOURCE_DIR}/main/repository/thesaurusrepository.h \
+    $${SOURCE_DIR}/main/viewmodel/colortypeenum.h \
     $${SOURCE_DIR}/main/viewmodel/definitiondisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/definitionlistmodel.h \

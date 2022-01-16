@@ -1,6 +1,7 @@
 #include "db.h"
 #include "mainviewmodel.h"
 #include "favoritelistmodel.h"
+#include "colortypeenum.h"
 
 #include <QGuiApplication>
 #include <QLocale>
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
     MainViewModel mainViewModel(&rhymeListModel, &thesaurusListModel, &definitionsListModel, &favoriteRepository);
 
     QQmlApplicationEngine engine;
+    qmlRegisterUncreatableType<ColorTypeEnum>("ColorType", 1, 0, "ColorType", "Not creatable as it is an enum type");
     engine.rootContext()->setContextProperty("mainViewModel", QVariant::fromValue(&mainViewModel));
     engine.rootContext()->setContextProperty("rhymeListModel", QVariant::fromValue(&rhymeListModel));
     engine.rootContext()->setContextProperty("definitionsListModel", QVariant::fromValue(&definitionsListModel));
