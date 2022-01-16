@@ -33,6 +33,8 @@ Menu {
     }
     MenuItem {
         background: Rectangle { color: Style.surface }
+        icon.source: "qrc:/images/ic_rhymer.svg"
+        icon.color: Style.primary
         text: qsTr("context_menu_rhymer")
         onTriggered: {
             bar.currentIndex = 0
@@ -41,6 +43,8 @@ Menu {
     }
     MenuItem {
         background: Rectangle { color: Style.surface }
+        icon.source: "qrc:/images/ic_thesaurus.svg"
+        icon.color: Style.primary
         text: qsTr("context_menu_thesaurus")
         onTriggered: {
             bar.currentIndex = 1
@@ -49,6 +53,8 @@ Menu {
     }
     MenuItem {
         background: Rectangle { color: Style.surface }
+        icon.source: "qrc:/images/ic_definitions.svg"
+        icon.color: Style.primary
         text: qsTr("context_menu_dictionary")
         onTriggered: {
             bar.currentIndex = 2

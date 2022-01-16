@@ -21,5 +21,8 @@
         <file>qml/FavoriteListItemDelegate.qml</file>
         <file>qml/qmldir</file>
         <file>qml/Style.qml</file>
+        <file>images/ic_thesaurus.svg</file>
+        <file>images/ic_rhymer.svg</file>
+        <file>images/ic_definitions.svg</file>
     </qresource>
 </RCC>

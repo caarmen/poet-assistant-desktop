@@ -128,15 +128,19 @@ ApplicationWindow {
                 id: bar
                 width: parent.width
                 TabButton {
+                    icon.source: "qrc:/images/ic_rhymer.svg"
                     text: qsTr("tab_rhymes")
                 }
                 TabButton {
+                    icon.source: "qrc:/images/ic_thesaurus.svg"
                     text: qsTr("tab_thesaurus")
                 }
                 TabButton {
+                    icon.source: "qrc:/images/ic_definitions.svg"
                     text: qsTr("tab_definitions")
                 }
                 TabButton {
+                    icon.source: "qrc:/images/star.svg"
                     text: qsTr("tab_favorites")
                 }
             }
