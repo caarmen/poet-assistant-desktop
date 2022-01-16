@@ -35,11 +35,14 @@ SOURCES += \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesaurusviewmodel.cpp \
 
-#HEADERS += \
-#    $${SOURCE_DIR}/main/mainwindow.h
-
 TRANSLATIONS += \
     resources/i18n/PoetAssistant_en_US.ts
+
+ts-all.target = resources/i18n/PoetAssistant_en_US.qm
+ts-all.depends = $${TRANSLATIONS}
+ts-all.commands = lrelease $${TRANSLATIONS}
+QMAKE_EXTRA_TARGETS += ts-all
+
 CONFIG += lrelease
 CONFIG += embed_translations
 
