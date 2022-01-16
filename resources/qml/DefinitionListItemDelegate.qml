@@ -10,7 +10,6 @@ ItemDelegate {
         spacing: 0
         Rectangle {
             color: "transparent"
-            Layout.leftMargin: 16
             Layout.alignment: Qt.AlignVCenter
             Layout.preferredWidth: childrenRect.width + 16
             Layout.fillHeight: true
