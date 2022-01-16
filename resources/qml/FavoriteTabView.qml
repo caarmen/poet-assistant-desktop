@@ -30,13 +30,24 @@ Rectangle {
         ListView {
             id: favoriteList
             model: favoriteListModel
-            header: Text {
-                height: 48
-                color: Style.primaryText
-                font.bold: true
-                text: qsTr("favorites_header")
-                x: 16
-                verticalAlignment: Text.AlignVCenter
+            header: RowLayout {
+                width: parent.width
+                Text {
+                    height: 48
+                    color: Style.primaryText
+                    font.bold: true
+                    text: qsTr("favorites_header")
+                    Layout.leftMargin: 16
+                }
+                ToolButton {
+                    icon.source: "qrc:/images/delete.svg"
+                    icon.color: Style.primary
+                    Layout.alignment: Qt.AlignRight
+                    Layout.rightMargin: 16
+                    onClicked: {
+                        dlgDeleteConfirm.open()
+                    }
+                }
             }
             headerPositioning: ListView.PullBackHeader
             delegate: FavoriteListItemDelegate {}
@@ -46,5 +57,17 @@ Rectangle {
         visible: favoriteListModel.isEmptyTextVisible
         emptyText: qsTr("favorites_empty")
         anchors.fill: parent
+    }
+    Dialog {
+        id: dlgDeleteConfirm
+        width: 320
+        title: qsTr("delete_confirm_title")
+        anchors.centerIn: parent
+        contentItem: Text{
+            text: qsTr("delete_confirm_message")
+            color: Style.primaryText
+        }
+        standardButtons: Dialog.Ok | Dialog.Cancel
+        onAccepted: mainViewModel.clearFavorites();
     }
 }
