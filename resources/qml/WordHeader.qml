@@ -2,18 +2,29 @@ import QtQuick.Controls 2.12
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.12
+import Qt5Compat.GraphicalEffects
 
 Rectangle {
     property string word
     color: Material.backgroundColor
     height: 48
     width: parent.width
-    z: 2
+    visible: word.length > 0
+    FavoriteIcon {
+        id: favoriteIcon
+        wordView: wordView
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        anchors.leftMargin: 16
+    }
     Text {
+        id: wordView
         x: 16
         color: Material.primaryTextColor
         font.bold: true
         text: word
+        anchors.left: favoriteIcon.right
+        anchors.leftMargin: 16
         anchors.verticalCenter: parent.verticalCenter
     }
 }

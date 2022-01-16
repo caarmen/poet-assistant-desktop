@@ -11,10 +11,10 @@ QList<RhymeDisplayData*>* RhymeEntityMapper::map(const QList<RhymeEntity*>* rhym
     QString currentSyllables = "";
     for(auto *rhymeEntity : *rhymeEntities) {
         if (currentSyllables != rhymeEntity->stressSyllables) {
-            result->append(new RhymeDisplayData(rhymeEntity->stressSyllables, false, true));
+            result->append(new RhymeDisplayData(rhymeEntity->stressSyllables, false, true, 0, false));
             currentSyllables = rhymeEntity->stressSyllables;
         }
-        result->append(new RhymeDisplayData(rhymeEntity->word, false, false, 1));
+        result->append(new RhymeDisplayData(rhymeEntity->word, false, false, 1, true));
     }
     return result;
 }

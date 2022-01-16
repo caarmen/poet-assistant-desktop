@@ -3,20 +3,26 @@ import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.12
 
-ScrollView {
-    anchors.fill: parent
-    clip: true
-    ListView {
-        id: thesaurusList
-        header: WordHeader {
-            word: rhymeListModel.word
+Rectangle {
+    color: Material.backgroundColor
+    height: parent.height
+    width: parent.width
+    ScrollView {
+        anchors.fill: parent
+        clip: true
+        ListView {
+            id: rhymeList
+            header: WordHeader {
+                word: rhymeListModel.word
+            }
+            headerPositioning: ListView.PullBackHeader
+            model: rhymeListModel
+            delegate: RhymeListItemDelegate {}
         }
-        headerPositioning: ListView.PullBackHeader
-        model: rhymeListModel
-        delegate: RhymeListItemDelegate {}
     }
     EmptyResultsView {
         visible: rhymeListModel.isEmptyTextVisible
         emptyText: rhymeListModel.emptyText
+        anchors.fill: parent
     }
 }
