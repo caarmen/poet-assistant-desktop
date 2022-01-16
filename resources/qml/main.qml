@@ -31,6 +31,7 @@ ApplicationWindow {
     Component.onCompleted: {
         useMaterial()
         color = Style.background
+        tfSearch.forceActiveFocus()
     }
     function useMaterial() {
         Material.theme = Material.System
