@@ -41,3 +41,9 @@ void FavoriteRepository::toggleFavorite(const QString &word)
     settings.setValue(favoritesSetting, favorites);
     emit favoritesChanged();
 }
+void FavoriteRepository::clear()
+{
+    favorites.clear();
+    settings.setValue(favoritesSetting, favorites);
+    emit favoritesChanged();
+}

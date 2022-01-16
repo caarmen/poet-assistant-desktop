@@ -86,6 +86,14 @@
         <source>favorites_header</source>
         <translation>Favorites</translation>
     </message>
+    <message>
+        <source>delete_confirm_title</source>
+        <translation>Delete favorites?</translation>
+    </message>
+    <message>
+        <source>delete_confirm_message</source>
+        <translation>Delete all favorite words?</translation>
+    </message>
 </context>
 <context>
     <name>WordContextMenu</name>

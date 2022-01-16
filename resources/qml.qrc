@@ -25,5 +25,6 @@
         <file>images/ic_rhymer.svg</file>
         <file>images/ic_definitions.svg</file>
         <file>qml/ToolBarView.qml</file>
+        <file>images/delete.svg</file>
     </qresource>
 </RCC>

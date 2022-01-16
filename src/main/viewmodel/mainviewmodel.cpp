@@ -61,3 +61,8 @@ void MainViewModel::toggleFavorite(QString query) {
     favoriteRepository->toggleFavorite(query);
     emit favoritesChanged();
 }
+
+void MainViewModel::clearFavorites() {
+    favoriteRepository->clear();
+    emit favoritesChanged();
+}

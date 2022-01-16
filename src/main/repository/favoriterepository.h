@@ -30,6 +30,7 @@ public:
     const QList<QString> *readAll() const;
     bool isFavorite(const QString &word) const;
     void toggleFavorite(const QString &word);
+    void clear();
 
 signals:
     void favoritesChanged();
