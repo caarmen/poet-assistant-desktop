@@ -1,7 +1,6 @@
 import QtQuick.Controls 2.12
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
 import Qt5Compat.GraphicalEffects
 
 Rectangle {
@@ -13,7 +12,7 @@ Rectangle {
     ToolButton {
         id: favorite
         icon.source: mainViewModel.getFavoriteIcon(wordView.text)
-        icon.color: Material.primaryColor
+        icon.color: Style.primary
         MouseArea {
             id: area
             anchors.fill: parent

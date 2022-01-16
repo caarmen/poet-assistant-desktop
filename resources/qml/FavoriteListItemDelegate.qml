@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
 
 ItemDelegate {
     anchors.left: parent ? parent.left : undefined
@@ -18,7 +17,7 @@ ItemDelegate {
         spacing: 0
         ColumnLayout {
             Rectangle {
-                color: Material.backgroundColor
+                color: Style.background
                 width: 50
                 Layout.alignment: Qt.AlignVCenter
                 FavoriteIcon {
@@ -30,7 +29,7 @@ ItemDelegate {
                 }
                 Text {
                     id: wordView
-                    color: Material.primaryTextColor
+                    color: Style.primaryText
                     text: model.favorite
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: favoriteIcon.right

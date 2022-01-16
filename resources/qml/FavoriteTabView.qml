@@ -1,10 +1,9 @@
 import QtQuick.Controls 2.12
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
 
 Rectangle {
-    color: Material.backgroundColor
+    color: Style.background
     height: parent.height
     width: parent.width
     ScrollView {
@@ -15,7 +14,7 @@ Rectangle {
             model: favoriteListModel
             header: Text {
                 height: 48
-                color: Material.primaryTextColor
+                color: Style.primaryText
                 font.bold: true
                 text: qsTr("favorites_header")
                 x: 16

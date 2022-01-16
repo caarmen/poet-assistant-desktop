@@ -3,16 +3,19 @@ import QtQuick.Controls.Material 2.12
 import ColorType
 pragma Singleton
 QtObject {
-    property color surface
+    property color accent
     property color background
+    property color primary
+    property color primaryText
+    property color surface
     function toColor(colorType) {
-        if (colorType === ColorType.Surface) {
-            return Style.surface
-        } else if(colorType === ColorType.Background) {
-            return Style.background
-        }
-        else {
-            return undefined
+        switch (colorType) {
+        case ColorType.Accent: return Style.accent
+        case ColorType.Background: return Style.background
+        case ColorType.Primary: return Style.primary
+        case ColorType.PrimaryText: return Style.primaryText
+        case ColorType.Surface: return Style.surface
+        default: return undefined
         }
     }
 }

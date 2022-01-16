@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
 
 ItemDelegate {
     anchors.left: parent ? parent.left : undefined
@@ -10,26 +9,26 @@ ItemDelegate {
         anchors.fill: parent
         spacing: 0
         Rectangle {
-            color: Material.backgroundColor
+            color: Style.background
             Layout.leftMargin: 16
             Layout.alignment: Qt.AlignVCenter
             Layout.preferredWidth: childrenRect.width + 16
             Layout.fillHeight: true
             Text {
-                color: Material.primaryTextColor
+                color: Style.primaryText
                 text: model.definition.part_of_speech
                 font.bold: true
                 anchors.verticalCenter: parent.verticalCenter
             }
         }
         Rectangle {
-            color: Material.backgroundColor
+            color: Style.background
 
             Layout.alignment: Qt.AlignVCenter
             Layout.fillWidth: true
             Layout.fillHeight: true
             Text {
-                color: Material.primaryTextColor
+                color: Style.primaryText
                 text: model.definition.definition
                 anchors.left: parent.left
                 anchors.right: parent.right

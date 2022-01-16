@@ -9,9 +9,11 @@ class ColorTypeEnum: public QObject
     Q_OBJECT
 public:
     enum Value{
+        Accent,
         Background,
+        Primary,
+        PrimaryText,
         Surface
-        // TODO Add others as needed
     };
     Q_ENUM(Value)
 };

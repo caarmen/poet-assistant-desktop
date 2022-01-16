@@ -1,18 +1,20 @@
 import QtQuick.Controls 2.12
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
 
 Menu {
     property string word
-    Material.background: Style.surface
     id: contextMenu
     MenuItem {
         text: word
         enabled: false
+        background: Rectangle { color: Style.surface }
     }
-    MenuSeparator {}
+    MenuSeparator {
+        background: Rectangle { color: Style.surface }
+    }
     MenuItem {
+        background: Rectangle { color: Style.surface }
         text: qsTr("context_menu_rhymer")
         onTriggered: {
             bar.currentIndex = 0
@@ -20,6 +22,7 @@ Menu {
         }
     }
     MenuItem {
+        background: Rectangle { color: Style.surface }
         text: qsTr("context_menu_thesaurus")
         onTriggered: {
             bar.currentIndex = 1
@@ -27,6 +30,7 @@ Menu {
         }
     }
     MenuItem {
+        background: Rectangle { color: Style.surface }
         text: qsTr("context_menu_dictionary")
         onTriggered: {
             bar.currentIndex = 2
