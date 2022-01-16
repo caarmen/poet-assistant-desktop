@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.15
 ItemDelegate {
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right : undefined
-    height: 48
     onClicked: {
         contextMenu.popup()
     }
@@ -13,29 +12,20 @@ ItemDelegate {
         id: contextMenu
         word: model.favorite
     }
-    contentItem: RowLayout {
+    contentItem: Rectangle {
         anchors.fill: parent
-        spacing: 0
-        ColumnLayout {
-            Rectangle {
-                color: Style.background
-                width: 50
-                Layout.alignment: Qt.AlignVCenter
-                FavoriteIcon {
-                    id: favoriteIcon
-                    wordView: wordView
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 16
-                }
-                Text {
-                    id: wordView
-                    color: Style.primaryText
-                    text: model.favorite
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: favoriteIcon.right
-                    anchors.leftMargin: 8
-                }
+        color: Style.background
+        RowLayout {
+            spacing: 0
+            FavoriteIcon {
+                wordView: wordView
+                Layout.leftMargin: 16
+            }
+            Text {
+                id: wordView
+                color: Style.primaryText
+                text: model.favorite
+                Layout.fillWidth: true
             }
         }
     }

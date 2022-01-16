@@ -5,10 +5,11 @@ import QtQuick.Layouts 1.15
 ItemDelegate {
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right : undefined
-    contentItem: RowLayout {
+    background: Rectangle { color: Style.background }
+    contentItem:  RowLayout {
         spacing: 0
         Rectangle {
-            color: Style.background
+            color: "transparent"
             Layout.leftMargin: 16
             Layout.alignment: Qt.AlignVCenter
             Layout.preferredWidth: childrenRect.width + 16
@@ -21,7 +22,7 @@ ItemDelegate {
             }
         }
         Rectangle {
-            color: Style.background
+            color: "transparent"
             Layout.alignment: Qt.AlignVCenter
             Layout.preferredHeight: childrenRect.height
             Layout.fillWidth: true
