@@ -46,7 +46,7 @@ QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::mapMatchingWords(const char
     // QTBUG-72872: Would be nice to use QtConcurrent::blockingMapped() here, instead of manually doing the map
     // from word to ThesaurusDisplayData, but there's a bug with nested QtConcurrent::blockingMapped calls
     for (auto& matchingWord : matchingWordsList) {
-        result->append(new ThesaurusDisplayData(matchingWord, false, false, 1, true));
+        result->append(new ThesaurusDisplayData(matchingWord, false, false, true));
     }
     return result;
 }
@@ -56,7 +56,6 @@ QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::map(ThesaurusEntity* entity
                        QCoreApplication::translate("main", map(entity->wordType)),
                        false,
                        true,
-                       0,
                        false,
                        ColorType::Surface));
     QList<ThesaurusDisplayData*> *synonyms = mapMatchingWords("synonyms", entity->synonyms);
