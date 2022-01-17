@@ -19,6 +19,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "db.h"
 #include "mainviewmodel.h"
 #include "favoritelistmodel.h"
+#include "composerviewmodel.h"
 #include "colortypeenum.h"
 
 #include <QGuiApplication>
@@ -53,9 +54,15 @@ int main(int argc, char *argv[])
     DefinitionRepository definitionRepository(&db);
     DefinitionViewModel definitionViewModel(&definitionRepository);
     DefinitionListModel definitionsListModel(&definitionViewModel);
+    PoemRepository poemRepository;
+    ComposerViewModel composerViewModel(&poemRepository);
     FavoriteRepository favoriteRepository;
     FavoriteListModel favoriteListModel(&favoriteRepository);
-    MainViewModel mainViewModel(&rhymeListModel, &thesaurusListModel, &definitionsListModel, &favoriteRepository);
+    MainViewModel mainViewModel(
+                &rhymeListModel,
+                &thesaurusListModel,
+                &definitionsListModel,
+                &favoriteRepository);
 
     QQmlApplicationEngine engine;
     qmlRegisterUncreatableType<ColorTypeEnum>("ColorType", 1, 0, "ColorType", "Not creatable as it is an enum type");
@@ -63,6 +70,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("rhymeListModel", QVariant::fromValue(&rhymeListModel));
     engine.rootContext()->setContextProperty("definitionsListModel", QVariant::fromValue(&definitionsListModel));
     engine.rootContext()->setContextProperty("thesaurusListModel", QVariant::fromValue(&thesaurusListModel));
+    engine.rootContext()->setContextProperty("composerViewModel", QVariant::fromValue(&composerViewModel));
     engine.rootContext()->setContextProperty("favoriteListModel", QVariant::fromValue(&favoriteListModel));
     QQuickStyle::setStyle("Material");
     engine.load(QUrl("qrc:/qml/main.qml"));

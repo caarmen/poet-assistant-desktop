@@ -33,10 +33,12 @@ SOURCES += \
     $${SOURCE_DIR}/main/repository/definitionentity.cpp \
     $${SOURCE_DIR}/main/repository/definitionrepository.cpp \
     $${SOURCE_DIR}/main/repository/favoriterepository.cpp \
+    $${SOURCE_DIR}/main/repository/poemrepository.cpp \
     $${SOURCE_DIR}/main/repository/rhymeentity.cpp \
     $${SOURCE_DIR}/main/repository/rhymerepository.cpp \
     $${SOURCE_DIR}/main/repository/thesaurusentity.cpp \
     $${SOURCE_DIR}/main/repository/thesaurusrepository.cpp \
+    $${SOURCE_DIR}/main/viewmodel/composerviewmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/definitiondisplaydata.cpp \
     $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/definitionlistmodel.cpp \
@@ -77,10 +79,12 @@ HEADERS += \
     $${SOURCE_DIR}/main/repository/definitionentity.h \
     $${SOURCE_DIR}/main/repository/definitionrepository.h \
     $${SOURCE_DIR}/main/repository/favoriterepository.h \
+    $${SOURCE_DIR}/main/repository/poemrepository.h \
     $${SOURCE_DIR}/main/repository/rhymeentity.h \
     $${SOURCE_DIR}/main/repository/rhymerepository.h \
     $${SOURCE_DIR}/main/repository/thesaurusentity.h \
     $${SOURCE_DIR}/main/repository/thesaurusrepository.h \
+    $${SOURCE_DIR}/main/viewmodel/composerviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/colortypeenum.h \
     $${SOURCE_DIR}/main/viewmodel/definitiondisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.h \
