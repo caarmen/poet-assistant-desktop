@@ -26,5 +26,7 @@
         <file>images/ic_definitions.svg</file>
         <file>qml/ToolBarView.qml</file>
         <file>images/delete.svg</file>
+        <file>images/ic_composer.svg</file>
+        <file>qml/ComposerTabView.qml</file>
     </qresource>
 </RCC>

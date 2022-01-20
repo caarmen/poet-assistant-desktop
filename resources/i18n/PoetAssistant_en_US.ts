@@ -20,6 +20,10 @@
         <translation>Dictionary</translation>
     </message>
     <message>
+        <source>tab_composer</source>
+        <translation>Composer</translation>
+    </message>
+    <message>
         <source>tab_favorites</source>
         <translation>Favorites</translation>
     </message>
@@ -74,6 +78,21 @@
     <message>
         <source>definitions_no_query</source>
         <translation>No definitions yet. Use the search bar to get started</translation>
+    </message>
+</context>
+<context>
+    <name>ComposerTabView</name>
+    <message>
+        <source>hint_compose</source>
+        <translation>Compose your poem text here</translation>
+    </message>
+    <message>
+        <source>state_saving</source>
+        <translation>Saving...</translation>
+    </message>
+    <message>
+        <source>state_saved</source>
+        <translation>Saved</translation>
     </message>
 </context>
 <context>

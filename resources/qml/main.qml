@@ -80,6 +80,10 @@ ApplicationWindow {
                     text: qsTr("tab_definitions")
                 }
                 TabButton {
+                    icon.source: "qrc:/images/ic_composer.svg"
+                    text: qsTr("tab_composer")
+                }
+                TabButton {
                     icon.source: "qrc:/images/star.svg"
                     text: qsTr("tab_favorites")
                 }
@@ -103,6 +107,10 @@ ApplicationWindow {
                 Item {
                     id: definitionsTab
                     DictionaryTabView {}
+                }
+                Item {
+                    id: composerTab
+                    ComposerTabView{}
                 }
                 Item {
                     id: favoritesTab
