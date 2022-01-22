@@ -72,9 +72,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("thesaurusListModel", QVariant::fromValue(&thesaurusListModel));
     engine.rootContext()->setContextProperty("composerViewModel", QVariant::fromValue(&composerViewModel));
     engine.rootContext()->setContextProperty("favoriteListModel", QVariant::fromValue(&favoriteListModel));
-    QString theme("Material");
-    engine.rootContext()->setContextProperty("theme", theme);
-    QQuickStyle::setStyle(theme);
+    QQuickStyle::setStyle("Material");
+    engine.rootContext()->setContextProperty("theme", QQuickStyle::name());
     engine.load(QUrl("qrc:/qml/main.qml"));
     return a.exec();
 }

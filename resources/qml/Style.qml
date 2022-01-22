@@ -20,11 +20,11 @@ import QtQuick 2.12
 import ColorType
 pragma Singleton
 QtObject {
-    property color accent
-    property color background
-    property color primary
-    property color primaryText
-    property color surface
+    property color accent: "#607D8B"
+    property color background: "#fff"
+    property color primary: "#607D8B"
+    property color primaryText: "#000"
+    property color surface: "#f6f7f9"
     function toColor(colorType) {
         switch (colorType) {
         case ColorType.Accent: return Style.accent
