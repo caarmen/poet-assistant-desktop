@@ -20,7 +20,6 @@ import QtQuick.Controls 2.4
 import QtQuick 2.12
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.12
-//import QtQuick.Controls.Universal 2.12
 
 ApplicationWindow {
     width: 800
@@ -28,9 +27,32 @@ ApplicationWindow {
     visible: true
     title: qsTr("app_title")
 
+    property bool useSystemMenu : Qt.platform.os === "osx"
+    MenuBarComponent {
+        id: classicMenuBar
+        onMenuItemSelected: (menuItemId) => handleMenuItemSelected(menuItemId)
+    }
+
+    LabsMenuBarComponent {
+        id: labsMenuBar
+        onMenuItemSelected: (menuItemId) => handleMenuItemSelected(menuItemId)
+    }
+
+    function handleMenuItemSelected(menuItemId) {
+        if (menuItemId === "about") {
+            dlgAbout.show()
+        }
+    }
+
     Component.onCompleted: {
         useMaterial()
         color = Style.background
+        if (useSystemMenu) {
+            classicMenuBar.destroy()
+        } else {
+            menuBar = classicMenuBar
+            labsMenuBar.destroy()
+        }
     }
     function useMaterial() {
         Material.theme = Material.System
@@ -118,5 +140,8 @@ ApplicationWindow {
                 }
             }
         }
+    }
+    AboutDialog {
+        id: dlgAbout
     }
 }

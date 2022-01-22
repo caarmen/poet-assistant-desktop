@@ -28,5 +28,11 @@
         <file>images/delete.svg</file>
         <file>images/ic_composer.svg</file>
         <file>qml/ComposerTabView.qml</file>
+        <file>qml/MenuBarComponent.qml</file>
+        <file>qml/LabsMenuBarComponent.qml</file>
+        <file>qml/AboutDialog.qml</file>
+        <file>images/ic_right.svg</file>
+        <file>images/ic_legal.svg</file>
+        <file>images/ic_code.svg</file>
     </qresource>
 </RCC>

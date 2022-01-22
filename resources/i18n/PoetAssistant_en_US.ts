@@ -136,4 +136,71 @@
         <translation>Search</translation>
     </message>
 </context>
+<context>
+    <name>AboutDialog</name>
+    <message>
+        <source>about_dialog_title</source>
+        <translation>About Poet Assistant</translation>
+    </message>
+    <message>
+        <source>about_content_title</source>
+        <translation>Poet Assistant</translation>
+    </message>
+    <message>
+        <source>about_copyright</source>
+        <translation>Copyright (c) 2022 - present, Carmen Alvarez</translation>
+    </message>
+    <message>
+        <source>about_source_label</source>
+        <translation>Source code</translation>
+    </message>
+    <message>
+        <source>about_source_link</source>
+        <translation>https://github.com/caarmen/poet-assistant-desktop</translation>
+    </message>
+    <message>
+        <source>about_legal_label</source>
+        <translation>Legal</translation>
+    </message>
+    <message>
+        <source>about_legal_app_license_label</source>
+        <translation>Poet Assistant License (GPLv3)</translation>
+    </message>
+    <message>
+        <source>about_legal_app_license_link</source>
+        <translation>https://github.com/caarmen/poet-assistant-desktop/blob/main/COPYING</translation>
+    </message>
+    <message>
+        <source>about_legal_rhymer_license_label</source>
+        <translation>CMU Rhymer License</translation>
+    </message>
+    <message>
+        <source>about_legal_rhymer_license_link</source>
+        <translation>https://github.com/caarmen/poet-assistant-desktop/blob/main/LICENSE-rhyming-dictionary.txt</translation>
+    </message>
+    <message>
+        <source>about_legal_thesaurus_license_label</source>
+        <translation>WordNet Thesaurus License</translation>
+    </message>
+    <message>
+        <source>about_legal_thesaurus_license_link</source>
+        <translation>https://github.com/caarmen/poet-assistant-desktop/blob/main/LICENSE-thesaurus-wordnet.txt</translation>
+    </message>
+    <message>
+        <source>about_legal_dictionary_license_label</source>
+        <translation>WordNet Dictionary License</translation>
+    </message>
+    <message>
+        <source>about_legal_dictionary_license_link</source>
+        <translation>https://github.com/caarmen/poet-assistant-desktop/blob/main/LICENSE-dictionary-wordnet.txt</translation>
+    </message>
+    <message>
+        <source>about_legal_material_icons_license_label</source>
+        <translation>Material Design Icons License</translation>
+    </message>
+    <message>
+        <source>about_legal_material_icons_license_link</source>
+        <translation>https://github.com/google/material-design-icons/blob/master/LICENSE</translation>
+    </message>
+</context>
 </TS>
