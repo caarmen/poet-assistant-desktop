@@ -68,9 +68,8 @@ QtObject {
         Style.surface = surfaceDay
     }
 
-    function useMaterial(material, systemTheme, lightTheme) {
-        material.theme = systemTheme
-        const isDayMode = material.theme === lightTheme
+    function useMaterial(material, lightTheme, darkTheme, isDayMode) {
+        material.theme = isDayMode? lightTheme : darkTheme
         if (isDayMode) useDayPalette()
         else useNightPalette()
         material.primary = Style.primary
@@ -78,19 +77,15 @@ QtObject {
         material.background = Style.background
         material.primaryText = Style.primaryText
     }
-    function useUniversal(universal, systemTheme, lightTheme) {
-        universal.theme = systemTheme
-        const isDayMode = universal.theme === lightTheme
+    function useUniversal(universal, lightTheme, darkTheme, isDayMode) {
+        universal.theme = isDayMode? lightTheme : darkTheme
         if (isDayMode) useDayPalette()
         else useNightPalette()
         universal.accent =  Style.accent
         universal.background = Style.background
         universal.foreground = Style.foreground
     }
-    function useFusion(appPalette) {
-        const textValue = appPalette.windowText.hsvValue
-        const windowValue = appPalette.window.hsvValue
-        const isDayMode = windowValue > textValue
+    function useFusion(appPalette, isDayMode) {
         if (isDayMode) useDayPalette()
         else useNightPalette()
         appPalette.button = Style.surface

@@ -25,6 +25,10 @@ ApplicationWindow {
     height: 600
     visible: true
     title: qsTr("app_title")
+    SystemPalette {
+        id: systemPalette
+        onPaletteChanged: applyTheme()
+    }
 
     property bool useSystemMenu : Qt.platform.os === "osx"
     MenuBarComponent {
@@ -43,16 +47,21 @@ ApplicationWindow {
         }
     }
 
-    Component.onCompleted: {
+    function applyTheme() {
+        const isDayMode = systemPalette.window.hsvValue > systemPalette.windowText.hsvValue
+        console.log("apply theme, day mode " + isDayMode)
         if (theme === "Material") {
-            Style.useMaterial(Material, Material.System, Material.Light)
+            Style.useMaterial(Material, Material.Light, Material.Dark, isDayMode)
         } else if (theme === "Universal") {
-            Style.useUniversal(Universal, Universal.System, Universal.Light)
+            Style.useUniversal(Universal, Universal.Light, Universal.Dark, isDayMode)
         } else if (theme === "Fusion") {
-            Style.useFusion(palette)
+            Style.useFusion(palette, isDayMode)
         }
-
         color = Style.background
+    }
+
+    Component.onCompleted: {
+        applyTheme()
         if (useSystemMenu) {
             classicMenuBar.destroy()
         } else {
