@@ -29,7 +29,6 @@ TabButton {
         contentItem.icon.color = checked? Style.primary : Style.primaryText
     }
 
-    background: Rectangle { color: Style.surface }
     text: qsTr(tabName)
     Component.onCompleted: {
         applyTheme()

@@ -90,7 +90,7 @@ QtObject {
         else useNightPalette()
         appPalette.button = Style.surface
         appPalette.buttonText = Style.primary
-        appPalette.dark = Style.primaryText
+        appPalette.dark = Style.surface
         appPalette.highlight = Style.accent
         appPalette.highlightedText = Style.primaryText
         appPalette.light = Style.background
