@@ -20,12 +20,25 @@ import QtQuick 2.12
 import ColorType
 pragma Singleton
 QtObject {
-    property color accent: "#607D8B"
-    property color background: "#fff"
-    property color primary: "#607D8B"
-    property color primaryText: "#000"
-    property color secondaryText: "#888"
-    property color surface: "#f6f7f9"
+    readonly property color accentDay: "#607D8B"
+    readonly property color accentNight: "#879fab"
+    readonly property color primaryDay: "#607D8B"
+    readonly property color primaryNight: "#879fab"
+    readonly property color backgroundDay: "#ffffff"
+    readonly property color backgroundNight: "#111111"
+    readonly property color primaryTextDay: "#000000"
+    readonly property color primaryTextNight: "#ffffff"
+    readonly property color secondaryTextDay: "#888888"
+    readonly property color secondaryTextNight: "#888888"
+    readonly property color surfaceDay: "#f6f7f9"
+    readonly property color surfaceNight: "#222222"
+
+    property color accent: accentDay
+    property color background: backgroundDay
+    property color primary: primaryDay
+    property color primaryText: primaryTextDay
+    property color secondaryText: secondaryTextDay
+    property color surface: surfaceDay
     function toColor(colorType) {
         switch (colorType) {
         case ColorType.Accent: return Style.accent
@@ -37,31 +50,49 @@ QtObject {
         default: return undefined
         }
     }
+    function useNightPalette() {
+        Style.accent = accentNight
+        Style.background = backgroundNight
+        Style.primary = primaryNight
+        Style.primaryText = primaryTextNight
+        Style.secondaryText = secondaryTextNight
+        Style.surface = surfaceNight
+    }
+
+    function useDayPalette() {
+        Style.accent = accentDay
+        Style.background = backgroundDay
+        Style.primary = primaryDay
+        Style.primaryText = primaryTextDay
+        Style.secondaryText = secondaryTextDay
+        Style.surface = surfaceDay
+    }
+
     function useMaterial(material, systemTheme, lightTheme) {
         material.theme = systemTheme
-        material.primary = material.theme === lightTheme? "#607D8B" : "#879fab"
-        material.accent =  material.theme === lightTheme? "#607D8B" : "#879fab"
-        material.background = material.theme === lightTheme? "#fff" : "#111"
-        Style.accent = material.accent
-        Style.background = material.background
-        Style.primary= material.primary
-        Style.primaryText = material.primaryTextColor
-        Style.secondaryText = material.theme === lightTheme? "#888" : "#888"
-        Style.surface = material.theme === lightTheme? "#f6f7f9" : "#222"
+        const isDayMode = material.theme === lightTheme
+        if (isDayMode) useDayPalette()
+        else useNightPalette()
+        material.primary = Style.primary
+        material.accent = Style.accent
+        material.background = Style.background
+        material.primaryText = Style.primaryText
     }
     function useUniversal(universal, systemTheme, lightTheme) {
         universal.theme = systemTheme
-        universal.accent =  universal.theme === lightTheme? "#607D8B" : "#879fab"
-        universal.background = universal.theme === lightTheme? "#fff" : "#000"
-        universal.foreground = universal.theme === lightTheme? "#000" : "#fff"
-        Style.accent = universal.accent
-        Style.background = universal.background
-        Style.primary= universal.accent
-        Style.primaryText = universal.foreground
-        Style.secondaryText = universal.theme === lightTheme? "#888" : "#888"
-        Style.surface = universal.theme === lightTheme? "#f6f7f9" : "#181818"
+        const isDayMode = universal.theme === lightTheme
+        if (isDayMode) useDayPalette()
+        else useNightPalette()
+        universal.accent =  Style.accent
+        universal.background = Style.background
+        universal.foreground = Style.foreground
     }
     function useFusion(appPalette) {
+        const textValue = appPalette.windowText.hsvValue
+        const windowValue = appPalette.window.hsvValue
+        const isDayMode = windowValue > textValue
+        if (isDayMode) useDayPalette()
+        else useNightPalette()
         appPalette.button = Style.surface
         appPalette.buttonText = Style.primary
         appPalette.dark = Style.primaryText

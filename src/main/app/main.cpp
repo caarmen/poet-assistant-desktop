@@ -23,13 +23,10 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "colortypeenum.h"
 
 #include <QGuiApplication>
-#include <QLocale>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QQuickStyle>
 #include <QTranslator>
-#include <QtSql>
-
 
 int main(int argc, char *argv[])
 {
