@@ -24,6 +24,7 @@ QtObject {
     property color background: "#fff"
     property color primary: "#607D8B"
     property color primaryText: "#000"
+    property color secondaryText: "#888"
     property color surface: "#f6f7f9"
     function toColor(colorType) {
         switch (colorType) {
@@ -31,6 +32,7 @@ QtObject {
         case ColorType.Background: return Style.background
         case ColorType.Primary: return Style.primary
         case ColorType.PrimaryText: return Style.primaryText
+        case ColorType.SecondaryText: return Style.secondaryText
         case ColorType.Surface: return Style.surface
         default: return undefined
         }
@@ -44,6 +46,7 @@ QtObject {
         Style.background = material.background
         Style.primary= material.primary
         Style.primaryText = material.primaryTextColor
+        Style.secondaryText = material.theme === lightTheme? "#888" : "#888"
         Style.surface = material.theme === lightTheme? "#f6f7f9" : "#222"
     }
     function useUniversal(universal, systemTheme, lightTheme) {
@@ -55,7 +58,22 @@ QtObject {
         Style.background = universal.background
         Style.primary= universal.accent
         Style.primaryText = universal.foreground
+        Style.secondaryText = universal.theme === lightTheme? "#888" : "#888"
         Style.surface = universal.theme === lightTheme? "#f6f7f9" : "#181818"
+    }
+    function useFusion(appPalette) {
+        appPalette.button = Style.surface
+        appPalette.buttonText = Style.primary
+        appPalette.dark = Style.primaryText
+        appPalette.highlight = Style.accent
+        appPalette.light = Style.background
+        appPalette.mid = Style.surface
+        appPalette.midlight = Style.surface
+        appPalette.placeholderText = Style.secondaryText
+        appPalette.shadow = Style.surface
+        appPalette.text = Style.primaryText
+        appPalette.window = Style.background
+        appPalette.windowText = Style.primaryText
     }
 
 }

@@ -31,6 +31,7 @@ public:
         Background,
         Primary,
         PrimaryText,
+        SecondaryText,
         Surface
     };
     Q_ENUM(Value)

@@ -48,7 +48,10 @@ ApplicationWindow {
             Style.useMaterial(Material, Material.System, Material.Light)
         } else if (theme === "Universal") {
             Style.useUniversal(Universal, Universal.System, Universal.Light)
+        } else if (theme === "Fusion") {
+            Style.useFusion(palette)
         }
+
         color = Style.background
         if (useSystemMenu) {
             classicMenuBar.destroy()

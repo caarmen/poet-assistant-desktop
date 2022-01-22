@@ -48,6 +48,7 @@ ToolBar {
                     Layout.fillWidth: true
                 }
                 placeholderText: qsTr("hint_search")
+                placeholderTextColor: Style.secondaryText
                 Keys.onReleased: event => {
                                      if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                                          onSearch()
