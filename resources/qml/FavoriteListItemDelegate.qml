@@ -23,6 +23,7 @@ import QtQuick.Layouts 1.15
 ItemDelegate {
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right : undefined
+    height: 48
     onClicked: {
         contextMenu.popup()
     }

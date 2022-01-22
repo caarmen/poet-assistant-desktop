@@ -92,6 +92,7 @@ QtObject {
         appPalette.buttonText = Style.primary
         appPalette.dark = Style.primaryText
         appPalette.highlight = Style.accent
+        appPalette.highlightedText = Style.primaryText
         appPalette.light = Style.background
         appPalette.mid = Style.surface
         appPalette.midlight = Style.surface
