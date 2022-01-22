@@ -19,7 +19,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 import QtQuick.Controls 2.4
 import QtQuick 2.12
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
+import QtQuick.Controls.Material 2.15
 
 ApplicationWindow {
     width: 800
@@ -45,7 +45,11 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        useMaterial()
+        if (theme === "Material") {
+            Style.useMaterial(Material, Material.System, Material.Light)
+        } else if (theme === "Universal") {
+            Style.useUniversal(Universal, Universal.System, Universal.Light)
+        }
         color = Style.background
         if (useSystemMenu) {
             classicMenuBar.destroy()
@@ -54,33 +58,10 @@ ApplicationWindow {
             labsMenuBar.destroy()
         }
     }
-    function useMaterial() {
-        Material.theme = Material.System
-        Material.primary = Material.theme === Material.Light? "#607D8B" : "#879fab"
-        Material.accent =  Material.theme === Material.Light? "#607D8B" : "#879fab"
-        Material.background = Material.theme === Material.Light? "#fff" : "#111"
-        Style.accent = Material.accent
-        Style.background = Material.background
-        Style.primary= Material.primary
-        Style.primaryText = Material.primaryTextColor
-        Style.surface = Material.theme === Material.Light? "#f6f7f9" : "#222"
-    }
-
-    function useUniversal() {
-        Universal.theme = Universal.System
-        Universal.accent =  Universal.theme === Universal.Light? "#607D8B" : "#879fab"
-        Universal.background = Universal.theme === Universal.Light? "#fff" : "#000"
-        Universal.foreground = Universal.theme === Universal.Light? "#000" : "#fff"
-        Style.accent = Universal.accent
-        Style.background = Universal.background
-        Style.primary= Universal.accent
-        Style.primaryText = Universal.foreground
-        Style.surface = Universal.theme === Universal.Light? "#f6f7f9" : "#181818"
-    }
 
     header: ToolBarView { }
 
-    MainTabsView {}
+    MainTabsView { }
 
     AboutDialog {
         id: dlgAbout

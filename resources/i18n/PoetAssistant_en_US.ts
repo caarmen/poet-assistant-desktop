@@ -61,7 +61,7 @@
     </message>
 </context>
 <context>
-    <name>MainTabsView</name>
+    <name>TabButtonView</name>
     <message>
         <source>tab_rhymes</source>
         <translation>Rhymes</translation>

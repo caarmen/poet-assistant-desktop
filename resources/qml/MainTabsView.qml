@@ -19,7 +19,6 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 import QtQuick.Controls 2.4
 import QtQuick 2.12
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
 
 ColumnLayout {
     anchors.fill: parent
@@ -27,28 +26,28 @@ ColumnLayout {
         Layout.preferredHeight: childrenRect.height
         Layout.fillWidth: true
         TabBar {
-            Material.background: Style.surface
+            background: Rectangle { color: Style.surface }
             id: bar
             width: parent.width
-            TabButton {
-                icon.source: "qrc:/images/ic_rhymer.svg"
-                text: qsTr("tab_rhymes")
+            TabButtonView {
+                iconSource: "ic_rhymer"
+                tabName: "tab_rhymes"
             }
-            TabButton {
-                icon.source: "qrc:/images/ic_thesaurus.svg"
-                text: qsTr("tab_thesaurus")
+            TabButtonView {
+                iconSource: "ic_thesaurus"
+                tabName: "tab_thesaurus"
             }
-            TabButton {
-                icon.source: "qrc:/images/ic_definitions.svg"
-                text: qsTr("tab_definitions")
+            TabButtonView {
+                iconSource: "ic_definitions"
+                tabName: "tab_definitions"
             }
-            TabButton {
-                icon.source: "qrc:/images/ic_composer.svg"
-                text: qsTr("tab_composer")
+            TabButtonView {
+                iconSource: "ic_composer"
+                tabName: "tab_composer"
             }
-            TabButton {
-                icon.source: "qrc:/images/star.svg"
-                text: qsTr("tab_favorites")
+            TabButtonView {
+                iconSource: "star"
+                tabName: "tab_favorites"
             }
         }
     }
