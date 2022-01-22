@@ -22,6 +22,10 @@ import QtQuick.Layouts 1.15
 
 ColumnLayout {
     anchors.fill: parent
+    function onSearched() {
+        if (bar.currentIndex > 2) bar.currentIndex = 2
+    }
+
     Rectangle {
         Layout.preferredHeight: childrenRect.height
         Layout.fillWidth: true

@@ -21,6 +21,7 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.15
 
 ToolBar {
+    signal searched
     background: Rectangle { color: Style.primary }
     RowLayout {
         anchors.fill: parent
@@ -86,6 +87,6 @@ ToolBar {
 
     function onSearch() {
         mainViewModel.search(tfSearch.text)
-        if (bar.currentIndex > 2) bar.currentIndex = 2
+        searched()
     }
 }

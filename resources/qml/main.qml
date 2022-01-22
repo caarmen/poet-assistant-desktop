@@ -70,9 +70,13 @@ ApplicationWindow {
         }
     }
 
-    header: ToolBarView { }
+    header: ToolBarView {
+        onSearched: tabs.onSearched()
+    }
 
-    MainTabsView { }
+    MainTabsView {
+        id: tabs
+    }
 
     AboutDialog {
         id: dlgAbout
