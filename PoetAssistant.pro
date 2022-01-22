@@ -17,7 +17,7 @@
 
 QT       += core gui quick quickcontrols2
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets sql concurrent core
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets sql concurrent core svg xml
 
 CONFIG += c++11 app_bundle
 

@@ -27,6 +27,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include <QQmlContext>
 #include <QQuickStyle>
 #include <QTranslator>
+#include <QtSvg>
 
 int main(int argc, char *argv[])
 {
