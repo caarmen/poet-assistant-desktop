@@ -21,6 +21,7 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.15
 
 ToolBar {
+    background: Rectangle { color: Style.primary }
     RowLayout {
         anchors.fill: parent
         Rectangle {
@@ -40,6 +41,7 @@ ToolBar {
                 topPadding: 12
                 bottomPadding: 12
                 color: Style.primaryText
+                selectionColor: Style.primary
                 anchors.verticalCenter: parent.verticalCenter
                 background: Rectangle {
                     color: Style.surface

@@ -32,6 +32,7 @@ ColumnLayout {
             background: Rectangle {
                 color: Style.surface
             }
+            color: Style.primaryText
             selectByMouse: true
             padding: 16
             placeholderText: qsTr("hint_compose")

@@ -8,26 +8,6 @@
         <translation>Poet Assistant</translation>
     </message>
     <message>
-        <source>tab_rhymes</source>
-        <translation>Rhymes</translation>
-    </message>
-    <message>
-        <source>tab_thesaurus</source>
-        <translation>Thesaurus</translation>
-    </message>
-    <message>
-        <source>tab_definitions</source>
-        <translation>Dictionary</translation>
-    </message>
-    <message>
-        <source>tab_composer</source>
-        <translation>Composer</translation>
-    </message>
-    <message>
-        <source>tab_favorites</source>
-        <translation>Favorites</translation>
-    </message>
-    <message>
         <source>noun</source>
         <translation>Noun</translation>
     </message>
@@ -78,6 +58,29 @@
     <message>
         <source>definitions_no_query</source>
         <translation>No definitions yet. Use the search bar to get started</translation>
+    </message>
+</context>
+<context>
+    <name>TabButtonView</name>
+    <message>
+        <source>tab_rhymes</source>
+        <translation>Rhymes</translation>
+    </message>
+    <message>
+        <source>tab_thesaurus</source>
+        <translation>Thesaurus</translation>
+    </message>
+    <message>
+        <source>tab_definitions</source>
+        <translation>Dictionary</translation>
+    </message>
+    <message>
+        <source>tab_composer</source>
+        <translation>Composer</translation>
+    </message>
+    <message>
+        <source>tab_favorites</source>
+        <translation>Favorites</translation>
     </message>
 </context>
 <context>

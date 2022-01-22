@@ -61,6 +61,7 @@ Rectangle {
     Dialog {
         id: dlgDeleteConfirm
         width: 320
+        modal: true
         title: qsTr("delete_confirm_title")
         anchors.centerIn: parent
         contentItem: Text{

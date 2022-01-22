@@ -35,4 +35,27 @@ QtObject {
         default: return undefined
         }
     }
+    function useMaterial(material, systemTheme, lightTheme) {
+        material.theme = systemTheme
+        material.primary = material.theme === lightTheme? "#607D8B" : "#879fab"
+        material.accent =  material.theme === lightTheme? "#607D8B" : "#879fab"
+        material.background = material.theme === lightTheme? "#fff" : "#111"
+        Style.accent = material.accent
+        Style.background = material.background
+        Style.primary= material.primary
+        Style.primaryText = material.primaryTextColor
+        Style.surface = material.theme === lightTheme? "#f6f7f9" : "#222"
+    }
+    function useUniversal(universal, systemTheme, lightTheme) {
+        universal.theme = systemTheme
+        universal.accent =  universal.theme === lightTheme? "#607D8B" : "#879fab"
+        universal.background = universal.theme === lightTheme? "#fff" : "#000"
+        universal.foreground = universal.theme === lightTheme? "#000" : "#fff"
+        Style.accent = universal.accent
+        Style.background = universal.background
+        Style.primary= universal.accent
+        Style.primaryText = universal.foreground
+        Style.surface = universal.theme === lightTheme? "#f6f7f9" : "#181818"
+    }
+
 }

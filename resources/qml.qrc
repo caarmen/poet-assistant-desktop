@@ -34,5 +34,7 @@
         <file>images/ic_right.svg</file>
         <file>images/ic_legal.svg</file>
         <file>images/ic_code.svg</file>
+        <file>qml/MainTabsView.qml</file>
+        <file>qml/TabButtonView.qml</file>
     </qresource>
 </RCC>

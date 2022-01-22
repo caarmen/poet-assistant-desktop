@@ -19,7 +19,6 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 import QtQuick.Controls 2.4
 import QtQuick 2.12
 import QtQuick.Layouts 1.15
-import QtQuick.Controls.Material 2.12
 
 Window {
     visible: false
