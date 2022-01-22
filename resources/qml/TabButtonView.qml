@@ -23,15 +23,18 @@ TabButton {
     property string iconSource
     property string tabName
 
-    background: Rectangle { color: Style.surface }
-    text: qsTr(tabName)
-    Component.onCompleted: {
+    function applyTheme() {
         contentItem.icon.source  =  `qrc:/images/${iconSource}.svg`
         contentItem.color = checked? Style.primary : Style.primaryText
         contentItem.icon.color = checked? Style.primary : Style.primaryText
     }
+
+    background: Rectangle { color: Style.surface }
+    text: qsTr(tabName)
+    Component.onCompleted: {
+        applyTheme()
+    }
     onCheckedChanged: {
-        contentItem.color = checked? Style.primary : Style.primaryText
-        contentItem.icon.color = checked? Style.primary : Style.primaryText
+        applyTheme()
     }
 }

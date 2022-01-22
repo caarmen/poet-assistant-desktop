@@ -26,6 +26,12 @@ ColumnLayout {
         if (bar.currentIndex > 2) bar.currentIndex = 2
     }
 
+    function applyTheme() {
+        for (var i = 0; i < bar.count; i++) {
+            bar.itemAt(i).applyTheme()
+        }
+    }
+
     Rectangle {
         Layout.preferredHeight: childrenRect.height
         Layout.fillWidth: true

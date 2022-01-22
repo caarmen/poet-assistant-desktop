@@ -49,7 +49,6 @@ ApplicationWindow {
 
     function applyTheme() {
         const isDayMode = systemPalette.window.hsvValue > systemPalette.windowText.hsvValue
-        console.log("apply theme, day mode " + isDayMode)
         if (theme === "Material") {
             Style.useMaterial(Material, Material.Light, Material.Dark, isDayMode)
         } else if (theme === "Universal") {
@@ -58,6 +57,7 @@ ApplicationWindow {
             Style.useFusion(palette, isDayMode)
         }
         color = Style.background
+        tabs.applyTheme()
     }
 
     Component.onCompleted: {
