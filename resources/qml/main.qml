@@ -53,7 +53,7 @@ ApplicationWindow {
             Style.useMaterial(Material, Material.Light, Material.Dark, isDayMode)
         } else if (theme === "Universal") {
             Style.useUniversal(Universal, Universal.Light, Universal.Dark, isDayMode)
-        } else if (theme === "Fusion" || theme == "Basic") {
+        } else {
             Style.useFusion(palette, isDayMode)
         }
         color = Style.background
