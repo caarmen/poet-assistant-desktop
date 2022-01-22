@@ -80,67 +80,8 @@ ApplicationWindow {
 
     header: ToolBarView { }
 
-    ColumnLayout {
-        anchors.fill: parent
-        Rectangle {
-            Layout.preferredHeight: childrenRect.height
-            Layout.fillWidth: true
-            TabBar {
-                Material.background: Style.surface
-                id: bar
-                width: parent.width
-                TabButton {
-                    icon.source: "qrc:/images/ic_rhymer.svg"
-                    text: qsTr("tab_rhymes")
-                }
-                TabButton {
-                    icon.source: "qrc:/images/ic_thesaurus.svg"
-                    text: qsTr("tab_thesaurus")
-                }
-                TabButton {
-                    icon.source: "qrc:/images/ic_definitions.svg"
-                    text: qsTr("tab_definitions")
-                }
-                TabButton {
-                    icon.source: "qrc:/images/ic_composer.svg"
-                    text: qsTr("tab_composer")
-                }
-                TabButton {
-                    icon.source: "qrc:/images/star.svg"
-                    text: qsTr("tab_favorites")
-                }
-            }
-        }
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            color: Style.background
-            StackLayout {
-                anchors.fill: parent
-                currentIndex: bar.currentIndex
-                Item {
-                    id: rhymesTab
-                    RhymeTabView {}
-                }
-                Item {
-                    id: thesaurusTab
-                    ThesaurusTabView {}
-                }
-                Item {
-                    id: definitionsTab
-                    DictionaryTabView {}
-                }
-                Item {
-                    id: composerTab
-                    ComposerTabView{}
-                }
-                Item {
-                    id: favoritesTab
-                    FavoriteTabView{}
-                }
-            }
-        }
-    }
+    MainTabsView {}
+
     AboutDialog {
         id: dlgAbout
     }
