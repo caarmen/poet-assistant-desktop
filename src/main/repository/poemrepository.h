@@ -22,6 +22,7 @@ public:
     PoemSavedState state;
 
 signals:
+    void poemChanged();
     void stateChanged();
 private:
     const static inline QString poemFilePathSetting = "poemFilePath";

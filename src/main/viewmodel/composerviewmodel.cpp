@@ -10,6 +10,9 @@ ComposerViewModel::ComposerViewModel(PoemRepository *repository, QObject *parent
     QObject::connect(repository, &PoemRepository::stateChanged, this, [=] {
         onSavedStateChanged(repository->state);
     });
+    QObject::connect(repository, &PoemRepository::poemChanged, this, [=] {
+        emit poemChanged();
+    });
 }
 
 const QString ComposerViewModel::getSavedState() const {

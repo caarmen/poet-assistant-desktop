@@ -37,9 +37,8 @@ ColumnLayout {
             selectByMouse: true
             padding: 16
             placeholderText: qsTr("hint_compose")
-            onTextChanged: {
-                composerViewModel.writePoem(text)
-            }
+            text: composerViewModel.poem
+            onTextChanged: composerViewModel.poem = text
         }
     }
     Rectangle {
@@ -63,9 +62,6 @@ ColumnLayout {
             color: Style.primaryText
         }
     }
-    Component.onCompleted: {
-        taPoem.text = composerViewModel.getPoem()
-    }
 
     function handleMenuItemSelected(menuItemId)  {
         if (menuItemId === "new") {
@@ -80,12 +76,10 @@ ColumnLayout {
 
     function onNewFile() {
         composerViewModel.newFile()
-        taPoem.text = composerViewModel.getPoem()
     }
 
     function onOpen(selectedFile) {
         composerViewModel.open(selectedFile)
-        taPoem.text = composerViewModel.getPoem()
     }
 
     function onSaveAs(selectedFile) {

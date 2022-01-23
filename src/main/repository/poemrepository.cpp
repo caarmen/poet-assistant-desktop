@@ -52,6 +52,7 @@ void PoemRepository::newFile() {
     this->poemFilePath = defaultPoemFilePath;
     settings.setValue(poemFilePathSetting, poemFilePath);
     poem = "";
+    emit poemChanged();
     writePoemImpl();
 }
 
@@ -70,6 +71,7 @@ void PoemRepository::saveAs(QString poemFilePath) {
 
 void PoemRepository::writePoem(QString poem) {
     this->poem = poem;
+    emit poemChanged();
     state = UNSAVED;
     emit stateChanged();
     timer.start(saveDelayMs);
@@ -80,6 +82,7 @@ void PoemRepository::readPoemImpl() {
     QFile poemFile(poemFilePath);
     if (poemFile.open(QIODevice::ReadOnly)) {
         poem = poemFile.readAll();
+        emit poemChanged();
         poemFile.close();
     }
 }
