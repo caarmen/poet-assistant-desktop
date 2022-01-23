@@ -1,4 +1,7 @@
 #include "composerviewmodel.h"
+#include <QFileInfo>
+#include <QDir>
+#include <QStandardPaths>
 
 ComposerViewModel::ComposerViewModel(PoemRepository *repository, QObject *parent)
     : QObject{parent},
@@ -13,12 +16,46 @@ const QString ComposerViewModel::getSavedState() const {
     return savedState;
 }
 
-const QString ComposerViewModel::readPoem() const {
-    return repository->readPoem();
+const QString ComposerViewModel::getPoem() const {
+    return repository->getPoem();
+}
+
+const QString ComposerViewModel::getFileDialogFile() const {
+    QFileInfo poemFileInfo(repository->getPoemFilePath());
+    QString poemFileFolder = poemFileInfo.absoluteFilePath() == repository->getDefaultPoemFilePath() ?
+                QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) :
+                poemFileInfo.absolutePath();
+    return QUrl::fromLocalFile(QFileInfo(poemFileFolder, poemFileInfo.fileName()).absoluteFilePath()).toString();
+}
+
+const QString ComposerViewModel::getFileDialogFolder() const {
+    QFileInfo poemFileInfo(repository->getPoemFilePath());
+    QString poemFileFolder = poemFileInfo.absoluteFilePath() == repository->getDefaultPoemFilePath() ?
+                QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) :
+                poemFileInfo.absolutePath();
+    return QUrl::fromLocalFile(poemFileFolder).toString();
+}
+const QString ComposerViewModel::getPoemFileName() const {
+    QString poemFilePath = repository->getPoemFilePath();
+    return poemFilePath == repository->getDefaultPoemFilePath()? "" : QFileInfo(poemFilePath).fileName();
 }
 
 void ComposerViewModel::writePoem(QString poem) {
     repository->writePoem(poem);
+}
+
+void ComposerViewModel::newFile() {
+    repository->newFile();
+    emit poemFileNameChanged();
+}
+
+void ComposerViewModel::open(QUrl poemFilePath) {
+    repository->open(poemFilePath.toLocalFile());
+    emit poemFileNameChanged();
+}
+void ComposerViewModel::saveAs(QUrl poemFilePath) {
+    repository->saveAs(poemFilePath.toLocalFile());
+    emit poemFileNameChanged();
 }
 
 void ComposerViewModel::onSavedStateChanged(PoemRepository::PoemSavedState savedState) {

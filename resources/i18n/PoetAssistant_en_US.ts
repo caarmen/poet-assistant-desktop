@@ -97,6 +97,18 @@
         <source>state_saved</source>
         <translation>Saved</translation>
     </message>
+    <message>
+        <source>file_filter_text</source>
+        <translation>Text files (*.txt)</translation>
+    </message>
+    <message>
+        <source>new_confirm_title</source>
+        <translation>Clear current poem?</translation>
+    </message>
+    <message>
+        <source>new_confirm_message</source>
+        <translation>Close the current poem to start a new one?</translation>
+    </message>
 </context>
 <context>
     <name>FavoriteTabView</name>

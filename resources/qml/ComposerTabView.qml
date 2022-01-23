@@ -19,6 +19,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 import QtQuick.Controls 2.12
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
+import QtQuick.Dialogs
 
 ColumnLayout {
     height: parent.height
@@ -46,6 +47,14 @@ ColumnLayout {
         Layout.fillWidth: true
         color: Style.background
         Text {
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.leftMargin: 16
+            text: qsTr(composerViewModel.poemFileName)
+            color: Style.primaryText
+        }
+        Text {
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
@@ -55,6 +64,62 @@ ColumnLayout {
         }
     }
     Component.onCompleted: {
-        taPoem.text = composerViewModel.readPoem()
+        taPoem.text = composerViewModel.getPoem()
+    }
+
+    function handleMenuItemSelected(menuItemId)  {
+        if (menuItemId === "new") {
+            dlgNewConfirm.open()
+        } else if (menuItemId === "open") {
+            showFileDialog(dlgFileOpen)
+        } else if (menuItemId === "saveas") {
+            showFileDialog(dlgFileSaveAs)
+        }
+    }
+
+    function onNewFile() {
+        composerViewModel.newFile()
+        taPoem.text = composerViewModel.getPoem()
+    }
+
+    function onOpen(selectedFile) {
+        composerViewModel.open(selectedFile)
+        taPoem.text = composerViewModel.getPoem()
+    }
+
+    function onSaveAs(selectedFile) {
+        composerViewModel.saveAs(selectedFile)
+    }
+
+    function showFileDialog(dialog) {
+        dialog.currentFile = new URL(composerViewModel.getFileDialogFile())
+        dialog.currentFolder = new URL(composerViewModel.getFileDialogFolder())
+        dialog.open()
+    }
+
+    FileDialog {
+        id: dlgFileOpen
+        fileMode: FileDialog.OpenFile
+        nameFilters: [qsTr("file_filter_text")]
+        onAccepted: onOpen(selectedFile)
+    }
+    FileDialog {
+        id: dlgFileSaveAs
+        fileMode: FileDialog.SaveFile
+        nameFilters: [qsTr("file_filter_text")]
+        onAccepted: onSaveAs(selectedFile)
+    }
+    Dialog {
+        id: dlgNewConfirm
+        width: 320
+        modal: true
+        title: qsTr("new_confirm_title")
+        anchors.centerIn: parent
+        contentItem: Text{
+            text: qsTr("new_confirm_message")
+            color: Style.primaryText
+        }
+        standardButtons: Dialog.Ok | Dialog.Cancel
+        onAccepted: onNewFile()
     }
 }

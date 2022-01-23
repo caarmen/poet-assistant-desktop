@@ -11,19 +11,27 @@ class PoemRepository : public QObject
 public:
     enum PoemSavedState { UNSAVED, SAVING, SAVED };
     explicit PoemRepository(QObject *parent = nullptr);
-    const QString readPoem() const;
+    const QString getPoem() const;
+    const QString getPoemFilePath() const;
+    const QString getDefaultPoemFilePath() const;
+    void newFile();
+    void open(QString poemFilePath);
+    void saveAs(QString poemFilePath);
     void writePoem(QString poem);
     PoemSavedState state;
 
 signals:
     void stateChanged();
 private:
-    const static inline QString poemSetting = "poem";
+    const static inline QString poemFilePathSetting = "poemFilePath";
     const static inline int saveDelayMs = 2000;
+    void readPoemImpl();
     void writePoemImpl();
     QString poem;
+    QString poemFilePath;
     QSettings settings;
     QTimer timer;
+    QString defaultPoemFilePath;
 };
 
 #endif // POEMREPOSITORY_H

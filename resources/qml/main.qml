@@ -45,6 +45,7 @@ ApplicationWindow {
         if (menuItemId === "about") {
             dlgAbout.show()
         }
+        tabs.handleMenuItemSelected(menuItemId)
     }
 
     function applyTheme() {

@@ -1,15 +1,55 @@
 #include "poemrepository.h"
 
+#include <QStandardPaths>
+#include <QDir>
+
 PoemRepository::PoemRepository(QObject *parent)
     : QObject{parent}, state(SAVED)
 {
-    poem = settings.value(poemSetting).value<QString>();
+    QString appDataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir().mkdir(appDataDir);
+    defaultPoemFilePath = QFileInfo(appDataDir, "poem.txt").absoluteFilePath();
+    poemFilePath = settings.value(poemFilePathSetting).value<QString>();
+    if (poemFilePath.isEmpty()) {
+        poemFilePath = defaultPoemFilePath;
+    }
+    readPoemImpl();
+
     timer.setSingleShot(true);
     QObject::connect(&timer, &QTimer::timeout, this, QOverload<>::of(&PoemRepository::writePoemImpl));
 }
 
-const QString PoemRepository::readPoem() const {
+const QString PoemRepository::getPoem() const {
     return poem;
+}
+
+const QString PoemRepository::getPoemFilePath() const {
+    return poemFilePath;
+}
+
+const QString PoemRepository::getDefaultPoemFilePath() const {
+    return defaultPoemFilePath;
+}
+
+void PoemRepository::newFile() {
+    writePoemImpl();
+    this->poemFilePath = defaultPoemFilePath;
+    settings.setValue(poemFilePathSetting, poemFilePath);
+    poem = "";
+    writePoemImpl();
+}
+
+void PoemRepository::open(QString poemFilePath) {
+    writePoemImpl();
+    this->poemFilePath = poemFilePath;
+    settings.setValue(poemFilePathSetting, poemFilePath);
+    readPoemImpl();
+}
+
+void PoemRepository::saveAs(QString poemFilePath) {
+    this->poemFilePath = poemFilePath;
+    settings.setValue(poemFilePathSetting, poemFilePath);
+    writePoemImpl();
 }
 
 void PoemRepository::writePoem(QString poem) {
@@ -19,10 +59,24 @@ void PoemRepository::writePoem(QString poem) {
     timer.start(saveDelayMs);
 }
 
+void PoemRepository::readPoemImpl() {
+    // TODO read from disk in a background thread?
+    QFile poemFile(poemFilePath);
+    if (poemFile.open(QIODevice::ReadOnly)) {
+        poem = poemFile.readAll();
+        poemFile.close();
+    }
+}
+
 void PoemRepository::writePoemImpl() {
     state = SAVING;
     emit stateChanged();
-    settings.setValue(poemSetting, poem);
+    // TODO write to disk in a background thread?
+    QFile poemFile(poemFilePath);
+    if (poemFile.open(QIODevice::WriteOnly)) {
+        poemFile.write(poem.toUtf8());
+        poemFile.close();
+    }
     state = SAVED;
     emit stateChanged();
 }
