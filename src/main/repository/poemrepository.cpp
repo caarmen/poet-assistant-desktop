@@ -2,6 +2,7 @@
 
 #include <QStandardPaths>
 #include <QDir>
+#include <QRegularExpression>
 
 PoemRepository::PoemRepository(QObject *parent)
     : QObject{parent}, state(SAVED)
@@ -29,6 +30,21 @@ const QString PoemRepository::getPoemFilePath() const {
 
 const QString PoemRepository::getDefaultPoemFilePath() const {
     return defaultPoemFilePath;
+}
+
+const QString PoemRepository::generateFilenameFromPoemText() const {
+    int minLength = 8;
+    int maxLength = 16;
+    QString suggestion = poem;
+    return suggestion
+            // replace all non-letters by hyphens
+            .replace(QRegularExpression("[^\\p{L}]+"), "-")
+            // remove a leading hyphen
+            .replace(QRegularExpression("^-"), "")
+            // get a substring of maxLength
+            .left(maxLength)
+            // remove the last partial word
+            .replace(QRegularExpression(QString("(.{%1}[^-]*)-[^-]*$").arg(minLength)), "\\1");
 }
 
 void PoemRepository::newFile() {

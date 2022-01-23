@@ -14,6 +14,7 @@ public:
     const QString getPoem() const;
     const QString getPoemFilePath() const;
     const QString getDefaultPoemFilePath() const;
+    const QString generateFilenameFromPoemText() const;
     void newFile();
     void open(QString poemFilePath);
     void saveAs(QString poemFilePath);

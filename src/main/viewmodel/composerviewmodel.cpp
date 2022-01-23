@@ -25,7 +25,10 @@ const QString ComposerViewModel::getFileDialogFile() const {
     QString poemFileFolder = poemFileInfo.absoluteFilePath() == repository->getDefaultPoemFilePath() ?
                 QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) :
                 poemFileInfo.absolutePath();
-    return QUrl::fromLocalFile(QFileInfo(poemFileFolder, poemFileInfo.fileName()).absoluteFilePath()).toString();
+    QString poemFileName = poemFileInfo.absoluteFilePath() == repository->getDefaultPoemFilePath() ?
+                repository->generateFilenameFromPoemText() :
+                poemFileInfo.fileName();
+    return QUrl::fromLocalFile(QFileInfo(poemFileFolder, poemFileName).absoluteFilePath()).toString();
 }
 
 const QString ComposerViewModel::getFileDialogFolder() const {

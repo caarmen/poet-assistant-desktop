@@ -73,6 +73,7 @@ ColumnLayout {
         } else if (menuItemId === "open") {
             showFileDialog(dlgFileOpen)
         } else if (menuItemId === "saveas") {
+            dlgFileSaveAs.currentFile = new URL(composerViewModel.getFileDialogFile())
             showFileDialog(dlgFileSaveAs)
         }
     }
@@ -92,7 +93,6 @@ ColumnLayout {
     }
 
     function showFileDialog(dialog) {
-        dialog.currentFile = new URL(composerViewModel.getFileDialogFile())
         dialog.currentFolder = new URL(composerViewModel.getFileDialogFolder())
         dialog.open()
     }
