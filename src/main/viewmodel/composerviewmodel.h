@@ -16,11 +16,9 @@ public:
     explicit ComposerViewModel(PoemRepository *repository, QObject *parent = nullptr);
     Q_INVOKABLE const QString getFileDialogFile() const ;
     Q_INVOKABLE const QString getFileDialogFolder() const ;
-    Q_INVOKABLE const QString getPoemFileName() const ;
     Q_INVOKABLE void newFile();
     Q_INVOKABLE void open(QUrl poemFilePath);
     Q_INVOKABLE void saveAs(QUrl poemFilePath);
-    const QString getSavedState() const;
 
 signals:
     void savedStateChanged();
@@ -28,6 +26,8 @@ signals:
     void poemChanged();
 private:
     QString savedState;
+    const QString getSavedState() const;
+    const QString getPoemFileName() const ;
     const QString getPoem() const ;
     void writePoem(QString poem);
     void onSavedStateChanged(PoemRepository::PoemSavedState savedState);

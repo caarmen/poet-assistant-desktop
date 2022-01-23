@@ -74,18 +74,6 @@ ColumnLayout {
         }
     }
 
-    function onNewFile() {
-        composerViewModel.newFile()
-    }
-
-    function onOpen(selectedFile) {
-        composerViewModel.open(selectedFile)
-    }
-
-    function onSaveAs(selectedFile) {
-        composerViewModel.saveAs(selectedFile)
-    }
-
     function showFileDialog(dialog) {
         dialog.currentFolder = new URL(composerViewModel.getFileDialogFolder())
         dialog.open()
@@ -95,13 +83,13 @@ ColumnLayout {
         id: dlgFileOpen
         fileMode: FileDialog.OpenFile
         nameFilters: [qsTr("file_filter_text")]
-        onAccepted: onOpen(selectedFile)
+        onAccepted: composerViewModel.open(selectedFile)
     }
     FileDialog {
         id: dlgFileSaveAs
         fileMode: FileDialog.SaveFile
         nameFilters: [qsTr("file_filter_text")]
-        onAccepted: onSaveAs(selectedFile)
+        onAccepted: composerViewModel.saveAs(selectedFile)
     }
     Dialog {
         id: dlgNewConfirm
@@ -114,6 +102,6 @@ ColumnLayout {
             color: Style.primaryText
         }
         standardButtons: Dialog.Ok | Dialog.Cancel
-        onAccepted: onNewFile()
+        onAccepted: composerViewModel.newFile()
     }
 }
