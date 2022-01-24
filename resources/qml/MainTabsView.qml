@@ -32,6 +32,11 @@ ColumnLayout {
         }
     }
 
+    function handleMenuItemSelected(menuItemId) {
+        bar.currentIndex = 3
+        composerTabView.handleMenuItemSelected(menuItemId)
+    }
+
     Rectangle {
         Layout.preferredHeight: childrenRect.height
         Layout.fillWidth: true
@@ -82,7 +87,9 @@ ColumnLayout {
             }
             Item {
                 id: composerTab
-                ComposerTabView{}
+                ComposerTabView{
+                    id: composerTabView
+                }
             }
             Item {
                 id: favoritesTab

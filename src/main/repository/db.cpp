@@ -36,7 +36,7 @@ QFuture<void> Db::openDb() {
         QFile file(":/poet_assistant.db");
         QString appDataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
         QDir().mkdir(appDataDir);
-        QString dbCopyFileName(QString("%1/poet_assistant.db").arg(appDataDir));
+        QString dbCopyFileName = QFileInfo(appDataDir, "poet_assistant.db").absoluteFilePath();
         QFile dbCopyFile(dbCopyFileName);
         if (dbCopyFile.open(QIODevice::WriteOnly)) {
             if (file.open(QIODevice::ReadOnly)) {

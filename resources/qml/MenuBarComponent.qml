@@ -21,14 +21,21 @@ import QtQuick 2.12
 
 MenuBar {
     signal menuItemSelected(string id)
-    /*
     Menu {
         title: qsTr("&File")
-        MenuItem { text: qsTr("&New...") }
-        MenuItem { text: qsTr("&Open...") }
-        MenuItem { text: qsTr("Save &As...") }
+        MenuItem {
+            text: qsTr("&New...")
+            onTriggered: menuItemSelected("new")
+        }
+        MenuItem {
+            text: qsTr("&Open...")
+            onTriggered: menuItemSelected("open")
+        }
+        MenuItem {
+            text: qsTr("Save &As...")
+            onTriggered: menuItemSelected("saveas")
+        }
     }
-    */
     Menu {
         title: qsTr("&Help")
         MenuItem {
