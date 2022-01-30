@@ -33,14 +33,14 @@ void DefinitionListModel::readDefinitions(QString searchText) {
     word = searchText;
     emit wordChanged(word);
 
-    beginResetModel();
-    if (definitions != nullptr) {
-        qDeleteAll(*definitions);
-        delete definitions;
-    }
     QFuture<QList<DefinitionDisplayData*>*> future = viewModel->readDefinitions(searchText);
     auto *watcher = new QFutureWatcher<QList<DefinitionDisplayData*>*>();
     QObject::connect(watcher, &QFutureWatcher<QList<DefinitionDisplayData*>*>::finished, this, [=](){
+        beginResetModel();
+        if (definitions != nullptr) {
+            qDeleteAll(*definitions);
+            delete definitions;
+        }
         definitions = future.result();
         isEmptyTextVisible = definitions->size() == 0;
         emit isEmptyTextVisibleChanged(isEmptyTextVisible);

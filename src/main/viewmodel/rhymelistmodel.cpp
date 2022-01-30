@@ -33,15 +33,16 @@ void RhymeListModel::readRhymes(QString searchText) {
     word = searchText;
     emit wordChanged(word);
 
-    beginResetModel();
-    if (rhymeEntries != nullptr) {
-        qDeleteAll(*rhymeEntries);
-        delete rhymeEntries;
-    }
-
     QFuture<QList<RhymeDisplayData*>*> future = viewModel->readRhymes(searchText);
     auto *watcher = new QFutureWatcher<QList<RhymeDisplayData*>*>();
     QObject::connect(watcher, &QFutureWatcher<QList<RhymeDisplayData*>*>::finished, this, [=](){
+
+        beginResetModel();
+        if (rhymeEntries != nullptr) {
+            qDeleteAll(*rhymeEntries);
+            delete rhymeEntries;
+        }
+
         rhymeEntries = future.result();
         isEmptyTextVisible = rhymeEntries->size() == 0;
         emit isEmptyTextVisibleChanged(isEmptyTextVisible);
