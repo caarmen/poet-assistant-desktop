@@ -31,14 +31,14 @@ ThesaurusListModel::ThesaurusListModel(ThesaurusViewModel *viewModel, QObject *p
 void ThesaurusListModel::readThesaurus(QString searchText) {
     word = searchText;
     emit wordChanged(word);
-    beginResetModel();
-    if (thesaurusEntries != nullptr) {
-        qDeleteAll(*thesaurusEntries);
-        delete thesaurusEntries;
-    }
     QFuture<QList<ThesaurusDisplayData*>*> future = viewModel->readThesaurus(searchText);
     auto *watcher = new QFutureWatcher<QList<ThesaurusDisplayData*>*>();
     QObject::connect(watcher, &QFutureWatcher<QList<ThesaurusDisplayData*>*>::finished, this, [=](){
+        beginResetModel();
+        if (thesaurusEntries != nullptr) {
+            qDeleteAll(*thesaurusEntries);
+            delete thesaurusEntries;
+        }
         thesaurusEntries = future.result();
         isEmptyTextVisible = thesaurusEntries->size() == 0;
         emit isEmptyTextVisibleChanged(isEmptyTextVisible);

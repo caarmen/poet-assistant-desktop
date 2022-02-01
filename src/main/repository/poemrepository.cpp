@@ -8,7 +8,7 @@ PoemRepository::PoemRepository(QObject *parent)
     : QObject{parent}, state(SAVED)
 {
     QString appDataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QDir().mkdir(appDataDir);
+    QDir().mkpath(appDataDir);
     defaultPoemFilePath = QFileInfo(appDataDir, "poem.txt").absoluteFilePath();
     poemFilePath = settings.value(poemFilePathSetting).value<QString>();
     if (poemFilePath.isEmpty()) {
