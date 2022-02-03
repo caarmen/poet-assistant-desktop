@@ -117,7 +117,8 @@ OBJECTS_DIR=$${TMP_DIR}/obj
 DESTDIR=$${BUILD_DIR}/out
 DMGFILE=$${DESTDIR}/PoetAssistant.dmg
 dmgfile.target = $${DMGFILE}
-dmgfile.commands = macdeployqt $${DESTDIR}/PoetAssistant.app -qmldir=$${PWD} -qmlimport=$${PWD} -dmg
+dmgfile.commands = cd $${DESTDIR} && macdeployqt PoetAssistant.app -qmldir=../../ -qmlimport=../../ -dmg && cd -
 QMAKE_EXTRA_TARGETS += dmgfile
 
 RC_ICONS = deploy/config/icon.ico
+ICON = deploy/icon.icns
