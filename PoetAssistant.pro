@@ -119,3 +119,5 @@ DMGFILE=$${DESTDIR}/PoetAssistant.dmg
 dmgfile.target = $${DMGFILE}
 dmgfile.commands = macdeployqt $${DESTDIR}/PoetAssistant.app -qmldir=$${PWD} -qmlimport=$${PWD} -dmg
 QMAKE_EXTRA_TARGETS += dmgfile
+
+RC_ICONS = deploy/config/icon.ico

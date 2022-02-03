@@ -1,0 +1,13 @@
+QPushButton
+{
+    color: white;
+    background-color: #607D8B;
+}
+QProgressBar
+{
+    color: white;
+}
+QProgressBar::chunk
+{
+    background-color: #607D8B;
+}
