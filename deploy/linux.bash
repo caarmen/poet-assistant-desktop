@@ -21,26 +21,20 @@ then
     exit
 fi
 
-if [[ $# -ne 2 ]]
-then
-    echo "$0 </path/to/program> </path/to/output/file.tgz>"
-    exit
-fi
+program_file_name=PoetAssistant
+temp_folder=$(mktemp --directory -t poet-assistant-XXXXXXXXXX)
 
-program_path=$1
-shift
-output_file=$1
-
-program_file_name=$(basename $program_path)
-output_folder=$(mktemp --directory -t poet-assistant-XXXXXXXXXX)
-dependencies_folder=$output_folder/dependencies
+function build {
+    qmake
+    make
+}
 
 function copyProgram {
-    cp $program_path $output_folder
+    cp build/out/$program_file_name $temp_folder
 }
 
 function updateRpath {
-    copied_program=$output_folder/$program_file_name
+    copied_program=$temp_folder/$program_file_name
     chrpath -r '$ORIGIN/dependencies/lib' $copied_program
 }
 
@@ -109,6 +103,7 @@ function copyDependencies {
     )
     qt_source_folder=$QT_HOME/6.2.3/gcc_64
     
+    dependencies_folder=$temp_folder/dependencies
     mkdir -p $dependencies_folder
     mkdir -p $dependencies_folder/lib
     mkdir -p $dependencies_folder/plugins
@@ -147,14 +142,16 @@ function copyDependencies {
     done
 }
 
-function buildArchive {
-    echo "Building archive..."
-    mkdir -p $(dirname $output_file)
-    tar czf $output_file -C $output_folder $program_file_name dependencies
+function createArchive {
+    output_file=build/out/PoetAssistant.tgz
+    echo "Creating ${output_file}..."
+    rm -f $output_file
+    tar czf $output_file -C $temp_folder $program_file_name dependencies
     echo "created $output_file"
 }
 
+build
 copyDependencies
 copyProgram
 updateRpath
-buildArchive
+createArchive
