@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>Poet Assistant</Name>
+    <Version>0.0.1</Version>
+    <Title>Poet Assistant Installer</Title>
+    <TitleColor>#607D9B</TitleColor>
+    <InstallerApplicationIcon>icon</InstallerApplicationIcon>
+    <InstallerWindowIcon>icon.ico</InstallerWindowIcon>
+    <Publisher>Carmen Alvarez</Publisher>
+    <StartMenuDir>Poet Assistant</StartMenuDir>
+    <TargetDir>@HomeDir@/PoetAssistant</TargetDir>
+    <StyleSheet>style.qss</StyleSheet>
+</Installer>
