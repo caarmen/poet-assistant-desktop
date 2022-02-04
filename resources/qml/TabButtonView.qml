@@ -29,6 +29,7 @@ TabButton {
         contentItem.icon.color = checked? Style.primary : Style.primaryText
     }
 
+    padding: 12
     text: qsTr(tabName)
     Component.onCompleted: {
         applyTheme()
