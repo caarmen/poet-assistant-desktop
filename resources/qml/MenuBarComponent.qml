@@ -35,6 +35,13 @@ MenuBar {
             text: qsTr("Save &As...")
             onTriggered: menuItemSelected("saveas")
         }
+        MenuSeparator {
+            background: Rectangle { color: Style.surface }
+        }
+        MenuItem {
+            text: qsTr("&Quit")
+            onTriggered: menuItemSelected("quit")
+        }
     }
     Menu {
         title: qsTr("&Help")

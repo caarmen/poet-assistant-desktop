@@ -44,7 +44,10 @@ ApplicationWindow {
     function handleMenuItemSelected(menuItemId) {
         if (menuItemId === "about") {
             dlgAbout.show()
+        } else if (menuItemId == "quit") {
+            Qt.quit()
         }
+
         tabs.handleMenuItemSelected(menuItemId)
     }
 

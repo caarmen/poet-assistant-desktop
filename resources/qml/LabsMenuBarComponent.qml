@@ -36,6 +36,14 @@ MenuBar {
             text: qsTr("Save &As...")
             onTriggered: menuItemSelected("saveas")
         }
+        MenuItem {
+            separator: true
+        }
+        MenuItem {
+            text: qsTr("&Quit")
+            role: MenuItem.QuitRole
+            onTriggered: menuItemSelected("quit")
+        }
     }
     Menu {
         title: qsTr("&Help")
