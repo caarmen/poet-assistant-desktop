@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Installer>
     <Name>Poet Assistant</Name>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Title>Poet Assistant Installer</Title>
     <TitleColor>#607D9B</TitleColor>
     <InstallerApplicationIcon>icon</InstallerApplicationIcon>
