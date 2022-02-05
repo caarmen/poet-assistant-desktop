@@ -21,11 +21,13 @@ then
     exit
 fi
 
+version=$(cat deploy/version.txt)
+
 program_file_name=PoetAssistant
 temp_folder=$(mktemp --directory -t poet-assistant-XXXXXXXXXX)
 
 function build {
-    qmake
+    qmake VERSION=$version
     make
 }
 
@@ -143,7 +145,7 @@ function copyDependencies {
 }
 
 function createArchive {
-    output_file=build/out/PoetAssistant.tgz
+    output_file=build/out/PoetAssistant-linux-$version.tgz
     echo "Creating ${output_file}..."
     rm -f $output_file
     tar czf $output_file -C $temp_folder $program_file_name dependencies

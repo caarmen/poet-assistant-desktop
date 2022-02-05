@@ -2,7 +2,7 @@
 <Package>
     <DisplayName>Poet Asssitant</DisplayName>
     <Description>Install Poet Asssistant..</Description>
-    <Version>0.0.2</Version>
+    <Version>__VERSION__</Version>
     <ReleaseDate>2022-01-29</ReleaseDate>
     <Licenses>
         <License name="GNU GENERAL PUBLIC LICENSE, version 3" file="LICENSE.txt" />

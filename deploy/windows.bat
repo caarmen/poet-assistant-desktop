@@ -23,6 +23,7 @@ if "%QT_IFW_HOME%"=="" (
     ECHO QT_IFW_HOME environment variable must be defined
     exit /b
 )
+set /P version=<deploy\version.txt
 
 set current_folder=%CD%
 call %QT_HOME%\mingw_64\bin\qtenv2.bat
@@ -30,7 +31,15 @@ call %QT_HOME%\mingw_64\bin\qtenv2.bat
 :: the qtenv2.bat script changes directories. We need to change back
 cd %current_folder%
 
-qmake
+set output_folder=build\out
+
+echo Preparing installer config...
+call :writeVersionFile deploy\config\config.xml.template deploy\config\config.xml %version%
+call :writeVersionFile deploy\packages\com.poetassistant\meta\package.xml.template deploy\packages\com.poetassistant\meta\package.xml %version%
+
+echo Compiling...
+
+qmake VERSION=%version%
 
 :: The release makefile looks for the generated translation file in the debug folder.
 :: Make just this target before making the release
@@ -38,24 +47,52 @@ mingw32-make -f Makefile.Debug debug/PoetAssistant_en_US.qm
 
 mingw32-make release
 
-set output_folder=build\out
-copy deploy\config\icon.ico %output_folder%\icon.ico
+
 
 windeployqt --qmldir=. --qmlimport=. %output_folder%\PoetAssistant.exe
 
 echo Building archive...
-set installer_file=PoetAssistantInstaller
-set zip_file=PoetAssistant.zip
+copy deploy\config\icon.ico %output_folder%\icon.ico
+set installer_file_base=PoetAssistantInstaller
+set installer_file_exe=%installer_file_base%.exe
+set installer_file_zip=PoetAssistant-win-installer-%version%.zip
+set zip_file=PoetAssistant-win-portable-%version%.zip
 cd %output_folder%
 if exist %zip_file% del %zip_file%
-if exist %installer_file%.exe del %installer_file%.exe
+if exist %installer_file_exe% del %installer_file_exe%
+if exist %installer_file_zip% del %installer_file_zip%
 zip -r %zip_file% *
 cd ..\..
 echo created %zip_file%
 
 set package_data_dir=deploy\packages\com.poetassistant\data
-if not exist %package_data_dir% md %package_data_dir%
+if exist %package_data_dir% rd /s /q %package_data_dir%
+md %package_data_dir%
 copy %output_folder%\%zip_file% %package_data_dir%
 
 echo Creating installer...
-%QT_IFW_HOME%\bin\binarycreator.exe --offline-only -c deploy/config/config.xml -p deploy/packages %output_folder%\%installer_file%
+%QT_IFW_HOME%\bin\binarycreator.exe --offline-only -c deploy/config/config.xml -p deploy/packages %output_folder%\%installer_file_base%
+cd %output_folder%
+zip %installer_file_zip% %installer_file_exe%
+cd ..\..
+echo Created %zip_file% and %installer_file_zip%
+
+EXIT /B %ERRORLEVEL%
+:: ---------------------------
+:: FUNCTIONS HERE
+:: ---------------------------
+:writeVersionFile
+SET template_file=%~1
+SET output_file=%~2
+SET version=%~3
+SETLOCAL EnableDelayedExpansion
+
+DEL %output_file%
+
+For /f "tokens=* delims= " %%a in (%template_file%) do (
+    SET line=%%a
+    SET line=!line:__VERSION__=%version%!
+    echo !line!>>%output_file%
+)
+ENDLOCAL
+EXIT /B 0
