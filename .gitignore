@@ -54,4 +54,6 @@ compile_commands.json
 .DS_Store
 build/
 deploy/packages/com.poetassistant/data/
+deploy/config/config.xml
+deploy/packages/com.poetassistant/meta/package.xml
 PoetAssistant_resource.rc

@@ -41,6 +41,18 @@ Window {
             Layout.alignment: Qt.AlignHCenter
         }
         Text {
+            Layout.topMargin: 8
+            Layout.leftMargin: 16
+            Layout.rightMargin: 16
+            Layout.bottomMargin: 16
+            text: Qt.application.version
+            color: Style.primaryText
+            width: paintedWidth
+            height: paintedHeight
+            horizontalAlignment: Text.AlignHCenter
+            Layout.alignment: Qt.AlignHCenter
+        }
+        Text {
             Layout.topMargin: 16
             Layout.leftMargin: 16
             Layout.rightMargin: 16

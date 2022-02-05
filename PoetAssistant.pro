@@ -14,6 +14,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
+!defined(VERSION, var):VERSION= "0.0.0"
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 QT       += core gui quick quickcontrols2
 

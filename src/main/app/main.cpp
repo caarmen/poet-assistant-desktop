@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
     a.setOrganizationName("Poet Assistant");
     a.setOrganizationDomain("poetassistant.com");
     a.setApplicationName("Poet Assistant");
+    a.setApplicationVersion(APP_VERSION);
 
     QTranslator translator;
     if (translator.load(":/i18n/PoetAssistant_en_US")) {
