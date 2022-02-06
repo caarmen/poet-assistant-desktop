@@ -126,10 +126,6 @@ RC_ICONS = deploy/config/icon.ico
 ICON = deploy/icon.icns
 
 # TextToSpeech
-macx:{
-     BUILD_DIR=$$shadowed($$PWD)/build/out/
-     TARGET_PATH=$${BUILD_DIR}/$${TARGET}.app
-     QTSPEECH_DIR=$$PWD/../lib/qtspeech
-     INCLUDEPATH += $${QTSPEECH_DIR}/include
-     LIBS += -L$${QTSPEECH_DIR}/lib/  -lQt6TextToSpeech
-}
+QTSPEECH_DIR=$$PWD/../lib/qtspeech
+INCLUDEPATH += $${QTSPEECH_DIR}/include
+LIBS += -L$${QTSPEECH_DIR}/lib/  -lQt6TextToSpeech

@@ -1,13 +1,10 @@
 #ifndef COMPOSERVIEWMODEL_H
 #define COMPOSERVIEWMODEL_H
 
-#include <qsystemdetection.h>
-#if defined(Q_OS_DARWIN)
-#include <QtTextToSpeech/qtexttospeech.h>
-#endif
 #include "poemrepository.h"
 #include <QObject>
 #include <QUrl>
+#include <QtTextToSpeech/qtexttospeech.h>
 
 class ComposerViewModel : public QObject
 {
@@ -37,9 +34,7 @@ private:
     void writePoem(QString poem);
     void onSavedStateChanged(PoemRepository::PoemSavedState savedState);
     PoemRepository *repository;
-#if defined(Q_OS_DARWIN)
     QTextToSpeech *tts;
-#endif
 };
 
 #endif // COMPOSERVIEWMODEL_H
