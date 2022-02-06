@@ -16,9 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
-import QtQuick.Controls 2.4
-import QtQuick 2.12
-import Qt.labs.platform 1.1
+import Qt.labs.platform
+import QtQuick
+import QtQuick.Controls
 
 MenuBar {
     signal menuItemSelected(string id)
