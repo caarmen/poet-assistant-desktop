@@ -1,0 +1,4 @@
+[submodule "qtspeech"]
+	path = qtspeech
+	url = https://github.com/caarmen/qtspeech.git
+	branch = qt6

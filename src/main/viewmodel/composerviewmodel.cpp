@@ -13,6 +13,9 @@ ComposerViewModel::ComposerViewModel(PoemRepository *repository, QObject *parent
     QObject::connect(repository, &PoemRepository::poemChanged, this, [=] {
         emit poemChanged();
     });
+#if defined(Q_OS_DARWIN)
+    tts = new QTextToSpeech(this);
+#endif
 }
 
 const QString ComposerViewModel::getSavedState() const {
@@ -62,6 +65,12 @@ void ComposerViewModel::open(QUrl poemFilePath) {
 void ComposerViewModel::saveAs(QUrl poemFilePath) {
     repository->saveAs(poemFilePath.toLocalFile());
     emit poemFileNameChanged();
+}
+
+void ComposerViewModel::play() {
+#if defined(Q_OS_DARWIN)
+    tts->say(repository->getPoem());
+#endif
 }
 
 void ComposerViewModel::onSavedStateChanged(PoemRepository::PoemSavedState savedState) {

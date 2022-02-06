@@ -124,3 +124,20 @@ QMAKE_EXTRA_TARGETS += dmgfile
 
 RC_ICONS = deploy/config/icon.ico
 ICON = deploy/icon.icns
+
+# TextToSpeech
+macx:{
+    QTSPEECH_DIR=$$PWD/qtspeech
+    INCLUDEPATH += $${QTSPEECH_DIR}/include
+    BUILD_DIR=$$shadowed($$PWD)/build/out/
+    QtSpeech.target = $${BUILD_DIR}/PoetAssistant.app/Contents/Frameworks/QtTextToSpeech.framework
+    QtSpeech.commands =  \
+        cd $${QTSPEECH_DIR} && qmake &&  make &&  cd - && \
+        mkdir -p $${BUILD_DIR}/PoetAssistant.app/Contents/Frameworks && \
+        mkdir -p $${BUILD_DIR}/PoetAssistant.app/Contents/Plugins && \
+        cp -pr $${QTSPEECH_DIR}/lib/* $${BUILD_DIR}/PoetAssistant.app/Contents/Frameworks && \
+        cp -pr $${QTSPEECH_DIR}/plugins/* $${BUILD_DIR}/PoetAssistant.app/Contents/Plugins/.
+    PRE_TARGETDEPS += $${QtSpeech.target}
+    LIBS += -F$${QTSPEECH_DIR}/lib/ -framework QtTextToSpeech
+    QMAKE_EXTRA_TARGETS += QtSpeech
+}

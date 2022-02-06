@@ -1,6 +1,10 @@
 #ifndef COMPOSERVIEWMODEL_H
 #define COMPOSERVIEWMODEL_H
 
+#include <qsystemdetection.h>
+#if defined(Q_OS_DARWIN)
+#include <QtTextToSpeech/qtexttospeech.h>
+#endif
 #include "poemrepository.h"
 #include <QObject>
 #include <QUrl>
@@ -19,6 +23,7 @@ public:
     Q_INVOKABLE void newFile();
     Q_INVOKABLE void open(QUrl poemFilePath);
     Q_INVOKABLE void saveAs(QUrl poemFilePath);
+    Q_INVOKABLE void play();
 
 signals:
     void savedStateChanged();
@@ -32,7 +37,9 @@ private:
     void writePoem(QString poem);
     void onSavedStateChanged(PoemRepository::PoemSavedState savedState);
     PoemRepository *repository;
-
+#if defined(Q_OS_DARWIN)
+    QTextToSpeech *tts;
+#endif
 };
 
 #endif // COMPOSERVIEWMODEL_H
