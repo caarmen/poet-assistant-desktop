@@ -127,5 +127,16 @@ ICON = deploy/icon.icns
 
 # TextToSpeech
 QTSPEECH_DIR=$$PWD/../lib/qtspeech
-INCLUDEPATH += $${QTSPEECH_DIR}/include
 LIBS += -L$${QTSPEECH_DIR}/lib/  -lQt6TextToSpeech
+INCLUDEPATH += $${QTSPEECH_DIR}/include
+macx:{
+     BUILD_DIR=$$shadowed($$PWD)/build/out/
+     TARGET_PATH=$${BUILD_DIR}/$${TARGET}.app
+
+     QtSpeechOsxPlugin.target = $${TARGET_PATH}/Contents/Plugins/texttospeech/libqtexttospeech_speechosx.dylib
+     QtSpeechOsxPlugin.commands = \
+             mkdir -p $${TARGET_PATH}/Contents/Plugins && \
+             cp -pr $${QTSPEECH_DIR}/plugins/* $${TARGET_PATH}/Contents/Plugins/.
+     PRE_TARGETDEPS += $${QtSpeechOsxPlugin.target}
+     QMAKE_EXTRA_TARGETS += QtSpeechOsxPlugin
+}
