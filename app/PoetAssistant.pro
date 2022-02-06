@@ -129,17 +129,7 @@ ICON = deploy/icon.icns
 macx:{
      BUILD_DIR=$$shadowed($$PWD)/build/out/
      TARGET_PATH=$${BUILD_DIR}/$${TARGET}.app
-
      QTSPEECH_DIR=$$PWD/../lib/qtspeech
      INCLUDEPATH += $${QTSPEECH_DIR}/include
-     LIBS += -F$${QTSPEECH_DIR}/lib/ -F$${QTSPEECH_DIR}/plugins  -framework QtTextToSpeech
-
-     QtSpeech.target = $${TARGET_PATH}/Contents/Frameworks/QtTextToSpeech.framework
-     QtSpeech.commands = \
-             mkdir -p $${TARGET_PATH}/Contents/Frameworks && \
-             mkdir -p $${TARGET_PATH}/Contents/Plugins && \
-             cp -pr $${QTSPEECH_DIR}/lib/* $${TARGET_PATH}/Contents/Frameworks && \
-             cp -pr $${QTSPEECH_DIR}/plugins/* $${TARGET_PATH}/Contents/Plugins/.
-     PRE_TARGETDEPS += $${QtSpeech.target}
-     QMAKE_EXTRA_TARGETS += QtSpeech
+     LIBS += -L$${QTSPEECH_DIR}/lib/  -lQt6TextToSpeech
 }
