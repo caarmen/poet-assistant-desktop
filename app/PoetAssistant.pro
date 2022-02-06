@@ -127,17 +127,19 @@ ICON = deploy/icon.icns
 
 # TextToSpeech
 macx:{
-    QTSPEECH_DIR=$$PWD/qtspeech
-    INCLUDEPATH += $${QTSPEECH_DIR}/include
-    BUILD_DIR=$$shadowed($$PWD)/build/out/
-    QtSpeech.target = $${BUILD_DIR}/PoetAssistant.app/Contents/Frameworks/QtTextToSpeech.framework
-    QtSpeech.commands =  \
-        cd $${QTSPEECH_DIR} && qmake &&  make &&  cd - && \
-        mkdir -p $${BUILD_DIR}/PoetAssistant.app/Contents/Frameworks && \
-        mkdir -p $${BUILD_DIR}/PoetAssistant.app/Contents/Plugins && \
-        cp -pr $${QTSPEECH_DIR}/lib/* $${BUILD_DIR}/PoetAssistant.app/Contents/Frameworks && \
-        cp -pr $${QTSPEECH_DIR}/plugins/* $${BUILD_DIR}/PoetAssistant.app/Contents/Plugins/.
-    PRE_TARGETDEPS += $${QtSpeech.target}
-    LIBS += -F$${QTSPEECH_DIR}/lib/ -framework QtTextToSpeech
-    QMAKE_EXTRA_TARGETS += QtSpeech
+     BUILD_DIR=$$shadowed($$PWD)/build/out/
+     TARGET_PATH=$${BUILD_DIR}/$${TARGET}.app
+
+     QTSPEECH_DIR=$$PWD/../lib/qtspeech
+     INCLUDEPATH += $${QTSPEECH_DIR}/include
+     LIBS += -F$${QTSPEECH_DIR}/lib/ -F$${QTSPEECH_DIR}/plugins  -framework QtTextToSpeech
+
+     QtSpeech.target = $${TARGET_PATH}/Contents/Frameworks/QtTextToSpeech.framework
+     QtSpeech.commands = \
+             mkdir -p $${TARGET_PATH}/Contents/Frameworks && \
+             mkdir -p $${TARGET_PATH}/Contents/Plugins && \
+             cp -pr $${QTSPEECH_DIR}/lib/* $${TARGET_PATH}/Contents/Frameworks && \
+             cp -pr $${QTSPEECH_DIR}/plugins/* $${TARGET_PATH}/Contents/Plugins/.
+     PRE_TARGETDEPS += $${QtSpeech.target}
+     QMAKE_EXTRA_TARGETS += QtSpeech
 }
