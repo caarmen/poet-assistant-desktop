@@ -25,11 +25,11 @@ if "%QT_IFW_HOME%"=="" (
 )
 set /P version=<deploy\version.txt
 
-set current_folder=%CD%
+set project_folder=%CD%
 call %QT_HOME%\mingw_64\bin\qtenv2.bat
 
 :: the qtenv2.bat script changes directories. We need to change back
-cd %current_folder%
+cd %project_folder%
 
 set app_folder=app
 set output_folder=%app_folder%\build\out
@@ -44,10 +44,11 @@ qmake -recursive VERSION=%version% PoetAssistant.pro
 
 :: The release makefile looks for the generated translation file in the debug folder.
 :: Make just this target before making the release
-mingw32-make -f %app_folder%\Makefile.Debug %app_folder%/debug/PoetAssistant_en_US.qm
+cd %app_folder%
+mingw32-make -f Makefile.Debug debug/PoetAssistant_en_US.qm
 
 mingw32-make release
-
+cd %project_folder%
 
 
 windeployqt --qmldir=. --qmlimport=. %output_folder%\PoetAssistant.exe
@@ -63,7 +64,7 @@ if exist %zip_file% del %zip_file%
 if exist %installer_file_exe% del %installer_file_exe%
 if exist %installer_file_zip% del %installer_file_zip%
 zip -r %zip_file% *
-cd ..\..
+cd %project_folder%
 echo created %zip_file%
 
 set package_data_dir=deploy\packages\com.poetassistant\data
@@ -75,7 +76,7 @@ echo Creating installer...
 %QT_IFW_HOME%\bin\binarycreator.exe --offline-only -c deploy/config/config.xml -p deploy/packages %output_folder%\%installer_file_base%
 cd %output_folder%
 zip %installer_file_zip% %installer_file_exe%
-cd ..\..
+cd %project_folder%
 echo Created %zip_file% and %installer_file_zip%
 
 EXIT /B %ERRORLEVEL%
