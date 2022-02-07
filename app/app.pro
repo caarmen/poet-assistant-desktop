@@ -123,5 +123,5 @@ dmgfile.target = $${DMGFILE}
 dmgfile.commands = cd $${DESTDIR} && macdeployqt PoetAssistant.app -qmldir=../../ -qmlimport=../../ -dmg && cd -
 QMAKE_EXTRA_TARGETS += dmgfile
 
-RC_ICONS = deploy/config/icon.ico
-ICON = deploy/icon.icns
+RC_ICONS = ../deploy/config/icon.ico
+ICON = ../deploy/icon.icns

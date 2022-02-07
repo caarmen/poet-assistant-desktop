@@ -31,7 +31,8 @@ call %QT_HOME%\mingw_64\bin\qtenv2.bat
 :: the qtenv2.bat script changes directories. We need to change back
 cd %current_folder%
 
-set output_folder=build\out
+set app_folder=app
+set output_folder=%app_folder%\build\out
 
 echo Preparing installer config...
 call :writeVersionFile deploy\config\config.xml.template deploy\config\config.xml %version%
@@ -39,11 +40,11 @@ call :writeVersionFile deploy\packages\com.poetassistant\meta\package.xml.templa
 
 echo Compiling...
 
-qmake VERSION=%version%
+qmake -recursive VERSION=%version% PoetAssistant.pro
 
 :: The release makefile looks for the generated translation file in the debug folder.
 :: Make just this target before making the release
-mingw32-make -f Makefile.Debug debug/PoetAssistant_en_US.qm
+mingw32-make -f %app_folder%\Makefile.Debug %app_folder%/debug/PoetAssistant_en_US.qm
 
 mingw32-make release
 
