@@ -19,5 +19,7 @@ version=$(cat deploy/version.txt)
 
 qmake VERSION=$version
 make
+cd app
 make build/out/PoetAssistant.dmg
 mv build/out/PoetAssistant.dmg build/out/PoetAssistant-mac-$version.dmg
+cd -

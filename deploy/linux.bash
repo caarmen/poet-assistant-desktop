@@ -24,6 +24,7 @@ fi
 version=$(cat deploy/version.txt)
 
 program_file_name=PoetAssistant
+build_folder=app/build/out
 temp_folder=$(mktemp --directory -t poet-assistant-XXXXXXXXXX)
 
 function build {
@@ -32,7 +33,7 @@ function build {
 }
 
 function copyProgram {
-    cp build/out/$program_file_name $temp_folder
+    cp $build_folder/$program_file_name $temp_folder
 }
 
 function updateRpath {
@@ -145,7 +146,7 @@ function copyDependencies {
 }
 
 function createArchive {
-    output_file=build/out/PoetAssistant-linux-$version.tgz
+    output_file=${build_folder}/PoetAssistant-linux-$version.tgz
     echo "Creating ${output_file}..."
     rm -f $output_file
     tar czf $output_file -C $temp_folder $program_file_name dependencies
