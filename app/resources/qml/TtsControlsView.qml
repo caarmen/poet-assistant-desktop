@@ -69,7 +69,11 @@ RowLayout{
             icon.width: 32
             anchors.centerIn: parent
             onClicked: {
-                ttsViewModel.play(taPoem.selectedText || taPoem.text)
+                if (taPoem.selectedText) {
+                    ttsViewModel.play(taPoem.selectedText)
+                } else {
+                    ttsViewModel.play(taPoem.text, taPoem.selectionStart)
+                }
             }
         }
     }

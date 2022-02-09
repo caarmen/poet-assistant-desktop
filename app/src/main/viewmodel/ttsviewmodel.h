@@ -20,7 +20,7 @@ public:
     Q_INVOKABLE QString getLocaleName() const;
     Q_INVOKABLE QStringList getAvailableLocaleNames() const;
     Q_INVOKABLE void useLocale(QString name);
-    Q_INVOKABLE void play(QString text);
+    Q_INVOKABLE void play(QString text, int startPosition = 0);
 
 signals:
     void playButtonIconChanged();

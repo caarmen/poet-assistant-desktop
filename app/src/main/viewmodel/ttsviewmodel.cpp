@@ -90,10 +90,16 @@ QString TtsViewModel::getPlayButtonIcon() {
     return tts->state() == QTextToSpeech::Speaking ? "qrc:/images/stop.svg" : "qrc:/images/play.svg";
 }
 
-void TtsViewModel::play(QString text) {
+void TtsViewModel::play(QString text, int startPosition) {
     if (tts->state() == QTextToSpeech::Speaking) {
         tts->stop();
-    } else {
+    }
+    // The cursor was at the end of the text, read the whole text
+    else if (startPosition >= text.length()){
         tts->say(text);
+    }
+    // Read the selected text
+    else {
+        tts->say(text.mid(startPosition));
     }
 }
