@@ -82,7 +82,7 @@ RowLayout{
         }
         Slider {
             id: ttsPitch
-            from: 0
+            from: -1
             value: ttsViewModel.pitch
             to: 10
             onMoved: ttsViewModel.pitch = value
