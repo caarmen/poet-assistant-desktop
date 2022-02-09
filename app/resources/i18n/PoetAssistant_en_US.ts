@@ -154,6 +154,10 @@
 <context>
     <name>TtsControlsView</name>
     <message>
+        <source>label_locale</source>
+        <translation>Locale</translation>
+    </message>
+    <message>
         <source>label_voice</source>
         <translation>Voice</translation>
     </message>

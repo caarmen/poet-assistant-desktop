@@ -8,6 +8,8 @@ TtsViewModel::TtsViewModel(QObject *parent)
     QObject::connect(tts, &QTextToSpeech::stateChanged, this, [=]{ emit playButtonIconChanged();});
     QObject::connect(tts, &QTextToSpeech::pitchChanged, this, [=]{ emit pitchChanged();});
     QObject::connect(tts, &QTextToSpeech::rateChanged, this, [=]{ emit rateChanged();});
+    QObject::connect(tts, &QTextToSpeech::voiceChanged, this, [=]{ emit voiceNameChanged();});
+    QObject::connect(tts, &QTextToSpeech::localeChanged, this, [=]{ emit availableVoiceNamesChanged();});
 }
 
 bool TtsViewModel::isTtsSupported() const {
@@ -33,6 +35,25 @@ void TtsViewModel::useVoice(QString name) {
     });
     if(!matchingVoices.empty()) {
         tts->setVoice(matchingVoices.first());
+    }
+}
+QString TtsViewModel::getLocaleName() const {
+    return tts->locale().name();
+}
+
+QStringList TtsViewModel::getAvailableLocaleNames() const {
+    QStringList localeNames = QtConcurrent::blockingMapped(tts->availableLocales(), [=] (QLocale locale) {
+        return locale.name();
+    });
+    localeNames.sort();
+    return localeNames;
+}
+void TtsViewModel::useLocale(QString name) {
+    QVector<QLocale> matchingLocales = QtConcurrent::blockingFiltered(tts->availableLocales(), [=] (QLocale locale) {
+        return locale.name() == name;
+    });
+    if(!matchingLocales.empty()) {
+        tts->setLocale(matchingLocales.first());
     }
 }
 double TtsViewModel::getPitch() {

@@ -32,14 +32,50 @@ RowLayout{
 
         Text {
             color: Style.primaryText
-            text: qsTr("label_voice");
+            text: qsTr("label_locale");
         }
         ComboBox {
             palette.dark: Style.primary
-            model: ttsViewModel.getAvailableVoiceNames()
-            Component.onCompleted: currentIndex = indexOfValue(ttsViewModel.getVoiceName())
-            onActivated: ttsViewModel.useVoice(currentValue)
+            model: ttsViewModel.getAvailableLocaleNames()
+            Component.onCompleted: currentIndex = indexOfValue(ttsViewModel.getLocaleName())
+            onActivated: ttsViewModel.useLocale(currentValue)
         }
+        Text {
+            color: Style.primaryText
+            text: qsTr("label_voice");
+        }
+        ComboBox {
+            id: cbVoices
+            palette.dark: Style.primary
+            model: ttsViewModel.availableVoiceNames
+            Component.onCompleted: currentIndex = indexOfValue(ttsViewModel.voiceName)
+            onActivated: ttsViewModel.useVoice(currentValue)
+            Connections {
+                target: ttsViewModel
+                function onVoiceNameChanged() {
+                    cbVoices.currentIndex = cbVoices.indexOfValue(ttsViewModel.voiceName)
+                }
+            }
+        }
+    }
+    Rectangle {
+        height: 58
+        Layout.fillWidth: true
+        color: Style.background
+        ToolButton {
+            icon.source: ttsViewModel.playButtonIcon
+            icon.color: Style.primary
+            icon.height: 32
+            icon.width: 32
+            anchors.centerIn: parent
+            onClicked: {
+                ttsViewModel.play(taPoem.selectedText || taPoem.text)
+            }
+        }
+    }
+    GridLayout {
+        columns: 2
+
         Text {
             color: Style.primaryText
             text: qsTr("label_pitch");
@@ -74,24 +110,5 @@ RowLayout{
                 }
             }
         }
-    }
-    Rectangle {
-        height: 58
-        Layout.fillWidth: true
-        color: Style.background
-        ToolButton {
-            icon.source: ttsViewModel.playButtonIcon
-            icon.color: Style.primary
-            icon.height: 32
-            icon.width: 32
-            anchors.centerIn: parent
-            onClicked: {
-                ttsViewModel.play(taPoem.selectedText || taPoem.text)
-            }
-        }
-    }
-    Item {
-        width: ttsControls.width
-        height: 1
     }
 }
