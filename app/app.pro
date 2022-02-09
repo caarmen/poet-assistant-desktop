@@ -57,6 +57,7 @@ SOURCES += \
     $${SOURCE_DIR}/main/viewmodel/thesaurusentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesaurusviewmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/ttsviewmodel.cpp \
 
 TRANSLATIONS += \
     resources/i18n/PoetAssistant_en_US.ts
@@ -100,6 +101,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/thesaurusentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/thesaurusviewmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/ttsviewmodel.h \
 
 INCLUDEPATH +=  \
     $${SOURCE_DIR}/main/debug \

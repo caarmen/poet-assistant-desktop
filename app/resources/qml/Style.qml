@@ -94,7 +94,7 @@ QtObject {
         appPalette.highlight = Style.accent
         appPalette.highlightedText = Style.primaryText
         appPalette.light = Style.background
-        appPalette.mid = Style.surface
+        appPalette.mid = Style.primary
         appPalette.midlight = Style.surface
         appPalette.placeholderText = Style.secondaryText
         appPalette.shadow = Style.surface

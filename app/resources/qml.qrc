@@ -36,5 +36,7 @@
         <file>images/ic_code.svg</file>
         <file>qml/MainTabsView.qml</file>
         <file>qml/TabButtonView.qml</file>
+        <file>images/stop.svg</file>
+        <file>qml/TtsControlsView.qml</file>
     </qresource>
 </RCC>

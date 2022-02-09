@@ -152,6 +152,21 @@
     </message>
 </context>
 <context>
+    <name>TtsControlsView</name>
+    <message>
+        <source>label_voice</source>
+        <translation>Voice</translation>
+    </message>
+    <message>
+        <source>label_pitch</source>
+        <translation>Pitch</translation>
+    </message>
+    <message>
+        <source>label_rate</source>
+        <translation>Speed</translation>
+    </message>
+</context>
+<context>
     <name>AboutDialog</name>
     <message>
         <source>about_dialog_title</source>
