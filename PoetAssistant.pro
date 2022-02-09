@@ -17,5 +17,15 @@
 
 TEMPLATE = subdirs
 
-SUBDIRS = app
+SUBDIRS = app tts
 
+tts.file=lib/qtspeech/src/tts/tts.pro
+app.depends += tts
+
+macx:{
+    SUBDIRS += ttsosxplugin
+
+    ttsosxplugin.file=lib/qtspeech/src/plugins/tts/osx/osx.pro
+    ttsosxplugin.depends = tts
+    app.depends += ttsosxplugin
+}
