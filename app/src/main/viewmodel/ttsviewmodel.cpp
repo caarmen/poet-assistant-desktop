@@ -10,6 +10,19 @@ TtsViewModel::TtsViewModel(QObject *parent)
     QObject::connect(tts, &QTextToSpeech::rateChanged, this, [=]{ emit rateChanged();});
     QObject::connect(tts, &QTextToSpeech::voiceChanged, this, [=]{ emit voiceNameChanged();});
     QObject::connect(tts, &QTextToSpeech::localeChanged, this, [=]{ emit availableVoiceNamesChanged();});
+    initLocales();
+}
+
+void TtsViewModel::initLocales() {
+    auto allLocales = tts->availableLocales();
+    auto englishLocales = QtConcurrent::blockingFiltered(allLocales, [=](QLocale locale){return locale.language() == QLocale::English;});
+    auto englishLocaleNames = QtConcurrent::blockingMapped(englishLocales, [=](QLocale locale) {return locale.name();});
+    auto nonEnglishLocales = QtConcurrent::blockingFiltered(allLocales, [=](QLocale locale){return locale.language() != QLocale::English;});
+    auto nonEnglishLocaleNames = QtConcurrent::blockingMapped(allLocales, [=](QLocale locale){return locale.name();});
+    englishLocaleNames.sort();
+    nonEnglishLocaleNames.sort();
+    localeNames.append(englishLocaleNames);
+    localeNames.append(nonEnglishLocaleNames);
 }
 
 bool TtsViewModel::isTtsSupported() const {
@@ -42,10 +55,6 @@ QString TtsViewModel::getLocaleName() const {
 }
 
 QStringList TtsViewModel::getAvailableLocaleNames() const {
-    QStringList localeNames = QtConcurrent::blockingMapped(tts->availableLocales(), [=] (QLocale locale) {
-        return locale.name();
-    });
-    localeNames.sort();
     return localeNames;
 }
 void TtsViewModel::useLocale(QString name) {

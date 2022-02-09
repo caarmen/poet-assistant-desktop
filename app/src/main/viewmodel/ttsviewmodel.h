@@ -29,6 +29,7 @@ signals:
     void pitchChanged();
     void rateChanged();
 private:
+    void initLocales();
     QString getVoiceName() const;
     QStringList getAvailableVoiceNames() const;
     double getPitch();
@@ -37,6 +38,7 @@ private:
     void setRate(double rate);
     QString getPlayButtonIcon();
     QTextToSpeech *tts;
+    QList<QString> localeNames;
 };
 
 #endif // TTSVIEWMODEL_H
