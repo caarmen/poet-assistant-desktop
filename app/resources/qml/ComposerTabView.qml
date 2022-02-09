@@ -104,4 +104,5 @@ ColumnLayout {
         standardButtons: Dialog.Ok | Dialog.Cancel
         onAccepted: composerViewModel.newFile()
     }
+    Component.onCompleted: console.log("Tts support: " + composerViewModel.isTtsSupported())
 }

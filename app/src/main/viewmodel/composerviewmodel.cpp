@@ -13,6 +13,7 @@ ComposerViewModel::ComposerViewModel(PoemRepository *repository, QObject *parent
     QObject::connect(repository, &PoemRepository::poemChanged, this, [=] {
         emit poemChanged();
     });
+    tts = new QTextToSpeech(this);
 }
 
 const QString ComposerViewModel::getSavedState() const {
@@ -62,6 +63,12 @@ void ComposerViewModel::open(QUrl poemFilePath) {
 void ComposerViewModel::saveAs(QUrl poemFilePath) {
     repository->saveAs(poemFilePath.toLocalFile());
     emit poemFileNameChanged();
+}
+
+bool ComposerViewModel::isTtsSupported() const {
+    return !tts->availableEngines().empty() &&
+            !tts->availableVoices().empty() &&
+            !tts->availableLocales().empty();
 }
 
 void ComposerViewModel::onSavedStateChanged(PoemRepository::PoemSavedState savedState) {
