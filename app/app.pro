@@ -21,7 +21,7 @@ QT       += core gui quick quickcontrols2
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets sql concurrent core svg xml
 
-CONFIG += c++11 app_bundle
+CONFIG += c++11 app_bundle lrelease embed_translations
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -59,11 +59,6 @@ SOURCES += \
 
 TRANSLATIONS += \
     resources/i18n/PoetAssistant_en_US.ts
-
-ts-all.target = resources/i18n/PoetAssistant_en_US.qm
-ts-all.depends = $${TRANSLATIONS}
-ts-all.commands = lrelease $${TRANSLATIONS}
-QMAKE_EXTRA_TARGETS += ts-all
 
 CONFIG += lrelease
 CONFIG += embed_translations
