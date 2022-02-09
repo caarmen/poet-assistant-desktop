@@ -21,6 +21,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 RowLayout{
+    id: zoneTts
     visible: ttsViewModel.isTtsSupported()
     height: childrenRect.height
     Layout.fillWidth: true
@@ -46,9 +47,15 @@ RowLayout{
         Slider {
             id: ttsPitch
             from: 0
-            value: 5
+            value: ttsViewModel.pitch
             to: 10
-            onMoved: ttsViewModel.setPitch(value)
+            onMoved: ttsViewModel.pitch = value
+            Connections {
+                target: ttsViewModel
+                function onPitchChanged() {
+                    ttsPitch.value = ttsViewModel.pitch
+                }
+            }
         }
         Text {
             color: Style.primaryText
@@ -59,11 +66,16 @@ RowLayout{
             from: -0.5
             value: 0
             to: 1
-            onMoved: ttsViewModel.setRate(value)
+            onMoved: ttsViewModel.rate = value
+            Connections {
+                target: ttsViewModel
+                function onRateChanged() {
+                    ttsRate.value = ttsViewModel.rate
+                }
+            }
         }
     }
     Rectangle {
-        id: zoneTts
         height: 58
         Layout.fillWidth: true
         color: Style.background

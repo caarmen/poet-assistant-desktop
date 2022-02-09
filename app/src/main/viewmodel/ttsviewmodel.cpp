@@ -6,6 +6,8 @@ TtsViewModel::TtsViewModel(QObject *parent)
 {
     tts = new QTextToSpeech(this);
     QObject::connect(tts, &QTextToSpeech::stateChanged, this, [=]{ emit playButtonIconChanged();});
+    QObject::connect(tts, &QTextToSpeech::pitchChanged, this, [=]{ emit pitchChanged();});
+    QObject::connect(tts, &QTextToSpeech::rateChanged, this, [=]{ emit rateChanged();});
 }
 
 bool TtsViewModel::isTtsSupported() const {
@@ -33,8 +35,16 @@ void TtsViewModel::useVoice(QString name) {
         tts->setVoice(matchingVoices.first());
     }
 }
+double TtsViewModel::getPitch() {
+    return tts->pitch();
+}
+
 void TtsViewModel::setPitch(double pitch) {
     tts->setPitch(pitch);
+}
+
+double TtsViewModel::getRate() {
+    return tts->rate();
 }
 
 void TtsViewModel::setRate(double rate) {
