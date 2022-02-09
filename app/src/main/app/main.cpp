@@ -21,6 +21,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "favoritelistmodel.h"
 #include "composerviewmodel.h"
 #include "colortypeenum.h"
+#include "style.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -71,7 +72,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("thesaurusListModel", QVariant::fromValue(&thesaurusListModel));
     engine.rootContext()->setContextProperty("composerViewModel", QVariant::fromValue(&composerViewModel));
     engine.rootContext()->setContextProperty("favoriteListModel", QVariant::fromValue(&favoriteListModel));
-    engine.rootContext()->setContextProperty("theme", QQuickStyle::name());
+    engine.rootContext()->setContextProperty("theme", Style::setStyle());
     engine.load(QUrl("qrc:/qml/main.qml"));
     return a.exec();
 }
