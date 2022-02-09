@@ -8,7 +8,12 @@ TtsViewModel::TtsViewModel(QObject *parent)
     QObject::connect(tts, &QTextToSpeech::stateChanged, this, [=]{ emit playButtonIconChanged();});
     QObject::connect(tts, &QTextToSpeech::pitchChanged, this, [=]{ emit pitchChanged();});
     QObject::connect(tts, &QTextToSpeech::rateChanged, this, [=]{ emit rateChanged();});
-    QObject::connect(tts, &QTextToSpeech::voiceChanged, this, [=]{ emit voiceNameChanged();});
+    QObject::connect(tts, &QTextToSpeech::voiceChanged, this, [=]{
+        emit voiceNameChanged();
+        emit pitchChanged();
+        emit rateChanged();
+    }
+    );
     QObject::connect(tts, &QTextToSpeech::localeChanged, this, [=]{ emit availableVoiceNamesChanged();});
     initLocales();
 }
