@@ -66,9 +66,13 @@ void ComposerViewModel::saveAs(QUrl poemFilePath) {
 }
 
 bool ComposerViewModel::isTtsSupported() const {
-    return !tts->availableEngines().empty() &&
+    return !QTextToSpeech::availableEngines().empty() &&
             !tts->availableVoices().empty() &&
             !tts->availableLocales().empty();
+}
+
+void ComposerViewModel::play() {
+    tts->say(repository->getPoem());
 }
 
 void ComposerViewModel::onSavedStateChanged(PoemRepository::PoemSavedState savedState) {

@@ -3,6 +3,7 @@
         <file>qml/main.qml</file>
         <file>images/close.svg</file>
         <file>images/search.svg</file>
+        <file>images/play.svg</file>
         <file>qml/DefinitionListItemDelegate.qml</file>
         <file>poet_assistant.db</file>
         <file>qml/DictionaryTabView.qml</file>

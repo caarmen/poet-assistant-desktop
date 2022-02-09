@@ -24,6 +24,23 @@ import QtQuick.Layouts
 ColumnLayout {
     height: parent.height
     width: parent.width
+    Rectangle {
+        visible: composerViewModel.isTtsSupported()
+        id: zoneTts
+        height: 58
+        Layout.fillWidth: true
+        color: Style.background
+        ToolButton {
+            icon.source: "qrc:/images/play.svg"
+            icon.color: Style.primary
+            icon.height: 32
+            icon.width: 32
+            anchors.centerIn: parent
+            onClicked: {
+                composerViewModel.play()
+            }
+        }
+    }
     ScrollView {
         Layout.fillHeight: true
         Layout.fillWidth: true

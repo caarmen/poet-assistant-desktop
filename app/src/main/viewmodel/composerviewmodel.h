@@ -21,6 +21,7 @@ public:
     Q_INVOKABLE void open(QUrl poemFilePath);
     Q_INVOKABLE void saveAs(QUrl poemFilePath);
     Q_INVOKABLE bool isTtsSupported() const;
+    Q_INVOKABLE void play();
 
 signals:
     void savedStateChanged();
