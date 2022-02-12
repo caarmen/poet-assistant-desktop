@@ -44,7 +44,7 @@ RowLayout{
             color: Style.primaryText
             text: qsTr("label_voice");
         }
-        ComboBox {
+        ResizingComboBox {
             id: cbVoices
             palette.dark: Style.primary
             model: ttsViewModel.availableVoiceNames
