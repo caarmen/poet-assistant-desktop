@@ -48,13 +48,11 @@ RowLayout{
             id: cbVoices
             palette.dark: Style.primary
             model: ttsViewModel.availableVoiceNames
-            Component.onCompleted: currentIndex = indexOfValue(ttsViewModel.voiceName)
+            Component.onCompleted: reselectVoice()
             onActivated: ttsViewModel.useVoice(currentValue)
-            Connections {
-                target: ttsViewModel
-                function onVoiceNameChanged() {
-                    cbVoices.currentIndex = cbVoices.indexOfValue(ttsViewModel.voiceName)
-                }
+            onModelChanged: reselectVoice()
+            function reselectVoice() {
+                currentIndex = indexOfValue(ttsViewModel.voiceName)
             }
         }
     }
