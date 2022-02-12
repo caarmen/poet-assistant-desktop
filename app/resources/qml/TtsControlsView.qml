@@ -86,9 +86,9 @@ RowLayout{
         }
         Slider {
             id: ttsPitch
-            from: -1
+            from: ttsViewModel.minPitch
             value: ttsViewModel.pitch
-            to: 10
+            to: ttsViewModel.maxPitch
             onMoved: ttsViewModel.pitch = value
             Connections {
                 target: ttsViewModel
@@ -103,9 +103,9 @@ RowLayout{
         }
         Slider {
             id: ttsRate
-            from: -0.5
-            value: 0
-            to: 1
+            from: ttsViewModel.minRate
+            value: ttsViewModel.rate
+            to: ttsViewModel.maxRate
             onMoved: ttsViewModel.rate = value
             Connections {
                 target: ttsViewModel
