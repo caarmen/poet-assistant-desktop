@@ -28,6 +28,9 @@ build_folder=app/build/out
 temp_folder=$(mktemp --directory -t poet-assistant-XXXXXXXXXX)
 
 function build {
+    cd lib/qtspeech
+    qmake
+    cd -
     qmake VERSION=$version
     make
 }
@@ -41,7 +44,7 @@ function updateRpath {
     chrpath -r '$ORIGIN/dependencies/lib' $copied_program
 }
 
-function copyDependencies {
+function copyQtDependencies {
     echo "Copying dependencies..."
     libs=( \
         libQt6Concurrent.so.6 \
@@ -145,6 +148,11 @@ function copyDependencies {
     done
 }
 
+function copyLocalDependencies {
+    tts_plugin_folder=$dependencies_folder/plugins/texttospeech
+    mkdir -p $tts_plugin_folder
+    cp lib/qtspeech/plugins/texttospeech/libqtexttospeech_speechd.so $tts_plugin_folder/.
+}
 function createArchive {
     output_file=${build_folder}/PoetAssistant-linux-$version.tgz
     echo "Creating ${output_file}..."
@@ -154,7 +162,8 @@ function createArchive {
 }
 
 build
-copyDependencies
+copyQtDependencies
+copyLocalDependencies
 copyProgram
 updateRpath
 createArchive
