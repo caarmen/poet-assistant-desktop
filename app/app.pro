@@ -30,6 +30,7 @@ CONFIG += c++11 app_bundle lrelease embed_translations
 TARGET=PoetAssistant
 SOURCE_DIR=src
 SOURCES += \
+    $${SOURCE_DIR}/main/app/appcomponents.cpp \
     $${SOURCE_DIR}/main/app/main.cpp \
     $${SOURCE_DIR}/main/app/style.cpp \
     $${SOURCE_DIR}/main/debug/refcounter.cpp \
@@ -74,6 +75,7 @@ RESOURCES += \
     resources/qml.qrc
 
 HEADERS += \
+    $${SOURCE_DIR}/main/app/appcomponents.h \
     $${SOURCE_DIR}/main/app/style.h \
     $${SOURCE_DIR}/main/debug/refcounter.h \
     $${SOURCE_DIR}/main/repository/db.h \

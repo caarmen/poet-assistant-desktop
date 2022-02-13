@@ -17,10 +17,7 @@ You should have received a copy of the GNU General Public License
 along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "db.h"
-#include "mainviewmodel.h"
-#include "favoritelistmodel.h"
-#include "composerviewmodel.h"
-#include "ttsviewmodel.h"
+#include "appcomponents.h"
 #include "colortypeenum.h"
 #include "style.h"
 
@@ -30,6 +27,19 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include <QQuickStyle>
 #include <QTranslator>
 #include <QtSvg>
+
+void setupEngine(QQmlApplicationEngine &engine, AppComponents &components) {
+    qmlRegisterUncreatableType<ColorTypeEnum>("ColorType", 1, 0, "ColorType", "Not creatable as it is an enum type");
+    engine.rootContext()->setContextProperty("mainViewModel", QVariant::fromValue(&components.mainViewModel));
+    engine.rootContext()->setContextProperty("rhymeListModel", QVariant::fromValue(&components.rhymeListModel));
+    engine.rootContext()->setContextProperty("definitionsListModel", QVariant::fromValue(&components.definitionListModel));
+    engine.rootContext()->setContextProperty("thesaurusListModel", QVariant::fromValue(&components.thesaurusListModel));
+    engine.rootContext()->setContextProperty("composerViewModel", QVariant::fromValue(&components.composerViewModel));
+    engine.rootContext()->setContextProperty("ttsViewModel", QVariant::fromValue(&components.ttsViewModel));
+    engine.rootContext()->setContextProperty("favoriteListModel", QVariant::fromValue(&components.favoriteListModel));
+    engine.rootContext()->setContextProperty("theme", Style::setStyle());
+    engine.load(QUrl("qrc:/qml/main.qml"));
+}
 
 int main(int argc, char *argv[])
 {
@@ -46,36 +56,8 @@ int main(int argc, char *argv[])
     Db db;
     QFuture<void> future = db.openDb();
     future.waitForFinished(); // TODO
-    RhymeRepository rhymeRepository(&db);
-    RhymeViewModel rhymeViewModel(&rhymeRepository);
-    RhymeListModel rhymeListModel(&rhymeViewModel);
-    ThesaurusRepository thesaurusRepository(&db);
-    ThesaurusViewModel thesaurusViewModel(&thesaurusRepository);
-    ThesaurusListModel thesaurusListModel(&thesaurusViewModel);
-    DefinitionRepository definitionRepository(&db);
-    DefinitionViewModel definitionViewModel(&definitionRepository);
-    DefinitionListModel definitionsListModel(&definitionViewModel);
-    PoemRepository poemRepository;
-    ComposerViewModel composerViewModel(&poemRepository);
-    TtsViewModel ttsViewModel;
-    FavoriteRepository favoriteRepository;
-    FavoriteListModel favoriteListModel(&favoriteRepository);
-    MainViewModel mainViewModel(
-                &rhymeListModel,
-                &thesaurusListModel,
-                &definitionsListModel,
-                &favoriteRepository);
-
+    AppComponents components(&db);
     QQmlApplicationEngine engine;
-    qmlRegisterUncreatableType<ColorTypeEnum>("ColorType", 1, 0, "ColorType", "Not creatable as it is an enum type");
-    engine.rootContext()->setContextProperty("mainViewModel", QVariant::fromValue(&mainViewModel));
-    engine.rootContext()->setContextProperty("rhymeListModel", QVariant::fromValue(&rhymeListModel));
-    engine.rootContext()->setContextProperty("definitionsListModel", QVariant::fromValue(&definitionsListModel));
-    engine.rootContext()->setContextProperty("thesaurusListModel", QVariant::fromValue(&thesaurusListModel));
-    engine.rootContext()->setContextProperty("composerViewModel", QVariant::fromValue(&composerViewModel));
-    engine.rootContext()->setContextProperty("ttsViewModel", QVariant::fromValue(&ttsViewModel));
-    engine.rootContext()->setContextProperty("favoriteListModel", QVariant::fromValue(&favoriteListModel));
-    engine.rootContext()->setContextProperty("theme", Style::setStyle());
-    engine.load(QUrl("qrc:/qml/main.qml"));
+    setupEngine(engine, components);
     return a.exec();
 }
