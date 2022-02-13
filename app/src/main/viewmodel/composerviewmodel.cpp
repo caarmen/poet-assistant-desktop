@@ -72,7 +72,11 @@ bool ComposerViewModel::isTtsSupported() const {
 }
 
 void ComposerViewModel::play() {
-    tts->say(repository->getPoem());
+    if (tts->state() == QTextToSpeech::Speaking) {
+        tts->stop();
+    } else {
+        tts->say(repository->getPoem());
+    }
 }
 
 void ComposerViewModel::onSavedStateChanged(PoemRepository::PoemSavedState savedState) {

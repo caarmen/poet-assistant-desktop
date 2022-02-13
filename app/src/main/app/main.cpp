@@ -20,7 +20,9 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "mainviewmodel.h"
 #include "favoritelistmodel.h"
 #include "composerviewmodel.h"
+#include "ttsviewmodel.h"
 #include "colortypeenum.h"
+#include "style.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -55,6 +57,7 @@ int main(int argc, char *argv[])
     DefinitionListModel definitionsListModel(&definitionViewModel);
     PoemRepository poemRepository;
     ComposerViewModel composerViewModel(&poemRepository);
+    TtsViewModel ttsViewModel;
     FavoriteRepository favoriteRepository;
     FavoriteListModel favoriteListModel(&favoriteRepository);
     MainViewModel mainViewModel(
@@ -70,8 +73,9 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("definitionsListModel", QVariant::fromValue(&definitionsListModel));
     engine.rootContext()->setContextProperty("thesaurusListModel", QVariant::fromValue(&thesaurusListModel));
     engine.rootContext()->setContextProperty("composerViewModel", QVariant::fromValue(&composerViewModel));
+    engine.rootContext()->setContextProperty("ttsViewModel", QVariant::fromValue(&ttsViewModel));
     engine.rootContext()->setContextProperty("favoriteListModel", QVariant::fromValue(&favoriteListModel));
-    engine.rootContext()->setContextProperty("theme", QQuickStyle::name());
+    engine.rootContext()->setContextProperty("theme", Style::setStyle());
     engine.load(QUrl("qrc:/qml/main.qml"));
     return a.exec();
 }

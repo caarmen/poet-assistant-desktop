@@ -31,6 +31,7 @@ TARGET=PoetAssistant
 SOURCE_DIR=src
 SOURCES += \
     $${SOURCE_DIR}/main/app/main.cpp \
+    $${SOURCE_DIR}/main/app/style.cpp \
     $${SOURCE_DIR}/main/debug/refcounter.cpp \
     $${SOURCE_DIR}/main/repository/db.cpp \
     $${SOURCE_DIR}/main/repository/definitionentity.cpp \
@@ -56,6 +57,7 @@ SOURCES += \
     $${SOURCE_DIR}/main/viewmodel/thesaurusentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesaurusviewmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/ttsviewmodel.cpp \
 
 TRANSLATIONS += \
     resources/i18n/PoetAssistant_en_US.ts
@@ -72,6 +74,7 @@ RESOURCES += \
     resources/qml.qrc
 
 HEADERS += \
+    $${SOURCE_DIR}/main/app/style.h \
     $${SOURCE_DIR}/main/debug/refcounter.h \
     $${SOURCE_DIR}/main/repository/db.h \
     $${SOURCE_DIR}/main/repository/definitionentity.h \
@@ -98,6 +101,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/thesaurusentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/thesaurusviewmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/ttsviewmodel.h \
 
 INCLUDEPATH +=  \
     $${SOURCE_DIR}/main/debug \
