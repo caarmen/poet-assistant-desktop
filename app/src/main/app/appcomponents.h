@@ -28,6 +28,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "favoritelistmodel.h"
 #include "mainviewmodel.h"
 #include "ttsviewmodel.h"
+#include "style.h"
 
 #include <QObject>
 
@@ -61,6 +62,7 @@ private:
     FavoriteRepository favoriteRepository;
 public:
     FavoriteListModel favoriteListModel;
+    Style style;
     MainViewModel mainViewModel;
 };
 

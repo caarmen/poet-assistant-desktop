@@ -35,9 +35,11 @@ AppComponents::AppComponents(Db *db, QObject *parent)
       ttsViewModel(),
       favoriteRepository(),
       favoriteListModel(&favoriteRepository),
+      style(),
       mainViewModel(&rhymeListModel,
                     &thesaurusListModel,
                     &definitionListModel,
-                    &favoriteRepository)
+                    &favoriteRepository,
+                    &style)
 {
 }

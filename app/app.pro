@@ -106,6 +106,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/ttsviewmodel.h \
 
 INCLUDEPATH +=  \
+    $${SOURCE_DIR}/main/app \
     $${SOURCE_DIR}/main/debug \
     $${SOURCE_DIR}/main/repository \
     $${SOURCE_DIR}/main/viewmodel

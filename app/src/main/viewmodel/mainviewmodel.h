@@ -24,6 +24,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "definitionlistmodel.h"
 #include "thesauruslistmodel.h"
 #include "favoriterepository.h"
+#include "style.h"
 
 class MainViewModel : public QObject
 {
@@ -33,6 +34,7 @@ public:
                            ThesaurusListModel *thesaurusListModel,
                            DefinitionListModel *definitionsListModel,
                            FavoriteRepository *favoriteRepository,
+                           Style *style,
                            QObject *parent = nullptr);
     Q_INVOKABLE void search(QString query);
     Q_INVOKABLE void searchRhymes(QString query);
@@ -41,6 +43,7 @@ public:
     Q_INVOKABLE QString getFavoriteIcon(QString word);
     Q_INVOKABLE void toggleFavorite(QString query);
     Q_INVOKABLE void clearFavorites();
+    Q_INVOKABLE void setStyle(QString name);
 
 signals:
     void favoritesChanged();
@@ -50,6 +53,7 @@ private:
     ThesaurusListModel *thesaurusListModel;
     DefinitionListModel *definitionsListModel;
     FavoriteRepository *favoriteRepository;
+    Style *style;
 };
 
 #endif // MAINVIEWMODEL_H

@@ -19,17 +19,25 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "style.h"
 #include <QQuickStyle>
+#include <QDebug>
 
-Style::Style()
+Style::Style(QObject *parent)
+    : QObject{parent}
 {
 
 }
 
-QString Style::setStyle(){
-    QString style = QQuickStyle::name();
+QString Style::setStyle(QString style){
+    if (style == "") style = QQuickStyle::name();
     if (!supportedStyles.contains(style)) {
         style = "Basic";
         QQuickStyle::setStyle(style);
     }
+    qDebug() << "setting style " << style;
+    emit styleChanged(style);
     return style;
+}
+
+QString Style::getStyle() {
+    return QQuickStyle::name();
 }

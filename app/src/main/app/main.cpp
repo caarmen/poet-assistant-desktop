@@ -28,7 +28,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include <QTranslator>
 #include <QtSvg>
 
-void setupEngine(QQmlApplicationEngine &engine, AppComponents &components) {
+void setupEngine(QQmlApplicationEngine &engine, AppComponents &components, QString styleName) {
     qmlRegisterUncreatableType<ColorTypeEnum>("ColorType", 1, 0, "ColorType", "Not creatable as it is an enum type");
     engine.rootContext()->setContextProperty("mainViewModel", QVariant::fromValue(&components.mainViewModel));
     engine.rootContext()->setContextProperty("rhymeListModel", QVariant::fromValue(&components.rhymeListModel));
@@ -37,8 +37,13 @@ void setupEngine(QQmlApplicationEngine &engine, AppComponents &components) {
     engine.rootContext()->setContextProperty("composerViewModel", QVariant::fromValue(&components.composerViewModel));
     engine.rootContext()->setContextProperty("ttsViewModel", QVariant::fromValue(&components.ttsViewModel));
     engine.rootContext()->setContextProperty("favoriteListModel", QVariant::fromValue(&components.favoriteListModel));
-    engine.rootContext()->setContextProperty("theme", Style::setStyle());
+    engine.rootContext()->setContextProperty("theme", styleName);
     engine.load(QUrl("qrc:/qml/main.qml"));
+}
+
+void clearEngine(QQmlApplicationEngine *engine) {
+    engine->deleteLater();
+    qmlClearTypeRegistrations();
 }
 
 int main(int argc, char *argv[])
@@ -57,7 +62,19 @@ int main(int argc, char *argv[])
     QFuture<void> future = db.openDb();
     future.waitForFinished(); // TODO
     AppComponents components(&db);
-    QQmlApplicationEngine engine;
-    setupEngine(engine, components);
+    QQmlApplicationEngine *engine = new QQmlApplicationEngine();
+    QString initialStyle = components.style.setStyle();
+    setupEngine(*engine, components, initialStyle);
+    QObject *context = new QObject();
+    QObject::connect(&components.style, &Style::styleChanged, context, [
+                     &engine,
+                     &components
+                     ](QString styleName) {
+        qDebug() << "style changed to " << styleName;
+        if (engine != nullptr) clearEngine(engine);
+        QQuickStyle::setStyle(styleName);
+        engine = new QQmlApplicationEngine();
+        setupEngine(*engine, components, styleName);
+    });
     return a.exec();
 }

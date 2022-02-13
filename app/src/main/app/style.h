@@ -20,14 +20,19 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef STYLE_H
 #define STYLE_H
 
+#include <QObject>
 #include <QStringList>
 
-class Style
+class Style : public QObject
 {
+    Q_OBJECT
 public:
-    static QString setStyle();
+    explicit Style(QObject *parent = nullptr);
+    QString setStyle(QString style="");
+    QString getStyle();
+signals:
+    void styleChanged(QString name);
 private:
-    Style();
     static inline QStringList supportedStyles = {"Basic", "Material", "Universal", "Fusion"};
 };
 

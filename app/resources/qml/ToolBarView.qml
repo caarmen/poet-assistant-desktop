@@ -87,6 +87,7 @@ ToolBar {
 
     function onSearch() {
         mainViewModel.search(tfSearch.text)
+        mainViewModel.setStyle(tfSearch.text)
         searched()
     }
 }

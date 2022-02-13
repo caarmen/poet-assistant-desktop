@@ -17,17 +17,20 @@ You should have received a copy of the GNU General Public License
 along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "mainviewmodel.h"
+#include "style.h"
 #include <QDebug>
 MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
                              ThesaurusListModel *thesaurusListModel,
                              DefinitionListModel *definitionsListModel,
                              FavoriteRepository *favoriteRepository,
+                             Style *style,
                              QObject *parent)
     : QObject{parent},
       rhymeListModel(rhymeListModel),
       thesaurusListModel(thesaurusListModel),
       definitionsListModel(definitionsListModel),
-      favoriteRepository(favoriteRepository)
+      favoriteRepository(favoriteRepository),
+      style(style)
 {
 
 }
@@ -65,4 +68,8 @@ void MainViewModel::toggleFavorite(QString query) {
 void MainViewModel::clearFavorites() {
     favoriteRepository->clear();
     emit favoritesChanged();
+}
+
+void MainViewModel::setStyle(QString name) {
+    style->setStyle(name);
 }
