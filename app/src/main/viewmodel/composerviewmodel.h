@@ -4,6 +4,7 @@
 #include "poemrepository.h"
 #include <QObject>
 #include <QUrl>
+#include <QtTextToSpeech/qtexttospeech.h>
 
 class ComposerViewModel : public QObject
 {
@@ -19,6 +20,8 @@ public:
     Q_INVOKABLE void newFile();
     Q_INVOKABLE void open(QUrl poemFilePath);
     Q_INVOKABLE void saveAs(QUrl poemFilePath);
+    Q_INVOKABLE bool isTtsSupported() const;
+    Q_INVOKABLE void play();
 
 signals:
     void savedStateChanged();
@@ -32,6 +35,7 @@ private:
     void writePoem(QString poem);
     void onSavedStateChanged(PoemRepository::PoemSavedState savedState);
     PoemRepository *repository;
+    QTextToSpeech *tts;
 
 };
 

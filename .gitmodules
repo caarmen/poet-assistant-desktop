@@ -1,0 +1,4 @@
+[submodule "lib/qtspeech"]
+	path = lib/qtspeech
+	url = https://github.com/caarmen/qtspeech.git
+	branch = poet-assistant-desktop

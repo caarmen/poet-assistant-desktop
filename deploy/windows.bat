@@ -42,6 +42,10 @@ echo Compiling...
 
 qmake -recursive VERSION=%version% PoetAssistant.pro
 
+cd lib\qtspeech\src\tts
+mingw32-make -f Makefile.tts.Release
+cd %project_folder%
+
 :: The release makefile looks for the generated translation file in the debug folder.
 :: Make just this target before making the release
 cd %app_folder%
@@ -49,7 +53,6 @@ mingw32-make -f Makefile.Debug debug/PoetAssistant_en_US.qm
 
 mingw32-make release
 cd %project_folder%
-
 
 windeployqt --qmldir=. --qmlimport=. %output_folder%\PoetAssistant.exe
 
