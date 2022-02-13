@@ -76,10 +76,7 @@ Window {
         RowLayout {
             Layout.leftMargin: 32
             Layout.rightMargin: 32
-            ToolButton {
-                icon.source: "qrc:/images/ic_legal.svg"
-                icon.color: Style.primaryText
-            }
+            Icon { source: "qrc:/images/ic_legal.svg" }
             Text {
                 text: qsTr("about_legal_label")
                 font.bold: true
@@ -131,10 +128,7 @@ Window {
     Component {
         id: aboutLinkedItem
         RowLayout {
-            ToolButton {
-                icon.source: `qrc:/images/${iconSource}.svg`
-                icon.color: Style.primaryText
-            }
+            Icon { source: `qrc:/images/${iconSource}.svg` }
             Text {
                 text: qsTr(label)
                 font.bold: true
