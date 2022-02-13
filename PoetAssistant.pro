@@ -29,3 +29,9 @@ macx:{
     ttsosxplugin.depends = tts
     app.depends += ttsosxplugin
 }
+linux-g++ {
+    SUBDIRS += ttslinuxplugin
+    ttslinuxplugin.file=lib/qtspeech/src/plugins/tts/speechdispatcher/speechdispatcher.pro
+    ttslinuxplugin.depends = tts
+    app.depends +=  ttslinuxplugin
+}

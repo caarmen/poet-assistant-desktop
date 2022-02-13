@@ -44,7 +44,11 @@ QStringList TtsViewModel::getAvailableVoiceNames() const {
     QStringList voiceNames = QtConcurrent::blockingMapped(tts->availableVoices(), [=] (QVoice voice) {
         return voice.name();
     });
+    QString selectedVoiceName = getVoiceName();
     voiceNames.sort();
+    if (!voiceNames.contains(selectedVoiceName)) {
+        voiceNames.prepend(selectedVoiceName);
+    }
     return voiceNames;
 }
 void TtsViewModel::useVoice(QString name) {
