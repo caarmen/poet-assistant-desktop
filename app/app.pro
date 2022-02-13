@@ -140,3 +140,12 @@ macx:{
     PRE_TARGETDEPS += $${QtSpeechOsxPlugin.target}
     QMAKE_EXTRA_TARGETS += QtSpeechOsxPlugin
 }
+win32:{
+    BUILD_DIR=$$shadowed($$PWD)/build/out/
+    QtSpeechWinPlugin.target = $${BUILD_DIR}/texttospeech/qtexttospeech_sapi.dll
+    QtSpeechWinPlugin.commands = \
+            md $$shell_path($${BUILD_DIR}\texttospeech) && \
+            copy $$shell_path($${QTSPEECH_DIR}\plugins\texttospeech\qtexttospeech_sapi.dll) $$shell_path($${BUILD_DIR}\texttospeech)
+    PRE_TARGETDEPS += $${QtSpeechWinPlugin.target}
+    QMAKE_EXTRA_TARGETS += QtSpeechWinPlugin
+}

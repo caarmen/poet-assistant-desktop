@@ -24,14 +24,19 @@ app.depends += tts
 
 macx:{
     SUBDIRS += ttsosxplugin
-
     ttsosxplugin.file=lib/qtspeech/src/plugins/tts/osx/osx.pro
     ttsosxplugin.depends = tts
     app.depends += ttsosxplugin
 }
-linux-g++ {
+linux-g++:{
     SUBDIRS += ttslinuxplugin
     ttslinuxplugin.file=lib/qtspeech/src/plugins/tts/speechdispatcher/speechdispatcher.pro
     ttslinuxplugin.depends = tts
     app.depends +=  ttslinuxplugin
+}
+win32:{
+    SUBDIRS += ttswinplugin
+    ttswinplugin.file=lib/qtspeech/src/plugins/tts/sapi/sapi.pro
+    ttswinplugin.depends = tts
+    app.depends += ttswinplugin
 }

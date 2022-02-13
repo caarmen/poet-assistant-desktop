@@ -31,7 +31,7 @@ call %QT_HOME%\mingw_64\bin\qtenv2.bat
 :: the qtenv2.bat script changes directories. We need to change back
 cd %project_folder%
 
-set app_folder=app
+set app_folder=%project_folder%\app
 set output_folder=%app_folder%\build\out
 
 echo Preparing installer config...
@@ -42,17 +42,13 @@ echo Compiling...
 
 qmake -recursive VERSION=%version% PoetAssistant.pro
 
-cd lib\qtspeech\src\tts
-mingw32-make -f Makefile.tts.Release
-cd %project_folder%
-
 :: The release makefile looks for the generated translation file in the debug folder.
 :: Make just this target before making the release
 cd %app_folder%
 mingw32-make -f Makefile.Debug debug/PoetAssistant_en_US.qm
+cd %project_folder%
 
 mingw32-make release
-cd %project_folder%
 
 windeployqt --qmldir=. --qmlimport=. %output_folder%\PoetAssistant.exe
 
