@@ -28,6 +28,7 @@ class RhymeEntityMapper
 public:
     static QList<RhymeDisplayData*>* map(const QList<RhymeEntity*>* rhymeEntities);
 private:
+    static const char *map(RhymeEntity::SyllablesType syllablesType);
     RhymeEntityMapper();
 };
 

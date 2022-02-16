@@ -18,6 +18,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "rhymeentitymapper.h"
 #include <QtConcurrent>
+#include <QtGlobal>
 
 RhymeEntityMapper::RhymeEntityMapper()
 {
@@ -26,13 +27,24 @@ RhymeEntityMapper::RhymeEntityMapper()
 
 QList<RhymeDisplayData*>* RhymeEntityMapper::map(const QList<RhymeEntity*>* rhymeEntities) {
     auto *result = new QList<RhymeDisplayData*>();
-    QString currentSyllables = "";
+    QString sectionHeading = "";
     for(auto *rhymeEntity : *rhymeEntities) {
-        if (currentSyllables != rhymeEntity->stressSyllables) {
-            result->append(new RhymeDisplayData(rhymeEntity->stressSyllables, false, true, false, ColorType::Surface));
-            currentSyllables = rhymeEntity->stressSyllables;
+        QString syllablesTypeLabel = qtTrId(map(rhymeEntity->syllablesType));
+        QString entityHeading = qtTrId("rhymer_section_heading").arg(syllablesTypeLabel, rhymeEntity->syllables);
+        if (entityHeading != sectionHeading) {
+            sectionHeading = entityHeading;
+            result->append(new RhymeDisplayData(sectionHeading, false, true, false, ColorType::Surface));
         }
         result->append(new RhymeDisplayData(rhymeEntity->word, false, false, true, ColorType::Background));
     }
     return result;
+}
+
+const char *RhymeEntityMapper::map(RhymeEntity::SyllablesType syllablesType) {
+    switch(syllablesType) {
+    case RhymeEntity::STRICT: return "rhymer_syllables_type_strict";
+    case RhymeEntity::LAST_3: return "rhymer_syllables_type_last_three_syllables";
+    case RhymeEntity::LAST_2: return "rhymer_syllables_type_last_two_syllables";
+    default: return "rhymer_syllables_type_last_syllable";
+    }
 }

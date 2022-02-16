@@ -146,6 +146,21 @@
     <message id="rhymer_no_query">
         <translation>No rhymes yet. Use the search bar to get started</translation>
     </message>
+    <message id="rhymer_section_heading">
+        <translation>%1 - %2</translation>
+    </message>
+    <message id="rhymer_syllables_type_strict">
+        <translation>Strict matches</translation>
+    </message>
+    <message id="rhymer_syllables_type_last_three_syllables">
+        <translation>Last 3 syllables</translation>
+    </message>
+    <message id="rhymer_syllables_type_last_two_syllables">
+        <translation>Last 2 syllables</translation>
+    </message>
+    <message id="rhymer_syllables_type_last_syllable">
+        <translation>Last syllable</translation>
+    </message>
     <message id="state_saved">
         <translation>Saved</translation>
     </message>

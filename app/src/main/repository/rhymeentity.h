@@ -27,13 +27,16 @@ class RhymeEntity : public QObject
 {
     Q_OBJECT
 public:
+    enum SyllablesType {STRICT, LAST_3, LAST_2, LAST_1};
     explicit RhymeEntity(
             QString word,
-            QString stressSyllables,
+            SyllablesType syllablesType,
+            QString syllables,
             QObject *parent = nullptr);
     ~RhymeEntity();
     const QString word;
-    const QString stressSyllables;
+    const SyllablesType syllablesType;
+    const QString syllables;
 signals:
 
 private:
