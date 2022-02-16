@@ -22,6 +22,10 @@ import QtQuick.Controls
 Menu {
     property string word
     id: contextMenu
+    enum Tabs {
+        RHYMER, THESAURUS, DICTIONARY
+    }
+
     MenuItem {
         text: word
         enabled: false
@@ -30,34 +34,61 @@ Menu {
     MenuSeparator {
         background: Rectangle { color: Style.surface }
     }
-    MenuItem {
-        background: Rectangle { color: Style.surface }
-        icon.source: "qrc:/images/ic_rhymer.svg"
-        icon.color: Style.primary
-        text: qsTrId("context_menu_rhymer")
-        onTriggered: {
-            bar.currentIndex = 0
+    Loader {
+        sourceComponent: menuItem
+        property string iconSource: "copy"
+        property string label: "context_menu_copy"
+        function menuAction() {
+            mainViewModel.copy(word)
+        }
+    }
+    Loader {
+        sourceComponent: menuItem
+        property string iconSource: "speak"
+        property string label: "context_menu_speak"
+        function menuAction() {
+            ttsViewModel.play(word)
+        }
+    }
+    Loader {
+        sourceComponent: menuItem
+        property string iconSource: "ic_rhymer"
+        property string label: "context_menu_rhymer"
+        function menuAction() {
+            bar.currentIndex = Tabs.Tabs.RHYMER
             mainViewModel.searchRhymes(word)
         }
     }
-    MenuItem {
-        background: Rectangle { color: Style.surface }
-        icon.source: "qrc:/images/ic_thesaurus.svg"
-        icon.color: Style.primary
-        text: qsTrId("context_menu_thesaurus")
-        onTriggered: {
-            bar.currentIndex = 1
+    Loader {
+        sourceComponent: menuItem
+        property string iconSource: "ic_thesaurus"
+        property string label: "context_menu_thesaurus"
+        function menuAction() {
+            bar.currentIndex = Tabs.Tabs.THESAURUS
             mainViewModel.searchThesaurus(word)
         }
     }
-    MenuItem {
-        background: Rectangle { color: Style.surface }
-        icon.source: "qrc:/images/ic_definitions.svg"
-        icon.color: Style.primary
-        text: qsTrId("context_menu_dictionary")
-        onTriggered: {
-            bar.currentIndex = 2
+    Loader {
+        sourceComponent: menuItem
+        property string iconSource: "ic_definitions"
+        property string label: "context_menu_dictionary"
+        function menuAction() {
+            bar.currentIndex = Tabs.Tabs.DICTIONARY
             mainViewModel.searchDefinitions(word)
+        }
+    }
+
+    Component {
+        id: menuItem
+        MenuItem {
+            background: Rectangle { color: Style.surface }
+            icon.source: `qrc:/images/${iconSource}.svg`
+            icon.color: Style.primary
+            text: qsTrId(label)
+            onTriggered: {
+                menuAction()
+                contextMenu.close()
+            }
         }
     }
 }

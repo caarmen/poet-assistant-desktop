@@ -21,6 +21,10 @@ import QtQuick.Controls
 
 Rectangle {
     property string word
+    onWordChanged: {
+        contextMenu.word = word
+    }
+
     color: Style.background
     height: 48
     width: parent.width
@@ -31,6 +35,9 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
     }
+    WordContextMenu {
+        id: contextMenu
+    }
     Text {
         id: wordView
         x: 16
@@ -38,6 +45,12 @@ Rectangle {
         font.bold: true
         text: word
         anchors.left: favoriteIcon.right
+        anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
+        MouseArea {
+            anchors.fill: parent
+            acceptedButtons: Qt.LeftButton
+            onClicked:  contextMenu.popup()
+        }
     }
 }
