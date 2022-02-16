@@ -29,7 +29,7 @@ class SuggestionRepository : public QObject
     Q_OBJECT
 public:
     explicit SuggestionRepository(Db *db, QObject *parent = nullptr);
-    QFuture<QList<SuggestionEntity*>*> readSuggestions(QString word);
+    QFuture<QList<SuggestionEntity *>*> readSuggestions(QString word);
 signals:
 
 private:

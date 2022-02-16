@@ -28,7 +28,7 @@ class ThesaurusRepository : public QObject
     Q_OBJECT
 public:
     explicit ThesaurusRepository(Db *db, QObject *parent = nullptr);
-    QFuture<QList<ThesaurusEntity*>*> readThesaurus(QString word);
+    QFuture<QList<ThesaurusEntity *>*> readThesaurus(QString word);
 
 signals:
 

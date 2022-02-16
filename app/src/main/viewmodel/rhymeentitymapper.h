@@ -26,7 +26,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 class RhymeEntityMapper
 {
 public:
-    static QList<RhymeDisplayData*>* map(const QList<RhymeEntity*>* rhymeEntities);
+    static QList<RhymeDisplayData *> *map(const QList<RhymeEntity *> *rhymeEntities);
 private:
     static const char *map(RhymeEntity::SyllablesType syllablesType);
     RhymeEntityMapper();

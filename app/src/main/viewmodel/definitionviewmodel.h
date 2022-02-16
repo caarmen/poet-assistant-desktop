@@ -29,7 +29,7 @@ class DefinitionViewModel : public QObject
     Q_OBJECT
 public:
     explicit DefinitionViewModel(DefinitionRepository *repository, QObject *parent = nullptr);
-    QFuture<QList<DefinitionDisplayData*>*> readDefinitions(QString searchText);
+    QFuture<QList<DefinitionDisplayData *>*> readDefinitions(QString searchText);
 
 private:
     DefinitionRepository *repository;

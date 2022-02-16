@@ -25,12 +25,14 @@ RhymeEntityMapper::RhymeEntityMapper()
 
 }
 
-QList<RhymeDisplayData*>* RhymeEntityMapper::map(const QList<RhymeEntity*>* rhymeEntities) {
-    auto *result = new QList<RhymeDisplayData*>();
+QList<RhymeDisplayData *> *RhymeEntityMapper::map(const QList<RhymeEntity *> *rhymeEntities)
+{
+    auto *result = new QList<RhymeDisplayData *>();
     QString sectionHeading = "";
-    for(auto *rhymeEntity : *rhymeEntities) {
+    for (auto *rhymeEntity : *rhymeEntities) {
         QString syllablesTypeLabel = qtTrId(map(rhymeEntity->syllablesType));
-        QString entityHeading = qtTrId("rhymer_section_heading").arg(syllablesTypeLabel, rhymeEntity->syllables);
+        QString entityHeading = qtTrId("rhymer_section_heading").arg(syllablesTypeLabel,
+                                                                     rhymeEntity->syllables);
         if (entityHeading != sectionHeading) {
             sectionHeading = entityHeading;
             result->append(new RhymeDisplayData(sectionHeading, false, true, false, ColorType::Surface));
@@ -40,11 +42,16 @@ QList<RhymeDisplayData*>* RhymeEntityMapper::map(const QList<RhymeEntity*>* rhym
     return result;
 }
 
-const char *RhymeEntityMapper::map(RhymeEntity::SyllablesType syllablesType) {
-    switch(syllablesType) {
-    case RhymeEntity::STRICT: return "rhymer_syllables_type_strict";
-    case RhymeEntity::LAST_3: return "rhymer_syllables_type_last_three_syllables";
-    case RhymeEntity::LAST_2: return "rhymer_syllables_type_last_two_syllables";
-    default: return "rhymer_syllables_type_last_syllable";
+const char *RhymeEntityMapper::map(RhymeEntity::SyllablesType syllablesType)
+{
+    switch (syllablesType) {
+    case RhymeEntity::STRICT:
+        return "rhymer_syllables_type_strict";
+    case RhymeEntity::LAST_3:
+        return "rhymer_syllables_type_last_three_syllables";
+    case RhymeEntity::LAST_2:
+        return "rhymer_syllables_type_last_two_syllables";
+    default:
+        return "rhymer_syllables_type_last_syllable";
     }
 }

@@ -25,22 +25,24 @@ RhymeRepository::RhymeRepository(Db *db, QObject *parent)
 
 }
 
-QFuture<QList<RhymeEntity*>*> RhymeRepository::readStressSyllableRhymes(QString word){
-    return QtConcurrent::run(db->getThreadPool(), [=]() {
+QFuture<QList<RhymeEntity *>*> RhymeRepository::readStressSyllableRhymes(QString word)
+{
+    return QtConcurrent::run(db->getThreadPool(), [ = ]() {
         QSqlQuery query;
         QString fullQueryString = createFullQueryString();
         query.prepare(fullQueryString);
         query.bindValue(":word", word);
         query.exec();
-        auto *result = new QList<RhymeEntity*>();
-        while(query.next()) {
+        auto *result = new QList<RhymeEntity *>();
+        while (query.next()) {
             result->append(create(query));
         }
         return result;
     });
 }
 
-RhymeEntity* RhymeRepository::create(QSqlQuery &query) {
+RhymeEntity *RhymeRepository::create(QSqlQuery &query)
+{
     QString word = query.value("word").toString();
     QString syllablesTypeString = query.value("syllables_type").toString();
     QString syllables = query.value("syllables").toString();
@@ -48,7 +50,9 @@ RhymeEntity* RhymeRepository::create(QSqlQuery &query) {
     return new RhymeEntity(word, syllablesType, syllables);
 }
 
-QString RhymeRepository::createQueryString(QString syllablesTypeFieldName, QString syllablesTypeSortKey) {
+QString RhymeRepository::createQueryString(QString syllablesTypeFieldName,
+                                           QString syllablesTypeSortKey)
+{
     QString result = QString(R"(
             SELECT
               '%1' AS syllables_type,

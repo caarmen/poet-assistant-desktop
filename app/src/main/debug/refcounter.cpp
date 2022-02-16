@@ -25,12 +25,14 @@ RefCounter::RefCounter(QString label, bool enabled, QObject *parent)
 {
 }
 
-void RefCounter::inc() {
+void RefCounter::inc()
+{
     count++;
     if (enabled) qDebug() << "new" << label << "(" << count << ")";
 }
 
-void RefCounter::dec() {
+void RefCounter::dec()
+{
     count--;
     if (enabled) qDebug() << "del" << label << "(" << count << ")";
 }

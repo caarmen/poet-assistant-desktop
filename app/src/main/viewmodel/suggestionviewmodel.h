@@ -29,7 +29,7 @@ class SuggestionViewModel : public QObject
     Q_OBJECT
 public:
     explicit SuggestionViewModel(SuggestionRepository *repository, QObject *parent = nullptr);
-    QFuture<QList<SuggestionDisplayData*>*> readSuggestions(QString searchText);
+    QFuture<QList<SuggestionDisplayData *>*> readSuggestions(QString searchText);
 
 private:
     SuggestionRepository *repository;

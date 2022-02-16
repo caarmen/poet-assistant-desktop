@@ -34,6 +34,7 @@ RhymeDisplayData::RhymeDisplayData(QString text,
     RhymeDisplayData::refCounter.inc();
 }
 
-RhymeDisplayData::~RhymeDisplayData() {
+RhymeDisplayData::~RhymeDisplayData()
+{
     RhymeDisplayData::refCounter.dec();
 }

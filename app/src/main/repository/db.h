@@ -26,7 +26,7 @@ class Db
 public:
     Db();
     QFuture<void> openDb();
-    QThreadPool * getThreadPool();
+    QThreadPool *getThreadPool();
 private :
     QThreadPool *threadPool;
 };

@@ -28,12 +28,13 @@ ThesaurusListModel::ThesaurusListModel(ThesaurusViewModel *viewModel, QObject *p
 
 }
 
-void ThesaurusListModel::readThesaurus(QString searchText) {
+void ThesaurusListModel::readThesaurus(QString searchText)
+{
     word = searchText;
     emit wordChanged(word);
-    QFuture<QList<ThesaurusDisplayData*>*> future = viewModel->readThesaurus(searchText);
-    auto *watcher = new QFutureWatcher<QList<ThesaurusDisplayData*>*>();
-    QObject::connect(watcher, &QFutureWatcher<QList<ThesaurusDisplayData*>*>::finished, this, [=](){
+    QFuture<QList<ThesaurusDisplayData *>*> future = viewModel->readThesaurus(searchText);
+    auto *watcher = new QFutureWatcher<QList<ThesaurusDisplayData *>*>();
+    QObject::connect(watcher, &QFutureWatcher<QList<ThesaurusDisplayData *>*>::finished, this, [ = ]() {
         beginResetModel();
         if (thesaurusEntries != nullptr) {
             qDeleteAll(*thesaurusEntries);
@@ -50,7 +51,8 @@ void ThesaurusListModel::readThesaurus(QString searchText) {
     watcher->setFuture(future);
 }
 
-QHash<int,QByteArray> ThesaurusListModel::roleNames() const {
+QHash<int, QByteArray> ThesaurusListModel::roleNames() const
+{
     return { { ThesaurusRole, "thesaurus" } };
 }
 

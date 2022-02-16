@@ -29,13 +29,15 @@ DefinitionListModel::DefinitionListModel(DefinitionViewModel *viewModel, QObject
 {
 }
 
-void DefinitionListModel::readDefinitions(QString searchText) {
+void DefinitionListModel::readDefinitions(QString searchText)
+{
     word = searchText;
     emit wordChanged(word);
 
-    QFuture<QList<DefinitionDisplayData*>*> future = viewModel->readDefinitions(searchText);
-    auto *watcher = new QFutureWatcher<QList<DefinitionDisplayData*>*>();
-    QObject::connect(watcher, &QFutureWatcher<QList<DefinitionDisplayData*>*>::finished, this, [=](){
+    QFuture<QList<DefinitionDisplayData *>*> future = viewModel->readDefinitions(searchText);
+    auto *watcher = new QFutureWatcher<QList<DefinitionDisplayData *>*>();
+    QObject::connect(watcher, &QFutureWatcher<QList<DefinitionDisplayData *>*>::finished,
+    this, [ = ]() {
         beginResetModel();
         if (definitions != nullptr) {
             qDeleteAll(*definitions);
@@ -52,7 +54,8 @@ void DefinitionListModel::readDefinitions(QString searchText) {
     watcher->setFuture(future);
 }
 
-QHash<int,QByteArray> DefinitionListModel::roleNames() const {
+QHash<int, QByteArray> DefinitionListModel::roleNames() const
+{
     return { { DefinitionRole, "definition" } };
 }
 

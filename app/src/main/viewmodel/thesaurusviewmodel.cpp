@@ -25,10 +25,11 @@ ThesaurusViewModel::ThesaurusViewModel(ThesaurusRepository *repository, QObject 
 
 }
 
-QFuture<QList<ThesaurusDisplayData*>*> ThesaurusViewModel::readThesaurus(QString searchText) {
+QFuture<QList<ThesaurusDisplayData *>*> ThesaurusViewModel::readThesaurus(QString searchText)
+{
     return repository->readThesaurus(searchText)
-            .then([](QList<ThesaurusEntity*>* entities){
-        QList<ThesaurusDisplayData*> *result = ThesaurusEntityMapper::map(entities);
+    .then([](QList<ThesaurusEntity *> *entities) {
+        QList<ThesaurusDisplayData *> *result = ThesaurusEntityMapper::map(entities);
         qDeleteAll(*entities);
         delete entities;
         return result;

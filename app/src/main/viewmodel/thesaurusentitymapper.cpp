@@ -24,19 +24,20 @@ ThesaurusEntityMapper::ThesaurusEntityMapper()
 
 }
 
-QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::map(QList<ThesaurusEntity*> *entities)
+QList<ThesaurusDisplayData *> *ThesaurusEntityMapper::map(QList<ThesaurusEntity *> *entities)
 {
-    QList<ThesaurusDisplayData*>* result = QtConcurrent::blockingMappedReduced<QList<ThesaurusDisplayData*>*>(
-                *entities,
-                [=] (ThesaurusEntity *entity) {
+    QList<ThesaurusDisplayData *> *result =
+        QtConcurrent::blockingMappedReduced<QList<ThesaurusDisplayData *>*>(
+            *entities,
+    [ = ] (ThesaurusEntity * entity) {
         return map(entity);
     },
-    [=](QList<ThesaurusDisplayData*>* acc, QList<ThesaurusDisplayData*>* entry) {
+    [ = ](QList<ThesaurusDisplayData *> *acc, QList<ThesaurusDisplayData *> *entry) {
         acc->append(*entry);
         return acc;
     },
-    new QList<ThesaurusDisplayData*>()
-    );
+    new QList<ThesaurusDisplayData *>()
+        );
     return result;
 }
 
@@ -55,32 +56,35 @@ const char *ThesaurusEntityMapper::map(const QString &wordType)
     }
 }
 
-QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::mapMatchingWords(const char *label, QString matchingWordsCsv) {
-    QList<ThesaurusDisplayData*> *result = new QList<ThesaurusDisplayData*>();
+QList<ThesaurusDisplayData *> *ThesaurusEntityMapper::mapMatchingWords(const char *label,
+                                                                       QString matchingWordsCsv)
+{
+    QList<ThesaurusDisplayData *> *result = new QList<ThesaurusDisplayData *>();
     if (matchingWordsCsv.isEmpty()) return result;
     QStringList matchingWordsList = matchingWordsCsv.split(",");
     matchingWordsList.sort(Qt::CaseInsensitive);
     result->append(new ThesaurusDisplayData(qtTrId(label), true));
     // QTBUG-72872: Would be nice to use QtConcurrent::blockingMapped() here, instead of manually doing the map
     // from word to ThesaurusDisplayData, but there's a bug with nested QtConcurrent::blockingMapped calls
-    for (auto& matchingWord : matchingWordsList) {
+    for (auto &matchingWord : matchingWordsList) {
         result->append(new ThesaurusDisplayData(matchingWord, false, false, true));
     }
     return result;
 }
-QList<ThesaurusDisplayData*>* ThesaurusEntityMapper::map(ThesaurusEntity* entity) {
-    QList<ThesaurusDisplayData*> *result = new QList<ThesaurusDisplayData*>();
+QList<ThesaurusDisplayData *> *ThesaurusEntityMapper::map(ThesaurusEntity *entity)
+{
+    QList<ThesaurusDisplayData *> *result = new QList<ThesaurusDisplayData *>();
     result->append(new ThesaurusDisplayData(
                        qtTrId(map(entity->wordType)),
                        false,
                        true,
                        false,
                        ColorType::Surface));
-    QList<ThesaurusDisplayData*> *synonyms = mapMatchingWords("synonyms", entity->synonyms);
+    QList<ThesaurusDisplayData *> *synonyms = mapMatchingWords("synonyms", entity->synonyms);
     result->append(*synonyms);
     delete synonyms;
 
-    QList<ThesaurusDisplayData*> *antonyms = mapMatchingWords("antonyms", entity->antonyms);
+    QList<ThesaurusDisplayData *> *antonyms = mapMatchingWords("antonyms", entity->antonyms);
     result->append(*antonyms);
     delete antonyms;
 

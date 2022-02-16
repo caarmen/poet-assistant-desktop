@@ -19,10 +19,10 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "rhymeentity.h"
 
 RhymeEntity::RhymeEntity(
-        QString word,
-        SyllablesType syllablesType,
-        QString syllables,
-        QObject *parent)
+    QString word,
+    SyllablesType syllablesType,
+    QString syllables,
+    QObject *parent)
     : QObject{parent},
       word(word),
       syllablesType(syllablesType),
@@ -31,6 +31,7 @@ RhymeEntity::RhymeEntity(
     RhymeEntity::refCounter.inc();
 }
 
-RhymeEntity::~RhymeEntity() {
+RhymeEntity::~RhymeEntity()
+{
     RhymeEntity::refCounter.dec();
 }

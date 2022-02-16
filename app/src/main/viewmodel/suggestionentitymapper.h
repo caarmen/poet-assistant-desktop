@@ -27,9 +27,9 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 class SuggestionEntityMapper
 {
 public:
-    static QList<SuggestionDisplayData*>* map(QList<SuggestionEntity*> *entities);
+    static QList<SuggestionDisplayData *> *map(QList<SuggestionEntity *> *entities);
 private:
-    static SuggestionDisplayData* map(SuggestionEntity* entity);
+    static SuggestionDisplayData *map(SuggestionEntity *entity);
     SuggestionEntityMapper();
 };
 

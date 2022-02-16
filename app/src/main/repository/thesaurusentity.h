@@ -26,7 +26,8 @@ class ThesaurusEntity : public QObject
 {
     Q_OBJECT
 public:
-    explicit ThesaurusEntity(QString wordType, QString synonyms, QString antonyms, QObject *parent = nullptr);
+    explicit ThesaurusEntity(QString wordType, QString synonyms, QString antonyms,
+                             QObject *parent = nullptr);
     ~ThesaurusEntity();
     const QString wordType;
     const QString synonyms;

@@ -23,11 +23,13 @@ FavoriteListModel::FavoriteListModel(FavoriteRepository *repository, QObject *pa
       repository(repository)
 {
     favorites = repository->readAll();
-    QObject::connect(repository, &FavoriteRepository::favoritesChanged, this, &FavoriteListModel::onFavoritesChanged);
+    QObject::connect(repository, &FavoriteRepository::favoritesChanged, this,
+                     &FavoriteListModel::onFavoritesChanged);
     isEmptyTextVisible = favorites->empty();
 }
 
-void FavoriteListModel::onFavoritesChanged() {
+void FavoriteListModel::onFavoritesChanged()
+{
     beginResetModel();
     favorites = repository->readAll();
     isEmptyTextVisible = favorites->empty();
@@ -35,7 +37,8 @@ void FavoriteListModel::onFavoritesChanged() {
     endResetModel();
 }
 
-QHash<int,QByteArray> FavoriteListModel::roleNames() const {
+QHash<int, QByteArray> FavoriteListModel::roleNames() const
+{
     return { { FavoriteRole, "favorite" } };
 }
 

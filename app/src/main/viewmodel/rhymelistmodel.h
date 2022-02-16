@@ -39,7 +39,7 @@ public:
 
     void readRhymes(QString searchText);
 
-    QHash<int,QByteArray> roleNames() const override;
+    QHash<int, QByteArray> roleNames() const override;
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
@@ -50,7 +50,7 @@ signals:
 private:
     QString word;
     RhymeViewModel *viewModel;
-    QList<RhymeDisplayData*> *rhymeEntries;
+    QList<RhymeDisplayData *> *rhymeEntries;
     bool isEmptyTextVisible;
     QString emptyText;
 };

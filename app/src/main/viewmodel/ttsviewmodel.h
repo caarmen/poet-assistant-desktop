@@ -11,7 +11,8 @@ class TtsViewModel : public QObject
     Q_PROPERTY(double pitch READ getPitch() WRITE setPitch NOTIFY pitchChanged)
     Q_PROPERTY(double rate READ getRate() WRITE setRate NOTIFY rateChanged)
     Q_PROPERTY(QString voiceName READ getVoiceName() NOTIFY voiceNameChanged)
-    Q_PROPERTY(QStringList availableVoiceNames READ getAvailableVoiceNames() NOTIFY availableVoiceNamesChanged)
+    Q_PROPERTY(QStringList availableVoiceNames READ getAvailableVoiceNames() NOTIFY
+               availableVoiceNamesChanged)
     Q_PROPERTY(QString playButtonIcon READ getPlayButtonIcon NOTIFY playButtonIconChanged)
     Q_PROPERTY(double minPitch MEMBER minPitch CONSTANT)
     Q_PROPERTY(double maxPitch MEMBER maxPitch CONSTANT)

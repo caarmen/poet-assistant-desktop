@@ -22,10 +22,10 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 
 Style::Style()
 {
-
 }
 
-QString Style::setStyle(){
+QString Style::setStyle()
+{
     QString style = QQuickStyle::name();
     if (!supportedStyles.contains(style)) {
         style = "Basic";

@@ -38,7 +38,7 @@ public:
 
     void readDefinitions(QString searchText);
 
-    QHash<int,QByteArray> roleNames() const override;
+    QHash<int, QByteArray> roleNames() const override;
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
@@ -49,7 +49,7 @@ signals:
 private:
     QString word;
     DefinitionViewModel *viewModel;
-    QList<DefinitionDisplayData*> *definitions;
+    QList<DefinitionDisplayData *> *definitions;
     bool isEmptyTextVisible;
     QString emptyText;
 };

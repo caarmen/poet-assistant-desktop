@@ -24,6 +24,7 @@ DefinitionEntity::DefinitionEntity(QString partOfSpeech, QString definition, QOb
     DefinitionEntity::refCounter.inc();
 }
 
-DefinitionEntity::~DefinitionEntity() {
+DefinitionEntity::~DefinitionEntity()
+{
     DefinitionEntity::refCounter.dec();
 }

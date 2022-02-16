@@ -25,10 +25,11 @@ SuggestionViewModel::SuggestionViewModel(SuggestionRepository *repository, QObje
 
 }
 
-QFuture<QList<SuggestionDisplayData*>*> SuggestionViewModel::readSuggestions(QString searchText) {
+QFuture<QList<SuggestionDisplayData *>*> SuggestionViewModel::readSuggestions(QString searchText)
+{
     return repository->readSuggestions(searchText)
-            .then([](QList<SuggestionEntity*>* entities){
-        QList<SuggestionDisplayData*> *result = SuggestionEntityMapper::map(entities);
+    .then([](QList<SuggestionEntity *> *entities) {
+        QList<SuggestionDisplayData *> *result = SuggestionEntityMapper::map(entities);
         qDeleteAll(*entities);
         delete entities;
         return result;

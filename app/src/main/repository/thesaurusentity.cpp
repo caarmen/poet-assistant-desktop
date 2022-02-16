@@ -18,12 +18,14 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "thesaurusentity.h"
 
-ThesaurusEntity::ThesaurusEntity(QString wordType, QString synonyms, QString antonyms, QObject *parent)
+ThesaurusEntity::ThesaurusEntity(QString wordType, QString synonyms, QString antonyms,
+                                 QObject *parent)
     : QObject{parent}, wordType(wordType), synonyms(synonyms), antonyms(antonyms)
 {
     ThesaurusEntity::refCounter.inc();
 }
 
-ThesaurusEntity::~ThesaurusEntity() {
+ThesaurusEntity::~ThesaurusEntity()
+{
     ThesaurusEntity::refCounter.dec();
 }

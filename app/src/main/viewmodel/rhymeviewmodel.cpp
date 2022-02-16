@@ -27,10 +27,11 @@ RhymeViewModel::RhymeViewModel(RhymeRepository *repository, QObject *parent)
 
 }
 
-QFuture<QList<RhymeDisplayData*>*> RhymeViewModel::readRhymes(QString searchText){
+QFuture<QList<RhymeDisplayData *>*> RhymeViewModel::readRhymes(QString searchText)
+{
     return repository->readStressSyllableRhymes(searchText)
-            .then([](QList<RhymeEntity*>* rhymeEntities){
-        QList<RhymeDisplayData*>* result = RhymeEntityMapper::map(rhymeEntities);
+    .then([](QList<RhymeEntity *> *rhymeEntities) {
+        QList<RhymeDisplayData *> *result = RhymeEntityMapper::map(rhymeEntities);
         qDeleteAll(*rhymeEntities);
         delete rhymeEntities;
         return result;

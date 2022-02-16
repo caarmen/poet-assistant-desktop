@@ -20,34 +20,39 @@ PoemRepository::PoemRepository(QObject *parent)
     QObject::connect(&timer, &QTimer::timeout, this, QOverload<>::of(&PoemRepository::writePoemImpl));
 }
 
-const QString PoemRepository::getPoem() const {
+const QString PoemRepository::getPoem() const
+{
     return poem;
 }
 
-const QString PoemRepository::getPoemFilePath() const {
+const QString PoemRepository::getPoemFilePath() const
+{
     return poemFilePath;
 }
 
-const QString PoemRepository::getDefaultPoemFilePath() const {
+const QString PoemRepository::getDefaultPoemFilePath() const
+{
     return defaultPoemFilePath;
 }
 
-const QString PoemRepository::generateFilenameFromPoemText() const {
+const QString PoemRepository::generateFilenameFromPoemText() const
+{
     int minLength = 8;
     int maxLength = 16;
     QString suggestion = poem;
     return suggestion
-            // replace all non-letters by hyphens
-            .replace(QRegularExpression("[^\\p{L}]+"), "-")
-            // remove a leading hyphen
-            .replace(QRegularExpression("^-"), "")
-            // get a substring of maxLength
-            .left(maxLength)
-            // remove the last partial word
-            .replace(QRegularExpression(QString("(.{%1}[^-]*)-[^-]*$").arg(minLength)), "\\1");
+           // replace all non-letters by hyphens
+           .replace(QRegularExpression("[^\\p{L}]+"), "-")
+           // remove a leading hyphen
+           .replace(QRegularExpression("^-"), "")
+           // get a substring of maxLength
+           .left(maxLength)
+           // remove the last partial word
+           .replace(QRegularExpression(QString("(.{%1}[^-]*)-[^-]*$").arg(minLength)), "\\1");
 }
 
-void PoemRepository::newFile() {
+void PoemRepository::newFile()
+{
     writePoemImpl();
     this->poemFilePath = defaultPoemFilePath;
     settings.setValue(poemFilePathSetting, poemFilePath);
@@ -56,20 +61,23 @@ void PoemRepository::newFile() {
     writePoemImpl();
 }
 
-void PoemRepository::open(QString poemFilePath) {
+void PoemRepository::open(QString poemFilePath)
+{
     writePoemImpl();
     this->poemFilePath = poemFilePath;
     settings.setValue(poemFilePathSetting, poemFilePath);
     readPoemImpl();
 }
 
-void PoemRepository::saveAs(QString poemFilePath) {
+void PoemRepository::saveAs(QString poemFilePath)
+{
     this->poemFilePath = poemFilePath;
     settings.setValue(poemFilePathSetting, poemFilePath);
     writePoemImpl();
 }
 
-void PoemRepository::writePoem(QString poem) {
+void PoemRepository::writePoem(QString poem)
+{
     this->poem = poem;
     emit poemChanged();
     state = UNSAVED;
@@ -77,7 +85,8 @@ void PoemRepository::writePoem(QString poem) {
     timer.start(saveDelayMs);
 }
 
-void PoemRepository::readPoemImpl() {
+void PoemRepository::readPoemImpl()
+{
     // TODO read from disk in a background thread?
     QFile poemFile(poemFilePath);
     if (poemFile.open(QIODevice::ReadOnly)) {
@@ -87,7 +96,8 @@ void PoemRepository::readPoemImpl() {
     }
 }
 
-void PoemRepository::writePoemImpl() {
+void PoemRepository::writePoemImpl()
+{
     state = SAVING;
     emit stateChanged();
     // TODO write to disk in a background thread?

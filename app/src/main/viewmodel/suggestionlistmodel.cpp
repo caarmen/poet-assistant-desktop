@@ -27,10 +27,12 @@ SuggestionListModel::SuggestionListModel(SuggestionViewModel *viewModel, QObject
 {
 }
 
-void SuggestionListModel::readSuggestions(QString searchText) {
-    QFuture<QList<SuggestionDisplayData*>*> future = viewModel->readSuggestions(searchText);
-    auto *watcher = new QFutureWatcher<QList<SuggestionDisplayData*>*>();
-    QObject::connect(watcher, &QFutureWatcher<QList<SuggestionDisplayData*>*>::finished, this, [=](){
+void SuggestionListModel::readSuggestions(QString searchText)
+{
+    QFuture<QList<SuggestionDisplayData *>*> future = viewModel->readSuggestions(searchText);
+    auto *watcher = new QFutureWatcher<QList<SuggestionDisplayData *>*>();
+    QObject::connect(watcher, &QFutureWatcher<QList<SuggestionDisplayData *>*>::finished,
+    this, [ = ]() {
         beginResetModel();
         if (suggestions != nullptr) {
             qDeleteAll(*suggestions);
@@ -43,7 +45,8 @@ void SuggestionListModel::readSuggestions(QString searchText) {
     watcher->setFuture(future);
 }
 
-QHash<int,QByteArray> SuggestionListModel::roleNames() const {
+QHash<int, QByteArray> SuggestionListModel::roleNames() const
+{
     return { { SuggestionRole, "suggestion" } };
 }
 

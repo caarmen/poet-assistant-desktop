@@ -24,6 +24,7 @@ SuggestionEntity::SuggestionEntity(QString word, Source source, QObject *parent)
     SuggestionEntity::refCounter.inc();
 }
 
-SuggestionEntity::~SuggestionEntity() {
+SuggestionEntity::~SuggestionEntity()
+{
     SuggestionEntity::refCounter.dec();
 }

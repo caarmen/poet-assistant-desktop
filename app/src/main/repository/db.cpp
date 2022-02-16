@@ -25,12 +25,14 @@ Db::Db()
     threadPool->setMaxThreadCount(1);
 }
 
-QThreadPool* Db::getThreadPool() {
+QThreadPool *Db::getThreadPool()
+{
     return threadPool;
 }
 
-QFuture<void> Db::openDb() {
-    return QtConcurrent::run(threadPool, [=]() {
+QFuture<void> Db::openDb()
+{
+    return QtConcurrent::run(threadPool, [ = ]() {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
         db.setConnectOptions("QSQLITE_OPEN_READONLY");
         QFile file(":/poet_assistant.db");

@@ -24,12 +24,14 @@ DefinitionEntityMapper::DefinitionEntityMapper()
 {
 }
 
-QList<DefinitionDisplayData*>* DefinitionEntityMapper::map(QList<DefinitionEntity*> *entities) {
-    return new QList<DefinitionDisplayData*>(QtConcurrent::blockingMapped(*entities, [=] (DefinitionEntity *entity){
+QList<DefinitionDisplayData *> *DefinitionEntityMapper::map(QList<DefinitionEntity *> *entities)
+{
+    return new QList<DefinitionDisplayData *>(QtConcurrent::blockingMapped(*entities, [ = ] (
+    DefinitionEntity * entity) {
         return map(entity);
     }));
 }
-const char * DefinitionEntityMapper::map(const QString &partOfSpeech)
+const char *DefinitionEntityMapper::map(const QString &partOfSpeech)
 {
     if (partOfSpeech == "a") {
         return "adjective";
@@ -44,7 +46,7 @@ const char * DefinitionEntityMapper::map(const QString &partOfSpeech)
     }
 }
 
-DefinitionDisplayData* DefinitionEntityMapper::map(DefinitionEntity* entity)
+DefinitionDisplayData *DefinitionEntityMapper::map(DefinitionEntity *entity)
 {
     return new DefinitionDisplayData(qtTrId(map(entity->partOfSpeech)), entity->definition);
 }

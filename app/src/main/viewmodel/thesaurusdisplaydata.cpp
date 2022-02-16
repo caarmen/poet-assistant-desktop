@@ -34,6 +34,7 @@ ThesaurusDisplayData::ThesaurusDisplayData(QString text,
     ThesaurusDisplayData::refCounter.inc();
 }
 
-ThesaurusDisplayData::~ThesaurusDisplayData() {
+ThesaurusDisplayData::~ThesaurusDisplayData()
+{
     ThesaurusDisplayData::refCounter.dec();
 }

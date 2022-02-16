@@ -30,7 +30,7 @@ class DefinitionRepository : public QObject
     Q_OBJECT
 public:
     explicit DefinitionRepository(Db *db, QObject *parent = nullptr);
-    QFuture<QList<DefinitionEntity*>*> readDefinitions(QString word);
+    QFuture<QList<DefinitionEntity *>*> readDefinitions(QString word);
 signals:
 
 private:

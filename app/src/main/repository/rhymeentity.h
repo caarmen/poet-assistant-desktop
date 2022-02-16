@@ -29,10 +29,10 @@ class RhymeEntity : public QObject
 public:
     enum SyllablesType {STRICT, LAST_3, LAST_2, LAST_1};
     explicit RhymeEntity(
-            QString word,
-            SyllablesType syllablesType,
-            QString syllables,
-            QObject *parent = nullptr);
+        QString word,
+        SyllablesType syllablesType,
+        QString syllables,
+        QObject *parent = nullptr);
     ~RhymeEntity();
     const QString word;
     const SyllablesType syllablesType;

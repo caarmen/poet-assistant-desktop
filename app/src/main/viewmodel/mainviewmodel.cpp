@@ -34,7 +34,8 @@ MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
 
 }
 
-void MainViewModel::search(QString searchText) {
+void MainViewModel::search(QString searchText)
+{
     QString transformedSearchText = searchText.trimmed().toLower();
     rhymeListModel->readRhymes(transformedSearchText);
     definitionsListModel->readDefinitions(transformedSearchText);
@@ -42,35 +43,43 @@ void MainViewModel::search(QString searchText) {
     suggestionListModel->readSuggestions("");
 }
 
-void MainViewModel::searchSuggestions(QString searchText) {
+void MainViewModel::searchSuggestions(QString searchText)
+{
     QString transformedSearchText = searchText.trimmed().toLower();
     suggestionListModel->readSuggestions(transformedSearchText);
 }
 
-void MainViewModel::searchRhymes(QString searchText) {
+void MainViewModel::searchRhymes(QString searchText)
+{
     QString transformedSearchText = searchText.trimmed().toLower();
     rhymeListModel->readRhymes(transformedSearchText);
 }
 
-void MainViewModel::searchThesaurus(QString searchText) {
+void MainViewModel::searchThesaurus(QString searchText)
+{
     QString transformedSearchText = searchText.trimmed().toLower();
     thesaurusListModel->readThesaurus(transformedSearchText);
 }
 
-void MainViewModel::searchDefinitions(QString searchText) {
+void MainViewModel::searchDefinitions(QString searchText)
+{
     QString transformedSearchText = searchText.trimmed().toLower();
     definitionsListModel->readDefinitions(transformedSearchText);
 }
 
-QString MainViewModel::getFavoriteIcon(QString word) {
-    return favoriteRepository->isFavorite(word) ?  "qrc:/images/star.svg" : "qrc:/images/star_border.svg";
+QString MainViewModel::getFavoriteIcon(QString word)
+{
+    return favoriteRepository->isFavorite(word) ?  "qrc:/images/star.svg" :
+           "qrc:/images/star_border.svg";
 }
-void MainViewModel::toggleFavorite(QString query) {
+void MainViewModel::toggleFavorite(QString query)
+{
     favoriteRepository->toggleFavorite(query);
     emit favoritesChanged();
 }
 
-void MainViewModel::clearFavorites() {
+void MainViewModel::clearFavorites()
+{
     favoriteRepository->clear();
     emit favoritesChanged();
 }

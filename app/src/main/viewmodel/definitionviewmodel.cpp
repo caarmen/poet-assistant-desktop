@@ -25,10 +25,11 @@ DefinitionViewModel::DefinitionViewModel(DefinitionRepository *repository, QObje
 
 }
 
-QFuture<QList<DefinitionDisplayData*>*> DefinitionViewModel::readDefinitions(QString searchText) {
+QFuture<QList<DefinitionDisplayData *>*> DefinitionViewModel::readDefinitions(QString searchText)
+{
     return repository->readDefinitions(searchText)
-            .then([](QList<DefinitionEntity*>* entities){
-        QList<DefinitionDisplayData*> *result = DefinitionEntityMapper::map(entities);
+    .then([](QList<DefinitionEntity *> *entities) {
+        QList<DefinitionDisplayData *> *result = DefinitionEntityMapper::map(entities);
         qDeleteAll(*entities);
         delete entities;
         return result;

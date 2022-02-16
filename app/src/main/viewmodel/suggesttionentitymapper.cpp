@@ -24,13 +24,15 @@ SuggestionEntityMapper::SuggestionEntityMapper()
 {
 }
 
-QList<SuggestionDisplayData*>* SuggestionEntityMapper::map(QList<SuggestionEntity*> *entities) {
-    return new QList<SuggestionDisplayData*>(QtConcurrent::blockingMapped(*entities, [=] (SuggestionEntity *entity){
+QList<SuggestionDisplayData *> *SuggestionEntityMapper::map(QList<SuggestionEntity *> *entities)
+{
+    return new QList<SuggestionDisplayData *>(QtConcurrent::blockingMapped(*entities, [ = ] (
+    SuggestionEntity * entity) {
         return map(entity);
     }));
 }
 
-SuggestionDisplayData* SuggestionEntityMapper::map(SuggestionEntity* entity)
+SuggestionDisplayData *SuggestionEntityMapper::map(SuggestionEntity *entity)
 {
     QString icon = "";
     if (entity->source == SuggestionEntity::DICTIONARY) {

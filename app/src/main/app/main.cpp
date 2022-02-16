@@ -28,16 +28,26 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include <QTranslator>
 #include <QtSvg>
 
-void setupEngine(QQmlApplicationEngine &engine, AppComponents &components) {
-    qmlRegisterUncreatableType<ColorTypeEnum>("ColorType", 1, 0, "ColorType", "Not creatable as it is an enum type");
-    engine.rootContext()->setContextProperty("mainViewModel", QVariant::fromValue(&components.mainViewModel));
-    engine.rootContext()->setContextProperty("rhymeListModel", QVariant::fromValue(&components.rhymeListModel));
-    engine.rootContext()->setContextProperty("definitionsListModel", QVariant::fromValue(&components.definitionListModel));
-    engine.rootContext()->setContextProperty("thesaurusListModel", QVariant::fromValue(&components.thesaurusListModel));
-    engine.rootContext()->setContextProperty("composerViewModel", QVariant::fromValue(&components.composerViewModel));
-    engine.rootContext()->setContextProperty("ttsViewModel", QVariant::fromValue(&components.ttsViewModel));
-    engine.rootContext()->setContextProperty("favoriteListModel", QVariant::fromValue(&components.favoriteListModel));
-    engine.rootContext()->setContextProperty("suggestionListModel", QVariant::fromValue(&components.suggestionListModel));
+void setupEngine(QQmlApplicationEngine &engine, AppComponents &components)
+{
+    qmlRegisterUncreatableType<ColorTypeEnum>("ColorType", 1, 0, "ColorType",
+                                              "Not creatable as it is an enum type");
+    engine.rootContext()->setContextProperty("mainViewModel",
+                                             QVariant::fromValue(&components.mainViewModel));
+    engine.rootContext()->setContextProperty("rhymeListModel",
+                                             QVariant::fromValue(&components.rhymeListModel));
+    engine.rootContext()->setContextProperty("definitionsListModel",
+                                             QVariant::fromValue(&components.definitionListModel));
+    engine.rootContext()->setContextProperty("thesaurusListModel",
+                                             QVariant::fromValue(&components.thesaurusListModel));
+    engine.rootContext()->setContextProperty("composerViewModel",
+                                             QVariant::fromValue(&components.composerViewModel));
+    engine.rootContext()->setContextProperty("ttsViewModel",
+                                             QVariant::fromValue(&components.ttsViewModel));
+    engine.rootContext()->setContextProperty("favoriteListModel",
+                                             QVariant::fromValue(&components.favoriteListModel));
+    engine.rootContext()->setContextProperty("suggestionListModel",
+                                             QVariant::fromValue(&components.suggestionListModel));
     engine.rootContext()->setContextProperty("theme", Style::setStyle());
     engine.load(QUrl("qrc:/qml/main.qml"));
 }

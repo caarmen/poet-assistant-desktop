@@ -26,7 +26,7 @@ class ColorTypeEnum: public QObject
 {
     Q_OBJECT
 public:
-    enum Value{
+    enum Value {
         Accent,
         Background,
         Primary,

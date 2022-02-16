@@ -24,6 +24,7 @@ SuggestionDisplayData::SuggestionDisplayData(QString word, QString icon, QObject
     SuggestionDisplayData::refCounter.inc();
 }
 
-SuggestionDisplayData::~SuggestionDisplayData(){
+SuggestionDisplayData::~SuggestionDisplayData()
+{
     SuggestionDisplayData::refCounter.dec();
 }

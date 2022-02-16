@@ -26,9 +26,10 @@ SuggestionRepository::SuggestionRepository(Db *db, QObject *parent)
 
 }
 
-QFuture<QList<SuggestionEntity*>*> SuggestionRepository::readSuggestions(QString word) {
-    return QtConcurrent::run(db->getThreadPool(), [=]() {
-        QList<SuggestionEntity*> *result = new QList<SuggestionEntity*>();
+QFuture<QList<SuggestionEntity *>*> SuggestionRepository::readSuggestions(QString word)
+{
+    return QtConcurrent::run(db->getThreadPool(), [ = ]() {
+        QList<SuggestionEntity *> *result = new QList<SuggestionEntity *>();
         if (word.isEmpty()) {
             return result;
         }

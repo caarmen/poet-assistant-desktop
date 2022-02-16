@@ -29,13 +29,14 @@ RhymeListModel::RhymeListModel(RhymeViewModel *viewModel, QObject *parent)
 
 }
 
-void RhymeListModel::readRhymes(QString searchText) {
+void RhymeListModel::readRhymes(QString searchText)
+{
     word = searchText;
     emit wordChanged(word);
 
-    QFuture<QList<RhymeDisplayData*>*> future = viewModel->readRhymes(searchText);
-    auto *watcher = new QFutureWatcher<QList<RhymeDisplayData*>*>();
-    QObject::connect(watcher, &QFutureWatcher<QList<RhymeDisplayData*>*>::finished, this, [=](){
+    QFuture<QList<RhymeDisplayData *>*> future = viewModel->readRhymes(searchText);
+    auto *watcher = new QFutureWatcher<QList<RhymeDisplayData *>*>();
+    QObject::connect(watcher, &QFutureWatcher<QList<RhymeDisplayData *>*>::finished, this, [ = ]() {
 
         beginResetModel();
         if (rhymeEntries != nullptr) {
@@ -54,7 +55,8 @@ void RhymeListModel::readRhymes(QString searchText) {
     watcher->setFuture(future);
 }
 
-QHash<int,QByteArray> RhymeListModel::roleNames() const {
+QHash<int, QByteArray> RhymeListModel::roleNames() const
+{
     return { { RhymeRole, "rhyme" } };
 }
 
