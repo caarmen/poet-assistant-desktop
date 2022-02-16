@@ -36,6 +36,7 @@ public:
                            FavoriteRepository *favoriteRepository,
                            SuggestionListModel *suggestionListModel,
                            QObject *parent = nullptr);
+    Q_INVOKABLE void copy(QString query);
     Q_INVOKABLE void search(QString query);
     Q_INVOKABLE void searchSuggestions(QString searchText);
     Q_INVOKABLE void searchRhymes(QString query);

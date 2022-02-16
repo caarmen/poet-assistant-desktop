@@ -62,11 +62,17 @@
     <message id="app_title">
         <translation>Poet Assistant</translation>
     </message>
+    <message id="context_menu_copy">
+        <translation>Copy</translation>
+    </message>
     <message id="context_menu_dictionary">
         <translation>Dictionary</translation>
     </message>
     <message id="context_menu_rhymer">
         <translation>Rhymer</translation>
+    </message>
+    <message id="context_menu_speak">
+        <translation>Speak</translation>
     </message>
     <message id="context_menu_thesaurus">
         <translation>Thesaurus</translation>

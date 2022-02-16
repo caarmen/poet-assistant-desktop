@@ -17,7 +17,9 @@ You should have received a copy of the GNU General Public License
 along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "mainviewmodel.h"
+#include <QClipboard>
 #include <QDebug>
+#include <QGuiApplication>
 MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
                              ThesaurusListModel *thesaurusListModel,
                              DefinitionListModel *definitionsListModel,
@@ -32,6 +34,11 @@ MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
       suggestionListModel(suggestionListModel)
 {
 
+}
+
+void MainViewModel::copy(QString word)
+{
+    QGuiApplication::clipboard()->setText(word);
 }
 
 void MainViewModel::search(QString searchText)

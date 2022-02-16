@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>images/close.svg</file>
+        <file>images/copy.svg</file>
         <file>images/delete.svg</file>
         <file>images/ic_code.svg</file>
         <file>images/ic_composer.svg</file>
@@ -11,6 +12,7 @@
         <file>images/ic_thesaurus.svg</file>
         <file>images/play.svg</file>
         <file>images/search.svg</file>
+        <file>images/speak.svg</file>
         <file>images/star.svg</file>
         <file>images/star_border.svg</file>
         <file>images/stop.svg</file>

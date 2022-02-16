@@ -32,6 +32,24 @@ Menu {
     }
     MenuItem {
         background: Rectangle { color: Style.surface }
+        icon.source: "qrc:/images/copy.svg"
+        icon.color: Style.primary
+        text: qsTrId("context_menu_copy")
+        onTriggered: {
+            mainViewModel.copy(word)
+        }
+    }
+    MenuItem {
+        background: Rectangle { color: Style.surface }
+        icon.source: "qrc:/images/speak.svg"
+        icon.color: Style.primary
+        text: qsTrId("context_menu_speak")
+        onTriggered: {
+            ttsViewModel.play(word)
+        }
+    }
+    MenuItem {
+        background: Rectangle { color: Style.surface }
         icon.source: "qrc:/images/ic_rhymer.svg"
         icon.color: Style.primary
         text: qsTrId("context_menu_rhymer")
