@@ -30,6 +30,7 @@ Rectangle {
             id: rhymeList
             header: WordHeader {
                 word: rhymeListModel.word
+                onCopyClicked: mainViewModel.copyRhymes(rhymeListModel.word)
             }
             headerPositioning: ListView.PullBackHeader
             model: rhymeListModel

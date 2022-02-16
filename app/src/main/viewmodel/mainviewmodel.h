@@ -31,8 +31,11 @@ class MainViewModel : public QObject
     Q_OBJECT
 public:
     explicit MainViewModel(RhymeListModel *rhymeListModel,
+                           RhymeViewModel *rhymeViewModel,
                            ThesaurusListModel *thesaurusListModel,
+                           ThesaurusViewModel *thesaurusViewModel,
                            DefinitionListModel *definitionsListModel,
+                           DefinitionViewModel *definitionViewModel,
                            FavoriteRepository *favoriteRepository,
                            SuggestionListModel *suggestionListModel,
                            QObject *parent = nullptr);
@@ -40,19 +43,27 @@ public:
     Q_INVOKABLE void search(QString query);
     Q_INVOKABLE void searchSuggestions(QString searchText);
     Q_INVOKABLE void searchRhymes(QString query);
+    Q_INVOKABLE void copyRhymes(QString query);
     Q_INVOKABLE void searchThesaurus(QString query);
+    Q_INVOKABLE void copyThesaurus(QString query);
     Q_INVOKABLE void searchDefinitions(QString query);
+    Q_INVOKABLE void copyDefinitions(QString query);
     Q_INVOKABLE QString getFavoriteIcon(QString word);
     Q_INVOKABLE void toggleFavorite(QString query);
+    Q_INVOKABLE void copyFavorites();
     Q_INVOKABLE void clearFavorites();
 
 signals:
     void favoritesChanged();
 
 private:
+    void copyWhenReady(QFuture<QString> future);
     RhymeListModel *rhymeListModel;
+    RhymeViewModel *rhymeViewModel;
     ThesaurusListModel *thesaurusListModel;
+    ThesaurusViewModel *thesaurusViewModel;
     DefinitionListModel *definitionsListModel;
+    DefinitionViewModel *definitionViewModel;
     FavoriteRepository *favoriteRepository;
     SuggestionListModel *suggestionListModel;
 };

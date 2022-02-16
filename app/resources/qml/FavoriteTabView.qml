@@ -38,15 +38,21 @@ Rectangle {
                     font.bold: true
                     text: qsTrId("favorites_header")
                     Layout.leftMargin: 16
+                    Layout.fillWidth: true
                 }
                 ToolButton {
                     icon.source: "qrc:/images/delete.svg"
                     icon.color: Style.primary
                     Layout.alignment: Qt.AlignRight
                     Layout.rightMargin: 16
-                    onClicked: {
-                        dlgDeleteConfirm.open()
-                    }
+                    onClicked:  dlgDeleteConfirm.open()
+                }
+                ToolButton {
+                    icon.source: "qrc:/images/copy.svg"
+                    icon.color: Style.primary
+                    Layout.alignment: Qt.AlignRight
+                    Layout.rightMargin: 16
+                    onClicked: mainViewModel.copyFavorites()
                 }
             }
             headerPositioning: ListView.PullBackHeader

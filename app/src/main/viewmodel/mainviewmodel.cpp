@@ -21,15 +21,21 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include <QDebug>
 #include <QGuiApplication>
 MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
+                             RhymeViewModel *rhymeViewModel,
                              ThesaurusListModel *thesaurusListModel,
+                             ThesaurusViewModel *thesaurusViewModel,
                              DefinitionListModel *definitionsListModel,
+                             DefinitionViewModel *definitionViewModel,
                              FavoriteRepository *favoriteRepository,
                              SuggestionListModel *suggestionListModel,
                              QObject *parent)
     : QObject{parent},
       rhymeListModel(rhymeListModel),
+      rhymeViewModel(rhymeViewModel),
       thesaurusListModel(thesaurusListModel),
+      thesaurusViewModel(thesaurusViewModel),
       definitionsListModel(definitionsListModel),
+      definitionViewModel(definitionViewModel),
       favoriteRepository(favoriteRepository),
       suggestionListModel(suggestionListModel)
 {
@@ -62,16 +68,34 @@ void MainViewModel::searchRhymes(QString searchText)
     rhymeListModel->readRhymes(transformedSearchText);
 }
 
+void MainViewModel::copyRhymes(QString searchText)
+{
+    QString transformedSearchText = searchText.trimmed().toLower();
+    copyWhenReady(rhymeViewModel->readRhymesText(transformedSearchText));
+}
+
 void MainViewModel::searchThesaurus(QString searchText)
 {
     QString transformedSearchText = searchText.trimmed().toLower();
     thesaurusListModel->readThesaurus(transformedSearchText);
 }
 
+void MainViewModel::copyThesaurus(QString searchText)
+{
+    QString transformedSearchText = searchText.trimmed().toLower();
+    copyWhenReady(thesaurusViewModel->readThesaurusText(transformedSearchText));
+}
+
 void MainViewModel::searchDefinitions(QString searchText)
 {
     QString transformedSearchText = searchText.trimmed().toLower();
     definitionsListModel->readDefinitions(transformedSearchText);
+}
+
+void MainViewModel::copyDefinitions(QString searchText)
+{
+    QString transformedSearchText = searchText.trimmed().toLower();
+    copyWhenReady(definitionViewModel->readDefinitionsText(transformedSearchText));
 }
 
 QString MainViewModel::getFavoriteIcon(QString word)
@@ -85,8 +109,25 @@ void MainViewModel::toggleFavorite(QString query)
     emit favoritesChanged();
 }
 
+void MainViewModel::copyFavorites()
+{
+    QStringList result;
+    result.append(*favoriteRepository->readAll());
+    result.prepend(qtTrId("favorites_text_title"));
+    copy(result.join("\n"));
+}
 void MainViewModel::clearFavorites()
 {
     favoriteRepository->clear();
     emit favoritesChanged();
+}
+
+void MainViewModel::copyWhenReady(QFuture<QString> future)
+{
+    auto *watcher = new QFutureWatcher<QString>();
+    QObject::connect(watcher, &QFutureWatcher<QString>::finished, this, [ = ]() {
+        copy(future.result());
+        watcher->deleteLater();
+    });
+    watcher->setFuture(future);
 }

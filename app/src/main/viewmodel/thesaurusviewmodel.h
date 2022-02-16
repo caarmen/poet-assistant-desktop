@@ -30,6 +30,7 @@ class ThesaurusViewModel : public QObject
 public:
     explicit ThesaurusViewModel(ThesaurusRepository *repository, QObject *parent = nullptr);
     QFuture<QList<ThesaurusDisplayData *>*> readThesaurus(QString searchText);
+    QFuture<QString> readThesaurusText(QString searchText);
 
 private:
     ThesaurusRepository *repository;

@@ -30,6 +30,7 @@ Rectangle {
             id: definitionsList
             header: WordHeader {
                 word: definitionsListModel.word
+                onCopyClicked: mainViewModel.copyDefinitions(definitionsListModel.word)
             }
             headerPositioning: ListView.PullBackHeader
             model: definitionsListModel

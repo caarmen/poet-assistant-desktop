@@ -55,3 +55,26 @@ const char *RhymeEntityMapper::map(RhymeEntity::SyllablesType syllablesType)
         return "rhymer_syllables_type_last_syllable";
     }
 }
+
+const QString RhymeEntityMapper::mapListText(QString word,
+                                             const QList<RhymeEntity *> *rhymeEntities)
+{
+    auto displayDataList = map(rhymeEntities);
+    QStringList entitiesAsText = QtConcurrent::blockingMapped(*displayDataList,
+                                                              &RhymeEntityMapper::mapItemText);
+    entitiesAsText.prepend(qtTrId("rhymer_results_text_title").arg(word));
+    QString result = entitiesAsText.join("\n");
+    qDeleteAll(*displayDataList);
+    delete displayDataList;
+    return result;
+}
+
+QString RhymeEntityMapper::mapItemText(RhymeDisplayData *rhymeDisplayData)
+{
+    if (rhymeDisplayData->bold)  {
+        return rhymeDisplayData->text;
+    } else {
+        return qtTrId("text_indent_1").arg(rhymeDisplayData->text);
+    }
+}
+

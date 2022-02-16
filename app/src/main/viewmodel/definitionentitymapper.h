@@ -27,7 +27,8 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 class DefinitionEntityMapper
 {
 public:
-    static QList<DefinitionDisplayData *> *map(QList<DefinitionEntity *> *entities);
+    static QList<DefinitionDisplayData *> *map(const QList<DefinitionEntity *> *entities);
+    static const QString mapText(QString word, const QList<DefinitionEntity *> *entities);
 private:
     static DefinitionDisplayData *map(DefinitionEntity *entity);
     static const char *map(const QString &partOfSpeech);

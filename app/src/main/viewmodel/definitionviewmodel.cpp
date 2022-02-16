@@ -35,3 +35,14 @@ QFuture<QList<DefinitionDisplayData *>*> DefinitionViewModel::readDefinitions(QS
         return result;
     });
 }
+
+QFuture<QString> DefinitionViewModel::readDefinitionsText(QString searchText)
+{
+    return repository->readDefinitions(searchText)
+    .then([searchText](QList<DefinitionEntity *> *entities) {
+        QString result = DefinitionEntityMapper::mapText(searchText, entities);
+        qDeleteAll(*entities);
+        delete entities;
+        return result;
+    });
+}

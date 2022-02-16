@@ -83,6 +83,9 @@
     <message id="definitions_no_query">
         <translation>No definitions yet. Use the search bar to get started</translation>
     </message>
+    <message id="definitions_results_text_title">
+        <translation>Definitions for %1</translation>
+    </message>
     <message id="delete_confirm_message">
         <translation>Delete all favorite words?</translation>
     </message>
@@ -94,6 +97,9 @@
     </message>
     <message id="favorites_header">
         <translation>Favorites</translation>
+    </message>
+    <message id="favorites_text_title">
+        <translation>Favorite words</translation>
     </message>
     <message id="file_filter_text">
         <translation>Text files (*.txt)</translation>
@@ -167,6 +173,9 @@
     <message id="rhymer_syllables_type_last_syllable">
         <translation>Last syllable</translation>
     </message>
+    <message id="rhymer_results_text_title">
+        <translation>Rhymes for %1</translation>
+    </message>
     <message id="state_saved">
         <translation>Saved</translation>
     </message>
@@ -191,11 +200,20 @@
     <message id="tab_thesaurus">
         <translation>Thesaurus</translation>
     </message>
+    <message id="text_indent_1">
+        <translation>    %1</translation>
+    </message>
+    <message id="text_indent_2">
+        <translation>        %1</translation>
+    </message>
     <message id="thesaurus_no_matches">
         <translation>No synonyms for %1</translation>
     </message>
     <message id="thesaurus_no_query">
         <translation>No synonyms yet. Use the search bar to get started</translation>
+    </message>
+    <message id="thesaurus_results_text_title">
+        <translation>Thesaurus entries for %1</translation>
     </message>
     <message id="unknown_source">
         <translation>Unknown</translation>
