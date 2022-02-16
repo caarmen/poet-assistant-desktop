@@ -33,8 +33,9 @@ ColumnLayout {
     }
 
     function handleMenuItemSelected(menuItemId) {
-        bar.currentIndex = 3
-        composerTabView.handleMenuItemSelected(menuItemId)
+        if(composerTabView.handleMenuItemSelected(menuItemId)) {
+            bar.currentIndex = 3
+        }
     }
 
     Rectangle {

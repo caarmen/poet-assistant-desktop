@@ -65,14 +65,22 @@ ColumnLayout {
         }
     }
 
+    /**
+     * Return true if the menu item was handled
+     */
     function handleMenuItemSelected(menuItemId)  {
         if (menuItemId === "new") {
             dlgNewConfirm.open()
+            return true
         } else if (menuItemId === "open") {
             showFileDialog(dlgFileOpen)
+            return true
         } else if (menuItemId === "saveas") {
             dlgFileSaveAs.currentFile = new URL(composerViewModel.getFileDialogFile())
             showFileDialog(dlgFileSaveAs)
+            return true
+        } else {
+            return false;
         }
     }
 
