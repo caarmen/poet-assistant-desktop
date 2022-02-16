@@ -34,6 +34,7 @@ QFuture<void> Db::openDb() {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
         db.setConnectOptions("QSQLITE_OPEN_READONLY");
         QFile file(":/poet_assistant.db");
+        //QFile file("../../../../../../../poet-assistant-desktop/app/resources/poet_assistant.db");
         QString appDataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
         QDir().mkpath(appDataDir);
         QString dbCopyFileName = QFileInfo(appDataDir, "poet_assistant.db").absoluteFilePath();
