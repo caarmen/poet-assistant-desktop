@@ -36,6 +36,7 @@
         <file>qml/SuggestionListItemDelegate.qml</file>
         <file>qml/SuggestionListView.qml</file>
         <file>qml/TabButtonView.qml</file>
+        <file>qml/Tabs.qml</file>
         <file>qml/ThesaurusListItemDelegate.qml</file>
         <file>qml/ThesaurusTabView.qml</file>
         <file>qml/ToolBarView.qml</file>

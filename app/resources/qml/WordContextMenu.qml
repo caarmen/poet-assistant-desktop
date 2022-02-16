@@ -22,6 +22,10 @@ import QtQuick.Controls
 Menu {
     property string word
     id: contextMenu
+    enum Tabs {
+        RHYMER, THESAURUS, DICTIONARY
+    }
+
     MenuItem {
         text: word
         enabled: false
@@ -51,7 +55,7 @@ Menu {
         property string iconSource: "ic_rhymer"
         property string label: "context_menu_rhymer"
         function menuAction() {
-            bar.currentIndex = 0
+            bar.currentIndex = Tabs.Tabs.RHYMER
             mainViewModel.searchRhymes(word)
         }
     }
@@ -60,7 +64,7 @@ Menu {
         property string iconSource: "ic_thesaurus"
         property string label: "context_menu_thesaurus"
         function menuAction() {
-            bar.currentIndex = 1
+            bar.currentIndex = Tabs.Tabs.THESAURUS
             mainViewModel.searchThesaurus(word)
         }
     }
@@ -69,7 +73,7 @@ Menu {
         property string iconSource: "ic_definitions"
         property string label: "context_menu_dictionary"
         function menuAction() {
-            bar.currentIndex = 2
+            bar.currentIndex = Tabs.Tabs.DICTIONARY
             mainViewModel.searchDefinitions(word)
         }
     }

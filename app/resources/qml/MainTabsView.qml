@@ -23,7 +23,7 @@ import QtQuick.Layouts
 ColumnLayout {
     anchors.fill: parent
     function onSearched() {
-        if (bar.currentIndex > 2) bar.currentIndex = 2
+        if (bar.currentIndex > Tabs.Tabs.DICTIONARY) bar.currentIndex = Tabs.Tabs.DICTIONARY
     }
 
     function applyTheme() {
@@ -34,7 +34,7 @@ ColumnLayout {
 
     function handleMenuItemSelected(menuItemId) {
         if(composerTabView.handleMenuItemSelected(menuItemId)) {
-            bar.currentIndex = 3
+            bar.currentIndex = Tabs.Tabs.COMPOSER
         }
     }
 
