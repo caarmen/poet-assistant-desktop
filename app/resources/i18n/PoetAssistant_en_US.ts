@@ -2,140 +2,35 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
-    <message id="app_title">
-        <translation>Poet Assistant</translation>
-    </message>
-    <message id="noun">
-        <translation>Noun</translation>
-    </message>
-    <message id="verb">
-        <translation>Verb</translation>
-    </message>
-    <message id="adjective">
-        <translation>Adjective</translation>
-    </message>
-    <message id="adverb">
-        <translation>Adverb</translation>
-    </message>
-    <message id="unknown_source">
-        <translation>Unknown</translation>
-    </message>
-    <message id="synonyms">
-        <translation>Synonyms</translation>
-    </message>
-    <message id="antonyms">
-        <translation>Antonyms</translation>
-    </message>
-    <message id="rhymer_no_matches">
-        <translation>No rhymes for %1</translation>
-    </message>
-    <message id="thesaurus_no_matches">
-        <translation>No synonyms for %1</translation>
-    </message>
-    <message id="definitions_no_matches">
-        <translation>No definitions for %1</translation>
-    </message>
-    <message id="rhymer_no_query">
-        <translation>No rhymes yet. Use the search bar to get started</translation>
-    </message>
-    <message id="thesaurus_no_query">
-        <translation>No synonyms yet. Use the search bar to get started</translation>
-    </message>
-    <message id="definitions_no_query">
-        <translation>No definitions yet. Use the search bar to get started</translation>
-    </message>
-    <message id="tab_rhymes">
-        <translation>Rhymes</translation>
-    </message>
-    <message id="tab_thesaurus">
-        <translation>Thesaurus</translation>
-    </message>
-    <message id="tab_definitions">
-        <translation>Dictionary</translation>
-    </message>
-    <message id="tab_composer">
-        <translation>Composer</translation>
-    </message>
-    <message id="tab_favorites">
-        <translation>Favorites</translation>
-    </message>
-    <message id="hint_compose">
-        <translation>Compose your poem text here</translation>
-    </message>
-    <message id="state_saving">
-        <translation>Saving...</translation>
-    </message>
-    <message id="state_saved">
-        <translation>Saved</translation>
-    </message>
-    <message id="file_filter_text">
-        <translation>Text files (*.txt)</translation>
-    </message>
-    <message id="new_confirm_title">
-        <translation>Clear current poem?</translation>
-    </message>
-    <message id="new_confirm_message">
-        <translation>Close the current poem to start a new one?</translation>
-    </message>
-    <message id="favorites_empty">
-        <translation>You haven&apos;t starred any words yet</translation>
-    </message>
-    <message id="favorites_header">
-        <translation>Favorites</translation>
-    </message>
-    <message id="delete_confirm_title">
-        <translation>Delete favorites?</translation>
-    </message>
-    <message id="delete_confirm_message">
-        <translation>Delete all favorite words?</translation>
-    </message>
-    <message id="context_menu_rhymer">
-        <translation>Rhymer</translation>
-    </message>
-    <message id="context_menu_thesaurus">
-        <translation>Thesaurus</translation>
-    </message>
-    <message id="context_menu_dictionary">
-        <translation>Dictionary</translation>
-    </message>
-    <message id="hint_search">
-        <translation>Search</translation>
-    </message>
-    <message id="label_locale">
-        <translation>Locale</translation>
-    </message>
-    <message id="label_voice">
-        <translation>Voice</translation>
-    </message>
-    <message id="label_pitch">
-        <translation>Pitch</translation>
-    </message>
-    <message id="label_rate">
-        <translation>Speed</translation>
-    </message>
-    <message id="about_dialog_title">
-        <translation>About Poet Assistant</translation>
-    </message>
     <message id="about_content_title">
         <translation>Poet Assistant</translation>
     </message>
     <message id="about_copyright">
         <translation>Copyright (c) 2022 - present, Carmen Alvarez</translation>
     </message>
-    <message id="about_source_label">
-        <translation>Source code</translation>
-    </message>
-    <message id="about_source_link">
-        <translation>https://github.com/caarmen/poet-assistant-desktop</translation>
-    </message>
-    <message id="about_legal_label">
-        <translation>Legal</translation>
+    <message id="about_dialog_title">
+        <translation>About Poet Assistant</translation>
     </message>
     <message id="about_legal_app_license_label">
         <translation>Poet Assistant License (GPLv3)</translation>
     </message>
     <message id="about_legal_app_license_link">
         <translation>https://github.com/caarmen/poet-assistant-desktop/blob/main/COPYING</translation>
+    </message>
+    <message id="about_legal_dictionary_license_label">
+        <translation>WordNet Dictionary License</translation>
+    </message>
+    <message id="about_legal_dictionary_license_link">
+        <translation>https://github.com/caarmen/poet-assistant-desktop/blob/main/LICENSE-dictionary-wordnet.txt</translation>
+    </message>
+    <message id="about_legal_label">
+        <translation>Legal</translation>
+    </message>
+    <message id="about_legal_material_icons_license_label">
+        <translation>Material Design Icons License</translation>
+    </message>
+    <message id="about_legal_material_icons_license_link">
+        <translation>https://github.com/google/material-design-icons/blob/master/LICENSE</translation>
     </message>
     <message id="about_legal_rhymer_license_label">
         <translation>CMU Rhymer License</translation>
@@ -149,17 +44,122 @@
     <message id="about_legal_thesaurus_license_link">
         <translation>https://github.com/caarmen/poet-assistant-desktop/blob/main/LICENSE-thesaurus-wordnet.txt</translation>
     </message>
-    <message id="about_legal_dictionary_license_label">
-        <translation>WordNet Dictionary License</translation>
+    <message id="about_source_label">
+        <translation>Source code</translation>
     </message>
-    <message id="about_legal_dictionary_license_link">
-        <translation>https://github.com/caarmen/poet-assistant-desktop/blob/main/LICENSE-dictionary-wordnet.txt</translation>
+    <message id="about_source_link">
+        <translation>https://github.com/caarmen/poet-assistant-desktop</translation>
     </message>
-    <message id="about_legal_material_icons_license_label">
-        <translation>Material Design Icons License</translation>
+    <message id="adjective">
+        <translation>Adjective</translation>
     </message>
-    <message id="about_legal_material_icons_license_link">
-        <translation>https://github.com/google/material-design-icons/blob/master/LICENSE</translation>
+    <message id="adverb">
+        <translation>Adverb</translation>
+    </message>
+    <message id="antonyms">
+        <translation>Antonyms</translation>
+    </message>
+    <message id="app_title">
+        <translation>Poet Assistant</translation>
+    </message>
+    <message id="context_menu_dictionary">
+        <translation>Dictionary</translation>
+    </message>
+    <message id="context_menu_rhymer">
+        <translation>Rhymer</translation>
+    </message>
+    <message id="context_menu_thesaurus">
+        <translation>Thesaurus</translation>
+    </message>
+    <message id="definitions_no_matches">
+        <translation>No definitions for %1</translation>
+    </message>
+    <message id="definitions_no_query">
+        <translation>No definitions yet. Use the search bar to get started</translation>
+    </message>
+    <message id="delete_confirm_message">
+        <translation>Delete all favorite words?</translation>
+    </message>
+    <message id="delete_confirm_title">
+        <translation>Delete favorites?</translation>
+    </message>
+    <message id="favorites_empty">
+        <translation>You haven&apos;t starred any words yet</translation>
+    </message>
+    <message id="favorites_header">
+        <translation>Favorites</translation>
+    </message>
+    <message id="file_filter_text">
+        <translation>Text files (*.txt)</translation>
+    </message>
+    <message id="hint_compose">
+        <translation>Compose your poem text here</translation>
+    </message>
+    <message id="hint_search">
+        <translation>Search</translation>
+    </message>
+    <message id="label_locale">
+        <translation>Locale</translation>
+    </message>
+    <message id="label_pitch">
+        <translation>Pitch</translation>
+    </message>
+    <message id="label_rate">
+        <translation>Speed</translation>
+    </message>
+    <message id="label_voice">
+        <translation>Voice</translation>
+    </message>
+    <message id="new_confirm_message">
+        <translation>Close the current poem to start a new one?</translation>
+    </message>
+    <message id="new_confirm_title">
+        <translation>Clear current poem?</translation>
+    </message>
+    <message id="noun">
+        <translation>Noun</translation>
+    </message>
+    <message id="rhymer_no_matches">
+        <translation>No rhymes for %1</translation>
+    </message>
+    <message id="rhymer_no_query">
+        <translation>No rhymes yet. Use the search bar to get started</translation>
+    </message>
+    <message id="state_saved">
+        <translation>Saved</translation>
+    </message>
+    <message id="state_saving">
+        <translation>Saving...</translation>
+    </message>
+    <message id="synonyms">
+        <translation>Synonyms</translation>
+    </message>
+    <message id="tab_composer">
+        <translation>Composer</translation>
+    </message>
+    <message id="tab_definitions">
+        <translation>Dictionary</translation>
+    </message>
+    <message id="tab_favorites">
+        <translation>Favorites</translation>
+    </message>
+    <message id="tab_rhymes">
+        <translation>Rhymes</translation>
+    </message>
+    <message id="tab_thesaurus">
+        <translation>Thesaurus</translation>
+    </message>
+    <message id="thesaurus_no_matches">
+        <translation>No synonyms for %1</translation>
+    </message>
+    <message id="thesaurus_no_query">
+        <translation>No synonyms yet. Use the search bar to get started</translation>
+    </message>
+    <message id="unknown_source">
+        <translation>Unknown</translation>
+    </message>
+    <message id="verb">
+        <translation>Verb</translation>
     </message>
 </context>
 </TS>
