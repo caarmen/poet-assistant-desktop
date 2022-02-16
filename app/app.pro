@@ -64,6 +64,7 @@ TRANSLATIONS += \
     resources/i18n/PoetAssistant_en_US.ts
 
 CONFIG += lrelease
+QMAKE_LRELEASE_FLAGS += -idbased
 CONFIG += embed_translations
 
 # Default rules for deployment.

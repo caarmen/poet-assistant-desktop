@@ -23,7 +23,7 @@ ThesaurusListModel::ThesaurusListModel(ThesaurusViewModel *viewModel, QObject *p
       viewModel(viewModel),
       thesaurusEntries(nullptr),
       isEmptyTextVisible(true),
-      emptyText(QCoreApplication::translate("main", "thesaurus_no_query"))
+      emptyText(qtTrId("thesaurus_no_query"))
 {
 
 }
@@ -42,7 +42,7 @@ void ThesaurusListModel::readThesaurus(QString searchText) {
         thesaurusEntries = future.result();
         isEmptyTextVisible = thesaurusEntries->size() == 0;
         emit isEmptyTextVisibleChanged(isEmptyTextVisible);
-        emptyText = QCoreApplication::translate("main", "thesaurus_no_matches %1").arg(word);
+        emptyText = qtTrId("thesaurus_no_matches").arg(word);
         emit emptyTextChanged(emptyText);
         endResetModel();
         watcher->deleteLater();

@@ -25,7 +25,7 @@ DefinitionListModel::DefinitionListModel(DefinitionViewModel *viewModel, QObject
       viewModel(viewModel),
       definitions(nullptr),
       isEmptyTextVisible(true),
-      emptyText(QCoreApplication::translate("main", "definitions_no_query"))
+      emptyText(qtTrId("definitions_no_query"))
 {
 }
 
@@ -44,7 +44,7 @@ void DefinitionListModel::readDefinitions(QString searchText) {
         definitions = future.result();
         isEmptyTextVisible = definitions->size() == 0;
         emit isEmptyTextVisibleChanged(isEmptyTextVisible);
-        emptyText = QCoreApplication::translate("main", "definitions_no_matches %1").arg(word);
+        emptyText = qtTrId("definitions_no_matches").arg(word);
         emit emptyTextChanged(emptyText);
         endResetModel();
         watcher->deleteLater();

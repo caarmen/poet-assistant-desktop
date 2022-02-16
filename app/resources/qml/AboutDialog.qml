@@ -25,14 +25,14 @@ Window {
     width: contentItem.childrenRect.width
     height: contentItem.childrenRect.height
     color: Style.background
-    title: qsTr("about_dialog_title")
+    title: qsTrId("about_dialog_title")
 
     ColumnLayout {
         Text {
             Layout.topMargin: 64
             Layout.leftMargin: 16
             Layout.rightMargin: 16
-            text: qsTr("about_content_title")
+            text: qsTrId("about_content_title")
             font.bold: true
             color: Style.primaryText
             width: paintedWidth
@@ -57,7 +57,7 @@ Window {
             Layout.leftMargin: 16
             Layout.rightMargin: 16
             Layout.bottomMargin: 16
-            text: qsTr("about_copyright")
+            text: qsTrId("about_copyright")
             color: Style.primaryText
             width: paintedWidth
             height: paintedHeight
@@ -78,7 +78,7 @@ Window {
             Layout.rightMargin: 32
             Icon { source: "qrc:/images/ic_legal.svg" }
             Text {
-                text: qsTr("about_legal_label")
+                text: qsTrId("about_legal_label")
                 font.bold: true
                 color: Style.primaryText
             }
@@ -130,7 +130,7 @@ Window {
         RowLayout {
             Icon { source: `qrc:/images/${iconSource}.svg` }
             Text {
-                text: qsTr(label)
+                text: qsTrId(label)
                 font.bold: true
                 color: Style.primary
                 MouseArea{
@@ -138,7 +138,7 @@ Window {
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        Qt.openUrlExternally(qsTr(link))
+                        Qt.openUrlExternally(qsTrId(link))
                     }
                 }
             }

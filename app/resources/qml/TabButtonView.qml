@@ -30,7 +30,7 @@ TabButton {
     }
 
     padding: 12
-    text: qsTr(tabName)
+    text: qsTrId(tabName)
     Component.onCompleted: {
         applyTheme()
     }

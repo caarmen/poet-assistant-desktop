@@ -24,7 +24,7 @@ RhymeListModel::RhymeListModel(RhymeViewModel *viewModel, QObject *parent)
       viewModel(viewModel),
       rhymeEntries(nullptr),
       isEmptyTextVisible(true),
-      emptyText(QCoreApplication::translate("main", "rhymer_no_query"))
+      emptyText(qtTrId("rhymer_no_query"))
 {
 
 }
@@ -46,7 +46,7 @@ void RhymeListModel::readRhymes(QString searchText) {
         rhymeEntries = future.result();
         isEmptyTextVisible = rhymeEntries->size() == 0;
         emit isEmptyTextVisibleChanged(isEmptyTextVisible);
-        emptyText = QCoreApplication::translate("main", "rhymer_no_matches %1").arg(word);
+        emptyText = qtTrId("rhymer_no_matches").arg(word);
         emit emptyTextChanged(emptyText);
         endResetModel();
         watcher->deleteLater();
