@@ -20,11 +20,13 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 
 RhymeEntity::RhymeEntity(
         QString word,
-        QString stressSyllables,
+        SyllablesType syllablesType,
+        QString syllables,
         QObject *parent)
     : QObject{parent},
       word(word),
-      stressSyllables(stressSyllables)
+      syllablesType(syllablesType),
+      syllables(syllables)
 {
     RhymeEntity::refCounter.inc();
 }

@@ -31,10 +31,11 @@ public:
     explicit RhymeRepository(Db *db, QObject *parent = nullptr);
     QFuture<QList<RhymeEntity*>*> readStressSyllableRhymes(QString word);
 
-signals:
-
 private:
     RhymeEntity* create(QSqlQuery &query);
+    QString createQueryString(QString syllableTypesFieldName, QString syllablesTypeSortKey);
+    QString createFullQueryString();
+    RhymeEntity::SyllablesType parse(QString syllablesTypeString);
     Db *db;
 };
 
