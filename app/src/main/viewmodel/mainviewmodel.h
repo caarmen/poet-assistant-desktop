@@ -24,6 +24,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "definitionlistmodel.h"
 #include "thesauruslistmodel.h"
 #include "favoriterepository.h"
+#include "suggestionlistmodel.h"
 
 class MainViewModel : public QObject
 {
@@ -33,8 +34,10 @@ public:
                            ThesaurusListModel *thesaurusListModel,
                            DefinitionListModel *definitionsListModel,
                            FavoriteRepository *favoriteRepository,
+                           SuggestionListModel *suggestionListModel,
                            QObject *parent = nullptr);
     Q_INVOKABLE void search(QString query);
+    Q_INVOKABLE void searchSuggestions(QString searchText);
     Q_INVOKABLE void searchRhymes(QString query);
     Q_INVOKABLE void searchThesaurus(QString query);
     Q_INVOKABLE void searchDefinitions(QString query);
@@ -50,6 +53,7 @@ private:
     ThesaurusListModel *thesaurusListModel;
     DefinitionListModel *definitionsListModel;
     FavoriteRepository *favoriteRepository;
+    SuggestionListModel *suggestionListModel;
 };
 
 #endif // MAINVIEWMODEL_H

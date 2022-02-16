@@ -22,12 +22,14 @@ MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
                              ThesaurusListModel *thesaurusListModel,
                              DefinitionListModel *definitionsListModel,
                              FavoriteRepository *favoriteRepository,
+                             SuggestionListModel *suggestionListModel,
                              QObject *parent)
     : QObject{parent},
       rhymeListModel(rhymeListModel),
       thesaurusListModel(thesaurusListModel),
       definitionsListModel(definitionsListModel),
-      favoriteRepository(favoriteRepository)
+      favoriteRepository(favoriteRepository),
+      suggestionListModel(suggestionListModel)
 {
 
 }
@@ -37,6 +39,12 @@ void MainViewModel::search(QString searchText) {
     rhymeListModel->readRhymes(transformedSearchText);
     definitionsListModel->readDefinitions(transformedSearchText);
     thesaurusListModel->readThesaurus(transformedSearchText);
+    suggestionListModel->readSuggestions("");
+}
+
+void MainViewModel::searchSuggestions(QString searchText) {
+    QString transformedSearchText = searchText.trimmed().toLower();
+    suggestionListModel->readSuggestions(transformedSearchText);
 }
 
 void MainViewModel::searchRhymes(QString searchText) {

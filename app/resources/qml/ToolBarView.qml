@@ -22,6 +22,7 @@ import QtQuick.Layouts
 
 ToolBar {
     signal searched
+    property int textFieldLeftEdge: tfSearch.x + tfSearch.leftPadding
     background: Rectangle { color: Style.primary }
     RowLayout {
         anchors.fill: parent
@@ -58,8 +59,10 @@ ToolBar {
                 onTextChanged: {
                     btnSearch.enabled = length > 0
                     btnClose.visible = length > 0
+                    mainViewModel.searchSuggestions(tfSearch.text)
                 }
             }
+
             ToolButton {
                 id: btnSearch
                 enabled: false
@@ -88,5 +91,10 @@ ToolBar {
     function onSearch() {
         mainViewModel.search(tfSearch.text)
         searched()
+    }
+
+    function submitText(text) {
+        tfSearch.text = text
+        btnSearch.clicked()
     }
 }
