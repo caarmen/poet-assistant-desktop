@@ -1,46 +1,46 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml/main.qml</file>
         <file>images/close.svg</file>
-        <file>images/search.svg</file>
+        <file>images/delete.svg</file>
+        <file>images/ic_code.svg</file>
+        <file>images/ic_composer.svg</file>
+        <file>images/ic_definitions.svg</file>
+        <file>images/ic_legal.svg</file>
+        <file>images/ic_rhymer.svg</file>
+        <file>images/ic_right.svg</file>
+        <file>images/ic_thesaurus.svg</file>
         <file>images/play.svg</file>
-        <file>qml/DefinitionListItemDelegate.qml</file>
-        <file>poet_assistant.db</file>
-        <file>qml/DictionaryTabView.qml</file>
-        <file>qml/ThesaurusListItemDelegate.qml</file>
-        <file>qml/ThesaurusTabView.qml</file>
-        <file>qml/RhymeListItemDelegate.qml</file>
-        <file>qml/RhymeTabView.qml</file>
-        <file>qml/WordHeader.qml</file>
-        <file>qml/WordContextMenu.qml</file>
-        <file>qml/EmptyResultsView.qml</file>
+        <file>images/search.svg</file>
         <file>images/star.svg</file>
         <file>images/star_border.svg</file>
-        <file>qml/FavoriteIcon.qml</file>
-        <file>qml/FavoriteTabView.qml</file>
-        <file>qml/FavoriteListItemDelegate.qml</file>
-        <file>qml/qmldir</file>
-        <file>qml/Style.qml</file>
-        <file>images/ic_thesaurus.svg</file>
-        <file>images/ic_rhymer.svg</file>
-        <file>images/ic_definitions.svg</file>
-        <file>qml/ToolBarView.qml</file>
-        <file>images/delete.svg</file>
-        <file>images/ic_composer.svg</file>
-        <file>qml/ComposerTabView.qml</file>
-        <file>qml/MenuBarComponent.qml</file>
-        <file>qml/LabsMenuBarComponent.qml</file>
-        <file>qml/AboutDialog.qml</file>
-        <file>images/ic_right.svg</file>
-        <file>images/ic_legal.svg</file>
-        <file>images/ic_code.svg</file>
-        <file>qml/MainTabsView.qml</file>
-        <file>qml/TabButtonView.qml</file>
         <file>images/stop.svg</file>
-        <file>qml/TtsControlsView.qml</file>
-        <file>qml/ResizingComboBox.qml</file>
+        <file>poet_assistant.db</file>
+        <file>qml/AboutDialog.qml</file>
+        <file>qml/ComposerTabView.qml</file>
+        <file>qml/DefinitionListItemDelegate.qml</file>
+        <file>qml/DictionaryTabView.qml</file>
+        <file>qml/EmptyResultsView.qml</file>
+        <file>qml/FavoriteIcon.qml</file>
+        <file>qml/FavoriteListItemDelegate.qml</file>
+        <file>qml/FavoriteTabView.qml</file>
         <file>qml/Icon.qml</file>
+        <file>qml/LabsMenuBarComponent.qml</file>
+        <file>qml/MainTabsView.qml</file>
+        <file>qml/MenuBarComponent.qml</file>
+        <file>qml/ResizingComboBox.qml</file>
+        <file>qml/RhymeListItemDelegate.qml</file>
+        <file>qml/RhymeTabView.qml</file>
+        <file>qml/Style.qml</file>
         <file>qml/SuggestionListItemDelegate.qml</file>
         <file>qml/SuggestionListView.qml</file>
+        <file>qml/TabButtonView.qml</file>
+        <file>qml/ThesaurusListItemDelegate.qml</file>
+        <file>qml/ThesaurusTabView.qml</file>
+        <file>qml/ToolBarView.qml</file>
+        <file>qml/TtsControlsView.qml</file>
+        <file>qml/WordContextMenu.qml</file>
+        <file>qml/WordHeader.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/qmldir</file>
     </qresource>
 </RCC>
