@@ -110,6 +110,27 @@
     <message id="label_voice">
         <translation>Voice</translation>
     </message>
+    <message id="menu_file">
+        <translation>&amp;File</translation>
+    </message>
+    <message id="menu_file_new">
+        <translation>&amp;New...</translation>
+    </message>
+    <message id="menu_file_open">
+        <translation>&amp;Open...</translation>
+    </message>
+    <message id="menu_file_saveas">
+        <translation>Save &amp;As...</translation>
+    </message>
+    <message id="menu_file_quit">
+        <translation>&amp;Quit</translation>
+    </message>
+    <message id="menu_help">
+        <translation>&amp;Help</translation>
+    </message>
+    <message id="menu_help_about">
+        <translation>&amp;About</translation>
+    </message>
     <message id="new_confirm_message">
         <translation>Close the current poem to start a new one?</translation>
     </message>
