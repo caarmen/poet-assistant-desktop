@@ -45,7 +45,7 @@ QList<RhymeDisplayData *> *RhymeEntityMapper::map(const QList<RhymeEntity *> *rh
 const char *RhymeEntityMapper::map(RhymeEntity::SyllablesType syllablesType)
 {
     switch (syllablesType) {
-    case RhymeEntity::STRICT:
+    case RhymeEntity::STRESS:
         return "rhymer_syllables_type_strict";
     case RhymeEntity::LAST_3:
         return "rhymer_syllables_type_last_three_syllables";

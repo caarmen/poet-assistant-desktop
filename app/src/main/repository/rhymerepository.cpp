@@ -89,7 +89,7 @@ QString RhymeRepository::createFullQueryString() {
 
 RhymeEntity::SyllablesType RhymeRepository::parse(QString syllablesTypeString) {
     if (syllablesTypeString == "stress_syllables") {
-        return RhymeEntity::STRICT;
+        return RhymeEntity::STRESS;
     } else if (syllablesTypeString == "last_three_syllables") {
         return RhymeEntity::LAST_3;
     } else if (syllablesTypeString == "last_two_syllables") {

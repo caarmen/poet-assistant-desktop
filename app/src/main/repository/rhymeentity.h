@@ -27,7 +27,7 @@ class RhymeEntity : public QObject
 {
     Q_OBJECT
 public:
-    enum SyllablesType {STRICT, LAST_3, LAST_2, LAST_1};
+    enum SyllablesType {STRESS, LAST_3, LAST_2, LAST_1};
     explicit RhymeEntity(
         QString word,
         SyllablesType syllablesType,
