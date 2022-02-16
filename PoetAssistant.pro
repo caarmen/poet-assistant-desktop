@@ -18,6 +18,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS = app tts
+DISTFILES += .astylerc
 
 tts.file=lib/qtspeech/src/tts/tts.pro
 app.depends += tts
