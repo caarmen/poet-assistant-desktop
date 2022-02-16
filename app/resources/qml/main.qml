@@ -23,7 +23,7 @@ ApplicationWindow {
     width: 800
     height: 600
     visible: true
-    title: qsTr("app_title")
+    title: qsTrId("app_title")
     SystemPalette {
         id: systemPalette
         onPaletteChanged: applyTheme()

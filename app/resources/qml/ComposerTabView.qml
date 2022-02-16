@@ -38,7 +38,7 @@ ColumnLayout {
             color: Style.primaryText
             selectByMouse: true
             padding: 16
-            placeholderText: qsTr("hint_compose")
+            placeholderText: qsTrId("hint_compose")
             text: composerViewModel.poem
             onTextChanged: composerViewModel.poem = text
         }
@@ -52,7 +52,7 @@ ColumnLayout {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.leftMargin: 16
-            text: qsTr(composerViewModel.poemFileName)
+            text: qsTrId(composerViewModel.poemFileName)
             color: Style.primaryText
         }
         Text {
@@ -60,7 +60,7 @@ ColumnLayout {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.rightMargin: 16
-            text: qsTr(composerViewModel.savedState)
+            text: qsTrId(composerViewModel.savedState)
             color: Style.primaryText
         }
     }
@@ -84,23 +84,23 @@ ColumnLayout {
     FileDialog {
         id: dlgFileOpen
         fileMode: FileDialog.OpenFile
-        nameFilters: [qsTr("file_filter_text")]
+        nameFilters: [qsTrId("file_filter_text")]
         onAccepted: composerViewModel.open(selectedFile)
     }
     FileDialog {
         id: dlgFileSaveAs
         fileMode: FileDialog.SaveFile
-        nameFilters: [qsTr("file_filter_text")]
+        nameFilters: [qsTrId("file_filter_text")]
         onAccepted: composerViewModel.saveAs(selectedFile)
     }
     Dialog {
         id: dlgNewConfirm
         width: 320
         modal: true
-        title: qsTr("new_confirm_title")
+        title: qsTrId("new_confirm_title")
         anchors.centerIn: parent
         contentItem: Text{
-            text: qsTr("new_confirm_message")
+            text: qsTrId("new_confirm_message")
             color: Style.primaryText
         }
         standardButtons: Dialog.Ok | Dialog.Cancel

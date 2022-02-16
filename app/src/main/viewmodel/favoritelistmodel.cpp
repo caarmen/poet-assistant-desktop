@@ -18,8 +18,6 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "favoritelistmodel.h"
 
-#include <QCoreApplication>
-
 FavoriteListModel::FavoriteListModel(FavoriteRepository *repository, QObject *parent)
     : QAbstractListModel(parent),
       repository(repository)

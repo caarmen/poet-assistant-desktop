@@ -22,31 +22,31 @@ import QtQuick.Controls
 MenuBar {
     signal menuItemSelected(string id)
     Menu {
-        title: qsTr("&File")
+        title: qsTrId("&File")
         MenuItem {
-            text: qsTr("&New...")
+            text: qsTrId("&New...")
             onTriggered: menuItemSelected("new")
         }
         MenuItem {
-            text: qsTr("&Open...")
+            text: qsTrId("&Open...")
             onTriggered: menuItemSelected("open")
         }
         MenuItem {
-            text: qsTr("Save &As...")
+            text: qsTrId("Save &As...")
             onTriggered: menuItemSelected("saveas")
         }
         MenuSeparator {
             background: Rectangle { color: Style.surface }
         }
         MenuItem {
-            text: qsTr("&Quit")
+            text: qsTrId("&Quit")
             onTriggered: menuItemSelected("quit")
         }
     }
     Menu {
-        title: qsTr("&Help")
+        title: qsTrId("&Help")
         MenuItem {
-            text: qsTr("&About")
+            text: qsTrId("&About")
             onTriggered: menuItemSelected("about")
         }
     }

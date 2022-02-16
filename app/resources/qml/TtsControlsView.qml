@@ -32,7 +32,7 @@ RowLayout{
 
         Text {
             color: Style.primaryText
-            text: qsTr("label_locale");
+            text: qsTrId("label_locale");
         }
         ComboBox {
             palette.dark: Style.primary // indicator
@@ -47,7 +47,7 @@ RowLayout{
         }
         Text {
             color: Style.primaryText
-            text: qsTr("label_voice");
+            text: qsTrId("label_voice");
         }
         ResizingComboBox {
             id: cbVoices
@@ -90,7 +90,7 @@ RowLayout{
 
         Text {
             color: Style.primaryText
-            text: qsTr("label_pitch");
+            text: qsTrId("label_pitch");
         }
         Slider {
             id: ttsPitch
@@ -107,7 +107,7 @@ RowLayout{
         }
         Text {
             color: Style.primaryText
-            text: qsTr("label_rate");
+            text: qsTrId("label_rate");
         }
         Slider {
             id: ttsRate

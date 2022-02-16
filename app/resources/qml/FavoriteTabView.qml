@@ -36,7 +36,7 @@ Rectangle {
                     height: 48
                     color: Style.primaryText
                     font.bold: true
-                    text: qsTr("favorites_header")
+                    text: qsTrId("favorites_header")
                     Layout.leftMargin: 16
                 }
                 ToolButton {
@@ -55,17 +55,17 @@ Rectangle {
     }
     EmptyResultsView {
         visible: favoriteListModel.isEmptyTextVisible
-        emptyText: qsTr("favorites_empty")
+        emptyText: qsTrId("favorites_empty")
         anchors.fill: parent
     }
     Dialog {
         id: dlgDeleteConfirm
         width: 320
         modal: true
-        title: qsTr("delete_confirm_title")
+        title: qsTrId("delete_confirm_title")
         anchors.centerIn: parent
         contentItem: Text{
-            text: qsTr("delete_confirm_message")
+            text: qsTrId("delete_confirm_message")
             color: Style.primaryText
         }
         standardButtons: Dialog.Ok | Dialog.Cancel

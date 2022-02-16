@@ -18,7 +18,6 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "definitionentitymapper.h"
 
-#include <QCoreApplication>
 #include <QtConcurrent>
 
 DefinitionEntityMapper::DefinitionEntityMapper()
@@ -47,5 +46,5 @@ const char * DefinitionEntityMapper::map(const QString &partOfSpeech)
 
 DefinitionDisplayData* DefinitionEntityMapper::map(DefinitionEntity* entity)
 {
-    return new DefinitionDisplayData(QCoreApplication::translate("main", map(entity->partOfSpeech)), entity->definition);
+    return new DefinitionDisplayData(qtTrId(map(entity->partOfSpeech)), entity->definition);
 }
