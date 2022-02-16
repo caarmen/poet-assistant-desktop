@@ -85,7 +85,10 @@ Menu {
             icon.source: `qrc:/images/${iconSource}.svg`
             icon.color: Style.primary
             text: qsTrId(label)
-            onTriggered: menuAction()
+            onTriggered: {
+                menuAction()
+                contextMenu.close()
+            }
         }
     }
 }
