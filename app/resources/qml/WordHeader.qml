@@ -21,6 +21,7 @@ import QtQuick.Controls
 
 Rectangle {
     property string word
+    signal copyClicked
     onWordChanged: {
         contextMenu.word = word
     }
@@ -45,7 +46,7 @@ Rectangle {
         font.bold: true
         text: word
         anchors.left: favoriteIcon.right
-        anchors.right: parent.right
+        anchors.right: copyResult.left
         anchors.verticalCenter: parent.verticalCenter
         MouseArea {
             anchors.fill: parent
@@ -53,4 +54,13 @@ Rectangle {
             onClicked:  contextMenu.popup()
         }
     }
+    ToolButton {
+        id: copyResult
+        anchors.right: parent.right
+        anchors.rightMargin: 16
+        icon.source: "qrc:/images/copy.svg"
+        icon.color: Style.primary
+        onClicked: copyClicked()
+    }
+
 }

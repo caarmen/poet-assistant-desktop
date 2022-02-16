@@ -30,6 +30,7 @@ class RhymeViewModel : public QObject
 public:
     explicit RhymeViewModel(RhymeRepository *repository, QObject *parent = nullptr);
     QFuture<QList<RhymeDisplayData *>*> readRhymes(QString searchText);
+    QFuture<QString> readRhymesText(QString searchText);
 
 private:
     RhymeRepository *repository;

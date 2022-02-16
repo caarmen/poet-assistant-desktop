@@ -26,9 +26,11 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 class ThesaurusEntityMapper
 {
 public:
-    static QList<ThesaurusDisplayData *> *map(QList<ThesaurusEntity *> *entities);
+    static QList<ThesaurusDisplayData *> *map(const QList<ThesaurusEntity *> *entities);
+    static const QString mapListText(QString word, const QList<ThesaurusEntity *> *entities);
 private:
     static QList<ThesaurusDisplayData *> *map(ThesaurusEntity *entity);
+    static QString mapItemText(ThesaurusDisplayData *thesaurusDisplayData);
     static const char *map(const QString &wordType);
     static QList<ThesaurusDisplayData *> *mapMatchingWords(const char *label, QString matchingWordsCsv);
     ThesaurusEntityMapper();

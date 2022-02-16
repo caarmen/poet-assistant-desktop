@@ -24,7 +24,7 @@ ThesaurusEntityMapper::ThesaurusEntityMapper()
 
 }
 
-QList<ThesaurusDisplayData *> *ThesaurusEntityMapper::map(QList<ThesaurusEntity *> *entities)
+QList<ThesaurusDisplayData *> *ThesaurusEntityMapper::map(const QList<ThesaurusEntity *> *entities)
 {
     QList<ThesaurusDisplayData *> *result =
         QtConcurrent::blockingMappedReduced<QList<ThesaurusDisplayData *>*>(
@@ -89,4 +89,27 @@ QList<ThesaurusDisplayData *> *ThesaurusEntityMapper::map(ThesaurusEntity *entit
     delete antonyms;
 
     return result;
+}
+const QString ThesaurusEntityMapper::mapListText(QString word,
+                                                 const QList<ThesaurusEntity *> *entities)
+{
+    QList<ThesaurusDisplayData *> *displayDataList = map(entities);
+    QStringList entitiesAsText = QtConcurrent::blockingMapped(*displayDataList,
+                                                              &ThesaurusEntityMapper::mapItemText);
+    entitiesAsText.prepend(qtTrId("thesaurus_results_text_title").arg(word));
+    QString result = entitiesAsText.join("\n");
+    qDeleteAll(*displayDataList);
+    delete displayDataList;
+    return result;
+}
+
+QString ThesaurusEntityMapper::mapItemText(ThesaurusDisplayData *thesaurusDisplayData)
+{
+    if (thesaurusDisplayData->bold)  {
+        return thesaurusDisplayData->text;
+    } else if (thesaurusDisplayData->italic)  {
+        return qtTrId("text_indent_1").arg(thesaurusDisplayData->text);
+    } else {
+        return qtTrId("text_indent_2").arg(thesaurusDisplayData->text);
+    }
 }

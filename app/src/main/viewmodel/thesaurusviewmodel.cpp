@@ -35,3 +35,14 @@ QFuture<QList<ThesaurusDisplayData *>*> ThesaurusViewModel::readThesaurus(QStrin
         return result;
     });
 }
+
+QFuture<QString> ThesaurusViewModel::readThesaurusText(QString searchText)
+{
+    return repository->readThesaurus(searchText)
+    .then([searchText](QList<ThesaurusEntity *> *entities) {
+        QString result = ThesaurusEntityMapper::mapListText(searchText, entities);
+        qDeleteAll(*entities);
+        delete entities;
+        return result;
+    });
+}

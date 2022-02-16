@@ -30,6 +30,7 @@ Rectangle {
             id: thesaurusList
             header: WordHeader {
                 word: thesaurusListModel.word
+                onCopyClicked: mainViewModel.copyThesaurus(thesaurusListModel.word)
             }
             headerPositioning: ListView.PullBackHeader
             model: thesaurusListModel

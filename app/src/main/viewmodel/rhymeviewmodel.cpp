@@ -37,3 +37,15 @@ QFuture<QList<RhymeDisplayData *>*> RhymeViewModel::readRhymes(QString searchTex
         return result;
     });
 }
+
+
+QFuture<QString> RhymeViewModel::readRhymesText(QString searchText)
+{
+    return repository->readStressSyllableRhymes(searchText)
+    .then([searchText](QList<RhymeEntity *> *rhymeEntities) {
+        QString result = RhymeEntityMapper::mapListText(searchText, rhymeEntities);
+        qDeleteAll(*rhymeEntities);
+        delete rhymeEntities;
+        return result;
+    });
+}

@@ -24,12 +24,23 @@ DefinitionEntityMapper::DefinitionEntityMapper()
 {
 }
 
-QList<DefinitionDisplayData *> *DefinitionEntityMapper::map(QList<DefinitionEntity *> *entities)
+QList<DefinitionDisplayData *> *DefinitionEntityMapper::map(const QList<DefinitionEntity *>
+                                                            *entities)
 {
     return new QList<DefinitionDisplayData *>(QtConcurrent::blockingMapped(*entities, [ = ] (
     DefinitionEntity * entity) {
         return map(entity);
     }));
+}
+const QString DefinitionEntityMapper::mapText(QString word,
+                                              const QList<DefinitionEntity *> *entities)
+{
+    auto result = QtConcurrent::blockingMapped(*entities, [ = ] (
+    DefinitionEntity * entity) {
+        return qtTrId(map(entity->partOfSpeech)) + " " + entity->definition;
+    });
+    result.prepend(qtTrId("definitions_results_text_title").arg(word));
+    return result.join("\n");
 }
 const char *DefinitionEntityMapper::map(const QString &partOfSpeech)
 {

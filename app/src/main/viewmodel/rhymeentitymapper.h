@@ -27,8 +27,10 @@ class RhymeEntityMapper
 {
 public:
     static QList<RhymeDisplayData *> *map(const QList<RhymeEntity *> *rhymeEntities);
+    static const QString mapListText(QString word, const QList<RhymeEntity *> *rhymeEntities);
 private:
     static const char *map(RhymeEntity::SyllablesType syllablesType);
+    static QString mapItemText(RhymeDisplayData *rhymeDisplayData);
     RhymeEntityMapper();
 };
 
