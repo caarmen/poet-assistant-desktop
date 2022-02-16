@@ -74,11 +74,17 @@ ApplicationWindow {
     }
 
     header: ToolBarView {
+        id: toolBarView
         onSearched: tabs.onSearched()
     }
 
     MainTabsView {
         id: tabs
+    }
+
+    SuggestionListView {
+        x: toolBarView.textFieldLeftEdge
+        onSuggestionSelected: (suggestion) => toolBarView.submitText(suggestion)
     }
 
     AboutDialog {

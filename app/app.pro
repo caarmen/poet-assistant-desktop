@@ -41,6 +41,8 @@ SOURCES += \
     $${SOURCE_DIR}/main/repository/poemrepository.cpp \
     $${SOURCE_DIR}/main/repository/rhymeentity.cpp \
     $${SOURCE_DIR}/main/repository/rhymerepository.cpp \
+    $${SOURCE_DIR}/main/repository/suggestionentity.cpp \
+    $${SOURCE_DIR}/main/repository/suggestionrepository.cpp \
     $${SOURCE_DIR}/main/repository/thesaurusentity.cpp \
     $${SOURCE_DIR}/main/repository/thesaurusrepository.cpp \
     $${SOURCE_DIR}/main/viewmodel/composerviewmodel.cpp \
@@ -54,6 +56,10 @@ SOURCES += \
     $${SOURCE_DIR}/main/viewmodel/rhymeentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/rhymelistmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/rhymeviewmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/suggestiondisplaydata.cpp \
+    $${SOURCE_DIR}/main/viewmodel/suggestionlistmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/suggestionviewmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/suggesttionentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesaurusdisplaydata.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesaurusentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.cpp \
@@ -86,10 +92,12 @@ HEADERS += \
     $${SOURCE_DIR}/main/repository/poemrepository.h \
     $${SOURCE_DIR}/main/repository/rhymeentity.h \
     $${SOURCE_DIR}/main/repository/rhymerepository.h \
+    $${SOURCE_DIR}/main/repository/suggestionentity.h \
+    $${SOURCE_DIR}/main/repository/suggestionrepository.h \
     $${SOURCE_DIR}/main/repository/thesaurusentity.h \
     $${SOURCE_DIR}/main/repository/thesaurusrepository.h \
-    $${SOURCE_DIR}/main/viewmodel/composerviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/colortypeenum.h \
+    $${SOURCE_DIR}/main/viewmodel/composerviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/definitiondisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/definitionlistmodel.h \
@@ -100,6 +108,10 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/rhymeentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/rhymelistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/rhymeviewmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/suggestiondisplaydata.h \
+    $${SOURCE_DIR}/main/viewmodel/suggestionentitymapper.h \
+    $${SOURCE_DIR}/main/viewmodel/suggestionlistmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/suggestionviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/thesaurusdisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/thesaurusentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.h \

@@ -40,5 +40,7 @@
         <file>qml/TtsControlsView.qml</file>
         <file>qml/ResizingComboBox.qml</file>
         <file>qml/Icon.qml</file>
+        <file>qml/SuggestionListItemDelegate.qml</file>
+        <file>qml/SuggestionListView.qml</file>
     </qresource>
 </RCC>

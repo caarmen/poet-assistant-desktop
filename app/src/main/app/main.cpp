@@ -37,6 +37,7 @@ void setupEngine(QQmlApplicationEngine &engine, AppComponents &components) {
     engine.rootContext()->setContextProperty("composerViewModel", QVariant::fromValue(&components.composerViewModel));
     engine.rootContext()->setContextProperty("ttsViewModel", QVariant::fromValue(&components.ttsViewModel));
     engine.rootContext()->setContextProperty("favoriteListModel", QVariant::fromValue(&components.favoriteListModel));
+    engine.rootContext()->setContextProperty("suggestionListModel", QVariant::fromValue(&components.suggestionListModel));
     engine.rootContext()->setContextProperty("theme", Style::setStyle());
     engine.load(QUrl("qrc:/qml/main.qml"));
 }
