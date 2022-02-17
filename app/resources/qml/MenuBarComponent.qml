@@ -21,18 +21,24 @@ import QtQuick.Controls
 
 MenuBar {
     signal menuItemSelected(string id)
+    palette.button: Style.background
+    palette.buttonText: Style.primaryText
+    palette.mid: Style.surface
     Menu {
         title: qsTrId("menu_file")
         MenuItem {
             text: qsTrId("menu_file_new")
+            background: MenuItemBackground {}
             onTriggered: menuItemSelected("new")
         }
         MenuItem {
             text: qsTrId("menu_file_open")
+            background: MenuItemBackground {}
             onTriggered: menuItemSelected("open")
         }
         MenuItem {
             text: qsTrId("menu_file_saveas")
+            background: MenuItemBackground {}
             onTriggered: menuItemSelected("saveas")
         }
         MenuSeparator {
@@ -40,6 +46,7 @@ MenuBar {
         }
         MenuItem {
             text: qsTrId("menu_file_quit")
+            background: MenuItemBackground {}
             onTriggered: menuItemSelected("quit")
         }
     }
@@ -47,6 +54,7 @@ MenuBar {
         title: qsTrId("menu_help")
         MenuItem {
             text: qsTrId("menu_help_about")
+            background: MenuItemBackground {}
             onTriggered: menuItemSelected("about")
         }
     }

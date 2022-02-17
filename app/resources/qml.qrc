@@ -29,6 +29,7 @@
         <file>qml/LabsMenuBarComponent.qml</file>
         <file>qml/MainTabsView.qml</file>
         <file>qml/MenuBarComponent.qml</file>
+        <file>qml/MenuItemBackground.qml</file>
         <file>qml/ResizingComboBox.qml</file>
         <file>qml/RhymeListItemDelegate.qml</file>
         <file>qml/RhymeTabView.qml</file>

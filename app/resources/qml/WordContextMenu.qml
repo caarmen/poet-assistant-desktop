@@ -81,7 +81,7 @@ Menu {
     Component {
         id: menuItem
         MenuItem {
-            background: Rectangle { color: Style.surface }
+            background: MenuItemBackground {}
             icon.source: `qrc:/images/${iconSource}.svg`
             icon.color: Style.primary
             text: qsTrId(label)
