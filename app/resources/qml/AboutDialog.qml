@@ -33,6 +33,7 @@ Window {
             Layout.leftMargin: 16
             Layout.rightMargin: 16
             text: qsTrId("about_content_title")
+            Accessible.name: text
             font.bold: true
             color: Style.primaryText
             width: paintedWidth
@@ -46,6 +47,7 @@ Window {
             Layout.rightMargin: 16
             Layout.bottomMargin: 16
             text: Qt.application.version
+            Accessible.name: text
             color: Style.primaryText
             width: paintedWidth
             height: paintedHeight
@@ -58,6 +60,7 @@ Window {
             Layout.rightMargin: 16
             Layout.bottomMargin: 16
             text: qsTrId("about_copyright")
+            Accessible.name: text
             color: Style.primaryText
             width: paintedWidth
             height: paintedHeight
@@ -79,6 +82,7 @@ Window {
             Icon { source: "qrc:/images/ic_legal.svg" }
             Text {
                 text: qsTrId("about_legal_label")
+                Accessible.name: text
                 font.bold: true
                 color: Style.primaryText
             }
@@ -131,6 +135,7 @@ Window {
             Icon { source: `qrc:/images/${iconSource}.svg` }
             Text {
                 text: qsTrId(label)
+                Accessible.name: text
                 font.bold: true
                 color: Style.primary
                 MouseArea{

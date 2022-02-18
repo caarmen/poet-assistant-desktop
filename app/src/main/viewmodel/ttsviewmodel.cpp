@@ -117,6 +117,11 @@ QString TtsViewModel::getPlayButtonIcon()
     return tts->state() == QTextToSpeech::Speaking ? "qrc:/images/stop.svg" : "qrc:/images/play.svg";
 }
 
+QString TtsViewModel::getPlayButtonLabel()
+{
+    return tts->state() == QTextToSpeech::Speaking ? "a11y_icon_stop" : "a11y_icon_play";
+}
+
 void TtsViewModel::play(QString text, int startPosition)
 {
     if (tts->state() == QTextToSpeech::Speaking) {

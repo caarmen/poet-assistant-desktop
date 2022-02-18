@@ -45,6 +45,7 @@ Rectangle {
         color: Style.primaryText
         font.bold: true
         text: word
+        Accessible.name: text
         anchors.left: favoriteIcon.right
         anchors.right: copyResult.left
         anchors.verticalCenter: parent.verticalCenter
@@ -59,6 +60,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin: 16
         icon.source: "qrc:/images/copy.svg"
+        Accessible.name: qsTrId("a11y_icon_copy")
         icon.color: Style.primary
         onClicked: copyClicked()
     }

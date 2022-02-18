@@ -49,6 +49,7 @@ public:
     Q_INVOKABLE void searchDefinitions(QString query);
     Q_INVOKABLE void copyDefinitions(QString query);
     Q_INVOKABLE QString getFavoriteIcon(QString word);
+    Q_INVOKABLE QString getFavoriteLabel(QString word);
     Q_INVOKABLE void toggleFavorite(QString query);
     Q_INVOKABLE void copyFavorites();
     Q_INVOKABLE void clearFavorites();

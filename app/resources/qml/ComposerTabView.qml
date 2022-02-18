@@ -53,6 +53,7 @@ ColumnLayout {
             anchors.bottom: parent.bottom
             anchors.leftMargin: 16
             text: qsTrId(composerViewModel.poemFileName)
+            Accessible.name: text
             color: Style.primaryText
         }
         Text {
@@ -61,6 +62,7 @@ ColumnLayout {
             anchors.bottom: parent.bottom
             anchors.rightMargin: 16
             text: qsTrId(composerViewModel.savedState)
+            Accessible.name: text
             color: Style.primaryText
         }
     }
@@ -109,6 +111,7 @@ ColumnLayout {
         anchors.centerIn: parent
         contentItem: Text{
             text: qsTrId("new_confirm_message")
+            Accessible.name: text
             color: Style.primaryText
         }
         standardButtons: Dialog.Ok | Dialog.Cancel

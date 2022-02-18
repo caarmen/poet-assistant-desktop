@@ -50,6 +50,7 @@ ItemDelegate {
                 font.bold: model.thesaurus.bold
                 font.italic: model.thesaurus.italic
                 text: model.thesaurus.text
+                Accessible.name: text
                 Layout.fillWidth: true
             }
         }

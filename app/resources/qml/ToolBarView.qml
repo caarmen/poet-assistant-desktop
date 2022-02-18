@@ -68,6 +68,7 @@ ToolBar {
                 enabled: false
                 icon.color: Style.primaryText
                 icon.source: "qrc:/images/search.svg"
+                Accessible.name: qsTrId("a11y_icon_search")
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 onClicked:  onSearch()
@@ -77,6 +78,7 @@ ToolBar {
                 visible: false
                 icon.color: Style.primaryText
                 icon.source: "qrc:/images/close.svg"
+                Accessible.name: qsTrId("a11y_icon_clear")
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 onClicked: tfSearch.clear()

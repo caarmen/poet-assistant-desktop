@@ -2,6 +2,30 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <message id="a11y_icon_clear">
+        <translation>Clear</translation>
+    </message>
+    <message id="a11y_icon_copy">
+        <translation>Copy</translation>
+    </message>
+    <message id="a11y_icon_delete">
+        <translation>Delete</translation>
+    </message>
+    <message id="a11y_icon_favorite_checked">
+        <translation>Favorite</translation>
+    </message>
+    <message id="a11y_icon_favorite_unchecked">
+        <translation>Not favorite</translation>
+    </message>
+    <message id="a11y_icon_play">
+        <translation>Play</translation>
+    </message>
+    <message id="a11y_icon_search">
+        <translation>Search</translation>
+    </message>
+    <message id="a11y_icon_stop">
+        <translation>Stop</translation>
+    </message>
     <message id="about_content_title">
         <translation>Poet Assistant</translation>
     </message>

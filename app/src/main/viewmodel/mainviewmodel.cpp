@@ -103,6 +103,11 @@ QString MainViewModel::getFavoriteIcon(QString word)
     return favoriteRepository->isFavorite(word) ?  "qrc:/images/star.svg" :
            "qrc:/images/star_border.svg";
 }
+QString MainViewModel::getFavoriteLabel(QString word)
+{
+    return favoriteRepository->isFavorite(word) ?  "a11y_icon_favorite_checked" :
+           "a11y_icon_favorite_unchecked";
+}
 void MainViewModel::toggleFavorite(QString query)
 {
     favoriteRepository->toggleFavorite(query);

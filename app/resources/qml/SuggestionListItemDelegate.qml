@@ -32,6 +32,7 @@ ItemDelegate {
         Text {
             color: Style.primaryText
             text: model.suggestion.word
+            Accessible.name: text
             horizontalAlignment: Text.AlignLeft
             Layout.fillWidth: true
         }

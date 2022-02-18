@@ -22,6 +22,7 @@ import QtQuick.Controls
 ToolButton {
     property string source
     icon.source: source
+    Accessible.ignored: true
     icon.color: Style.primaryText
     background: Rectangle { color: "transparent" }
 }
