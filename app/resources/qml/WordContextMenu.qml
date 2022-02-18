@@ -44,6 +44,7 @@ Menu {
     }
     Loader {
         sourceComponent: menuItem
+        visible: ttsViewModel.isTtsSupported()
         property string iconSource: "speak"
         property string label: "context_menu_speak"
         function menuAction() {
@@ -81,6 +82,7 @@ Menu {
     Component {
         id: menuItem
         MenuItem {
+            height: visible? implicitHeight : 0
             background: MenuItemBackground {}
             icon.source: `qrc:/images/${iconSource}.svg`
             icon.color: Style.primary
