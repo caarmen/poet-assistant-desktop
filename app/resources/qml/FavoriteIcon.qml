@@ -28,6 +28,7 @@ Rectangle {
     ToolButton {
         id: favorite
         icon.source: mainViewModel.getFavoriteIcon(wordView.text)
+        Accessible.name: qsTrId(mainViewModel.getFavoriteLabel(wordView.text))
         icon.color: Style.primary
         MouseArea {
             id: area

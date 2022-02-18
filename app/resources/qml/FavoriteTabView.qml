@@ -37,11 +37,13 @@ Rectangle {
                     color: Style.primaryText
                     font.bold: true
                     text: qsTrId("favorites_header")
+                    Accessible.name: text
                     Layout.leftMargin: 16
                     Layout.fillWidth: true
                 }
                 ToolButton {
                     icon.source: "qrc:/images/delete.svg"
+                    Accessible.name: qsTrId("a11y_icon_delete")
                     icon.color: Style.primary
                     Layout.alignment: Qt.AlignRight
                     Layout.rightMargin: 16
@@ -49,6 +51,7 @@ Rectangle {
                 }
                 ToolButton {
                     icon.source: "qrc:/images/copy.svg"
+                    Accessible.name: qsTrId("a11y_icon_copy")
                     icon.color: Style.primary
                     Layout.alignment: Qt.AlignRight
                     Layout.rightMargin: 16
@@ -72,6 +75,7 @@ Rectangle {
         anchors.centerIn: parent
         contentItem: Text{
             text: qsTrId("delete_confirm_message")
+            Accessible.name: text
             color: Style.primaryText
         }
         standardButtons: Dialog.Ok | Dialog.Cancel

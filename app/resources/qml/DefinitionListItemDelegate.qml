@@ -34,6 +34,7 @@ ItemDelegate {
             Text {
                 color: Style.primaryText
                 text: model.definition.part_of_speech
+                Accessible.name: text
                 font.bold: true
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -46,6 +47,7 @@ ItemDelegate {
             Text {
                 color: Style.primaryText
                 text: model.definition.definition
+                Accessible.name: text
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter

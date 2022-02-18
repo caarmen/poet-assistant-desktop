@@ -26,6 +26,7 @@ Rectangle {
         color: Style.primaryText
         font.bold: true
         text: emptyText
+        Accessible.name: text
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
     }

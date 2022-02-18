@@ -14,6 +14,7 @@ class TtsViewModel : public QObject
     Q_PROPERTY(QStringList availableVoiceNames READ getAvailableVoiceNames() NOTIFY
                availableVoiceNamesChanged)
     Q_PROPERTY(QString playButtonIcon READ getPlayButtonIcon NOTIFY playButtonIconChanged)
+    Q_PROPERTY(QString playButtonLabel READ getPlayButtonLabel NOTIFY playButtonIconChanged)
     Q_PROPERTY(double minPitch MEMBER minPitch CONSTANT)
     Q_PROPERTY(double maxPitch MEMBER maxPitch CONSTANT)
     Q_PROPERTY(double minRate MEMBER minRate CONSTANT)
@@ -43,6 +44,7 @@ private:
     double getRate();
     void setRate(double rate);
     QString getPlayButtonIcon();
+    QString getPlayButtonLabel();
     QTextToSpeech *tts;
     QList<QString> localeNames;
 

@@ -50,6 +50,7 @@ ItemDelegate {
                 font.bold: model.rhyme.bold
                 font.italic: model.rhyme.italic
                 text: model.rhyme.text
+                Accessible.name: text
                 Layout.fillWidth: true
             }
         }

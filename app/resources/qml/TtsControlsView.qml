@@ -33,6 +33,7 @@ RowLayout{
         Text {
             color: Style.primaryText
             text: qsTrId("label_locale");
+            Accessible.name: text
         }
         ComboBox {
             palette.dark: Style.primary // indicator
@@ -48,6 +49,7 @@ RowLayout{
         Text {
             color: Style.primaryText
             text: qsTrId("label_voice");
+            Accessible.name: text
         }
         ResizingComboBox {
             id: cbVoices
@@ -72,6 +74,7 @@ RowLayout{
         color: Style.background
         ToolButton {
             icon.source: ttsViewModel.playButtonIcon
+            Accessible.name: qsTrId(ttsViewModel.playButtonLabel)
             icon.color: Style.primary
             icon.height: 32
             icon.width: 32
@@ -91,6 +94,7 @@ RowLayout{
         Text {
             color: Style.primaryText
             text: qsTrId("label_pitch");
+            Accessible.name: text
         }
         Slider {
             id: ttsPitch
@@ -108,6 +112,7 @@ RowLayout{
         Text {
             color: Style.primaryText
             text: qsTrId("label_rate");
+            Accessible.name: text
         }
         Slider {
             id: ttsRate
