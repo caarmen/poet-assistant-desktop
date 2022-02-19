@@ -18,13 +18,22 @@
 version=$(cat deploy/version.txt)
 
 project_dir=`pwd`
+output_dir=$project_dir/app/build/out
+
 cd lib/qtspeech/src/tts
 qmake 'DEFINES+="__cpp_lib_hypot=0"'
 cd $project_dir
 
 qmake VERSION=$version
 make
-cd app
-make build/out/PoetAssistant.dmg
-mv build/out/PoetAssistant.dmg build/out/PoetAssistant-mac-$version.dmg
-cd -
+
+temp_folder=$(mktemp -d -t poet-assistant-XXXXXXXXXX)
+cp -pr $output_dir/PoetAssistant.app $temp_folder
+macdeployqt $temp_folder/PoetAssistant.app/ -qmldir=app/resources/ -qmlimport=app/resources/
+find $temp_folder/PoetAssistant.app/ -name "*.dSYM"|xargs rm -rf
+hdiutil create $output_dir/PoetAssistant.dmg -ov -volname "Poet Assistant" -fs HFS+ -srcfolder $temp_folder
+target_dmg_file=$output_dir/PoetAssistant-mac-$version.dmg
+hdiutil convert $output_dir/PoetAssistant.dmg -format UDZO -o $target_dmg_file
+rm $output_dir/PoetAssistant.dmg
+
+echo "created $target_dmg_file"
