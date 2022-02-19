@@ -21,6 +21,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
+    signal favoriteToastTextChanged(string text)
     color: Style.background
     height: parent.height
     width: parent.width
@@ -52,7 +53,10 @@ Rectangle {
                     label: qsTrId("a11y_icon_copy_favorites")
                     Layout.alignment: Qt.AlignRight
                     Layout.rightMargin: 16
-                    onClicked: mainViewModel.copyFavorites()
+                    onClicked: {
+                        mainViewModel.copyFavorites()
+                        favoriteToastTextChanged(qsTrId("toast_copied_favorites"))
+                    }
                 }
             }
             headerPositioning: ListView.PullBackHeader

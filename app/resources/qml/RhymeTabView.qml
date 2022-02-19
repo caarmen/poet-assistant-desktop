@@ -20,6 +20,7 @@ import QtQuick
 import QtQuick.Controls
 
 Rectangle {
+    signal rhymeToastTextChanged(string text)
     color: Style.background
     height: parent.height
     width: parent.width
@@ -31,7 +32,10 @@ Rectangle {
             header: WordHeader {
                 word: rhymeListModel.word
                 copyLabel: qsTrId("a11y_icon_copy_rhymes")
-                onCopyClicked: mainViewModel.copyRhymes(rhymeListModel.word)
+                onCopyClicked: {
+                    mainViewModel.copyRhymes(rhymeListModel.word)
+                    rhymeToastTextChanged(qsTrId("toast_copied_rhymes"))
+                }
             }
             headerPositioning: ListView.PullBackHeader
             model: rhymeListModel

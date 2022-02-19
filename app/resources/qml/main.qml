@@ -80,6 +80,7 @@ ApplicationWindow {
 
     MainTabsView {
         id: tabs
+        onToastTextChanged: (text) => toast.show(text)
     }
 
     SuggestionListView {
@@ -89,5 +90,10 @@ ApplicationWindow {
 
     AboutDialog {
         id: dlgAbout
+    }
+    Toast {
+        id: toast
+        x: (parent.width - width)/2
+        y: parent.height - height - 16
     }
 }

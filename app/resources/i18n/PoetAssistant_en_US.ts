@@ -251,6 +251,18 @@
     <message id="thesaurus_results_text_title">
         <translation>Thesaurus entries for %1</translation>
     </message>
+    <message id="toast_copied_definitions">
+        <translation>Copied definitions to clipboard</translation>
+    </message>
+    <message id="toast_copied_favorites">
+        <translation>Copied favorite words to clipboard</translation>
+    </message>
+    <message id="toast_copied_rhymes">
+        <translation>Copied rhymes to clipboard</translation>
+    </message>
+    <message id="toast_copied_thesaurus">
+        <translation>Copied thesaurus entries to clipboard</translation>
+    </message>
     <message id="unknown_source">
         <translation>Unknown</translation>
     </message>

@@ -22,6 +22,7 @@ import QtQuick.Layouts
 
 ColumnLayout {
     anchors.fill: parent
+    signal toastTextChanged(string text)
     function onSearched() {
         if (bar.currentIndex > Tabs.Tabs.DICTIONARY) bar.currentIndex = Tabs.Tabs.DICTIONARY
     }
@@ -76,15 +77,21 @@ ColumnLayout {
             currentIndex: bar.currentIndex
             Item {
                 id: rhymesTab
-                RhymeTabView {}
+                RhymeTabView {
+                    onRhymeToastTextChanged: (text) => toastTextChanged(text)
+                }
             }
             Item {
                 id: thesaurusTab
-                ThesaurusTabView {}
+                ThesaurusTabView {
+                    onThesaurusToastTextChanged: (text) => toastTextChanged(text)
+                }
             }
             Item {
                 id: definitionsTab
-                DictionaryTabView {}
+                DictionaryTabView  {
+                    onDefinitionToastTextChanged: (text) => toastTextChanged(text)
+                }
             }
             Item {
                 id: composerTab
@@ -94,7 +101,9 @@ ColumnLayout {
             }
             Item {
                 id: favoritesTab
-                FavoriteTabView{}
+                FavoriteTabView{
+                    onFavoriteToastTextChanged: (text) => toastTextChanged(text)
+                }
             }
         }
     }
