@@ -20,6 +20,7 @@ import QtQuick
 import QtQuick.Controls
 
 Rectangle {
+    signal definitionToastTextChanged(string text)
     color: Style.background
     height: parent.height
     width: parent.width
@@ -31,7 +32,10 @@ Rectangle {
             header: WordHeader {
                 word: definitionsListModel.word
                 copyLabel: qsTrId("a11y_icon_copy_definitions")
-                onCopyClicked: mainViewModel.copyDefinitions(definitionsListModel.word)
+                onCopyClicked: {
+                    mainViewModel.copyDefinitions(definitionsListModel.word)
+                    definitionToastTextChanged(qsTrId("toast_copied_definitions"))
+                }
             }
             headerPositioning: ListView.PullBackHeader
             model: definitionsListModel

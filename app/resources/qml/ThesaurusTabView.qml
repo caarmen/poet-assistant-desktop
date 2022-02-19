@@ -20,6 +20,7 @@ import QtQuick
 import QtQuick.Controls
 
 Rectangle {
+    signal thesaurusToastTextChanged(string text)
     color: Style.background
     height: parent.height
     width: parent.width
@@ -31,7 +32,10 @@ Rectangle {
             header: WordHeader {
                 word: thesaurusListModel.word
                 copyLabel: qsTrId("a11y_icon_copy_thesaurus")
-                onCopyClicked: mainViewModel.copyThesaurus(thesaurusListModel.word)
+                onCopyClicked: {
+                    mainViewModel.copyThesaurus(thesaurusListModel.word)
+                    thesaurusToastTextChanged(qsTrId("toast_copied_thesaurus"))
+                }
             }
             headerPositioning: ListView.PullBackHeader
             model: thesaurusListModel

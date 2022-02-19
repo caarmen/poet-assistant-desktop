@@ -40,6 +40,7 @@
         <file>qml/Tabs.qml</file>
         <file>qml/ThesaurusListItemDelegate.qml</file>
         <file>qml/ThesaurusTabView.qml</file>
+        <file>qml/Toast.qml</file>
         <file>qml/ToolBarView.qml</file>
         <file>qml/TtsControlsView.qml</file>
         <file>qml/WordContextMenu.qml</file>
