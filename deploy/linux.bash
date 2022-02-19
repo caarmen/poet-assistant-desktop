@@ -152,12 +152,14 @@ function copyLocalDependencies {
     tts_plugin_folder=$dependencies_folder/plugins/texttospeech
     mkdir -p $tts_plugin_folder
     cp lib/qtspeech/plugins/texttospeech/libqtexttospeech_speechd.so $tts_plugin_folder/.
+
+    cp $build_folder/poet_assistant.db $temp_folder/
 }
 function createArchive {
     output_file=${build_folder}/PoetAssistant-linux-$version.tgz
     echo "Creating ${output_file}..."
     rm -f $output_file
-    tar czf $output_file -C $temp_folder $program_file_name dependencies
+    tar czf $output_file -C $temp_folder $program_file_name poet_assistant.db dependencies
     echo "created $output_file"
 }
 

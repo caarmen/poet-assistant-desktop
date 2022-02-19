@@ -50,7 +50,7 @@ cd %project_folder%
 
 mingw32-make release
 
-windeployqt --qmldir=. --qmlimport=. %output_folder%\PoetAssistant.exe
+windeployqt --qmldir=%app_folder% --qmlimport=%app_folder% %output_folder%\PoetAssistant.exe
 
 echo Building archive...
 copy deploy\config\icon.ico %output_folder%\icon.ico
