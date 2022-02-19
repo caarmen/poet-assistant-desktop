@@ -2,14 +2,26 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
-    <message id="a11y_icon_clear">
-        <translation>Clear</translation>
+    <message id="a11y_icon_clear_search_text">
+        <translation>Clear search text</translation>
+    </message>
+    <message id="a11y_icon_clear_favorites">
+        <translation>Clear favorite words</translation>
     </message>
     <message id="a11y_icon_copy">
         <translation>Copy</translation>
     </message>
-    <message id="a11y_icon_delete">
-        <translation>Delete</translation>
+    <message id="a11y_icon_copy_definitions">
+        <translation>Copy definitions to clipboard</translation>
+    </message>
+    <message id="a11y_icon_copy_favorites">
+        <translation>Copy favorite words to clipboard</translation>
+    </message>
+    <message id="a11y_icon_copy_rhymes">
+        <translation>Copy rhymes to clipboard</translation>
+    </message>
+    <message id="a11y_icon_copy_thesaurus">
+        <translation>Copy thesaurus results to clipboard</translation>
     </message>
     <message id="a11y_icon_favorite_checked">
         <translation>Favorite</translation>

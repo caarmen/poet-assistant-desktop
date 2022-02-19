@@ -21,6 +21,7 @@ import QtQuick.Controls
 
 Rectangle {
     property string word
+    property string copyLabel
     signal copyClicked
     onWordChanged: {
         contextMenu.word = word
@@ -55,14 +56,12 @@ Rectangle {
             onClicked:  contextMenu.popup()
         }
     }
-    ToolButton {
+    AnnotatedToolButton {
         id: copyResult
         anchors.right: parent.right
         anchors.rightMargin: 16
-        icon.source: "qrc:/images/copy.svg"
-        Accessible.name: qsTrId("a11y_icon_copy")
-        icon.color: Style.primary
+        iconsource: "qrc:/images/copy.svg"
+        label: copyLabel
         onClicked: copyClicked()
     }
-
 }

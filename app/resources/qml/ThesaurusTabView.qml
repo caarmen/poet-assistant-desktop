@@ -30,6 +30,7 @@ Rectangle {
             id: thesaurusList
             header: WordHeader {
                 word: thesaurusListModel.word
+                copyLabel: qsTrId("a11y_icon_copy_thesaurus")
                 onCopyClicked: mainViewModel.copyThesaurus(thesaurusListModel.word)
             }
             headerPositioning: ListView.PullBackHeader

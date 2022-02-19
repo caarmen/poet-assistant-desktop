@@ -25,11 +25,10 @@ Rectangle {
     height:childrenRect.height
     width: childrenRect.width
     visible: wordView.text.length > 0
-    ToolButton {
+    AnnotatedToolButton {
         id: favorite
-        icon.source: mainViewModel.getFavoriteIcon(wordView.text)
-        Accessible.name: qsTrId(mainViewModel.getFavoriteLabel(wordView.text))
-        icon.color: Style.primary
+        iconsource: mainViewModel.getFavoriteIcon(wordView.text)
+        label: qsTrId(mainViewModel.getFavoriteLabel(wordView.text))
         MouseArea {
             id: area
             anchors.fill: parent
@@ -40,12 +39,14 @@ Rectangle {
             target: mainViewModel
             function onFavoritesChanged() {
                 favorite.icon.source = mainViewModel.getFavoriteIcon(wordView.text)
+                favorite.label = mainViewModel.getFavoriteLabel(wordView.text)
             }
         }
         Connections {
             target: wordView
             function onTextChanged() {
                 favorite.icon.source = mainViewModel.getFavoriteIcon(wordView.text)
+                favorite.label = mainViewModel.getFavoriteLabel(wordView.text)
             }
         }
     }

@@ -63,22 +63,22 @@ ToolBar {
                 }
             }
 
-            ToolButton {
+            AnnotatedToolButton {
                 id: btnSearch
                 enabled: false
                 icon.color: Style.primaryText
-                icon.source: "qrc:/images/search.svg"
-                Accessible.name: qsTrId("a11y_icon_search")
+                iconsource: "qrc:/images/search.svg"
+                label: qsTrId("a11y_icon_search")
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 onClicked:  onSearch()
             }
-            ToolButton {
+            AnnotatedToolButton {
                 id: btnClose
                 visible: false
                 icon.color: Style.primaryText
-                icon.source: "qrc:/images/close.svg"
-                Accessible.name: qsTrId("a11y_icon_clear")
+                iconsource: "qrc:/images/close.svg"
+                label: qsTrId("a11y_icon_clear_search_text")
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 onClicked: tfSearch.clear()

@@ -72,10 +72,9 @@ RowLayout{
         height: 58
         Layout.fillWidth: true
         color: Style.background
-        ToolButton {
-            icon.source: ttsViewModel.playButtonIcon
-            Accessible.name: qsTrId(ttsViewModel.playButtonLabel)
-            icon.color: Style.primary
+        AnnotatedToolButton {
+            iconsource: ttsViewModel.playButtonIcon
+            label: qsTrId(ttsViewModel.playButtonLabel)
             icon.height: 32
             icon.width: 32
             anchors.centerIn: parent

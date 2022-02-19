@@ -41,17 +41,15 @@ Rectangle {
                     Layout.leftMargin: 16
                     Layout.fillWidth: true
                 }
-                ToolButton {
-                    icon.source: "qrc:/images/delete.svg"
-                    Accessible.name: qsTrId("a11y_icon_delete")
-                    icon.color: Style.primary
+                AnnotatedToolButton {
+                    iconsource: "qrc:/images/delete.svg"
+                    label: qsTrId("a11y_icon_clear_favorites")
                     Layout.alignment: Qt.AlignRight
                     onClicked:  dlgDeleteConfirm.open()
                 }
-                ToolButton {
-                    icon.source: "qrc:/images/copy.svg"
-                    Accessible.name: qsTrId("a11y_icon_copy")
-                    icon.color: Style.primary
+                AnnotatedToolButton {
+                    iconsource: "qrc:/images/copy.svg"
+                    label: qsTrId("a11y_icon_copy_favorites")
                     Layout.alignment: Qt.AlignRight
                     Layout.rightMargin: 16
                     onClicked: mainViewModel.copyFavorites()

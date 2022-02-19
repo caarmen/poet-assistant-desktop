@@ -30,6 +30,7 @@ Rectangle {
             id: definitionsList
             header: WordHeader {
                 word: definitionsListModel.word
+                copyLabel: qsTrId("a11y_icon_copy_definitions")
                 onCopyClicked: mainViewModel.copyDefinitions(definitionsListModel.word)
             }
             headerPositioning: ListView.PullBackHeader

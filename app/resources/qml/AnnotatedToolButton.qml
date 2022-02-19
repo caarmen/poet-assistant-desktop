@@ -19,28 +19,13 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 import QtQuick
 import QtQuick.Controls
 
-Rectangle {
-    color: Style.background
-    height: parent.height
-    width: parent.width
-    ScrollView {
-        anchors.fill: parent
-        clip: true
-        ListView {
-            id: rhymeList
-            header: WordHeader {
-                word: rhymeListModel.word
-                copyLabel: qsTrId("a11y_icon_copy_rhymes")
-                onCopyClicked: mainViewModel.copyRhymes(rhymeListModel.word)
-            }
-            headerPositioning: ListView.PullBackHeader
-            model: rhymeListModel
-            delegate: RhymeListItemDelegate {}
-        }
-    }
-    EmptyResultsView {
-        visible: rhymeListModel.isEmptyTextVisible
-        emptyText: rhymeListModel.emptyText
-        anchors.fill: parent
-    }
+ToolButton {
+    property string iconsource
+    property string label
+    icon.source: iconsource
+    Accessible.name: qsTrId(label)
+    ToolTip.text: qsTrId(label)
+    ToolTip.visible: hovered
+    ToolTip.delay: 1000
+    icon.color: Style.primary
 }

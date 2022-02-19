@@ -17,6 +17,7 @@
         <file>images/star_border.svg</file>
         <file>images/stop.svg</file>
         <file>qml/AboutDialog.qml</file>
+        <file>qml/AnnotatedToolButton.qml</file>
         <file>qml/ComposerTabView.qml</file>
         <file>qml/DefinitionListItemDelegate.qml</file>
         <file>qml/DictionaryTabView.qml</file>
