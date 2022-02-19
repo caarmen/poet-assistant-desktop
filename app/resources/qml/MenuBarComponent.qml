@@ -24,6 +24,7 @@ MenuBar {
     palette.button: Style.background
     palette.buttonText: Style.primaryText
     palette.mid: Style.surface
+    palette.highlight: Style.surface
     Menu {
         title: qsTrId("menu_file")
         MenuItem {
