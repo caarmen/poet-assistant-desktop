@@ -17,6 +17,11 @@
 
 version=$(cat deploy/version.txt)
 
+project_dir=`pwd`
+cd lib/qtspeech/src/tts
+qmake 'DEFINES+="__cpp_lib_hypot=0"'
+cd $project_dir
+
 qmake VERSION=$version
 make
 cd app
