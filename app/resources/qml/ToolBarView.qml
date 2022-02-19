@@ -34,6 +34,7 @@ ToolBar {
             Layout.leftMargin: 56
             Layout.rightMargin: 56
             color: Style.background
+            radius: 12
             TextField {
                 id: tfSearch
                 width: parent.width
@@ -48,6 +49,7 @@ ToolBar {
                 background: Rectangle {
                     color: Style.surface
                     Layout.fillWidth: true
+                    radius: 12
                 }
                 placeholderText: qsTrId("hint_search")
                 placeholderTextColor: Style.secondaryText

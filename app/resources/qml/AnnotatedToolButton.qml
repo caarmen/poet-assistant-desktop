@@ -19,13 +19,14 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 import QtQuick
 import QtQuick.Controls
 
-ToolButton {
+RoundButton {
     property string iconsource
     property string label
+    flat: true
     icon.source: iconsource
     Accessible.name: qsTrId(label)
     ToolTip.text: qsTrId(label)
     ToolTip.visible: hovered
     ToolTip.delay: 1000
-    icon.color: Style.primary
+    icon.color: pressed? Style.primaryTextNight : Style.primary
 }
