@@ -46,7 +46,6 @@ Rectangle {
                     Accessible.name: qsTrId("a11y_icon_delete")
                     icon.color: Style.primary
                     Layout.alignment: Qt.AlignRight
-                    Layout.rightMargin: 16
                     onClicked:  dlgDeleteConfirm.open()
                 }
                 ToolButton {
