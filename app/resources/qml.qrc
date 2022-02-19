@@ -16,7 +16,6 @@
         <file>images/star.svg</file>
         <file>images/star_border.svg</file>
         <file>images/stop.svg</file>
-        <file>poet_assistant.db</file>
         <file>qml/AboutDialog.qml</file>
         <file>qml/ComposerTabView.qml</file>
         <file>qml/DefinitionListItemDelegate.qml</file>

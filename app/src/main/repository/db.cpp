@@ -35,19 +35,11 @@ QFuture<void> Db::openDb()
     return QtConcurrent::run(threadPool, [ = ]() {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
         db.setConnectOptions("QSQLITE_OPEN_READONLY");
-        QFile file(":/poet_assistant.db");
-        //QFile file("../../../../../../../poet-assistant-desktop/app/resources/poet_assistant.db");
-        QString appDataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-        QDir().mkpath(appDataDir);
-        QString dbCopyFileName = QFileInfo(appDataDir, "poet_assistant.db").absoluteFilePath();
-        QFile dbCopyFile(dbCopyFileName);
-        if (dbCopyFile.open(QIODevice::WriteOnly)) {
-            if (file.open(QIODevice::ReadOnly)) {
-                dbCopyFile.write(file.readAll());
-            }
-            dbCopyFile.close();
-        }
-        db.setDatabaseName(dbCopyFile.fileName());
+        QString appDir = QCoreApplication::applicationDirPath();
+        QString dbFolder = QString(DB_FOLDER);
+        if (!dbFolder.isEmpty()) appDir = QFileInfo(appDir, dbFolder).absoluteFilePath();
+        QFileInfo dbFileInfo = QFileInfo(appDir, "poet_assistant.db");
+        db.setDatabaseName(dbFileInfo.absoluteFilePath());
         if (!db.open()) {
             qFatal("Couldn't open db");
         }

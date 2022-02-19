@@ -140,12 +140,34 @@ QMAKE_EXTRA_TARGETS += dmgfile
 RC_ICONS = ../deploy/config/icon.ico
 ICON = ../deploy/icon.icns
 
+# Package the database file
+BUILD_DIR=$$shadowed($$PWD)/build/out/
+DB_SOURCE_PATH = $$shell_path($$PWD/resources/poet_assistant.db)
+macx{
+    DB_TARGET_FOLDER = $$shell_path($${BUILD_DIR}/$${TARGET}.app/Contents/Resources)
+    DEFINES += DB_FOLDER=\\\"../Resources\\\"
+} else {
+    DB_TARGET_FOLDER = $$shell_path($${BUILD_DIR})
+    DEFINES += DB_FOLDER=\\\"\\\"
+}
+dbTargetFolder.target = $${DB_TARGET_FOLDER}
+win32 {
+    dbTargetFolder.commands = $(CHK_DIR_EXISTS) $${DB_TARGET_FOLDER} $(MKDIR) $${DB_TARGET_FOLDER}
+} else {
+    dbTargetFolder.commands = $(MKDIR) $${DB_TARGET_FOLDER}
+}
+
+dbTargetFile.depends = dbTargetFolder
+dbTargetFile.target = $${DB_TARGET_FOLDER}/poet_assistant.db
+dbTargetFile.commands = $(COPY_FILE) $${DB_SOURCE_PATH} $${DB_TARGET_FOLDER}
+QMAKE_EXTRA_TARGETS += dbTargetFolder dbTargetFile
+PRE_TARGETDEPS += $${dbTargetFile.target}
+
 # TextToSpeech
 QTSPEECH_DIR=$$PWD/../lib/qtspeech
 LIBS += -L$${QTSPEECH_DIR}/lib/  -lQt6TextToSpeech
 INCLUDEPATH += $${QTSPEECH_DIR}/include
 macx:{
-    BUILD_DIR=$$shadowed($$PWD)/build/out/
     TARGET_PATH=$${BUILD_DIR}/$${TARGET}.app
 
     QtSpeechOsxPlugin.target = $${TARGET_PATH}/Contents/Plugins/texttospeech/libqtexttospeech_speechosx.dylib
