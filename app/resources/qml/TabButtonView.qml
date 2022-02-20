@@ -29,6 +29,7 @@ TabButton {
         contentItem.icon.color = checked? Style.primary : Style.primaryText
     }
 
+    focusPolicy: Qt.WheelFocus
     padding: 12
     text: qsTrId(tabName)
     Component.onCompleted: {

@@ -23,13 +23,18 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 SuggestionRepository::SuggestionRepository(Db *db, QObject *parent)
     : QObject{parent}, db(db)
 {
-
+    history = settings.value(historySetting).value<QList<QString>>();
 }
 
 QFuture<QList<SuggestionEntity *>*> SuggestionRepository::readSuggestions(QString word)
 {
     return QtConcurrent::run(db->getThreadPool(), [ = ]() {
         QList<SuggestionEntity *> *result = new QList<SuggestionEntity *>();
+        for (auto &historyItem : history) {
+            if (historyItem.startsWith(word)) {
+                result->append(new SuggestionEntity(historyItem, SuggestionEntity::HISTORY));
+            }
+        }
         if (word.isEmpty()) {
             return result;
         }
@@ -50,4 +55,31 @@ QFuture<QList<SuggestionEntity *>*> SuggestionRepository::readSuggestions(QStrin
         }
         return result;
     });
+}
+
+bool SuggestionRepository::getSettingUseSearchHistory()
+{
+    return settings.value(useSearchHistorySetting, true).toBool();
+}
+
+void SuggestionRepository::setSettingUseSearchHistory(bool enabled)
+{
+    settings.setValue(useSearchHistorySetting, enabled);
+    if (!enabled) clearHistory();
+}
+
+void SuggestionRepository::addSuggestionFromHistory(QString word)
+{
+    if(getSettingUseSearchHistory()) {
+        if (!history.contains(word)) {
+            history.append(word);
+            history.sort();
+            settings.setValue(historySetting, history);
+        }
+    }
+}
+
+void SuggestionRepository::clearHistory() {
+    history.clear();
+    settings.remove(historySetting);
 }

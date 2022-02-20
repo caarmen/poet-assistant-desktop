@@ -43,6 +43,8 @@ ApplicationWindow {
     function handleMenuItemSelected(menuItemId) {
         if (menuItemId === "about") {
             dlgAbout.show()
+        } else if (menuItemId == "preferences") {
+            preferencesWindow.show()
         } else if (menuItemId == "quit") {
             Qt.quit()
         }
@@ -91,6 +93,11 @@ ApplicationWindow {
     AboutDialog {
         id: dlgAbout
     }
+
+    PreferencesWindow {
+        id: preferencesWindow
+    }
+
     Toast {
         id: toast
         x: (parent.width - width)/2

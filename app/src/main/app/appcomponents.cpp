@@ -45,6 +45,7 @@ AppComponents::AppComponents(Db *db, QObject *parent)
                     &definitionListModel,
                     &definitionViewModel,
                     &favoriteRepository,
-                    &suggestionListModel)
+                    &suggestionListModel,
+                    &suggestionViewModel)
 {
 }

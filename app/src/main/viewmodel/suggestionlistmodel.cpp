@@ -27,6 +27,17 @@ SuggestionListModel::SuggestionListModel(SuggestionViewModel *viewModel, QObject
 {
 }
 
+void SuggestionListModel::clearSuggestions()
+{
+    beginResetModel();
+    if (suggestions != nullptr) {
+        qDeleteAll(*suggestions);
+        delete suggestions;
+        suggestions = nullptr;
+    }
+    endResetModel();
+}
+
 void SuggestionListModel::readSuggestions(QString searchText)
 {
     QFuture<QList<SuggestionDisplayData *>*> future = viewModel->readSuggestions(searchText);

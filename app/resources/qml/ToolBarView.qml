@@ -51,6 +51,14 @@ ToolBar {
                     Layout.fillWidth: true
                     radius: 12
                 }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        mainViewModel.searchSuggestions(parent.text, false)
+                        parent.forceActiveFocus()
+                    }
+                }
+                onActiveFocusChanged: if (!activeFocus) mainViewModel.clearSuggestions()
                 placeholderText: qsTrId("hint_search")
                 placeholderTextColor: Style.secondaryText
                 Keys.onReleased: event => {
@@ -61,8 +69,9 @@ ToolBar {
                 onTextChanged: {
                     btnSearch.enabled = length > 0
                     btnClose.visible = length > 0
-                    mainViewModel.searchSuggestions(tfSearch.text)
                 }
+
+                onTextEdited: mainViewModel.searchSuggestions(text)
             }
 
             AnnotatedToolButton {
@@ -83,7 +92,10 @@ ToolBar {
                 label: qsTrId("a11y_icon_clear_search_text")
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
-                onClicked: tfSearch.clear()
+                onClicked: {
+                    tfSearch.clear()
+                    mainViewModel.clearSuggestions()
+                }
             }
         }
     }

@@ -30,6 +30,9 @@ class SuggestionViewModel : public QObject
 public:
     explicit SuggestionViewModel(SuggestionRepository *repository, QObject *parent = nullptr);
     QFuture<QList<SuggestionDisplayData *>*> readSuggestions(QString searchText);
+    bool getSettingUseSearchHistory();
+    void setSettingUseSearchHistory(bool enabled);
+    void addSuggestionFromHistory(QString word);
 
 private:
     SuggestionRepository *repository;

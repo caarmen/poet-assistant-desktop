@@ -32,6 +32,7 @@ public:
     };
     explicit SuggestionListModel(SuggestionViewModel *viewModel, QObject *parent = nullptr);
 
+    void clearSuggestions();
     void readSuggestions(QString searchText);
 
     QHash<int, QByteArray> roleNames() const override;

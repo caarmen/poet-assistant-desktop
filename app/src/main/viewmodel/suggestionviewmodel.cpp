@@ -35,3 +35,18 @@ QFuture<QList<SuggestionDisplayData *>*> SuggestionViewModel::readSuggestions(QS
         return result;
     });
 }
+
+bool SuggestionViewModel::getSettingUseSearchHistory()
+{
+    return repository->getSettingUseSearchHistory();
+}
+
+void SuggestionViewModel::setSettingUseSearchHistory(bool enabled)
+{
+    repository->setSettingUseSearchHistory(enabled);
+}
+
+void SuggestionViewModel::addSuggestionFromHistory(QString word)
+{
+    repository->addSuggestionFromHistory(word);
+}

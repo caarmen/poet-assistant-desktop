@@ -26,7 +26,7 @@ class SuggestionEntity : public QObject
 {
     Q_OBJECT
 public:
-    enum Source { DICTIONARY };
+    enum Source { DICTIONARY, HISTORY };
     explicit SuggestionEntity(QString word, Source source, QObject *parent = nullptr);
     ~SuggestionEntity();
     const QString word;

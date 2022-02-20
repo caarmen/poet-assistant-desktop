@@ -37,6 +37,8 @@ SuggestionDisplayData *SuggestionEntityMapper::map(SuggestionEntity *entity)
     QString icon = "";
     if (entity->source == SuggestionEntity::DICTIONARY) {
         icon = "qrc:/images/search.svg";
+    } else if (entity->source == SuggestionEntity::HISTORY) {
+        icon = "qrc:/images/history.svg";
     }
     return new SuggestionDisplayData(entity->word, icon);
 }

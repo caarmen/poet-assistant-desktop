@@ -28,6 +28,7 @@ MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
                              DefinitionViewModel *definitionViewModel,
                              FavoriteRepository *favoriteRepository,
                              SuggestionListModel *suggestionListModel,
+                             SuggestionViewModel *suggestionViewModel,
                              QObject *parent)
     : QObject{parent},
       rhymeListModel(rhymeListModel),
@@ -37,7 +38,8 @@ MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
       definitionsListModel(definitionsListModel),
       definitionViewModel(definitionViewModel),
       favoriteRepository(favoriteRepository),
-      suggestionListModel(suggestionListModel)
+      suggestionListModel(suggestionListModel),
+      suggestionViewModel(suggestionViewModel)
 {
 
 }
@@ -53,19 +55,29 @@ void MainViewModel::search(QString searchText)
     rhymeListModel->readRhymes(transformedSearchText);
     definitionsListModel->readDefinitions(transformedSearchText);
     thesaurusListModel->readThesaurus(transformedSearchText);
-    suggestionListModel->readSuggestions("");
+    suggestionListModel->clearSuggestions();
+    suggestionViewModel->addSuggestionFromHistory(transformedSearchText);
 }
 
-void MainViewModel::searchSuggestions(QString searchText)
+void MainViewModel::clearSuggestions()
+{
+    suggestionListModel->clearSuggestions();
+}
+void MainViewModel::searchSuggestions(QString searchText, bool ignoreEmptySearchText)
 {
     QString transformedSearchText = searchText.trimmed().toLower();
-    suggestionListModel->readSuggestions(transformedSearchText);
+    if (ignoreEmptySearchText && transformedSearchText.isEmpty()) {
+        suggestionListModel->clearSuggestions();
+    } else {
+        suggestionListModel->readSuggestions(transformedSearchText);
+    }
 }
 
 void MainViewModel::searchRhymes(QString searchText)
 {
     QString transformedSearchText = searchText.trimmed().toLower();
     rhymeListModel->readRhymes(transformedSearchText);
+    suggestionViewModel->addSuggestionFromHistory(transformedSearchText);
 }
 
 void MainViewModel::copyRhymes(QString searchText)
@@ -78,6 +90,7 @@ void MainViewModel::searchThesaurus(QString searchText)
 {
     QString transformedSearchText = searchText.trimmed().toLower();
     thesaurusListModel->readThesaurus(transformedSearchText);
+    suggestionViewModel->addSuggestionFromHistory(transformedSearchText);
 }
 
 void MainViewModel::copyThesaurus(QString searchText)
@@ -90,6 +103,7 @@ void MainViewModel::searchDefinitions(QString searchText)
 {
     QString transformedSearchText = searchText.trimmed().toLower();
     definitionsListModel->readDefinitions(transformedSearchText);
+    suggestionViewModel->addSuggestionFromHistory(transformedSearchText);
 }
 
 void MainViewModel::copyDefinitions(QString searchText)
@@ -112,6 +126,16 @@ void MainViewModel::toggleFavorite(QString query)
 {
     favoriteRepository->toggleFavorite(query);
     emit favoritesChanged();
+}
+
+bool MainViewModel::getSettingUseSearchHistory()
+{
+    return suggestionViewModel->getSettingUseSearchHistory();
+}
+
+void MainViewModel::setSettingUseSearchHistory(bool enabled)
+{
+    suggestionViewModel->setSettingUseSearchHistory(enabled);
 }
 
 void MainViewModel::copyFavorites()
