@@ -22,6 +22,7 @@ import QtQuick.Layouts
 
 ComboBox {
     Component.onCompleted: resize()
+    palette.highlight: Style.background
     onModelChanged: resize()
     onVisibleChanged: {
         if (visible) resize()

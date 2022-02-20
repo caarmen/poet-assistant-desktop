@@ -35,7 +35,7 @@ RowLayout{
             text: qsTrId("label_locale");
             Accessible.name: text
         }
-        ComboBox {
+        ResizingComboBox {
             palette.dark: Style.primary // indicator
             palette.window: Style.surface
             palette.buttonText: Style.primaryText
