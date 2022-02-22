@@ -128,16 +128,6 @@ void MainViewModel::toggleFavorite(QString query)
     emit favoritesChanged();
 }
 
-bool MainViewModel::getSettingUseSearchHistory()
-{
-    return suggestionViewModel->getSettingUseSearchHistory();
-}
-
-void MainViewModel::setSettingUseSearchHistory(bool enabled)
-{
-    suggestionViewModel->setSettingUseSearchHistory(enabled);
-}
-
 void MainViewModel::copyFavorites()
 {
     QStringList result;

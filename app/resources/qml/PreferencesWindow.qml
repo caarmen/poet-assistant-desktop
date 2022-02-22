@@ -42,8 +42,8 @@ Window {
 
             Switch {
                 id: switchHistoryEnabled
-                checked: mainViewModel.getSettingUseSearchHistory()
-                onCheckedChanged: mainViewModel.setSettingUseSearchHistory(checked)
+                onCheckedChanged: preferencesViewModel.historyEnabled = checked
+                Component.onCompleted: checked = preferencesViewModel.historyEnabled
             }
         }
     }

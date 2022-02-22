@@ -52,6 +52,7 @@ SOURCES += \
     $${SOURCE_DIR}/main/viewmodel/definitionviewmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/favoritelistmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/mainviewmodel.cpp \
+    $${SOURCE_DIR}/main/viewmodel/preferencesviewmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/rhymedisplaydata.cpp \
     $${SOURCE_DIR}/main/viewmodel/rhymeentitymapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/rhymelistmodel.cpp \
@@ -104,6 +105,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/definitionviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/favoritelistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/mainviewmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/preferencesviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/rhymedisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/rhymeentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/rhymelistmodel.h \
@@ -117,6 +119,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/thesaurusviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/ttsviewmodel.h \
+    src/main/viewmodel/preferencesviewmodel.h
 
 INCLUDEPATH +=  \
     $${SOURCE_DIR}/main/debug \

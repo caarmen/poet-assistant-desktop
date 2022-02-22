@@ -48,6 +48,8 @@ void setupEngine(QQmlApplicationEngine &engine, AppComponents &components)
                                              QVariant::fromValue(&components.favoriteListModel));
     engine.rootContext()->setContextProperty("suggestionListModel",
                                              QVariant::fromValue(&components.suggestionListModel));
+    engine.rootContext()->setContextProperty("preferencesViewModel",
+                                             QVariant::fromValue(&components.preferencesViewModel));
     engine.rootContext()->setContextProperty("theme", Style::setStyle());
     engine.load(QUrl("qrc:/qml/main.qml"));
 }

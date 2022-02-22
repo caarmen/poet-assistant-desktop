@@ -53,8 +53,6 @@ public:
     Q_INVOKABLE QString getFavoriteIcon(QString word);
     Q_INVOKABLE QString getFavoriteLabel(QString word);
     Q_INVOKABLE void toggleFavorite(QString query);
-    Q_INVOKABLE bool getSettingUseSearchHistory();
-    Q_INVOKABLE void setSettingUseSearchHistory(bool enabled);
     Q_INVOKABLE void copyFavorites();
     Q_INVOKABLE void clearFavorites();
 
