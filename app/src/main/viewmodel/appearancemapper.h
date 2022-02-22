@@ -21,6 +21,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #define APPEARANCEMAPPER_H
 
 #include "nightmodeenum.h"
+#include "styleenum.h"
 #include "appearancerepository.h"
 #include <QObject>
 
@@ -30,6 +31,8 @@ class AppearanceMapper : public QObject
 public:
     static NightMode map(AppearanceRepository::NightMode nightMode);
     static AppearanceRepository::NightMode map(NightMode nightMode);
+    static Style map(AppearanceRepository::Style style);
+    static AppearanceRepository::Style map(Style style);
 private:
     explicit AppearanceMapper(QObject *parent = nullptr);
 };

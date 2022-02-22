@@ -20,7 +20,6 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "appcomponents.h"
 #include "colortypeenum.h"
 #include "nightmodeenum.h"
-#include "style.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -35,6 +34,8 @@ void setupEngine(QQmlApplicationEngine &engine, AppComponents &components)
                                               "Not creatable as it is an enum type");
     qmlRegisterUncreatableType<NightModeEnum>("NightMode", 1, 0, "NightMode",
                                               "Not creatable as it is an enum type");
+    qmlRegisterUncreatableType<StyleEnum>("Theme", 1, 0, "Theme",
+                                          "Not creatable as it is an enum type");
     engine.rootContext()->setContextProperty("mainViewModel",
                                              QVariant::fromValue(&components.mainViewModel));
     engine.rootContext()->setContextProperty("rhymeListModel",
@@ -53,7 +54,9 @@ void setupEngine(QQmlApplicationEngine &engine, AppComponents &components)
                                              QVariant::fromValue(&components.suggestionListModel));
     engine.rootContext()->setContextProperty("preferencesViewModel",
                                              QVariant::fromValue(&components.preferencesViewModel));
-    engine.rootContext()->setContextProperty("theme", Style::setStyle());
+    QString style = AppearanceRepository::getName(components.appearanceRepository.getStyle());
+    QQuickStyle::setStyle(style);
+    engine.rootContext()->setContextProperty("theme", style);
     engine.load(QUrl("qrc:/qml/main.qml"));
 }
 

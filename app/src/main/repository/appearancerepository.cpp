@@ -35,3 +35,26 @@ AppearanceRepository::NightMode AppearanceRepository::getNightMode()
 {
     return static_cast<NightMode>(settings.value(nightModeSetting, NightMode::Auto).toInt());
 }
+
+void AppearanceRepository::setStyle(AppearanceRepository::Style style)
+{
+    settings.setValue(styleSetting, style);
+}
+
+AppearanceRepository::Style AppearanceRepository::getStyle()
+{
+    return static_cast<Style>(settings.value(styleSetting, Style::Basic).toInt());
+}
+QString AppearanceRepository::getName(Style style)
+{
+    switch (style) {
+    case Fusion:
+        return "Fusion";
+    case Material:
+        return "Material";
+    case Universal:
+        return "Universal";
+    default:
+        return "Basic";
+    }
+}

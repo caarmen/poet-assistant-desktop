@@ -49,3 +49,32 @@ AppearanceRepository::NightMode AppearanceMapper::map(NightMode nightMode)
         return AppearanceRepository::Auto;
     }
 }
+
+
+Style AppearanceMapper::map(AppearanceRepository::Style style)
+{
+    switch (style) {
+    case AppearanceRepository::Fusion:
+        return Style::Fusion;
+    case AppearanceRepository::Material:
+        return Style::Material;
+    case AppearanceRepository::Universal:
+        return Style::Universal;
+    default:
+        return Style::Basic;
+    }
+}
+
+AppearanceRepository::Style AppearanceMapper::map(Style style)
+{
+    switch (style) {
+    case Style::Fusion:
+        return AppearanceRepository::Fusion;
+    case Style::Material:
+        return AppearanceRepository::Material;
+    case Style::Universal:
+        return AppearanceRepository::Universal;
+    default:
+        return AppearanceRepository::Basic;
+    }
+}

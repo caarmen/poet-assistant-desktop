@@ -215,6 +215,21 @@
     <message id="preferences_label_night_mode_night">
         <translation>Dark</translation>
     </message>
+    <message id="preferences_label_style">
+        <translation>Theme (requires restart)</translation>
+    </message>
+    <message id="preferences_label_style_basic">
+        <translation>Basic</translation>
+    </message>
+    <message id="preferences_label_style_fusion">
+        <translation>Fusion</translation>
+    </message>
+    <message id="preferences_label_style_material">
+        <translation>Material</translation>
+    </message>
+    <message id="preferences_label_style_universal">
+        <translation>Universal</translation>
+    </message>
     <message id="rhymer_no_matches">
         <translation>No rhymes for %1</translation>
     </message>

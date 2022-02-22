@@ -32,7 +32,6 @@ SOURCE_DIR=src
 SOURCES += \
     $${SOURCE_DIR}/main/app/appcomponents.cpp \
     $${SOURCE_DIR}/main/app/main.cpp \
-    $${SOURCE_DIR}/main/app/style.cpp \
     $${SOURCE_DIR}/main/debug/refcounter.cpp \
     $${SOURCE_DIR}/main/repository/appearancerepository.cpp \
     $${SOURCE_DIR}/main/repository/db.cpp \
@@ -86,7 +85,6 @@ RESOURCES += \
 
 HEADERS += \
     $${SOURCE_DIR}/main/app/appcomponents.h \
-    $${SOURCE_DIR}/main/app/style.h \
     $${SOURCE_DIR}/main/debug/refcounter.h \
     $${SOURCE_DIR}/main/repository/appearancerepository.h \
     $${SOURCE_DIR}/main/repository/db.h \
@@ -115,6 +113,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/rhymeentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/rhymelistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/rhymeviewmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/styleenum.h \
     $${SOURCE_DIR}/main/viewmodel/suggestiondisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/suggestionentitymapper.h \
     $${SOURCE_DIR}/main/viewmodel/suggestionlistmodel.h \
