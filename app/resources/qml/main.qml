@@ -44,7 +44,7 @@ ApplicationWindow {
         if (menuItemId === "about") {
             dlgAbout.show()
         } else if (menuItemId == "preferences") {
-            preferencesWindow.show()
+            preferencesWindow.open()
         } else if (menuItemId == "quit") {
             Qt.quit()
         }
@@ -53,7 +53,7 @@ ApplicationWindow {
     }
 
     function applyTheme() {
-        const isDayMode = systemPalette.window.hsvValue > systemPalette.windowText.hsvValue
+        const isDayMode = !mainViewModel.nightMode
         if (theme === "Material") {
             Style.useMaterial(Material, Material.Light, Material.Dark, isDayMode)
         } else if (theme === "Universal") {
@@ -66,6 +66,7 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
+        mainViewModel.onNightModeChanged.connect(function() {applyTheme()})
         applyTheme()
         if (useSystemMenu) {
             classicMenuBar.destroy()

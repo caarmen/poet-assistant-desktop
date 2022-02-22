@@ -36,6 +36,7 @@
         <file>qml/RhymeListItemDelegate.qml</file>
         <file>qml/RhymeTabView.qml</file>
         <file>qml/Style.qml</file>
+        <file>qml/StyledComboBox.qml</file>
         <file>qml/SuggestionListItemDelegate.qml</file>
         <file>qml/SuggestionListView.qml</file>
         <file>qml/TabButtonView.qml</file>

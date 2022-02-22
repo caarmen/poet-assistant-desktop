@@ -16,28 +16,36 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
-import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
 
-StyledComboBox {
-    Component.onCompleted: resize()
-    onModelChanged: resize()
-    onVisibleChanged: {
-        if (visible) resize()
-    }
+#include "appearancemapper.h"
 
-    TextMetrics {
-        id: textMetrics
-    }
-    function resize() {
-        textMetrics.font = font
-        var modelWidth = 0
-        for(var i = 0; i < model.length; i++){
-            textMetrics.text = model[i]
-            modelWidth = Math.max(textMetrics.width, modelWidth)
-        }
-        Layout.minimumWidth = modelWidth + implicitIndicatorWidth + leftPadding + rightPadding
-    }
+AppearanceMapper::AppearanceMapper(QObject *parent)
+    : QObject{parent}
+{
 
+}
+
+
+NightMode AppearanceMapper::map(AppearanceRepository::NightMode nightMode)
+{
+    switch (nightMode) {
+    case AppearanceRepository::Day:
+        return NightMode::Day;
+    case AppearanceRepository::Night:
+        return NightMode::Night;
+    default:
+        return NightMode::Auto;
+    }
+}
+
+AppearanceRepository::NightMode AppearanceMapper::map(NightMode nightMode)
+{
+    switch (nightMode) {
+    case NightMode::Day:
+        return AppearanceRepository::Day;
+    case NightMode::Night:
+        return AppearanceRepository::Night;
+    default:
+        return AppearanceRepository::Auto;
+    }
 }

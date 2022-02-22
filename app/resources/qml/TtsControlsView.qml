@@ -36,12 +36,6 @@ RowLayout{
             Accessible.name: text
         }
         ResizingComboBox {
-            palette.dark: Style.primary // indicator
-            palette.window: Style.surface
-            palette.buttonText: Style.primaryText
-            palette.button: Style.surface
-            palette.text: Style.primaryText
-            palette.highlightedText: Style.primary
             model: ttsViewModel.getAvailableLocaleNames()
             Component.onCompleted: currentIndex = indexOfValue(ttsViewModel.getLocaleName())
             onActivated: ttsViewModel.useLocale(currentValue)
@@ -53,12 +47,6 @@ RowLayout{
         }
         ResizingComboBox {
             id: cbVoices
-            palette.dark: Style.primary // indicator
-            palette.window: Style.surface
-            palette.buttonText: Style.primaryText
-            palette.button: Style.surface
-            palette.text: Style.primaryText
-            palette.highlightedText: Style.primary
             model: ttsViewModel.availableVoiceNames
             Component.onCompleted: reselectVoice()
             onActivated: ttsViewModel.useVoice(currentValue)

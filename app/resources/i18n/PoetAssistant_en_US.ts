@@ -8,6 +8,9 @@
     <message id="a11y_icon_clear_favorites">
         <translation>Clear favorite words</translation>
     </message>
+    <message id="a11y_icon_close">
+        <translation>Close</translation>
+    </message>
     <message id="a11y_icon_copy">
         <translation>Copy</translation>
     </message>
@@ -199,6 +202,18 @@
     </message>
     <message id="preferences_label_history_enabled">
         <translation>Use search history for search suggestions</translation>
+    </message>
+    <message id="preferences_label_night_mode">
+        <translation>Dark mode</translation>
+    </message>
+    <message id="preferences_label_night_mode_auto">
+        <translation>Auto</translation>
+    </message>
+    <message id="preferences_label_night_mode_day">
+        <translation>Light</translation>
+    </message>
+    <message id="preferences_label_night_mode_night">
+        <translation>Dark</translation>
     </message>
     <message id="rhymer_no_matches">
         <translation>No rhymes for %1</translation>

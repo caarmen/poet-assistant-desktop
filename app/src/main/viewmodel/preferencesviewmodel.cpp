@@ -17,10 +17,14 @@ You should have received a copy of the GNU General Public License
 along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "preferencesviewmodel.h"
+#include "appearancemapper.h"
 
 PreferencesViewModel::PreferencesViewModel(SuggestionRepository *suggestionRepository,
+                                           AppearanceRepository *appearanceRepository,
                                            QObject *parent)
-    : QObject{parent}, suggestionRepository(suggestionRepository)
+    : QObject{parent},
+      suggestionRepository(suggestionRepository),
+      appearanceRepository(appearanceRepository)
 {
 
 }
@@ -34,4 +38,14 @@ void PreferencesViewModel::setSettingUseSearchHistory(bool enabled)
 {
     suggestionRepository->setSettingUseSearchHistory(enabled);
     emit historyEnabledChanged();
+}
+
+NightMode PreferencesViewModel::getNightMode()
+{
+    return AppearanceMapper::map(appearanceRepository->getNightMode());
+}
+
+void PreferencesViewModel::setNightMode(NightMode nightMode)
+{
+    appearanceRepository->setNightMode(AppearanceMapper::map(nightMode));
 }

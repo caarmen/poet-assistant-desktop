@@ -19,24 +19,38 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import NightMode
 
-Window {
-    visible: false
-    width: contentItem.childrenRect.width + 32
-    height: contentItem.childrenRect.height + 32
-    color: Style.background
-    title: qsTrId("preferences_title")
-
-    Rectangle {
-        color: Style.background
-        anchors.centerIn: parent
-        width: childrenRect.width
-        height: childrenRect.height
+Dialog {
+    id: dlgPreference
+    modal: true
+    anchors.centerIn: parent
+    ColumnLayout{
+        Layout.fillWidth: true
+        RowLayout {
+            Layout.fillWidth: true
+            Text {
+                Layout.fillWidth: true
+                Layout.margins: 16
+                text: qsTrId("preferences_title")
+                Accessible.name: text
+                font.bold: true
+                color: Style.primaryText
+            }
+            AnnotatedToolButton {
+                iconsource: "qrc:/images/close.svg"
+                label: qsTrId("a11y_icon_close")
+                Layout.alignment: Qt.AlignRight
+                onClicked: dlgPreference.close()
+            }
+        }
 
         GridLayout {
+            Layout.margins: 16
             columns: 2
             Text {
                 text:  qsTrId("preferences_label_history_enabled")
+                Accessible.name: text
                 color: Style.primaryText
             }
 
@@ -44,6 +58,34 @@ Window {
                 id: switchHistoryEnabled
                 onCheckedChanged: preferencesViewModel.historyEnabled = checked
                 Component.onCompleted: checked = preferencesViewModel.historyEnabled
+            }
+
+            Text {
+                text:  qsTrId("preferences_label_night_mode")
+                Accessible.name: text
+                color: Style.primaryText
+            }
+
+            StyledComboBox {
+                textRole: "text"
+                valueRole: "value"
+                model: [
+                    {
+                        text: qsTrId("preferences_label_night_mode_day"),
+                        value: NightMode.Day
+                    },
+                    {
+                        text: qsTrId("preferences_label_night_mode_night"),
+                        value: NightMode.Night
+                    },
+                    {
+                        text: qsTrId("preferences_label_night_mode_auto"),
+                        value: NightMode.Auto
+                    }
+                ]
+
+                Component.onCompleted: currentIndex = indexOfValue(preferencesViewModel.nightMode)
+                onActivated: preferencesViewModel.nightMode = currentIndex
             }
         }
     }
