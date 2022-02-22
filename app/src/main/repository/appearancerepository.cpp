@@ -39,6 +39,7 @@ AppearanceRepository::NightMode AppearanceRepository::getNightMode()
 void AppearanceRepository::setStyle(AppearanceRepository::Style style)
 {
     settings.setValue(styleSetting, style);
+    emit styleChanged();
 }
 
 AppearanceRepository::Style AppearanceRepository::getStyle()

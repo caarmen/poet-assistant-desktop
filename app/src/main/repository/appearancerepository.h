@@ -38,6 +38,7 @@ public:
     static QString getName(Style style);
 signals:
     void nightModeChanged();
+    void styleChanged();
 private:
     static inline QString nightModeSetting = "nightMode";
     static inline QString styleSetting = "style";

@@ -216,7 +216,7 @@
         <translation>Dark</translation>
     </message>
     <message id="preferences_label_style">
-        <translation>Theme (requires restart)</translation>
+        <translation>Theme (restarts the app)</translation>
     </message>
     <message id="preferences_label_style_basic">
         <translation>Basic</translation>
