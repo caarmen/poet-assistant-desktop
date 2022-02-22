@@ -63,8 +63,8 @@ RowLayout{
         AnnotatedToolButton {
             iconsource: ttsViewModel.playButtonIcon
             label: qsTrId(ttsViewModel.playButtonLabel)
-            icon.height: 32
-            icon.width: 32
+            icon.height: 48
+            icon.width: 48
             anchors.centerIn: parent
             onClicked: {
                 if (taPoem.selectedText) {
