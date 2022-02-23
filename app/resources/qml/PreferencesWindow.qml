@@ -20,6 +20,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import NightMode
+import Theme
 
 Dialog {
     id: dlgPreference
@@ -85,7 +86,39 @@ Dialog {
                 ]
 
                 Component.onCompleted: currentIndex = indexOfValue(preferencesViewModel.nightMode)
-                onActivated: preferencesViewModel.nightMode = currentIndex
+                onActivated: preferencesViewModel.nightMode = currentValue
+            }
+
+            Text {
+                text:  qsTrId("preferences_label_style")
+                Accessible.name: text
+                color: Style.primaryText
+            }
+
+            StyledComboBox {
+                textRole: "text"
+                valueRole: "value"
+                model: [
+                    {
+                        text: qsTrId("preferences_label_style_basic"),
+                        value: Theme.Basic
+                    },
+                    {
+                        text: qsTrId("preferences_label_style_fusion"),
+                        value: Theme.Fusion
+                    },
+                    {
+                        text: qsTrId("preferences_label_style_material"),
+                        value: Theme.Material
+                    },
+                    {
+                        text: qsTrId("preferences_label_style_universal"),
+                        value: Theme.Universal
+                    },
+                ]
+
+                Component.onCompleted: currentIndex = indexOfValue(preferencesViewModel.style)
+                onActivated: preferencesViewModel.style = currentValue
             }
         }
     }

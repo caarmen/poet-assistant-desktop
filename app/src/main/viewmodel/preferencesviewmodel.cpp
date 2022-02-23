@@ -49,3 +49,13 @@ void PreferencesViewModel::setNightMode(NightMode nightMode)
 {
     appearanceRepository->setNightMode(AppearanceMapper::map(nightMode));
 }
+
+Style PreferencesViewModel::getStyle()
+{
+    return AppearanceMapper::map(appearanceRepository->getStyle());
+}
+
+void PreferencesViewModel::setStyle(Style style)
+{
+    appearanceRepository->setStyle(AppearanceMapper::map(style));
+}

@@ -28,13 +28,20 @@ class AppearanceRepository : public QObject
     Q_OBJECT
 public:
     enum NightMode { Day, Night, Auto };
+    enum Style { Basic, Fusion, Material, Universal};
+
     explicit AppearanceRepository(QObject *parent = nullptr);
     void setNightMode(NightMode nightMode);
     NightMode getNightMode();
+    void setStyle(Style style);
+    Style getStyle();
+    static QString getName(Style style);
 signals:
     void nightModeChanged();
+    void styleChanged();
 private:
     static inline QString nightModeSetting = "nightMode";
+    static inline QString styleSetting = "style";
     QSettings settings;
 };
 

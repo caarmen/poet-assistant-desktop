@@ -20,7 +20,6 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "appcomponents.h"
 #include "colortypeenum.h"
 #include "nightmodeenum.h"
-#include "style.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -31,10 +30,13 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 
 void setupEngine(QQmlApplicationEngine &engine, AppComponents &components)
 {
+    qmlClearTypeRegistrations();
     qmlRegisterUncreatableType<ColorTypeEnum>("ColorType", 1, 0, "ColorType",
                                               "Not creatable as it is an enum type");
     qmlRegisterUncreatableType<NightModeEnum>("NightMode", 1, 0, "NightMode",
                                               "Not creatable as it is an enum type");
+    qmlRegisterUncreatableType<StyleEnum>("Theme", 1, 0, "Theme",
+                                          "Not creatable as it is an enum type");
     engine.rootContext()->setContextProperty("mainViewModel",
                                              QVariant::fromValue(&components.mainViewModel));
     engine.rootContext()->setContextProperty("rhymeListModel",
@@ -53,7 +55,9 @@ void setupEngine(QQmlApplicationEngine &engine, AppComponents &components)
                                              QVariant::fromValue(&components.suggestionListModel));
     engine.rootContext()->setContextProperty("preferencesViewModel",
                                              QVariant::fromValue(&components.preferencesViewModel));
-    engine.rootContext()->setContextProperty("theme", Style::setStyle());
+    QString style = AppearanceRepository::getName(components.appearanceRepository.getStyle());
+    QQuickStyle::setStyle(style);
+    engine.rootContext()->setContextProperty("theme", style);
     engine.load(QUrl("qrc:/qml/main.qml"));
 }
 
@@ -74,7 +78,22 @@ int main(int argc, char *argv[])
     QFuture<void> future = db.openDb();
     future.waitForFinished(); // TODO
     AppComponents components(&db);
-    QQmlApplicationEngine engine;
-    setupEngine(engine, components);
+    QQmlApplicationEngine *engine = new QQmlApplicationEngine();
+    setupEngine(*engine, components);
+    QObject context;
+    QObject::connect(&components.appearanceRepository, &AppearanceRepository::styleChanged,
+    &context, [ &context, &engine, &components] {
+        engine->clearComponentCache();
+        engine->deleteLater();
+        QObject::connect(engine, &QObject::destroyed, &context, [&engine, &components]{
+            engine = new QQmlApplicationEngine();
+            setupEngine(*engine, components);
+        });
+    });
+    // Prevent QML errors when closing the app
+    // https://bugreports.qt.io/browse/QTBUG-81247?page=com.googlecode.jira-suite-utilities%3Atransitions-summary-tabpanel
+    QObject::connect(&a, &QGuiApplication::aboutToQuit, &context, [&engine] {
+        engine->deleteLater();
+    });
     return a.exec();
 }

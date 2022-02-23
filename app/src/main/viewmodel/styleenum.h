@@ -16,19 +16,24 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
+#ifndef STYLEENUM_H
+#define STYLEENUM_H
 
-#ifndef STYLE_H
-#define STYLE_H
+#include <QObject>
 
-#include <QStringList>
 
-class Style
+class StyleEnum: public QObject
 {
+    Q_OBJECT
 public:
-    static QString setStyle();
-private:
-    Style();
-    static inline QStringList supportedStyles = {"Basic", "Material", "Universal", "Fusion"};
+    enum Value {
+        Basic,
+        Fusion,
+        Material,
+        Universal
+    };
+    Q_ENUM(Value)
 };
 
-#endif // STYLE_H
+typedef StyleEnum::Value Style;
+#endif // STYLEENUM_H
