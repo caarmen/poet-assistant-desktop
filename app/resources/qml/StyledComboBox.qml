@@ -20,24 +20,12 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-StyledComboBox {
-    Component.onCompleted: resize()
-    onModelChanged: resize()
-    onVisibleChanged: {
-        if (visible) resize()
-    }
-
-    TextMetrics {
-        id: textMetrics
-    }
-    function resize() {
-        textMetrics.font = font
-        var modelWidth = 0
-        for(var i = 0; i < model.length; i++){
-            textMetrics.text = model[i]
-            modelWidth = Math.max(textMetrics.width, modelWidth)
-        }
-        Layout.minimumWidth = modelWidth + implicitIndicatorWidth + leftPadding + rightPadding
-    }
-
+ComboBox {
+    palette.dark: Style.primary // indicator
+    palette.window: Style.surface
+    palette.buttonText: Style.primaryText
+    palette.button: Style.surface
+    palette.text: Style.primaryText
+    palette.highlightedText: Style.primary
+    palette.highlight: Style.background
 }

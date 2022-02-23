@@ -19,6 +19,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "db.h"
 #include "appcomponents.h"
 #include "colortypeenum.h"
+#include "nightmodeenum.h"
 #include "style.h"
 
 #include <QGuiApplication>
@@ -31,6 +32,8 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 void setupEngine(QQmlApplicationEngine &engine, AppComponents &components)
 {
     qmlRegisterUncreatableType<ColorTypeEnum>("ColorType", 1, 0, "ColorType",
+                                              "Not creatable as it is an enum type");
+    qmlRegisterUncreatableType<NightModeEnum>("NightMode", 1, 0, "NightMode",
                                               "Not creatable as it is an enum type");
     engine.rootContext()->setContextProperty("mainViewModel",
                                              QVariant::fromValue(&components.mainViewModel));
@@ -61,6 +64,7 @@ int main(int argc, char *argv[])
     a.setOrganizationDomain("poetassistant.com");
     a.setApplicationName("Poet Assistant");
     a.setApplicationVersion(APP_VERSION);
+    QSettings::setDefaultFormat(QSettings::IniFormat);
 
     QTranslator translator;
     if (translator.load(":/i18n/PoetAssistant_en_US")) {

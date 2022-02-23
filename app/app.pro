@@ -34,6 +34,7 @@ SOURCES += \
     $${SOURCE_DIR}/main/app/main.cpp \
     $${SOURCE_DIR}/main/app/style.cpp \
     $${SOURCE_DIR}/main/debug/refcounter.cpp \
+    $${SOURCE_DIR}/main/repository/appearancerepository.cpp \
     $${SOURCE_DIR}/main/repository/db.cpp \
     $${SOURCE_DIR}/main/repository/definitionentity.cpp \
     $${SOURCE_DIR}/main/repository/definitionrepository.cpp \
@@ -45,6 +46,7 @@ SOURCES += \
     $${SOURCE_DIR}/main/repository/suggestionrepository.cpp \
     $${SOURCE_DIR}/main/repository/thesaurusentity.cpp \
     $${SOURCE_DIR}/main/repository/thesaurusrepository.cpp \
+    $${SOURCE_DIR}/main/viewmodel/appearancemapper.cpp \
     $${SOURCE_DIR}/main/viewmodel/composerviewmodel.cpp \
     $${SOURCE_DIR}/main/viewmodel/definitiondisplaydata.cpp \
     $${SOURCE_DIR}/main/viewmodel/definitionentitymapper.cpp \
@@ -86,6 +88,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/app/appcomponents.h \
     $${SOURCE_DIR}/main/app/style.h \
     $${SOURCE_DIR}/main/debug/refcounter.h \
+    $${SOURCE_DIR}/main/repository/appearancerepository.h \
     $${SOURCE_DIR}/main/repository/db.h \
     $${SOURCE_DIR}/main/repository/definitionentity.h \
     $${SOURCE_DIR}/main/repository/definitionrepository.h \
@@ -97,6 +100,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/repository/suggestionrepository.h \
     $${SOURCE_DIR}/main/repository/thesaurusentity.h \
     $${SOURCE_DIR}/main/repository/thesaurusrepository.h \
+    $${SOURCE_DIR}/main/viewmodel/appearancemapper.h \
     $${SOURCE_DIR}/main/viewmodel/colortypeenum.h \
     $${SOURCE_DIR}/main/viewmodel/composerviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/definitiondisplaydata.h \
@@ -105,6 +109,7 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/definitionviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/favoritelistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/mainviewmodel.h \
+    $${SOURCE_DIR}/main/viewmodel/nightmodeenum.h \
     $${SOURCE_DIR}/main/viewmodel/preferencesviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/rhymedisplaydata.h \
     $${SOURCE_DIR}/main/viewmodel/rhymeentitymapper.h \
@@ -119,7 +124,6 @@ HEADERS += \
     $${SOURCE_DIR}/main/viewmodel/thesauruslistmodel.h \
     $${SOURCE_DIR}/main/viewmodel/thesaurusviewmodel.h \
     $${SOURCE_DIR}/main/viewmodel/ttsviewmodel.h \
-    src/main/viewmodel/preferencesviewmodel.h
 
 INCLUDEPATH +=  \
     $${SOURCE_DIR}/main/debug \

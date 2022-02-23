@@ -68,6 +68,8 @@ private:
     SuggestionViewModel suggestionViewModel;
 public:
     SuggestionListModel suggestionListModel;
+private:
+    AppearanceRepository appearanceRepository;
 public:
     PreferencesViewModel preferencesViewModel;
     MainViewModel mainViewModel;

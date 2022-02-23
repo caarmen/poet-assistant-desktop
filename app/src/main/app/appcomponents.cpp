@@ -38,7 +38,8 @@ AppComponents::AppComponents(Db *db, QObject *parent)
       suggestionRepository(db),
       suggestionViewModel(&suggestionRepository),
       suggestionListModel(&suggestionViewModel),
-      preferencesViewModel(&suggestionRepository),
+      appearanceRepository(),
+      preferencesViewModel(&suggestionRepository, &appearanceRepository),
       mainViewModel(&rhymeListModel,
                     &rhymeViewModel,
                     &thesaurusListModel,
@@ -47,6 +48,7 @@ AppComponents::AppComponents(Db *db, QObject *parent)
                     &definitionViewModel,
                     &favoriteRepository,
                     &suggestionListModel,
-                    &suggestionViewModel)
+                    &suggestionViewModel,
+                    &appearanceRepository)
 {
 }

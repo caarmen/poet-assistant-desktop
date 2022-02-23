@@ -25,10 +25,12 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "thesauruslistmodel.h"
 #include "favoriterepository.h"
 #include "suggestionlistmodel.h"
+#include "appearancerepository.h"
 
 class MainViewModel : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY (bool nightMode READ isNightMode NOTIFY nightModeChanged)
 public:
     explicit MainViewModel(RhymeListModel *rhymeListModel,
                            RhymeViewModel *rhymeViewModel,
@@ -39,6 +41,7 @@ public:
                            FavoriteRepository *favoriteRepository,
                            SuggestionListModel *suggestionListModel,
                            SuggestionViewModel *suggestionViewModel,
+                           AppearanceRepository *appearanceRepository,
                            QObject *parent = nullptr);
     Q_INVOKABLE void copy(QString query);
     Q_INVOKABLE void search(QString query);
@@ -58,8 +61,10 @@ public:
 
 signals:
     void favoritesChanged();
+    void nightModeChanged();
 
 private:
+    bool isNightMode();
     void copyWhenReady(QFuture<QString> future);
     RhymeListModel *rhymeListModel;
     RhymeViewModel *rhymeViewModel;
@@ -70,6 +75,7 @@ private:
     FavoriteRepository *favoriteRepository;
     SuggestionListModel *suggestionListModel;
     SuggestionViewModel *suggestionViewModel;
+    AppearanceRepository *appearanceRepository;
 };
 
 #endif // MAINVIEWMODEL_H

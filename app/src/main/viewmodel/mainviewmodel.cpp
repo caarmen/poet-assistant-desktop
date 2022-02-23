@@ -29,6 +29,7 @@ MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
                              FavoriteRepository *favoriteRepository,
                              SuggestionListModel *suggestionListModel,
                              SuggestionViewModel *suggestionViewModel,
+                             AppearanceRepository *appearanceRepository,
                              QObject *parent)
     : QObject{parent},
       rhymeListModel(rhymeListModel),
@@ -39,9 +40,10 @@ MainViewModel::MainViewModel(RhymeListModel *rhymeListModel,
       definitionViewModel(definitionViewModel),
       favoriteRepository(favoriteRepository),
       suggestionListModel(suggestionListModel),
-      suggestionViewModel(suggestionViewModel)
+      suggestionViewModel(suggestionViewModel),
+      appearanceRepository(appearanceRepository)
 {
-
+    QObject::connect(appearanceRepository, &AppearanceRepository::nightModeChanged, this, [ = ] { emit nightModeChanged();});
 }
 
 void MainViewModel::copy(QString word)
@@ -141,6 +143,18 @@ void MainViewModel::clearFavorites()
     emit favoritesChanged();
 }
 
+bool MainViewModel::isNightMode()
+{
+    AppearanceRepository::NightMode nightMode = appearanceRepository->getNightMode();
+    if (nightMode == AppearanceRepository::NightMode::Day) {
+        return false;
+    } else if (nightMode == AppearanceRepository::NightMode::Night) {
+        return true;
+    } else {
+        QPalette systemPalette = QGuiApplication::palette();
+        return systemPalette.window().color().value() < systemPalette.windowText().color().value();
+    }
+}
 void MainViewModel::copyWhenReady(QFuture<QString> future)
 {
     auto *watcher = new QFutureWatcher<QString>();

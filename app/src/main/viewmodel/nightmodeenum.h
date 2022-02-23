@@ -16,28 +16,23 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
-import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
+#ifndef NIGHTMODEENUM_H
+#define NIGHTMODEENUM_H
 
-StyledComboBox {
-    Component.onCompleted: resize()
-    onModelChanged: resize()
-    onVisibleChanged: {
-        if (visible) resize()
-    }
+#include <QObject>
 
-    TextMetrics {
-        id: textMetrics
-    }
-    function resize() {
-        textMetrics.font = font
-        var modelWidth = 0
-        for(var i = 0; i < model.length; i++){
-            textMetrics.text = model[i]
-            modelWidth = Math.max(textMetrics.width, modelWidth)
-        }
-        Layout.minimumWidth = modelWidth + implicitIndicatorWidth + leftPadding + rightPadding
-    }
 
-}
+class NightModeEnum: public QObject
+{
+    Q_OBJECT
+public:
+    enum Value {
+        Day,
+        Night,
+        Auto,
+    };
+    Q_ENUM(Value)
+};
+
+typedef NightModeEnum::Value NightMode;
+#endif // NIGHTMODEENUM_H
