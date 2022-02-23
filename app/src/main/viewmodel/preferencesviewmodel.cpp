@@ -16,26 +16,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 */
-import QtQuick
-import QtQuick.Controls
+#include "preferencesviewmodel.h"
 
-TabButton {
-    property string iconSource
-    property string tabName
+PreferencesViewModel::PreferencesViewModel(SuggestionRepository *suggestionRepository,
+                                           QObject *parent)
+    : QObject{parent}, suggestionRepository(suggestionRepository)
+{
 
-    function applyTheme() {
-        contentItem.icon.source  =  `qrc:/images/${iconSource}.svg`
-        contentItem.color = checked? Style.primary : Style.primaryText
-        contentItem.icon.color = checked? Style.primary : Style.primaryText
-    }
+}
 
-    focusPolicy: Qt.WheelFocus
-    padding: 12
-    text: qsTrId(tabName)
-    Component.onCompleted: {
-        applyTheme()
-    }
-    onCheckedChanged: {
-        applyTheme()
-    }
+bool PreferencesViewModel::getSettingUseSearchHistory()
+{
+    return suggestionRepository->getSettingUseSearchHistory();
+}
+
+void PreferencesViewModel::setSettingUseSearchHistory(bool enabled)
+{
+    suggestionRepository->setSettingUseSearchHistory(enabled);
+    emit historyEnabledChanged();
 }

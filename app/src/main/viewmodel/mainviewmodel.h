@@ -38,10 +38,12 @@ public:
                            DefinitionViewModel *definitionViewModel,
                            FavoriteRepository *favoriteRepository,
                            SuggestionListModel *suggestionListModel,
+                           SuggestionViewModel *suggestionViewModel,
                            QObject *parent = nullptr);
     Q_INVOKABLE void copy(QString query);
     Q_INVOKABLE void search(QString query);
-    Q_INVOKABLE void searchSuggestions(QString searchText);
+    Q_INVOKABLE void clearSuggestions();
+    Q_INVOKABLE void searchSuggestions(QString searchText, bool ignoreEmptySearchText = true);
     Q_INVOKABLE void searchRhymes(QString query);
     Q_INVOKABLE void copyRhymes(QString query);
     Q_INVOKABLE void searchThesaurus(QString query);
@@ -67,6 +69,7 @@ private:
     DefinitionViewModel *definitionViewModel;
     FavoriteRepository *favoriteRepository;
     SuggestionListModel *suggestionListModel;
+    SuggestionViewModel *suggestionViewModel;
 };
 
 #endif // MAINVIEWMODEL_H

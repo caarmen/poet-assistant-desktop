@@ -52,6 +52,14 @@ MenuBar {
         }
     }
     Menu {
+        title: qsTrId("menu_edit")
+        MenuItem {
+            text: qsTrId("menu_edit_preferences")
+            background: MenuItemBackground {}
+            onTriggered: menuItemSelected("preferences")
+        }
+    }
+    Menu {
         title: qsTrId("menu_help")
         MenuItem {
             text: qsTrId("menu_help_about")

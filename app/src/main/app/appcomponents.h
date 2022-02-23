@@ -27,6 +27,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "composerviewmodel.h"
 #include "favoritelistmodel.h"
 #include "mainviewmodel.h"
+#include "preferencesviewmodel.h"
 #include "suggestionlistmodel.h"
 #include "ttsviewmodel.h"
 
@@ -68,6 +69,7 @@ private:
 public:
     SuggestionListModel suggestionListModel;
 public:
+    PreferencesViewModel preferencesViewModel;
     MainViewModel mainViewModel;
 };
 

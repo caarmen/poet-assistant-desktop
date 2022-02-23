@@ -25,6 +25,11 @@ MenuBar {
     Menu {
         title: qsTrId("menu_file")
         MenuItem {
+            text: qsTrId("menu_edit_preferences")
+            role: MenuItem.PreferencesRole
+            onTriggered: menuItemSelected("preferences")
+        }
+        MenuItem {
             text: qsTrId("menu_file_new")
             onTriggered: menuItemSelected("new")
         }

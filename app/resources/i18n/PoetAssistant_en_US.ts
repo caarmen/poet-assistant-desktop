@@ -158,6 +158,12 @@
     <message id="label_voice">
         <translation>Voice</translation>
     </message>
+    <message id="menu_edit">
+        <translation>&amp;Edit</translation>
+    </message>
+    <message id="menu_edit_preferences">
+        <translation>&amp;Preferences</translation>
+    </message>
     <message id="menu_file">
         <translation>&amp;File</translation>
     </message>
@@ -187,6 +193,12 @@
     </message>
     <message id="noun">
         <translation>Noun</translation>
+    </message>
+    <message id="preferences_title">
+        <translation>Preferences</translation>
+    </message>
+    <message id="preferences_label_history_enabled">
+        <translation>Use search history for search suggestions</translation>
     </message>
     <message id="rhymer_no_matches">
         <translation>No rhymes for %1</translation>

@@ -23,6 +23,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #include "suggestionentity.h"
 
 #include <QObject>
+#include <QSettings>
 
 class SuggestionRepository : public QObject
 {
@@ -30,10 +31,19 @@ class SuggestionRepository : public QObject
 public:
     explicit SuggestionRepository(Db *db, QObject *parent = nullptr);
     QFuture<QList<SuggestionEntity *>*> readSuggestions(QString word);
+    bool getSettingUseSearchHistory();
+    void setSettingUseSearchHistory(bool enabled);
+    void addSuggestionFromHistory(QString word);
 signals:
 
 private:
+    void clearHistory();
+
     Db *db;
+    QSettings settings;
+    const static inline QString useSearchHistorySetting = "useSearchHistory";
+    const static inline QString historySetting = "history";
+    QStringList history;
 };
 
 #endif // SUGGESTIONREPOSITORY_H

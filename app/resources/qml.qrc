@@ -3,6 +3,7 @@
         <file>images/close.svg</file>
         <file>images/copy.svg</file>
         <file>images/delete.svg</file>
+        <file>images/history.svg</file>
         <file>images/ic_code.svg</file>
         <file>images/ic_composer.svg</file>
         <file>images/ic_definitions.svg</file>
@@ -30,6 +31,7 @@
         <file>qml/MainTabsView.qml</file>
         <file>qml/MenuBarComponent.qml</file>
         <file>qml/MenuItemBackground.qml</file>
+        <file>qml/PreferencesWindow.qml</file>
         <file>qml/ResizingComboBox.qml</file>
         <file>qml/RhymeListItemDelegate.qml</file>
         <file>qml/RhymeTabView.qml</file>
