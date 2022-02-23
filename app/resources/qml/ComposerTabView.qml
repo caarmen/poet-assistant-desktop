@@ -41,6 +41,19 @@ ColumnLayout {
             placeholderText: qsTrId("hint_compose")
             text: composerViewModel.poem
             onTextChanged: composerViewModel.poem = text
+            MouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.RightButton
+                onClicked: {
+                    const selectedWord = taPoem.selectedText
+                    if (selectedWord !== "") {
+                        contextMenu.x = mouseX
+                        contextMenu.y = mouseY
+                        contextMenu.word = selectedWord
+                        contextMenu.open()
+                    }
+                }
+            }
         }
     }
     Rectangle {
@@ -102,6 +115,9 @@ ColumnLayout {
         fileMode: FileDialog.SaveFile
         nameFilters: [qsTrId("file_filter_text")]
         onAccepted: composerViewModel.saveAs(selectedFile)
+    }
+    WordContextMenu {
+        id: contextMenu
     }
     Dialog {
         id: dlgNewConfirm
