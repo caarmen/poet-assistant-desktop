@@ -44,7 +44,7 @@ void AppearanceRepository::setStyle(AppearanceRepository::Style style)
 
 AppearanceRepository::Style AppearanceRepository::getStyle()
 {
-    return static_cast<Style>(settings.value(styleSetting, Style::Basic).toInt());
+    return static_cast<Style>(settings.value(styleSetting, Style::Fusion).toInt());
 }
 QString AppearanceRepository::getName(Style style)
 {
