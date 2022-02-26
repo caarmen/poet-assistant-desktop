@@ -20,6 +20,7 @@ along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
 #define SUGGESTIONLISTMODEL_H
 
 #include <QAbstractListModel>
+#include <QTimer>
 #include "suggestiondisplaydata.h"
 #include "suggestionviewmodel.h"
 
@@ -42,6 +43,9 @@ public:
 private:
     SuggestionViewModel *viewModel;
     QList<SuggestionDisplayData *> *suggestions;
+    QTimer timer;
+    QMetaObject::Connection connection;
+    static inline int debounceDelayMs = 200;
 };
 
 #endif // SUGGESTIONLISTMODEL_H

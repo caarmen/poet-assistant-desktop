@@ -25,6 +25,7 @@ SuggestionListModel::SuggestionListModel(SuggestionViewModel *viewModel, QObject
       viewModel(viewModel),
       suggestions(nullptr)
 {
+    timer.setSingleShot(true);
 }
 
 void SuggestionListModel::clearSuggestions()
@@ -40,20 +41,26 @@ void SuggestionListModel::clearSuggestions()
 
 void SuggestionListModel::readSuggestions(QString searchText)
 {
-    QFuture<QList<SuggestionDisplayData *>*> future = viewModel->readSuggestions(searchText);
-    auto *watcher = new QFutureWatcher<QList<SuggestionDisplayData *>*>();
-    QObject::connect(watcher, &QFutureWatcher<QList<SuggestionDisplayData *>*>::finished,
-    this, [ = ]() {
-        beginResetModel();
-        if (suggestions != nullptr) {
-            qDeleteAll(*suggestions);
-            delete suggestions;
-        }
-        suggestions = future.result();
-        endResetModel();
-        watcher->deleteLater();
+    timer.stop();
+    QObject::disconnect(connection);
+    connection = timer.callOnTimeout(this, [ = ] {
+        QFuture<QList<SuggestionDisplayData *>*> future = viewModel->readSuggestions(searchText);
+        auto *watcher = new QFutureWatcher<QList<SuggestionDisplayData *>*>();
+        QObject::connect(watcher, &QFutureWatcher<QList<SuggestionDisplayData *>*>::finished,
+                         this, [ = ]()
+        {
+            beginResetModel();
+            if (suggestions != nullptr) {
+                qDeleteAll(*suggestions);
+                delete suggestions;
+            }
+            suggestions = future.result();
+            endResetModel();
+            watcher->deleteLater();
+        });
+        watcher->setFuture(future);
     });
-    watcher->setFuture(future);
+    timer.start(debounceDelayMs);
 }
 
 QHash<int, QByteArray> SuggestionListModel::roleNames() const

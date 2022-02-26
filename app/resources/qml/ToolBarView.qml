@@ -51,13 +51,10 @@ ToolBar {
                     Layout.fillWidth: true
                     radius: 12
                 }
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        mainViewModel.searchSuggestions(parent.text, false)
-                        parent.forceActiveFocus()
-                    }
+                onPressed: {
+                    mainViewModel.searchSuggestions(text, false)
                 }
+
                 onActiveFocusChanged: if (!activeFocus) mainViewModel.clearSuggestions()
                 placeholderText: qsTrId("hint_search")
                 placeholderTextColor: Style.secondaryText
