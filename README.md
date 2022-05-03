@@ -15,6 +15,9 @@ Poet Assistant has been tested on the following systems:
 * Windows: 10, 11
 
 ## Building
+
+This section is for developers who wish to build the app from sources. Regular users should refer to the "Installing" section above instead.
+
 * Install [Qt](https://qt.io)
 * Install additional dependencies:
   - Linux: `speech-dispatcher`, `libspeechd-dev`
