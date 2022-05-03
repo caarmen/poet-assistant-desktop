@@ -5,7 +5,7 @@ Download the application binary from the [releases](https://github.com/caarmen/p
 * Linux:
   - For text-to-speech features to be available, install `speech-dispatcher` with your favorite package manager
 * Windows:
-  - If you download the `portable` version, extract the contents first, before running the `PoetAssistant.exe` file
+  - For non power users, the `installer` version is recommended. If you download the `portable` version instead, extract the contents first, before running the `PoetAssistant.exe` file
   - Starting with Windows 11, you'll see a warning about an unknown publisher. To be able to run the app, you'll have to click "More info" and then allow the app. My understanding is that I'd have to pay several hundred dollars every year to get rid of this warning (by purchasing a certificate to sign the app). I'm not investing in this at this point.
 
 ## Compatibility
